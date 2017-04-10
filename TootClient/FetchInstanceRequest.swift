@@ -21,13 +21,13 @@ import TootNetworking
 public struct FetchInstanceRequest: Request {
     public typealias ResponseObject = Instance
 
-    public var instanceURI: String
+    public var instanceURL: URL
 
-    public init(instanceURI: String) {
-        self.instanceURI = instanceURI
+    public init(instanceURL: URL) {
+        self.instanceURL = instanceURL
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/instance")!)
+        return URLRequest(url: instanceURL.appendingPathComponent("api/v1/instance"))
     }
 }

@@ -23,7 +23,12 @@ public enum NetworkingError: Error {
     case generic(Error)
     case decoding(JSON.Error)
     case request(URLError)
+    case server(String)
 
+    public init(_ message: String) {
+        self = .server(message)
+    }
+    
     public init(_ error: Error) {
         if let error = error as? JSON.Error {
             self = .decoding(error)

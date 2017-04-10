@@ -22,11 +22,11 @@ import TootNetworking
 public struct FollowRemoteAccountRequest: Request {
     public typealias ResponseObject = Account
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountURI: String
 
-    public init(instanceURI: String, accountURI: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountURI: String) {
+        self.userAccount = userAccount
         self.accountURI = accountURI
     }
 
@@ -35,9 +35,10 @@ public struct FollowRemoteAccountRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/follows")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/follows"))
         request.httpBody = payload()
         request.httpMethod = Method.post.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }

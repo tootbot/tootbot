@@ -27,19 +27,12 @@ enum TagKey: String, JSONPathType {
     }
 }
 
-public struct Tag: JSONDecodable, JSONEncodable {
+public struct Tag: JSONDecodable {
     public var name: String
     public var url: URL
 
     public init(json: JSON) throws {
         self.name = try json.getString(at: TagKey.name)
         self.url = URL(string: try json.getString(at: TagKey.url))!
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            TagKey.name.rawValue: name.toJSON(),
-            TagKey.url.rawValue: url.absoluteString.toJSON(),
-        ]
     }
 }

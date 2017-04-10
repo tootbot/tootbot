@@ -21,15 +21,17 @@ import TootNetworking
 public struct FetchStatusContextRequest: Request {
     public typealias ResponseObject = Context
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var statusID: Int
 
-    public init(instanceURI: String, statusID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, statusID: Int) {
+        self.userAccount = userAccount
         self.statusID = statusID
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/statuses/\(statusID)/context")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/statuses/\(statusID)/context"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

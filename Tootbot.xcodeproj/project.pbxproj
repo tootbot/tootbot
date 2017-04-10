@@ -16,7 +16,6 @@
 		8317E7011E9BE25B003F1AA2 /* TootNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E6FA1E9BE25A003F1AA2 /* TootNetworking.framework */; };
 		8317E7021E9BE25B003F1AA2 /* TootNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E6FA1E9BE25A003F1AA2 /* TootNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8317E70E1E9BE3B2003F1AA2 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E70D1E9BE3B2003F1AA2 /* Method.swift */; };
-		8317E7131E9BE3CB003F1AA2 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E70F1E9BE3CB003F1AA2 /* Client.swift */; };
 		8317E7141E9BE3CB003F1AA2 /* Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7101E9BE3CB003F1AA2 /* Deserializer.swift */; };
 		8317E7151E9BE3CB003F1AA2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7111E9BE3CB003F1AA2 /* NetworkService.swift */; };
 		8317E7161E9BE3CB003F1AA2 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7121E9BE3CB003F1AA2 /* Request.swift */; };
@@ -97,6 +96,12 @@
 		83550A8B1E9C087E00287AAC /* FavoriteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A891E9C087E00287AAC /* FavoriteStatusRequest.swift */; };
 		83550A8C1E9C087E00287AAC /* UnravoriteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A8A1E9C087E00287AAC /* UnravoriteStatusRequest.swift */; };
 		83550A8E1E9C08A200287AAC /* TimelineRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A8D1E9C08A200287AAC /* TimelineRequest.swift */; };
+		83550A8F1E9C18D600287AAC /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */; };
+		83550A901E9C18D600287AAC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7091E9BE33C003F1AA2 /* Result.framework */; };
+		83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A931E9C1D7D00287AAC /* UserAccount.swift */; };
+		83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */; };
+		83550A991E9C2C6900287AAC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7091E9BE33C003F1AA2 /* Result.framework */; };
+		83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +172,6 @@
 		8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		8317E7091E9BE33C003F1AA2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		8317E70D1E9BE3B2003F1AA2 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
-		8317E70F1E9BE3CB003F1AA2 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		8317E7101E9BE3CB003F1AA2 /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deserializer.swift; sourceTree = "<group>"; };
 		8317E7111E9BE3CB003F1AA2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8317E7121E9BE3CB003F1AA2 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -199,8 +203,8 @@
 		8317E76A1E9BF5F7003F1AA2 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		8317E76C1E9BF5FE003F1AA2 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		8317E76E1E9BF65D003F1AA2 /* FetchAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountRequest.swift; sourceTree = "<group>"; };
-		8317E7701E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCurrentAccountRequest.swift; sourceTree = "<group>"; };
-		8317E7721E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7701E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchCurrentAccountRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8317E7721E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UpdateCurrentAccountRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8317E7771E9BF87D003F1AA2 /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
 		8317E7791E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountFollowersRequest.swift; sourceTree = "<group>"; };
 		8317E77B1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountFollowingRequest.swift; sourceTree = "<group>"; };
@@ -213,21 +217,21 @@
 		8317E7881E9BFA74003F1AA2 /* UnmuteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnmuteAccountRequest.swift; sourceTree = "<group>"; };
 		8317E78B1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRelationshipsRequest.swift; sourceTree = "<group>"; };
 		8317E7911E9BFC61003F1AA2 /* SearchAccountsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAccountsRequest.swift; sourceTree = "<group>"; };
-		8317E7931E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterApplicationRequest.swift; sourceTree = "<group>"; };
+		8317E7931E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RegisterApplicationRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
-		83550A591E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchBlockedAccountsRequest.swift; sourceTree = "<group>"; };
-		83550A5B1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFavoriteStatusesRequest.swift; sourceTree = "<group>"; };
-		83550A5D1E9C002100287AAC /* FetchFollowRequestsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFollowRequestsRequest.swift; sourceTree = "<group>"; };
-		83550A5F1E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeFollowRequestRequest.swift; sourceTree = "<group>"; };
-		83550A611E9C005600287AAC /* RejectFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RejectFollowRequestRequest.swift; sourceTree = "<group>"; };
-		83550A631E9C012600287AAC /* FollowRemoteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRemoteAccountRequest.swift; sourceTree = "<group>"; };
-		83550A651E9C015100287AAC /* FetchInstanceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchInstanceRequest.swift; sourceTree = "<group>"; };
-		83550A671E9C018600287AAC /* FetchMutesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMutesRequest.swift; sourceTree = "<group>"; };
-		83550A691E9C01BF00287AAC /* ClearNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearNotificationsRequest.swift; sourceTree = "<group>"; };
+		83550A591E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchBlockedAccountsRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A5B1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchFavoriteStatusesRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A5D1E9C002100287AAC /* FetchFollowRequestsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchFollowRequestsRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A5F1E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AuthorizeFollowRequestRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A611E9C005600287AAC /* RejectFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RejectFollowRequestRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A631E9C012600287AAC /* FollowRemoteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FollowRemoteAccountRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A651E9C015100287AAC /* FetchInstanceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchInstanceRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A671E9C018600287AAC /* FetchMutesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchMutesRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A691E9C01BF00287AAC /* ClearNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ClearNotificationsRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83550A6A1E9C01BF00287AAC /* FetchNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNotificationRequest.swift; sourceTree = "<group>"; };
-		83550A6B1E9C01BF00287AAC /* FetchNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNotificationsRequest.swift; sourceTree = "<group>"; };
-		83550A6F1E9C02F900287AAC /* FetchReportsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchReportsRequest.swift; sourceTree = "<group>"; };
-		83550A711E9C030300287AAC /* ReportAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportAccountRequest.swift; sourceTree = "<group>"; };
+		83550A6B1E9C01BF00287AAC /* FetchNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchNotificationsRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A6F1E9C02F900287AAC /* FetchReportsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchReportsRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		83550A711E9C030300287AAC /* ReportAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReportAccountRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83550A731E9C050C00287AAC /* SearchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
 		83550A751E9C058700287AAC /* FetchStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusRequest.swift; sourceTree = "<group>"; };
 		83550A771E9C05AC00287AAC /* FetchStatusContextRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusContextRequest.swift; sourceTree = "<group>"; };
@@ -235,13 +239,15 @@
 		83550A7B1E9C05D800287AAC /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		83550A7D1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusRebloggedByRequest.swift; sourceTree = "<group>"; };
 		83550A7F1E9C065700287AAC /* FetchStatusFavoritedByRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusFavoritedByRequest.swift; sourceTree = "<group>"; };
-		83550A811E9C06AB00287AAC /* PostStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostStatusRequest.swift; sourceTree = "<group>"; };
+		83550A811E9C06AB00287AAC /* PostStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostStatusRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		83550A831E9C07FA00287AAC /* DeleteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteStatusRequest.swift; sourceTree = "<group>"; };
 		83550A851E9C080200287AAC /* ReblogStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReblogStatusRequest.swift; sourceTree = "<group>"; };
 		83550A871E9C080C00287AAC /* UnreblogStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreblogStatusRequest.swift; sourceTree = "<group>"; };
 		83550A891E9C087E00287AAC /* FavoriteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteStatusRequest.swift; sourceTree = "<group>"; };
 		83550A8A1E9C087E00287AAC /* UnravoriteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnravoriteStatusRequest.swift; sourceTree = "<group>"; };
 		83550A8D1E9C08A200287AAC /* TimelineRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRequest.swift; sourceTree = "<group>"; };
+		83550A931E9C1D7D00287AAC /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCredentials.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +255,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */,
+				83550A991E9C2C6900287AAC /* Result.framework in Frameworks */,
 				8317E7011E9BE25B003F1AA2 /* TootNetworking.framework in Frameworks */,
 				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
 				8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */,
@@ -270,6 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */,
+				83550A8F1E9C18D600287AAC /* ReactiveSwift.framework in Frameworks */,
+				83550A901E9C18D600287AAC /* Result.framework in Frameworks */,
 				8317E7751E9BF815003F1AA2 /* TootNetworking.framework in Frameworks */,
 				8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */,
 			);
@@ -346,7 +356,6 @@
 		8317E7211E9BE7C3003F1AA2 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				8317E70F1E9BE3CB003F1AA2 /* Client.swift */,
 				8317E7101E9BE3CB003F1AA2 /* Deserializer.swift */,
 				8317E7111E9BE3CB003F1AA2 /* NetworkService.swift */,
 				8317E7121E9BE3CB003F1AA2 /* Request.swift */,
@@ -368,12 +377,14 @@
 		8317E7291E9BE8A5003F1AA2 /* TootClient */ = {
 			isa = PBXGroup;
 			children = (
-				8317E7341E9BE8C1003F1AA2 /* APIClient.swift */,
-				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
-				8317E7951E9BFCFD003F1AA2 /* Requests */,
-				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
-				8317E72B1E9BE8A5003F1AA2 /* Info.plist */,
 				8317E72A1E9BE8A5003F1AA2 /* TootClient.h */,
+				8317E72B1E9BE8A5003F1AA2 /* Info.plist */,
+				8317E7951E9BFCFD003F1AA2 /* Requests */,
+				8317E7341E9BE8C1003F1AA2 /* APIClient.swift */,
+				83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */,
+				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
+				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
+				83550A931E9C1D7D00287AAC /* UserAccount.swift */,
 			);
 			path = TootClient;
 			sourceTree = "<group>";
@@ -383,10 +394,10 @@
 			children = (
 				8317E73F1E9BE8DB003F1AA2 /* TootModel.h */,
 				8317E7401E9BE8DB003F1AA2 /* Info.plist */,
-				8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */,
+				8317E74B1E9BE95D003F1AA2 /* Entities */,
 				8317E7591E9BF069003F1AA2 /* Box.swift */,
 				8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */,
-				8317E74B1E9BE95D003F1AA2 /* Entities */,
+				8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */,
 			);
 			path = TootModel;
 			sourceTree = "<group>";
@@ -618,8 +629,8 @@
 			targets = (
 				8317E6DF1E9BD870003F1AA2 /* Tootbot */,
 				8317E7271E9BE8A5003F1AA2 /* TootClient */,
-				8317E6F91E9BE25A003F1AA2 /* TootNetworking */,
 				8317E73C1E9BE8DB003F1AA2 /* TootModel */,
+				8317E6F91E9BE25A003F1AA2 /* TootNetworking */,
 			);
 		};
 /* End PBXProject section */
@@ -692,7 +703,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8317E7131E9BE3CB003F1AA2 /* Client.swift in Sources */,
 				8317E7141E9BE3CB003F1AA2 /* Deserializer.swift in Sources */,
 				8317E7201E9BE62F003F1AA2 /* NetworkingError.swift in Sources */,
 				8317E7161E9BE3CB003F1AA2 /* Request.swift in Sources */,
@@ -736,12 +746,14 @@
 				8317E77C1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift in Sources */,
 				83550A621E9C005600287AAC /* RejectFollowRequestRequest.swift in Sources */,
 				83550A5C1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift in Sources */,
+				83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */,
 				83550A701E9C02F900287AAC /* FetchReportsRequest.swift in Sources */,
 				83550A641E9C012600287AAC /* FollowRemoteAccountRequest.swift in Sources */,
 				83550A861E9C080200287AAC /* ReblogStatusRequest.swift in Sources */,
 				8317E7711E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift in Sources */,
 				83550A6D1E9C01BF00287AAC /* FetchNotificationRequest.swift in Sources */,
 				8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */,
+				83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */,
 				8317E7351E9BE8C1003F1AA2 /* APIClient.swift in Sources */,
 				83550A8C1E9C087E00287AAC /* UnravoriteStatusRequest.swift in Sources */,
 				83550A681E9C018600287AAC /* FetchMutesRequest.swift in Sources */,

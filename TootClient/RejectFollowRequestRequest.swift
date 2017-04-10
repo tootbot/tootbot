@@ -22,11 +22,11 @@ import TootNetworking
 public struct RejectFollowRequestRequest: Request {
     public typealias ResponseObject = Void
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountID: Int
 
-    public init(instanceURI: String, accountID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountID: Int) {
+        self.userAccount = userAccount
         self.accountID = accountID
     }
     
@@ -35,9 +35,10 @@ public struct RejectFollowRequestRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/follow_requests/reject")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/follow_requests/reject"))
         request.httpBody = payload()
         request.httpMethod = Method.post.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }

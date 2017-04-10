@@ -27,11 +27,11 @@ public struct TimelineRequest: Request {
 
     public typealias ResponseObject = [Status]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var timelineType: TimelineType
 
-    public init(instanceURI: String, timelineType: TimelineType) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, timelineType: TimelineType) {
+        self.userAccount = userAccount
         self.timelineType = timelineType
     }
 
@@ -51,6 +51,8 @@ public struct TimelineRequest: Request {
             localFlag = "?local=\(local ? "true" : "false")"
         }
 
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/timelines/\(timeline)\(localFlag)")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/timelines/\(timeline)\(localFlag)"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

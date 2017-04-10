@@ -22,13 +22,13 @@ import TootNetworking
 public struct ReportAccountRequest: Request {
     public typealias ResponseObject = Report
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountID: Int
     public var statusIDs: [Int]
     public var comment: String
 
-    public init(instanceURI: String, accountID: Int, statusIDs: [Int], comment: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountID: Int, statusIDs: [Int], comment: String) {
+        self.userAccount = userAccount
         self.accountID = accountID
         self.statusIDs = statusIDs
         self.comment = comment
@@ -43,9 +43,10 @@ public struct ReportAccountRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/reports")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/reports"))
         request.httpMethod = Method.post.rawValue
         request.httpBody = payload()
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }}

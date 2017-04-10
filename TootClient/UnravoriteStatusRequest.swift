@@ -21,17 +21,18 @@ import TootNetworking
 public struct UnfavoriteStatusRequest: Request {
     public typealias ResponseObject = Status
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var statusID: Int
 
-    public init(instanceURI: String, statusID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, statusID: Int) {
+        self.userAccount = userAccount
         self.statusID = statusID
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/statuses/\(statusID)/unfavourite")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/statuses/\(statusID)/unfavourite"))
         request.httpMethod = Method.post.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         return request
     }
 }

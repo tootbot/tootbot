@@ -15,12 +15,30 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import ReactiveSwift
+import TootClient
+import TootNetworking
 import UIKit
 
+enum Constants {
+    static let clientName = "Tootbot"
+    static let redirectURI = "tootbot://auth"
+    static let scopes: Set<ApplicationScope> = [.read, .write, .follow]
+    static let homepageURL = URL(string: "https://github.com/tootbot/tootbot")!
+}
+
 class ViewController: UIViewController {
+    let api = APIClient(networkService: URLSessionNetworkService())
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let credentials = OAuthCredentials(id: <#T##String#>, clientID: <#T##String#>, clientSecret: <#T##String#>)
+        let account = UserAccount(instanceURL: <#T##URL#>, username: <#T##String#>, token: <#T##String#>)
+        let request = TimelineRequest(userAccount: account, timelineType: .home)
+        api.perform(request).startWithResult { result in
+            print(result)
+        }
     }
 
     override func didReceiveMemoryWarning() {

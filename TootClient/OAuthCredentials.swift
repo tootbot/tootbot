@@ -16,7 +16,6 @@
 //
 
 import TootModel
-import TootNetworking
 import Freddy
 
 enum OAuthCredentialsKey: String, JSONPathType {
@@ -34,6 +33,12 @@ public struct OAuthCredentials: JSONDecodable {
     public var clientID: String
     public var clientSecret: String
 
+    public init(id: String, clientID: String, clientSecret: String) {
+        self.id = id
+        self.clientID = clientID
+        self.clientSecret = clientSecret
+    }
+    
     public init(json: JSON) throws {
         self.id = try json.getString(at: OAuthCredentialsKey.id)
         self.clientID = try json.getString(at: OAuthCredentialsKey.clientID)

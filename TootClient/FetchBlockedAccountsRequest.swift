@@ -21,13 +21,15 @@ import TootNetworking
 public struct FetchBlockedAccountsRequest: Request {
     public typealias ResponseObject = [Status]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
 
-    public init(instanceURI: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount) {
+        self.userAccount = userAccount
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/blocks")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/blocks"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

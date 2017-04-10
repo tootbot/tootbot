@@ -21,17 +21,18 @@ import TootNetworking
 public struct DeleteStatusRequest: Request {
     public typealias ResponseObject = Void
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var statusID: Int
 
-    public init(instanceURI: String, statusID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, statusID: Int) {
+        self.userAccount = userAccount
         self.statusID = statusID
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/statuses/\(statusID)")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/statuses/\(statusID)"))
         request.httpMethod = Method.delete.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         return request
     }
 }

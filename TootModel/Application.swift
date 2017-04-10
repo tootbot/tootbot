@@ -27,19 +27,12 @@ enum ApplicationKey: String, JSONPathType {
     }
 }
 
-public struct Application: JSONDecodable, JSONEncodable {
+public struct Application: JSONDecodable {
     public var name: String
-    public var websiteURL: URL
+    public var websiteURL: URL?
 
     public init(json: JSON) throws {
         self.name = try json.getString(at: ApplicationKey.name)
-        self.websiteURL = URL(string: try json.getString(at: ApplicationKey.websiteURL))!
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            ApplicationKey.name.rawValue: name.toJSON(),
-            ApplicationKey.websiteURL.rawValue: websiteURL.absoluteString.toJSON(),
-        ]
+        self.websiteURL = (try json.getString(at: ApplicationKey.websiteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
     }
 }

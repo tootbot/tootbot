@@ -29,7 +29,7 @@ enum MentionKey: String, JSONPathType {
     }
 }
 
-public struct Mention: JSONDecodable, JSONEncodable {
+public struct Mention: JSONDecodable {
     public var accountID: Int
     public var profileURL: URL
     public var accountName: String
@@ -40,14 +40,5 @@ public struct Mention: JSONDecodable, JSONEncodable {
         self.profileURL = URL(string: try json.getString(at: MentionKey.profileURL))!
         self.accountName = try json.getString(at: MentionKey.accountName)
         self.username = try json.getString(at: MentionKey.username)
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            MentionKey.accountID.rawValue: accountID.toJSON(),
-            MentionKey.profileURL.rawValue: profileURL.absoluteString.toJSON(),
-            MentionKey.accountName.rawValue: accountName.toJSON(),
-            MentionKey.username.rawValue: username.toJSON()
-        ]
     }
 }

@@ -39,6 +39,6 @@ public struct Card: JSONDecodable {
         self.url = URL(string: try json.getString(at: CardKey.url))!
         self.title = try json.getString(at: CardKey.title)
         self.description = try json.getString(at: CardKey.description)
-        self.image = try json.getString(at: CardKey.image, alongPath: .nullBecomesNil)
+        self.image = try json.getString(at: CardKey.image, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
     }
 }

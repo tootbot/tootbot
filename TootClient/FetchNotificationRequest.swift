@@ -21,15 +21,17 @@ import TootNetworking
 public struct FetchNotificationRequest: Request {
     public typealias ResponseObject = TootModel.Notification
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var notificationID: Int
 
-    public init(instanceURI: String, notificationID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, notificationID: Int) {
+        self.userAccount = userAccount
         self.notificationID = notificationID
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/notifications/\(notificationID)")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/notifications/\(notificationID)"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

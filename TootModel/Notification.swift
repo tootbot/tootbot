@@ -49,6 +49,6 @@ public struct Notification: JSONDecodable {
         self.type = try json.decode(at: NotificationKey.type)
         self.createdAt = SharedDateFormatter.date(from: try json.getString(at: NotificationKey.createdAt))!
         self.account = try json.decode(at: NotificationKey.account)
-        self.status = try json.decode(at: NotificationKey.status, alongPath: .nullBecomesNil)
+        self.status = try json.decode(at: NotificationKey.status, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
     }
 }

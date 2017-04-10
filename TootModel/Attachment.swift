@@ -37,7 +37,7 @@ enum AttachmentKey: String, JSONPathType {
     }
 }
 
-public struct Attachment: JSONDecodable, JSONEncodable {
+public struct Attachment: JSONDecodable {
     public var id: Int
     public var type: AttachmentType
     public var url: URL
@@ -49,19 +49,8 @@ public struct Attachment: JSONDecodable, JSONEncodable {
         self.id = try json.getInt(at: AttachmentKey.id)
         self.type = try json.decode(at: AttachmentKey.type)
         self.url = URL(string: try json.getString(at: AttachmentKey.url))!
-        self.remoteURL = (try json.getString(at: AttachmentKey.remoteURL, alongPath: .nullBecomesNil)).map { URL(string: $0)! }
+        self.remoteURL = (try json.getString(at: AttachmentKey.remoteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
         self.previewURL = URL(string: try json.getString(at: AttachmentKey.previewURL))!
-        self.textURL = (try json.getString(at: AttachmentKey.textURL, alongPath: .nullBecomesNil)).map { URL(string: $0)! }
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            AttachmentKey.id.rawValue: id.toJSON(),
-            AttachmentKey.type.rawValue: type.toJSON(),
-            AttachmentKey.url.rawValue: url.absoluteString.toJSON(),
-            AttachmentKey.remoteURL.rawValue: remoteURL?.absoluteString.toJSON() ?? .null,
-            AttachmentKey.previewURL.rawValue: previewURL.absoluteString.toJSON(),
-            AttachmentKey.textURL.rawValue: textURL?.absoluteString.toJSON() ?? .null,
-        ]
+        self.textURL = (try json.getString(at: AttachmentKey.textURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
     }
 }

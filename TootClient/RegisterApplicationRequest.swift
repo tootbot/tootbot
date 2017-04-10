@@ -28,14 +28,14 @@ public enum ApplicationScope: String {
 public struct RegisterApplicationRequest: Request {
     public typealias ResponseObject = OAuthCredentials
 
-    public var instanceURI: String
+    public var instanceURL: URL
     public var clientName: String
     public var redirectURI: String
     public var scopes: Set<ApplicationScope>
     public var homepageURL: URL?
 
-    public init(instanceURI: String, clientName: String, redirectURI: String, scopes: Set<ApplicationScope>, homepageURL: URL?) {
-        self.instanceURI = instanceURI
+    public init(instanceURL: URL, clientName: String, redirectURI: String, scopes: Set<ApplicationScope>, homepageURL: URL?) {
+        self.instanceURL = instanceURL
         self.clientName = clientName
         self.redirectURI = redirectURI
         self.scopes = scopes
@@ -53,7 +53,7 @@ public struct RegisterApplicationRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/apps")!)
+        var request = URLRequest(url: instanceURL.appendingPathComponent("api/v1/apps"))
         request.httpMethod = Method.post.rawValue
         request.httpBody = payload()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

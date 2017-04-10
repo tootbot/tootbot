@@ -21,20 +21,21 @@ import TootNetworking
 public struct FetchRelationshipsRequest: Request {
     public typealias ResponseObject = [Relationship]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountIDs: [Int]
 
-    public init(instanceURI: String, accountIDs: [Int]) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountIDs: [Int]) {
+        self.userAccount = userAccount
         self.accountIDs = accountIDs
     }
 
     public func build() -> URLRequest {
-        var components = URLComponents(string: "\(instanceURI)/api/v1/accounts/relationships")!
-        components.queryItems = accountIDs.map { accountID in
-            URLQueryItem(name: "id", value: String(describing: accountID))
-        }
+        let url = userAccount.instanceURL.appendingPathComponent("api/v1/accounts/relationships")
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        components.queryItems = accountIDs.map { URLQueryItem(name: "id", value: String(describing: $0)) }
 
-        return URLRequest(url: components.url!)
+        var request = URLRequest(url: components.url!)
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

@@ -14,3 +14,48 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
+
+import Freddy
+import ReactiveSwift
+import Result
+import TootModel
+import TootNetworking
+
+public class APIClient {
+    let networkService: NetworkService
+
+    public init(networkService: NetworkService) {
+        self.networkService = networkService
+    }
+
+    public func perform(_ urlRequest: URLRequest) -> SignalProducer<(Data, URLResponse), NetworkingError> {
+        return networkService.perform(urlRequest)
+    }
+
+    public func perform<R: Request>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> where R.ResponseDeserializer.Output == JSON {
+        return perform(request.build()).flatMap(.merge) { data, response -> SignalProducer<R.ResponseObject, NetworkingError> in
+            let result = Result(value: data)
+                .flatMap(R.ResponseDeserializer.deserialize)
+                .flatMap { json in
+                    request.parse(json).mapError { error in
+                        if case .decoding = error, let serverError = try? ServerError(json: json) {
+                            return .server(serverError.message)
+                        } else {
+                            return error
+                        }
+                    }
+                }
+
+            return SignalProducer(result: result)
+        }
+    }
+
+    public func perform<R: Request>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> {
+        return perform(request.build()).flatMap(.merge) { data, response -> SignalProducer<R.ResponseObject, NetworkingError> in
+            let result = Result(value: data)
+                .flatMap(R.ResponseDeserializer.deserialize)
+                .flatMap(request.parse)
+            return SignalProducer(result: result)
+        }
+    }
+}

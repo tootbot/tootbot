@@ -22,7 +22,7 @@ import TootNetworking
 public struct PostStatusRequest: Request {
     public typealias ResponseObject = Status
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var status: String
     public var inReplyToID: Int?
     public var mediaIDs: [Int]?
@@ -30,8 +30,8 @@ public struct PostStatusRequest: Request {
     public var spoilerText: String?
     public var visibility: StatusVisibility?
 
-    public init(instanceURI: String, status: String, inReplyToID: Int?, mediaIDs: [Int]?, isSensitive: Bool?, spoilerText: String?, visibility: StatusVisibility?) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, status: String, inReplyToID: Int?, mediaIDs: [Int]?, isSensitive: Bool?, spoilerText: String?, visibility: StatusVisibility?) {
+        self.userAccount = userAccount
         self.status = status
         self.inReplyToID = inReplyToID
         self.mediaIDs = mediaIDs
@@ -53,9 +53,10 @@ public struct PostStatusRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/statuses")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/statuses"))
         request.httpBody = payload()
         request.httpMethod = Method.post.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }

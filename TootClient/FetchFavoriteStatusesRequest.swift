@@ -21,13 +21,15 @@ import TootNetworking
 public struct FetchFavoriteStatusesRequest: Request {
     public typealias ResponseObject = [Account]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
 
-    public init(instanceURI: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount) {
+        self.userAccount = userAccount
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/favourites")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/favourites"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

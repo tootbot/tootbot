@@ -15,8 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import ReactiveSwift
+public struct UserAccount {
+    public var instanceURL: URL
+    public var username: String
+    public var token: String
 
-public protocol Client {
-    func perform<R: Request>(_ request: R) -> SignalProducer<R.ResponseObject, URLError>
+    public init(instanceURL: URL, username: String, token: String) {
+        self.instanceURL = instanceURL
+        self.username = username
+        self.token = token
+    }
 }

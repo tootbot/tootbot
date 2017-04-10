@@ -27,19 +27,12 @@ enum ContextKey: String, JSONPathType {
     }
 }
 
-public struct Context: JSONDecodable, JSONEncodable {
+public struct Context: JSONDecodable {
     public var ancestors: [Status]
     public var descendants: [Status]
 
     public init(json: JSON) throws {
         self.ancestors = try json.decodedArray(at: ContextKey.ancestors)
         self.descendants = try json.decodedArray(at: ContextKey.descendants)
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            ContextKey.ancestors.rawValue: ancestors.toJSON(),
-            ContextKey.descendants.rawValue: descendants.toJSON(),
-        ]
     }
 }

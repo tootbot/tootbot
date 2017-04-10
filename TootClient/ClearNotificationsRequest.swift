@@ -21,15 +21,16 @@ import TootNetworking
 public struct ClearNotificationsRequest: Request {
     public typealias ResponseObject = Void
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
 
-    public init(instanceURI: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount) {
+        self.userAccount = userAccount
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/notifications/clear")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/notifications/clear"))
         request.httpMethod = Method.post.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         return request
     }
 }

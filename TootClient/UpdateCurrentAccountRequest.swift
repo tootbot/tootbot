@@ -22,14 +22,14 @@ import TootNetworking
 public struct UpdateCurrentAccountRequest: Request {
     public typealias ResponseObject = Void
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var displayName: String?
     public var note: String?
     public var avatarData: FormData?
     public var headerData: FormData?
 
-    public init(instanceURI: String, displayName: String?, note: String?, avatarData: FormData?, headerData: FormData?) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, displayName: String?, note: String?, avatarData: FormData?, headerData: FormData?) {
+        self.userAccount = userAccount
         self.displayName = displayName
         self.note = note
         self.avatarData = avatarData
@@ -47,9 +47,10 @@ public struct UpdateCurrentAccountRequest: Request {
     }
 
     public func build() -> URLRequest {
-        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/accounts/verify_credentials")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/accounts/verify_credentials"))
         request.httpBody = payload()
         request.httpMethod = Method.patch.rawValue
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }

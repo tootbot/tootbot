@@ -38,7 +38,7 @@ enum AccountKey: String, JSONPathType {
     }
 }
 
-public struct Account: JSONDecodable, JSONEncodable {
+public struct Account: JSONDecodable {
     public var id: Int
     public var username: String
     public var accountName: String
@@ -67,23 +67,5 @@ public struct Account: JSONDecodable, JSONEncodable {
         self.followersCount = try json.getInt(at: AccountKey.followersCount)
         self.followingCount = try json.getInt(at: AccountKey.followingCount)
         self.statusesCount = try json.getInt(at: AccountKey.statusesCount)
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            AccountKey.id.rawValue: id.toJSON(),
-            AccountKey.username.rawValue: username.toJSON(),
-            AccountKey.accountName.rawValue: accountName.toJSON(),
-            AccountKey.displayName.rawValue: displayName.toJSON(),
-            AccountKey.note.rawValue: note.toJSON(),
-            AccountKey.websiteURL.rawValue: websiteURL.absoluteString.toJSON(),
-            AccountKey.avatarURL.rawValue: avatarURL.absoluteString.toJSON(),
-            AccountKey.headerURL.rawValue: headerURL.absoluteString.toJSON(),
-            AccountKey.isLocked.rawValue: isLocked.toJSON(),
-            AccountKey.createdAt.rawValue: SharedDateFormatter.string(from: createdAt).toJSON(),
-            AccountKey.followersCount.rawValue: followersCount.toJSON(),
-            AccountKey.followingCount.rawValue: followingCount.toJSON(),
-            AccountKey.statusesCount.rawValue: statusesCount.toJSON(),
-        ]
     }
 }

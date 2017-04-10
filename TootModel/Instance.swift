@@ -29,7 +29,7 @@ enum InstanceKey: String, JSONPathType {
     }
 }
 
-public struct Instance: JSONDecodable, JSONEncodable {
+public struct Instance: JSONDecodable {
     public var uri: String
     public var title: String
     public var description: String
@@ -40,14 +40,5 @@ public struct Instance: JSONDecodable, JSONEncodable {
         self.title = try json.getString(at: InstanceKey.title)
         self.description = try json.getString(at: InstanceKey.description)
         self.email = try json.getString(at: InstanceKey.email)
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            InstanceKey.uri.rawValue: uri.toJSON(),
-            InstanceKey.title.rawValue: title.toJSON(),
-            InstanceKey.description.rawValue: description.toJSON(),
-            InstanceKey.email.rawValue: email.toJSON(),
-        ]
     }
 }

@@ -15,25 +15,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Freddy
+public struct ApplicationCredentials {
+    public var instanceURL: URL
+    public var oAuthCredentials: OAuthCredentials
 
-enum ServerErrorKey: String, JSONPathType {
-    case message = "error"
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-public struct ServerError: CustomStringConvertible, JSONDecodable {
-    public var message: String
-
-    public init(json: JSON) throws {
-        self.message = try json.getString(at: ServerErrorKey.message)
-    }
-
-    public var description: String {
-        return message
+    public init(instanceURL: URL, oAuthCredentials: OAuthCredentials) {
+        self.instanceURL = instanceURL
+        self.oAuthCredentials = oAuthCredentials
     }
 }

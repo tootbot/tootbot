@@ -52,7 +52,7 @@ enum StatusKey: String, JSONPathType {
     }
 }
 
-public struct Status: JSONDecodable, JSONEncodable {
+public struct Status: JSONDecodable {
     public var id: Int
     public var fediverseURI: String
     public var statusURL: URL
@@ -72,53 +72,28 @@ public struct Status: JSONDecodable, JSONEncodable {
     public var mediaAttachments: [Attachment]
     public var mentions: [Mention]
     public var tags: [Tag]
-    public var application: Application
+    public var application: Application?
 
     public init(json: JSON) throws {
         self.id = try json.getInt(at: StatusKey.id)
         self.fediverseURI = try json.getString(at: StatusKey.fediverseURI)
         self.statusURL = URL(string: try json.getString(at: StatusKey.statusURL))!
         self.account = try json.decode(at: StatusKey.account)
-        self.inReplyToID = try json.getInt(at: StatusKey.inReplyToID, alongPath: .nullBecomesNil)
-        self.inReplyToAccountID = try json.getInt(at: StatusKey.inReplyToAccountID, alongPath: .nullBecomesNil)
-        self.rebloggedStatus = (try json.decode(at: StatusKey.rebloggedStatus, alongPath: .nullBecomesNil)).map(Box.init)
+        self.inReplyToID = try json.getInt(at: StatusKey.inReplyToID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        self.inReplyToAccountID = try json.getInt(at: StatusKey.inReplyToAccountID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        self.rebloggedStatus = (try json.decode(at: StatusKey.rebloggedStatus, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).map(Box.init)
         self.content = try json.getString(at: StatusKey.content)
         self.createdAt = SharedDateFormatter.date(from: try json.getString(at: StatusKey.createdAt))!
         self.reblogsCount = try json.getInt(at: StatusKey.reblogsCount)
         self.favoritesCount = try json.getInt(at: StatusKey.favoritesCount)
-        self.isReblogged = try json.getBool(at: StatusKey.isReblogged)
-        self.isFavorited = try json.getBool(at: StatusKey.isFavorited)
-        self.isSensitive = try json.getBool(at: StatusKey.isSensitive)
+        self.isReblogged = try json.getBool(at: StatusKey.isReblogged, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
+        self.isFavorited = try json.getBool(at: StatusKey.isFavorited, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
+        self.isSensitive = try json.getBool(at: StatusKey.isSensitive, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
         self.spoilerText = try json.getString(at: StatusKey.spoilerText)
         self.visibility = try json.decode(at: StatusKey.visibility)
         self.mediaAttachments = try json.decodedArray(at: StatusKey.mediaAttachments)
         self.mentions = try json.decodedArray(at: StatusKey.mentions)
         self.tags = try json.decodedArray(at: StatusKey.tags)
-        self.application = try json.decode(at: StatusKey.application)
-    }
-
-    public func toJSON() -> JSON {
-        return [
-            StatusKey.id.rawValue: id.toJSON(),
-            StatusKey.fediverseURI.rawValue: fediverseURI.toJSON(),
-            StatusKey.statusURL.rawValue: statusURL.absoluteString.toJSON(),
-            StatusKey.account.rawValue: account.toJSON(),
-            StatusKey.inReplyToID.rawValue: inReplyToID?.toJSON() ?? .null,
-            StatusKey.inReplyToAccountID.rawValue: inReplyToAccountID?.toJSON() ?? .null,
-            StatusKey.rebloggedStatus.rawValue: rebloggedStatus?.value.toJSON() ?? .null,
-            StatusKey.content.rawValue: content.toJSON(),
-            StatusKey.createdAt.rawValue: SharedDateFormatter.string(from: createdAt).toJSON(),
-            StatusKey.reblogsCount.rawValue: reblogsCount.toJSON(),
-            StatusKey.favoritesCount.rawValue: favoritesCount.toJSON(),
-            StatusKey.isReblogged.rawValue: isReblogged.toJSON(),
-            StatusKey.isFavorited.rawValue: isFavorited.toJSON(),
-            StatusKey.isSensitive.rawValue: isSensitive.toJSON(),
-            StatusKey.spoilerText.rawValue: spoilerText.toJSON(),
-            StatusKey.visibility.rawValue: visibility.toJSON(),
-            StatusKey.mediaAttachments.rawValue: mediaAttachments.toJSON(),
-            StatusKey.mentions.rawValue: mentions.toJSON(),
-            StatusKey.tags.rawValue: tags.toJSON(),
-            StatusKey.application.rawValue: application.toJSON(),
-        ]
+        self.application = try json.decode(at: StatusKey.application, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
     }
 }

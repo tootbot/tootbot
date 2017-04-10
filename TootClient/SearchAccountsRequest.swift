@@ -21,18 +21,19 @@ import TootNetworking
 public struct SearchAccountsRequest: Request {
     public typealias ResponseObject = [Account]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var query: String
     public var limit: Int?
 
-    public init(instanceURI: String, query: String, limit: Int?) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, query: String, limit: Int?) {
+        self.userAccount = userAccount
         self.query = query
         self.limit = limit
     }
 
     public func build() -> URLRequest {
-        var components = URLComponents(string: "\(instanceURI)/api/v1/accounts/search")!
+        let url = userAccount.instanceURL.appendingPathComponent("api/v1/accounts/search")
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         components.queryItems = {
             var items = [URLQueryItem(name: "q", value: query)]
             if let limit = limit {
@@ -41,6 +42,9 @@ public struct SearchAccountsRequest: Request {
             return items
         }()
 
-        return URLRequest(url: components.url!)
+        var request = URLRequest(url: components.url!)
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

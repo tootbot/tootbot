@@ -21,22 +21,26 @@ import TootNetworking
 public struct SearchRequest: Request {
     public typealias ResponseObject = Results
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var query: String
     public var shouldResolveRemoteAccounts: Bool
 
-    public init(instanceURI: String, query: String, shouldResolveRemoteAccounts: Bool) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, query: String, shouldResolveRemoteAccounts: Bool) {
+        self.userAccount = userAccount
         self.query = query
         self.shouldResolveRemoteAccounts = shouldResolveRemoteAccounts
     }
 
     public func build() -> URLRequest {
-        var components = URLComponents(string: "\(instanceURI)/api/v1/search")!
+        let url = userAccount.instanceURL.appendingPathComponent("api/v1/search")
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         components.queryItems = [
             URLQueryItem(name: "q", value: query),
             URLQueryItem(name: "resolve", value: shouldResolveRemoteAccounts ? "true" : "false"),
         ]
-        return URLRequest(url: components.url!)
+
+        var request = URLRequest(url: components.url!)
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

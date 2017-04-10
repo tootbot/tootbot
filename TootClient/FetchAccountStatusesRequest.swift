@@ -21,21 +21,22 @@ import TootNetworking
 public struct FetchAccountStatusesRequest: Request {
     public typealias ResponseObject = [Status]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountID: Int
 
     public var onlyMedia: Bool?
     public var excludeReplies: Bool?
 
-    public init(instanceURI: String, accountID: Int, onlyMedia: Bool?, excludeReplies: Bool?) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountID: Int, onlyMedia: Bool?, excludeReplies: Bool?) {
+        self.userAccount = userAccount
         self.accountID = accountID
         self.onlyMedia = onlyMedia
         self.excludeReplies = excludeReplies
     }
 
     public func build() -> URLRequest {
-        var components = URLComponents(string: "\(instanceURI)/api/v1/accounts/\(accountID)/statuses")!
+        let url = userAccount.instanceURL.appendingPathComponent("api/v1/accounts/\(accountID)/statuses")
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         components.queryItems = {
             var items = [URLQueryItem]()
 
@@ -50,6 +51,8 @@ public struct FetchAccountStatusesRequest: Request {
             return items.isEmpty ? nil : items
         }()
 
-        return URLRequest(url: components.url!)
+        var request = URLRequest(url: components.url!)
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

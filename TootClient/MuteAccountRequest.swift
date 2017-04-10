@@ -21,15 +21,17 @@ import TootNetworking
 public struct MuteAccountRequest: Request {
     public typealias ResponseObject = Account
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
     public var accountID: Int
 
-    public init(instanceURI: String, accountID: Int) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount, accountID: Int) {
+        self.userAccount = userAccount
         self.accountID = accountID
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/accounts/\(accountID)/mute")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/accounts/\(accountID)/mute"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

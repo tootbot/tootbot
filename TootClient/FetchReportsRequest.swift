@@ -21,13 +21,15 @@ import TootNetworking
 public struct FetchReportsRequest: Request {
     public typealias ResponseObject = [Report]
 
-    public var instanceURI: String
+    public var userAccount: UserAccount
 
-    public init(instanceURI: String) {
-        self.instanceURI = instanceURI
+    public init(userAccount: UserAccount) {
+        self.userAccount = userAccount
     }
 
     public func build() -> URLRequest {
-        return URLRequest(url: URL(string: "\(instanceURI)/api/v1/reports")!)
+        var request = URLRequest(url: userAccount.instanceURL.appendingPathComponent("api/v1/reports"))
+        request.setValue("Bearer \(userAccount.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }
