@@ -92,7 +92,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "Pandamonia LLC";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					8317E6DF1E9BD870003F1AA2 = {
 						CreatedOnToolsVersion = 8.3.1;
