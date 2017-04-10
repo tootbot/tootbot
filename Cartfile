@@ -1,0 +1,2 @@
+github "bignerdranch/Freddy" ~> 3.0
+github "ReactiveCocoa/ReactiveSwift" ~> 1.1
