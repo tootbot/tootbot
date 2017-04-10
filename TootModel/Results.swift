@@ -15,10 +15,27 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
+import Freddy
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+enum ResultsKey: String, JSONPathType {
+    case accounts
+    case statuses
+    case hashtags
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    func value(in dictionary: [String : JSON]) throws -> JSON {
+        return try rawValue.value(in: dictionary)
+    }
+}
+
+public struct Results: JSONDecodable {
+    public var accounts: [Account]
+    public var statuses: [Status]
+    public var hashtags: [String]
+
+    public init(json: JSON) throws {
+        self.accounts = try json.decodedArray(at: ResultsKey.accounts)
+        self.statuses = try json.decodedArray(at: ResultsKey.statuses)
+        self.hashtags = try json.decodedArray(at: ResultsKey.hashtags)
+    }
+}

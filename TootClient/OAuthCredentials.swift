@@ -15,10 +15,28 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import TootModel
+import TootNetworking
+import Freddy
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+enum OAuthCredentialsKey: String, JSONPathType {
+    case id
+    case clientID = "client_id"
+    case clientSecret = "client_secret"
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    func value(in dictionary: [String : JSON]) throws -> JSON {
+        return try rawValue.value(in: dictionary)
+    }
+}
+
+public struct OAuthCredentials: JSONDecodable {
+    public var id: String
+    public var clientID: String
+    public var clientSecret: String
+
+    public init(json: JSON) throws {
+        self.id = try json.getString(at: OAuthCredentialsKey.id)
+        self.clientID = try json.getString(at: OAuthCredentialsKey.clientID)
+        self.clientSecret = try json.getString(at: OAuthCredentialsKey.clientSecret)
+    }
+}

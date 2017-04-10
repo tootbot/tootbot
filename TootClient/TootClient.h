@@ -17,8 +17,8 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+//! Project version number for TootClient.
+FOUNDATION_EXPORT double TootClientVersionNumber;
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+//! Project version string for TootClient.
+FOUNDATION_EXPORT const unsigned char TootClientVersionString[];

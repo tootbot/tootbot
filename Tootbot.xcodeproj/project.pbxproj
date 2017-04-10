@@ -26,6 +26,77 @@
 		8317E71C1E9BE432003F1AA2 /* URLSessionNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E71A1E9BE432003F1AA2 /* URLSessionNetworkService.swift */; };
 		8317E71E1E9BE505003F1AA2 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E71D1E9BE505003F1AA2 /* Freddy.framework */; };
 		8317E7201E9BE62F003F1AA2 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E71F1E9BE62F003F1AA2 /* NetworkingError.swift */; };
+		8317E72C1E9BE8A5003F1AA2 /* TootClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 8317E72A1E9BE8A5003F1AA2 /* TootClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; };
+		8317E7301E9BE8A5003F1AA2 /* TootClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8317E7351E9BE8C1003F1AA2 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7341E9BE8C1003F1AA2 /* APIClient.swift */; };
+		8317E7411E9BE8DB003F1AA2 /* TootModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8317E73F1E9BE8DB003F1AA2 /* TootModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
+		8317E7451E9BE8DB003F1AA2 /* TootModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8317E74A1E9BE95B003F1AA2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7491E9BE95B003F1AA2 /* Account.swift */; };
+		8317E74C1E9BE9BC003F1AA2 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E71D1E9BE505003F1AA2 /* Freddy.framework */; };
+		8317E74E1E9BEB28003F1AA2 /* JSONTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */; };
+		8317E7501E9BED52003F1AA2 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */; };
+		8317E7521E9BEE2D003F1AA2 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7511E9BEE2D003F1AA2 /* Application.swift */; };
+		8317E7541E9BEE87003F1AA2 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7531E9BEE87003F1AA2 /* ServerError.swift */; };
+		8317E7561E9BEEC1003F1AA2 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7551E9BEEC1003F1AA2 /* Context.swift */; };
+		8317E7581E9BEF1E003F1AA2 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7571E9BEF1E003F1AA2 /* Status.swift */; };
+		8317E75A1E9BF069003F1AA2 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7591E9BF069003F1AA2 /* Box.swift */; };
+		8317E75F1E9BF329003F1AA2 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E75E1E9BF329003F1AA2 /* Tag.swift */; };
+		8317E7611E9BF376003F1AA2 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7601E9BF376003F1AA2 /* Mention.swift */; };
+		8317E7631E9BF415003F1AA2 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7621E9BF415003F1AA2 /* Attachment.swift */; };
+		8317E7651E9BF539003F1AA2 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7641E9BF539003F1AA2 /* Instance.swift */; };
+		8317E7671E9BF5D2003F1AA2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7661E9BF5D2003F1AA2 /* Notification.swift */; };
+		8317E7691E9BF5F1003F1AA2 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7681E9BF5F1003F1AA2 /* Relationship.swift */; };
+		8317E76B1E9BF5F7003F1AA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76A1E9BF5F7003F1AA2 /* Report.swift */; };
+		8317E76D1E9BF5FE003F1AA2 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76C1E9BF5FE003F1AA2 /* Results.swift */; };
+		8317E76F1E9BF65D003F1AA2 /* FetchAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76E1E9BF65D003F1AA2 /* FetchAccountRequest.swift */; };
+		8317E7711E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7701E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift */; };
+		8317E7731E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7721E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift */; };
+		8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E71D1E9BE505003F1AA2 /* Freddy.framework */; };
+		8317E7751E9BF815003F1AA2 /* TootNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E6FA1E9BE25A003F1AA2 /* TootNetworking.framework */; };
+		8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
+		8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7771E9BF87D003F1AA2 /* FormData.swift */; };
+		8317E77A1E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7791E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift */; };
+		8317E77C1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E77B1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift */; };
+		8317E77E1E9BF94C003F1AA2 /* FetchAccountStatusesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E77D1E9BF94C003F1AA2 /* FetchAccountStatusesRequest.swift */; };
+		8317E7801E9BFA19003F1AA2 /* FollowAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E77F1E9BFA19003F1AA2 /* FollowAccountRequest.swift */; };
+		8317E7821E9BFA38003F1AA2 /* UnfollowAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7811E9BFA38003F1AA2 /* UnfollowAccountRequest.swift */; };
+		8317E7851E9BFA50003F1AA2 /* BlockAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7831E9BFA50003F1AA2 /* BlockAccountRequest.swift */; };
+		8317E7861E9BFA50003F1AA2 /* UnblockAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7841E9BFA50003F1AA2 /* UnblockAccountRequest.swift */; };
+		8317E7891E9BFA74003F1AA2 /* MuteAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7871E9BFA74003F1AA2 /* MuteAccountRequest.swift */; };
+		8317E78A1E9BFA74003F1AA2 /* UnmuteAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7881E9BFA74003F1AA2 /* UnmuteAccountRequest.swift */; };
+		8317E78C1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E78B1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift */; };
+		8317E7921E9BFC61003F1AA2 /* SearchAccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7911E9BFC61003F1AA2 /* SearchAccountsRequest.swift */; };
+		8317E7941E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7931E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift */; };
+		8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */; };
+		83550A5A1E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A591E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift */; };
+		83550A5C1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A5B1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift */; };
+		83550A5E1E9C002100287AAC /* FetchFollowRequestsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A5D1E9C002100287AAC /* FetchFollowRequestsRequest.swift */; };
+		83550A601E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A5F1E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift */; };
+		83550A621E9C005600287AAC /* RejectFollowRequestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A611E9C005600287AAC /* RejectFollowRequestRequest.swift */; };
+		83550A641E9C012600287AAC /* FollowRemoteAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A631E9C012600287AAC /* FollowRemoteAccountRequest.swift */; };
+		83550A661E9C015100287AAC /* FetchInstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A651E9C015100287AAC /* FetchInstanceRequest.swift */; };
+		83550A681E9C018600287AAC /* FetchMutesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A671E9C018600287AAC /* FetchMutesRequest.swift */; };
+		83550A6C1E9C01BF00287AAC /* ClearNotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A691E9C01BF00287AAC /* ClearNotificationsRequest.swift */; };
+		83550A6D1E9C01BF00287AAC /* FetchNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A6A1E9C01BF00287AAC /* FetchNotificationRequest.swift */; };
+		83550A6E1E9C01BF00287AAC /* FetchNotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A6B1E9C01BF00287AAC /* FetchNotificationsRequest.swift */; };
+		83550A701E9C02F900287AAC /* FetchReportsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A6F1E9C02F900287AAC /* FetchReportsRequest.swift */; };
+		83550A721E9C030300287AAC /* ReportAccountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A711E9C030300287AAC /* ReportAccountRequest.swift */; };
+		83550A741E9C050C00287AAC /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A731E9C050C00287AAC /* SearchRequest.swift */; };
+		83550A761E9C058700287AAC /* FetchStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A751E9C058700287AAC /* FetchStatusRequest.swift */; };
+		83550A781E9C05AC00287AAC /* FetchStatusContextRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A771E9C05AC00287AAC /* FetchStatusContextRequest.swift */; };
+		83550A7A1E9C05C200287AAC /* FetchStatusCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A791E9C05C200287AAC /* FetchStatusCardRequest.swift */; };
+		83550A7C1E9C05D800287AAC /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A7B1E9C05D800287AAC /* Card.swift */; };
+		83550A7E1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A7D1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift */; };
+		83550A801E9C065700287AAC /* FetchStatusFavoritedByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A7F1E9C065700287AAC /* FetchStatusFavoritedByRequest.swift */; };
+		83550A821E9C06AB00287AAC /* PostStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A811E9C06AB00287AAC /* PostStatusRequest.swift */; };
+		83550A841E9C07FA00287AAC /* DeleteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A831E9C07FA00287AAC /* DeleteStatusRequest.swift */; };
+		83550A861E9C080200287AAC /* ReblogStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A851E9C080200287AAC /* ReblogStatusRequest.swift */; };
+		83550A881E9C080C00287AAC /* UnreblogStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A871E9C080C00287AAC /* UnreblogStatusRequest.swift */; };
+		83550A8B1E9C087E00287AAC /* FavoriteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A891E9C087E00287AAC /* FavoriteStatusRequest.swift */; };
+		83550A8C1E9C087E00287AAC /* UnravoriteStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A8A1E9C087E00287AAC /* UnravoriteStatusRequest.swift */; };
+		83550A8E1E9C08A200287AAC /* TimelineRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A8D1E9C08A200287AAC /* TimelineRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +106,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8317E6F91E9BE25A003F1AA2;
 			remoteInfo = TootNetworking;
+		};
+		8317E72D1E9BE8A5003F1AA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E7271E9BE8A5003F1AA2;
+			remoteInfo = TootClient;
+		};
+		8317E7421E9BE8DB003F1AA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
+			remoteInfo = TootModel;
+		};
+		8317E78D1E9BFBF2003F1AA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E6F91E9BE25A003F1AA2;
+			remoteInfo = TootNetworking;
+		};
+		8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
+			remoteInfo = TootModel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,6 +145,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8317E7021E9BE25B003F1AA2 /* TootNetworking.framework in Embed Frameworks */,
+				8317E7451E9BE8DB003F1AA2 /* TootModel.framework in Embed Frameworks */,
+				8317E7301E9BE8A5003F1AA2 /* TootClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +175,73 @@
 		8317E71A1E9BE432003F1AA2 /* URLSessionNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkService.swift; sourceTree = "<group>"; };
 		8317E71D1E9BE505003F1AA2 /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
 		8317E71F1E9BE62F003F1AA2 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		8317E7281E9BE8A5003F1AA2 /* TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8317E72A1E9BE8A5003F1AA2 /* TootClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootClient.h; sourceTree = "<group>"; };
+		8317E72B1E9BE8A5003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8317E7341E9BE8C1003F1AA2 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8317E73F1E9BE8DB003F1AA2 /* TootModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootModel.h; sourceTree = "<group>"; };
+		8317E7401E9BE8DB003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8317E7491E9BE95B003F1AA2 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTransformable.swift; sourceTree = "<group>"; };
+		8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		8317E7511E9BEE2D003F1AA2 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		8317E7531E9BEE87003F1AA2 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		8317E7551E9BEEC1003F1AA2 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		8317E7571E9BEF1E003F1AA2 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		8317E7591E9BF069003F1AA2 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		8317E75E1E9BF329003F1AA2 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		8317E7601E9BF376003F1AA2 /* Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
+		8317E7621E9BF415003F1AA2 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		8317E7641E9BF539003F1AA2 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		8317E7661E9BF5D2003F1AA2 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		8317E7681E9BF5F1003F1AA2 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		8317E76A1E9BF5F7003F1AA2 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		8317E76C1E9BF5FE003F1AA2 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		8317E76E1E9BF65D003F1AA2 /* FetchAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7701E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCurrentAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7721E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7771E9BF87D003F1AA2 /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
+		8317E7791E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountFollowersRequest.swift; sourceTree = "<group>"; };
+		8317E77B1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountFollowingRequest.swift; sourceTree = "<group>"; };
+		8317E77D1E9BF94C003F1AA2 /* FetchAccountStatusesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAccountStatusesRequest.swift; sourceTree = "<group>"; };
+		8317E77F1E9BFA19003F1AA2 /* FollowAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7811E9BFA38003F1AA2 /* UnfollowAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnfollowAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7831E9BFA50003F1AA2 /* BlockAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7841E9BFA50003F1AA2 /* UnblockAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnblockAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7871E9BFA74003F1AA2 /* MuteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuteAccountRequest.swift; sourceTree = "<group>"; };
+		8317E7881E9BFA74003F1AA2 /* UnmuteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnmuteAccountRequest.swift; sourceTree = "<group>"; };
+		8317E78B1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRelationshipsRequest.swift; sourceTree = "<group>"; };
+		8317E7911E9BFC61003F1AA2 /* SearchAccountsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAccountsRequest.swift; sourceTree = "<group>"; };
+		8317E7931E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterApplicationRequest.swift; sourceTree = "<group>"; };
+		8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
+		83550A591E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchBlockedAccountsRequest.swift; sourceTree = "<group>"; };
+		83550A5B1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFavoriteStatusesRequest.swift; sourceTree = "<group>"; };
+		83550A5D1E9C002100287AAC /* FetchFollowRequestsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFollowRequestsRequest.swift; sourceTree = "<group>"; };
+		83550A5F1E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeFollowRequestRequest.swift; sourceTree = "<group>"; };
+		83550A611E9C005600287AAC /* RejectFollowRequestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RejectFollowRequestRequest.swift; sourceTree = "<group>"; };
+		83550A631E9C012600287AAC /* FollowRemoteAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowRemoteAccountRequest.swift; sourceTree = "<group>"; };
+		83550A651E9C015100287AAC /* FetchInstanceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchInstanceRequest.swift; sourceTree = "<group>"; };
+		83550A671E9C018600287AAC /* FetchMutesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMutesRequest.swift; sourceTree = "<group>"; };
+		83550A691E9C01BF00287AAC /* ClearNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearNotificationsRequest.swift; sourceTree = "<group>"; };
+		83550A6A1E9C01BF00287AAC /* FetchNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNotificationRequest.swift; sourceTree = "<group>"; };
+		83550A6B1E9C01BF00287AAC /* FetchNotificationsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchNotificationsRequest.swift; sourceTree = "<group>"; };
+		83550A6F1E9C02F900287AAC /* FetchReportsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchReportsRequest.swift; sourceTree = "<group>"; };
+		83550A711E9C030300287AAC /* ReportAccountRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportAccountRequest.swift; sourceTree = "<group>"; };
+		83550A731E9C050C00287AAC /* SearchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
+		83550A751E9C058700287AAC /* FetchStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusRequest.swift; sourceTree = "<group>"; };
+		83550A771E9C05AC00287AAC /* FetchStatusContextRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusContextRequest.swift; sourceTree = "<group>"; };
+		83550A791E9C05C200287AAC /* FetchStatusCardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusCardRequest.swift; sourceTree = "<group>"; };
+		83550A7B1E9C05D800287AAC /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		83550A7D1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusRebloggedByRequest.swift; sourceTree = "<group>"; };
+		83550A7F1E9C065700287AAC /* FetchStatusFavoritedByRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchStatusFavoritedByRequest.swift; sourceTree = "<group>"; };
+		83550A811E9C06AB00287AAC /* PostStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostStatusRequest.swift; sourceTree = "<group>"; };
+		83550A831E9C07FA00287AAC /* DeleteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteStatusRequest.swift; sourceTree = "<group>"; };
+		83550A851E9C080200287AAC /* ReblogStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReblogStatusRequest.swift; sourceTree = "<group>"; };
+		83550A871E9C080C00287AAC /* UnreblogStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreblogStatusRequest.swift; sourceTree = "<group>"; };
+		83550A891E9C087E00287AAC /* FavoriteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteStatusRequest.swift; sourceTree = "<group>"; };
+		83550A8A1E9C087E00287AAC /* UnravoriteStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnravoriteStatusRequest.swift; sourceTree = "<group>"; };
+		83550A8D1E9C08A200287AAC /* TimelineRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +250,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8317E7011E9BE25B003F1AA2 /* TootNetworking.framework in Frameworks */,
+				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
+				8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +265,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8317E7241E9BE8A5003F1AA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */,
+				8317E7751E9BF815003F1AA2 /* TootNetworking.framework in Frameworks */,
+				8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E7391E9BE8DB003F1AA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8317E74C1E9BE9BC003F1AA2 /* Freddy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				8317E6E21E9BD870003F1AA2 /* Tootbot */,
+				8317E7291E9BE8A5003F1AA2 /* TootClient */,
+				8317E73E1E9BE8DB003F1AA2 /* TootModel */,
 				8317E6FB1E9BE25A003F1AA2 /* TootNetworking */,
 				8317E7071E9BE330003F1AA2 /* Frameworks */,
 				8317E6E11E9BD870003F1AA2 /* Products */,
@@ -113,6 +303,8 @@
 			children = (
 				8317E6E01E9BD870003F1AA2 /* Tootbot.app */,
 				8317E6FA1E9BE25A003F1AA2 /* TootNetworking.framework */,
+				8317E7281E9BE8A5003F1AA2 /* TootClient.framework */,
+				8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +365,101 @@
 			name = Types;
 			sourceTree = "<group>";
 		};
+		8317E7291E9BE8A5003F1AA2 /* TootClient */ = {
+			isa = PBXGroup;
+			children = (
+				8317E7341E9BE8C1003F1AA2 /* APIClient.swift */,
+				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
+				8317E7951E9BFCFD003F1AA2 /* Requests */,
+				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
+				8317E72B1E9BE8A5003F1AA2 /* Info.plist */,
+				8317E72A1E9BE8A5003F1AA2 /* TootClient.h */,
+			);
+			path = TootClient;
+			sourceTree = "<group>";
+		};
+		8317E73E1E9BE8DB003F1AA2 /* TootModel */ = {
+			isa = PBXGroup;
+			children = (
+				8317E73F1E9BE8DB003F1AA2 /* TootModel.h */,
+				8317E7401E9BE8DB003F1AA2 /* Info.plist */,
+				8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */,
+				8317E7591E9BF069003F1AA2 /* Box.swift */,
+				8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */,
+				8317E74B1E9BE95D003F1AA2 /* Entities */,
+			);
+			path = TootModel;
+			sourceTree = "<group>";
+		};
+		8317E74B1E9BE95D003F1AA2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8317E7491E9BE95B003F1AA2 /* Account.swift */,
+				8317E7511E9BEE2D003F1AA2 /* Application.swift */,
+				83550A7B1E9C05D800287AAC /* Card.swift */,
+				8317E7621E9BF415003F1AA2 /* Attachment.swift */,
+				8317E7551E9BEEC1003F1AA2 /* Context.swift */,
+				8317E7641E9BF539003F1AA2 /* Instance.swift */,
+				8317E7601E9BF376003F1AA2 /* Mention.swift */,
+				8317E7661E9BF5D2003F1AA2 /* Notification.swift */,
+				8317E7681E9BF5F1003F1AA2 /* Relationship.swift */,
+				8317E76A1E9BF5F7003F1AA2 /* Report.swift */,
+				8317E76C1E9BF5FE003F1AA2 /* Results.swift */,
+				8317E7531E9BEE87003F1AA2 /* ServerError.swift */,
+				8317E7571E9BEF1E003F1AA2 /* Status.swift */,
+				8317E75E1E9BF329003F1AA2 /* Tag.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		8317E7951E9BFCFD003F1AA2 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				83550A5F1E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift */,
+				8317E7831E9BFA50003F1AA2 /* BlockAccountRequest.swift */,
+				83550A691E9C01BF00287AAC /* ClearNotificationsRequest.swift */,
+				83550A831E9C07FA00287AAC /* DeleteStatusRequest.swift */,
+				83550A891E9C087E00287AAC /* FavoriteStatusRequest.swift */,
+				8317E7791E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift */,
+				8317E77B1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift */,
+				8317E76E1E9BF65D003F1AA2 /* FetchAccountRequest.swift */,
+				8317E77D1E9BF94C003F1AA2 /* FetchAccountStatusesRequest.swift */,
+				83550A591E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift */,
+				8317E7701E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift */,
+				83550A5B1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift */,
+				83550A5D1E9C002100287AAC /* FetchFollowRequestsRequest.swift */,
+				83550A651E9C015100287AAC /* FetchInstanceRequest.swift */,
+				83550A671E9C018600287AAC /* FetchMutesRequest.swift */,
+				83550A6A1E9C01BF00287AAC /* FetchNotificationRequest.swift */,
+				83550A6B1E9C01BF00287AAC /* FetchNotificationsRequest.swift */,
+				8317E78B1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift */,
+				83550A6F1E9C02F900287AAC /* FetchReportsRequest.swift */,
+				83550A791E9C05C200287AAC /* FetchStatusCardRequest.swift */,
+				83550A771E9C05AC00287AAC /* FetchStatusContextRequest.swift */,
+				83550A7F1E9C065700287AAC /* FetchStatusFavoritedByRequest.swift */,
+				83550A7D1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift */,
+				83550A751E9C058700287AAC /* FetchStatusRequest.swift */,
+				8317E77F1E9BFA19003F1AA2 /* FollowAccountRequest.swift */,
+				83550A631E9C012600287AAC /* FollowRemoteAccountRequest.swift */,
+				8317E7871E9BFA74003F1AA2 /* MuteAccountRequest.swift */,
+				83550A811E9C06AB00287AAC /* PostStatusRequest.swift */,
+				83550A851E9C080200287AAC /* ReblogStatusRequest.swift */,
+				8317E7931E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift */,
+				83550A611E9C005600287AAC /* RejectFollowRequestRequest.swift */,
+				83550A711E9C030300287AAC /* ReportAccountRequest.swift */,
+				8317E7911E9BFC61003F1AA2 /* SearchAccountsRequest.swift */,
+				83550A731E9C050C00287AAC /* SearchRequest.swift */,
+				83550A8D1E9C08A200287AAC /* TimelineRequest.swift */,
+				8317E7841E9BFA50003F1AA2 /* UnblockAccountRequest.swift */,
+				8317E7811E9BFA38003F1AA2 /* UnfollowAccountRequest.swift */,
+				8317E7881E9BFA74003F1AA2 /* UnmuteAccountRequest.swift */,
+				83550A8A1E9C087E00287AAC /* UnravoriteStatusRequest.swift */,
+				83550A871E9C080C00287AAC /* UnreblogStatusRequest.swift */,
+				8317E7721E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -181,6 +468,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8317E6FE1E9BE25B003F1AA2 /* TootNetworking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E7251E9BE8A5003F1AA2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8317E72C1E9BE8A5003F1AA2 /* TootClient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E73A1E9BE8DB003F1AA2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8317E7411E9BE8DB003F1AA2 /* TootModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +504,8 @@
 			);
 			dependencies = (
 				8317E7001E9BE25B003F1AA2 /* PBXTargetDependency */,
+				8317E72E1E9BE8A5003F1AA2 /* PBXTargetDependency */,
+				8317E7431E9BE8DB003F1AA2 /* PBXTargetDependency */,
 			);
 			name = Tootbot;
 			productName = Tootbot;
@@ -225,6 +530,44 @@
 			productReference = 8317E6FA1E9BE25A003F1AA2 /* TootNetworking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		8317E7271E9BE8A5003F1AA2 /* TootClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8317E7311E9BE8A5003F1AA2 /* Build configuration list for PBXNativeTarget "TootClient" */;
+			buildPhases = (
+				8317E7231E9BE8A5003F1AA2 /* Sources */,
+				8317E7241E9BE8A5003F1AA2 /* Frameworks */,
+				8317E7251E9BE8A5003F1AA2 /* Headers */,
+				8317E7261E9BE8A5003F1AA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8317E78E1E9BFBF2003F1AA2 /* PBXTargetDependency */,
+				8317E7901E9BFBF2003F1AA2 /* PBXTargetDependency */,
+			);
+			name = TootClient;
+			productName = TootClient;
+			productReference = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8317E73C1E9BE8DB003F1AA2 /* TootModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8317E7461E9BE8DB003F1AA2 /* Build configuration list for PBXNativeTarget "TootModel" */;
+			buildPhases = (
+				8317E7381E9BE8DB003F1AA2 /* Sources */,
+				8317E7391E9BE8DB003F1AA2 /* Frameworks */,
+				8317E73A1E9BE8DB003F1AA2 /* Headers */,
+				8317E73B1E9BE8DB003F1AA2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TootModel;
+			productName = TootModel;
+			productReference = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,6 +589,18 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
+					8317E7271E9BE8A5003F1AA2 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 94C3W2AV74;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					8317E73C1E9BE8DB003F1AA2 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 94C3W2AV74;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 8317E6DB1E9BD870003F1AA2 /* Build configuration list for PBXProject "Tootbot" */;
@@ -262,7 +617,9 @@
 			projectRoot = "";
 			targets = (
 				8317E6DF1E9BD870003F1AA2 /* Tootbot */,
+				8317E7271E9BE8A5003F1AA2 /* TootClient */,
 				8317E6F91E9BE25A003F1AA2 /* TootNetworking */,
+				8317E73C1E9BE8DB003F1AA2 /* TootModel */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +636,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8317E6F81E9BE25A003F1AA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E7261E9BE8A5003F1AA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E73B1E9BE8DB003F1AA2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -332,6 +703,81 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8317E7231E9BE8A5003F1AA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83550A601E9C004D00287AAC /* AuthorizeFollowRequestRequest.swift in Sources */,
+				8317E7851E9BFA50003F1AA2 /* BlockAccountRequest.swift in Sources */,
+				83550A7A1E9C05C200287AAC /* FetchStatusCardRequest.swift in Sources */,
+				8317E77E1E9BF94C003F1AA2 /* FetchAccountStatusesRequest.swift in Sources */,
+				83550A8E1E9C08A200287AAC /* TimelineRequest.swift in Sources */,
+				8317E7891E9BFA74003F1AA2 /* MuteAccountRequest.swift in Sources */,
+				8317E7941E9BFCD1003F1AA2 /* RegisterApplicationRequest.swift in Sources */,
+				83550A881E9C080C00287AAC /* UnreblogStatusRequest.swift in Sources */,
+				83550A6E1E9C01BF00287AAC /* FetchNotificationsRequest.swift in Sources */,
+				83550A7E1E9C064700287AAC /* FetchStatusRebloggedByRequest.swift in Sources */,
+				8317E78C1E9BFAAD003F1AA2 /* FetchRelationshipsRequest.swift in Sources */,
+				8317E77A1E9BF904003F1AA2 /* FetchAccountFollowersRequest.swift in Sources */,
+				83550A761E9C058700287AAC /* FetchStatusRequest.swift in Sources */,
+				83550A721E9C030300287AAC /* ReportAccountRequest.swift in Sources */,
+				8317E7921E9BFC61003F1AA2 /* SearchAccountsRequest.swift in Sources */,
+				83550A801E9C065700287AAC /* FetchStatusFavoritedByRequest.swift in Sources */,
+				8317E7731E9BF738003F1AA2 /* UpdateCurrentAccountRequest.swift in Sources */,
+				83550A5E1E9C002100287AAC /* FetchFollowRequestsRequest.swift in Sources */,
+				83550A8B1E9C087E00287AAC /* FavoriteStatusRequest.swift in Sources */,
+				83550A661E9C015100287AAC /* FetchInstanceRequest.swift in Sources */,
+				83550A741E9C050C00287AAC /* SearchRequest.swift in Sources */,
+				8317E78A1E9BFA74003F1AA2 /* UnmuteAccountRequest.swift in Sources */,
+				83550A821E9C06AB00287AAC /* PostStatusRequest.swift in Sources */,
+				8317E7801E9BFA19003F1AA2 /* FollowAccountRequest.swift in Sources */,
+				8317E76F1E9BF65D003F1AA2 /* FetchAccountRequest.swift in Sources */,
+				83550A781E9C05AC00287AAC /* FetchStatusContextRequest.swift in Sources */,
+				8317E77C1E9BF92D003F1AA2 /* FetchAccountFollowingRequest.swift in Sources */,
+				83550A621E9C005600287AAC /* RejectFollowRequestRequest.swift in Sources */,
+				83550A5C1E9BFFF000287AAC /* FetchFavoriteStatusesRequest.swift in Sources */,
+				83550A701E9C02F900287AAC /* FetchReportsRequest.swift in Sources */,
+				83550A641E9C012600287AAC /* FollowRemoteAccountRequest.swift in Sources */,
+				83550A861E9C080200287AAC /* ReblogStatusRequest.swift in Sources */,
+				8317E7711E9BF718003F1AA2 /* FetchCurrentAccountRequest.swift in Sources */,
+				83550A6D1E9C01BF00287AAC /* FetchNotificationRequest.swift in Sources */,
+				8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */,
+				8317E7351E9BE8C1003F1AA2 /* APIClient.swift in Sources */,
+				83550A8C1E9C087E00287AAC /* UnravoriteStatusRequest.swift in Sources */,
+				83550A681E9C018600287AAC /* FetchMutesRequest.swift in Sources */,
+				8317E7861E9BFA50003F1AA2 /* UnblockAccountRequest.swift in Sources */,
+				83550A841E9C07FA00287AAC /* DeleteStatusRequest.swift in Sources */,
+				8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */,
+				83550A6C1E9C01BF00287AAC /* ClearNotificationsRequest.swift in Sources */,
+				83550A5A1E9BFFAA00287AAC /* FetchBlockedAccountsRequest.swift in Sources */,
+				8317E7821E9BFA38003F1AA2 /* UnfollowAccountRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8317E7381E9BE8DB003F1AA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8317E7541E9BEE87003F1AA2 /* ServerError.swift in Sources */,
+				8317E7521E9BEE2D003F1AA2 /* Application.swift in Sources */,
+				8317E75F1E9BF329003F1AA2 /* Tag.swift in Sources */,
+				8317E7581E9BEF1E003F1AA2 /* Status.swift in Sources */,
+				8317E7631E9BF415003F1AA2 /* Attachment.swift in Sources */,
+				8317E7501E9BED52003F1AA2 /* DateFormatter.swift in Sources */,
+				83550A7C1E9C05D800287AAC /* Card.swift in Sources */,
+				8317E7561E9BEEC1003F1AA2 /* Context.swift in Sources */,
+				8317E7671E9BF5D2003F1AA2 /* Notification.swift in Sources */,
+				8317E75A1E9BF069003F1AA2 /* Box.swift in Sources */,
+				8317E7691E9BF5F1003F1AA2 /* Relationship.swift in Sources */,
+				8317E76D1E9BF5FE003F1AA2 /* Results.swift in Sources */,
+				8317E7611E9BF376003F1AA2 /* Mention.swift in Sources */,
+				8317E76B1E9BF5F7003F1AA2 /* Report.swift in Sources */,
+				8317E74E1E9BEB28003F1AA2 /* JSONTransformable.swift in Sources */,
+				8317E7651E9BF539003F1AA2 /* Instance.swift in Sources */,
+				8317E74A1E9BE95B003F1AA2 /* Account.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -339,6 +785,26 @@
 			isa = PBXTargetDependency;
 			target = 8317E6F91E9BE25A003F1AA2 /* TootNetworking */;
 			targetProxy = 8317E6FF1E9BE25B003F1AA2 /* PBXContainerItemProxy */;
+		};
+		8317E72E1E9BE8A5003F1AA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E7271E9BE8A5003F1AA2 /* TootClient */;
+			targetProxy = 8317E72D1E9BE8A5003F1AA2 /* PBXContainerItemProxy */;
+		};
+		8317E7431E9BE8DB003F1AA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
+			targetProxy = 8317E7421E9BE8DB003F1AA2 /* PBXContainerItemProxy */;
+		};
+		8317E78E1E9BFBF2003F1AA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E6F91E9BE25A003F1AA2 /* TootNetworking */;
+			targetProxy = 8317E78D1E9BFBF2003F1AA2 /* PBXContainerItemProxy */;
+		};
+		8317E7901E9BFBF2003F1AA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
+			targetProxy = 8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -548,6 +1014,116 @@
 			};
 			name = Release;
 		};
+		8317E7321E9BE8A5003F1AA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TootClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8317E7331E9BE8A5003F1AA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TootClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8317E7471E9BE8DB003F1AA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TootModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8317E7481E9BE8DB003F1AA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = TootModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -574,6 +1150,24 @@
 			buildConfigurations = (
 				8317E7041E9BE25B003F1AA2 /* Debug */,
 				8317E7051E9BE25B003F1AA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8317E7311E9BE8A5003F1AA2 /* Build configuration list for PBXNativeTarget "TootClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8317E7321E9BE8A5003F1AA2 /* Debug */,
+				8317E7331E9BE8A5003F1AA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8317E7461E9BE8DB003F1AA2 /* Build configuration list for PBXNativeTarget "TootModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8317E7471E9BE8DB003F1AA2 /* Debug */,
+				8317E7481E9BE8DB003F1AA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

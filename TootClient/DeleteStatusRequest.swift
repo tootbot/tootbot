@@ -15,10 +15,23 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import TootModel
+import TootNetworking
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+public struct DeleteStatusRequest: Request {
+    public typealias ResponseObject = Void
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    public var instanceURI: String
+    public var statusID: Int
+
+    public init(instanceURI: String, statusID: Int) {
+        self.instanceURI = instanceURI
+        self.statusID = statusID
+    }
+
+    public func build() -> URLRequest {
+        var request = URLRequest(url: URL(string: "\(instanceURI)/api/v1/statuses/\(statusID)")!)
+        request.httpMethod = Method.delete.rawValue
+        return request
+    }
+}

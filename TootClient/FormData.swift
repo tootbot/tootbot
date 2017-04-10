@@ -15,10 +15,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+public struct FormData {
+    public var data: Data
+    public var mimeType: String
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    public init(data: Data, mimeType: String) {
+        self.data = data
+        self.mimeType = mimeType
+    }
+
+    public var base64EncodedString: String {
+        return "data:\(mimeType);base64,\(data.base64EncodedString())"
+    }
+}

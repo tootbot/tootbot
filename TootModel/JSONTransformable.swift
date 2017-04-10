@@ -15,10 +15,24 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import Freddy
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+public protocol JSONTransformable: JSONDecodable, JSONEncodable {
+}
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+extension JSONTransformable where Self: RawRepresentable, Self.RawValue: JSONDecodable {
+    public init(json: JSON) throws {
+        let rawValue = try RawValue(json: json)
+        if let newValue = Self(rawValue: rawValue) {
+            self = newValue
+        } else {
+            throw JSON.Error.valueNotConvertible(value: json, to: Self.self)
+        }
+    }
+}
+
+extension JSONTransformable where Self: RawRepresentable, Self.RawValue: JSONEncodable {
+    public func toJSON() -> JSON {
+        return rawValue.toJSON()
+    }
+}

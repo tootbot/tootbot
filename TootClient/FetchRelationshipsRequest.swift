@@ -15,10 +15,26 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import TootModel
+import TootNetworking
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+public struct FetchRelationshipsRequest: Request {
+    public typealias ResponseObject = [Relationship]
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    public var instanceURI: String
+    public var accountIDs: [Int]
+
+    public init(instanceURI: String, accountIDs: [Int]) {
+        self.instanceURI = instanceURI
+        self.accountIDs = accountIDs
+    }
+
+    public func build() -> URLRequest {
+        var components = URLComponents(string: "\(instanceURI)/api/v1/accounts/relationships")!
+        components.queryItems = accountIDs.map { accountID in
+            URLQueryItem(name: "id", value: String(describing: accountID))
+        }
+
+        return URLRequest(url: components.url!)
+    }
+}

@@ -60,7 +60,7 @@ public extension Request where ResponseDeserializer.Output == JSON, ResponseObje
 }
 
 public extension Request where ResponseObject == Void {
-    func parse(_: ResponseDeserializer.Output) -> Result<ResponseObject, JSON.Error> {
+    func parse(_: ResponseDeserializer.Output) -> Result<ResponseObject, NetworkingError> {
         return .success()
     }
 }

@@ -15,10 +15,27 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
+import Freddy
 
-//! Project version number for TootNetworking.
-FOUNDATION_EXPORT double TootNetworkingVersionNumber;
+enum ServerErrorKey: String, JSONPathType {
+    case message = "error"
 
-//! Project version string for TootNetworking.
-FOUNDATION_EXPORT const unsigned char TootNetworkingVersionString[];
+    func value(in dictionary: [String : JSON]) throws -> JSON {
+        return try rawValue.value(in: dictionary)
+    }
+}
+
+public struct ServerError: JSONDecodable, JSONEncodable {
+    public var message: String
+
+    public init(json: JSON) throws {
+        self.message = try json.getString(at: ServerErrorKey.message)
+    }
+
+    public func toJSON() -> JSON {
+        return [
+            ServerErrorKey.message.rawValue: message.toJSON(),
+        ]
+    }
+}
