@@ -32,7 +32,7 @@ public class APIClient {
         return networkService.perform(urlRequest)
     }
 
-    public func perform<R: Request>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> where R.ResponseDeserializer.Output == JSON {
+    public func perform<R>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> where R: Request, R.ResponseDeserializer.Output == JSON {
         return perform(request.build()).flatMap(.merge) { data, response -> SignalProducer<R.ResponseObject, NetworkingError> in
             let result = Result(value: data)
                 .flatMap(R.ResponseDeserializer.deserialize)
@@ -50,7 +50,7 @@ public class APIClient {
         }
     }
 
-    public func perform<R: Request>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> {
+    public func perform<R>(_ request: R) -> SignalProducer<R.ResponseObject, NetworkingError> where R: Request {
         return perform(request.build()).flatMap(.merge) { data, response -> SignalProducer<R.ResponseObject, NetworkingError> in
             let result = Result(value: data)
                 .flatMap(R.ResponseDeserializer.deserialize)
