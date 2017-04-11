@@ -1,3 +1,6 @@
+github "Alamofire/Alamofire" "4.4.0"
+github "Moya/Moya" "8.0.3"
 github "ReactiveCocoa/ReactiveSwift" "1.1.1"
+github "ReactiveX/RxSwift" "3.4.0"
 github "antitypical/Result" "3.2.1"
 github "bignerdranch/Freddy" "3.0.2"

@@ -28,17 +28,14 @@ enum Constants {
 }
 
 class ViewController: UIViewController {
-    let api = APIClient(networkService: URLSessionNetworkService())
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let credentials = OAuthCredentials(id: <#T##String#>, clientID: <#T##String#>, clientSecret: <#T##String#>)
+        _ = credentials
+
         let account = UserAccount(instanceURL: <#T##URL#>, username: <#T##String#>, token: <#T##String#>)
-        let request = TimelineRequest(userAccount: account, timelineType: .home)
-        api.perform(request).startWithResult { result in
-            print(result)
-        }
+        _ = account
     }
 
     override func didReceiveMemoryWarning() {
