@@ -15,24 +15,16 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public struct UserAccount: CustomStringConvertible, Equatable, Hashable {
-    public var instanceURI: String
-    public var username: String
+public struct ApplicationProperties {
+    public var clientName: String
+    public var redirectURI: String
+    public var scopes: Set<ApplicationScope>
+    public var websiteURL: URL?
 
-    public init(instanceURI: String, username: String) {
-        self.instanceURI = instanceURI
-        self.username = username
-    }
-
-    public static func ==(lhs: UserAccount, rhs: UserAccount) -> Bool {
-        return lhs.instanceURI == rhs.instanceURI && lhs.username == rhs.username
-    }
-
-    public var hashValue: Int {
-        return 31 &* instanceURI.hashValue &+ username.hashValue
-    }
-
-    public var description: String {
-        return username + "@" + instanceURI
+    public init(clientName: String, redirectURI: String, scopes: Set<ApplicationScope>, websiteURL: URL?) {
+        self.clientName = clientName
+        self.redirectURI = redirectURI
+        self.scopes = scopes
+        self.websiteURL = websiteURL
     }
 }

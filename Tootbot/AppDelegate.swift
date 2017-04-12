@@ -15,17 +15,56 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import TootClient
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let applicationProperties = ApplicationProperties(
+        clientName: "Tootbot",
+        redirectURI: "tootbot://auth",
+        scopes: [.read, .write, .follow],
+        websiteURL: URL(string: "https://github.com/tootbot/tootbot")!
+    )
+
+    let networking = Networking()
+    
+    private func handle(url: URL) -> Bool {
+        guard url.absoluteString.hasPrefix(applicationProperties.redirectURI),
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            let queryItems = components.queryItems,
+            !queryItems.isEmpty,
+            let authorizationCode = queryItems.first(where: { $0.name == "code" })?.value,
+            let instanceURI = queryItems.first(where: { $0.name == "state" })?.value
+        else {
+            return false
+        }
+
+        networking.handleLoginCallback(instanceURI:  instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
+        return true
+    }
+
     // MARK: - App Delegate
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+        if let navigationController = window?.rootViewController as? UINavigationController,
+            let viewController = navigationController.viewControllers.first as? ViewController
+        {
+            viewController.applicationProperties = applicationProperties
+            viewController.networking = networking
+        }
+
+        if let url = launchOptions?[.url] as? URL {
+            return handle(url: url)
+        } else {
+            return true
+        }
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+        return handle(url: url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

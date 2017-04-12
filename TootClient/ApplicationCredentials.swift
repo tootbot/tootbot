@@ -15,12 +15,36 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public struct ApplicationCredentials {
-    public var instanceURL: URL
-    public var oAuthCredentials: OAuthCredentials
+import Freddy
+import TootModel
 
-    public init(instanceURL: URL, oAuthCredentials: OAuthCredentials) {
-        self.instanceURL = instanceURL
-        self.oAuthCredentials = oAuthCredentials
+enum ApplicationCredentialsKey: String, JSONPathType {
+    case instanceURI = "uri"
+    case oauthCredentials = "credentials"
+
+    func value(in dictionary: [String : JSON]) throws -> JSON {
+        return try rawValue.value(in: dictionary)
+    }
+}
+
+public struct ApplicationCredentials: JSONDecodable, JSONEncodable {
+    public var instanceURI: String
+    public var oauthCredentials: OAuthCredentials
+
+    public init(instanceURI: String, oauthCredentials: OAuthCredentials) {
+        self.instanceURI = instanceURI
+        self.oauthCredentials = oauthCredentials
+    }
+
+    public init(json: JSON) throws {
+        self.instanceURI = try json.getString(at: ApplicationCredentialsKey.instanceURI)
+        self.oauthCredentials = try json.decode(at: ApplicationCredentialsKey.oauthCredentials)
+    }
+
+    public func toJSON() -> JSON {
+        return [
+            ApplicationCredentialsKey.instanceURI.rawValue: instanceURI.toJSON(),
+            ApplicationCredentialsKey.oauthCredentials.rawValue: oauthCredentials.toJSON(),
+        ]
     }
 }

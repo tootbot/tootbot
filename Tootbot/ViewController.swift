@@ -15,31 +15,100 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import Moya
+import ReactiveMoya
 import ReactiveSwift
+import Result
+import SafariServices
 import TootClient
-import TootNetworking
+import TootModel
 import UIKit
 
-enum Constants {
-    static let clientName = "Tootbot"
-    static let redirectURI = "tootbot://auth"
-    static let scopes: Set<ApplicationScope> = [.read, .write, .follow]
-    static let homepageURL = URL(string: "https://github.com/tootbot/tootbot")!
-}
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var applicationProperties: ApplicationProperties!
+     let disposable = ScopedDisposable(CompositeDisposable())
+    var networking: Networking!
 
-class ViewController: UIViewController {
+    @IBOutlet var tableView: UITableView!
+
+    func presentLogIn(for instanceURI: String) -> SignalProducer<UserAccount, MoyaError> {
+        let properties = applicationProperties!
+        return networking.applicationCredentials(for: properties, on: instanceURI)
+            .flatMap(.latest) { credentials -> SignalProducer<URL, MoyaError> in
+                if let loginURL = self.networking.loginURL(applicationProperties: properties, applicationCredentials: credentials) {
+                    return SignalProducer(value: loginURL)
+                } else {
+                    return SignalProducer(error: .underlying(SimpleError(message: "Could not generate login URL")))
+                }
+            }
+            .on(value: { authURL in
+                let safari = SFSafariViewController(url: authURL)
+                self.present(safari, animated: true)
+            })
+            .flatMap(.latest) { _ -> Signal<UserAccount, MoyaError> in
+                return self.networking.loginResultSignal
+                    .filter { resultInstanceURI, _ in instanceURI == resultInstanceURI }
+                    .flatMap(.latest) { _, result -> SignalProducer<UserAccount, MoyaError> in
+                        return result.analysis(
+                            ifSuccess: { SignalProducer(value: $0) },
+                            ifFailure: { SignalProducer(error: $0) }
+                        )
+                    }
+            }
+            .take(first: 1)
+            .on(failed: { error in
+                print(error)
+            }, terminated: {
+                self.dismiss(animated: true)
+            }, value: { account in
+                // Do something with account
+            })
+    }
+
+    // MARK: - Configuration
+
+    func configureNavigationItem() {
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let credentials = OAuthCredentials(id: <#T##String#>, clientID: <#T##String#>, clientSecret: <#T##String#>)
-        _ = credentials
-
-        let account = UserAccount(instanceURL: <#T##URL#>, username: <#T##String#>, token: <#T##String#>)
-        _ = account
+        configureNavigationItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Actions
+
+    @IBAction func addAccount(_ sender: AnyObject?) {
+        let defaultInstance = "mastodon.social"
+
+        let alert = UIAlertController(title: "Which instance?", message: "Enter the URL of the instance.", preferredStyle: .alert)
+        alert.addTextField { textField in textField.placeholder = defaultInstance }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Log In", style: .default, handler: { _ in
+            let instanceURI: String
+            if let textField = alert.textFields?.first, let text = textField.text?.trimmingCharacters(in: .whitespaces), !text.isEmpty {
+                instanceURI = text
+            } else {
+                instanceURI = defaultInstance
+            }
+
+            self.disposable += self.presentLogIn(for: instanceURI).start()
+        }))
+
+        present(alert, animated: true)
+    }
+    
+    // MARK: - Table View
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        fatalError()
     }
 }

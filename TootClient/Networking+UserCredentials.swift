@@ -15,24 +15,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public struct UserAccount: CustomStringConvertible, Equatable, Hashable {
-    public var instanceURI: String
-    public var username: String
+import Foundation
 
-    public init(instanceURI: String, username: String) {
-        self.instanceURI = instanceURI
-        self.username = username
+extension Networking {
+    func token(for account: UserAccount) -> String? {
+        return keychain.password(forService: account.instanceURI, account: account.username)
     }
 
-    public static func ==(lhs: UserAccount, rhs: UserAccount) -> Bool {
-        return lhs.instanceURI == rhs.instanceURI && lhs.username == rhs.username
+    @discardableResult
+    func setToken(_ token: String, for account: UserAccount) -> Bool {
+        return keychain.setPassword(token, forService: account.instanceURI, account: account.username)
     }
 
-    public var hashValue: Int {
-        return 31 &* instanceURI.hashValue &+ username.hashValue
-    }
-
-    public var description: String {
-        return username + "@" + instanceURI
+    @discardableResult
+    func deleteToken(for account: UserAccount) -> Bool {
+        return keychain.deletePassword(forService: account.instanceURI, account: account.username)
     }
 }

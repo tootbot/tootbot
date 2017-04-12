@@ -48,6 +48,18 @@
 		83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */; };
 		83550A991E9C2C6900287AAC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7091E9BE33C003F1AA2 /* Result.framework */; };
 		83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */; };
+		83A1E4FD1E9D629500B075C0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FC1E9D629500B075C0 /* Networking.swift */; };
+		83A1E4FF1E9D62DF00B075C0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */; };
+		83A1E5011E9D672700B075C0 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5001E9D672700B075C0 /* Authentication.swift */; };
+		83A1E50C1E9E347A00B075C0 /* ApplicationProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */; };
+		83A1E50E1E9E380600B075C0 /* Networking+ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */; };
+		83A1E5101E9E7E6300B075C0 /* Networking+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */; };
+		83A1E5121E9E950B00B075C0 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5111E9E950B00B075C0 /* SimpleError.swift */; };
+		83BA7C811E9D5CDA00B6472A /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */; };
+		83C95D721E9D2AA100E22DDD /* SubTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D711E9D2AA100E22DDD /* SubTargetType.swift */; };
+		83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */; };
+		83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */; };
+		83C95D7E1E9D433C00E22DDD /* Moya+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +152,18 @@
 		83550A7B1E9C05D800287AAC /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		83550A931E9C1D7D00287AAC /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCredentials.swift; sourceTree = "<group>"; };
+		83A1E4FC1E9D629500B075C0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		83A1E5001E9D672700B075C0 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationProperties.swift; sourceTree = "<group>"; };
+		83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+ApplicationCredentials.swift"; sourceTree = "<group>"; };
+		83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+UserCredentials.swift"; sourceTree = "<group>"; };
+		83A1E5111E9E950B00B075C0 /* SimpleError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
+		83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
+		83C95D711E9D2AA100E22DDD /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
+		83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTarget.swift; sourceTree = "<group>"; };
+		83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProvider.swift; sourceTree = "<group>"; };
+		83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,11 +171,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */,
 				832B8E701E9CBB3C00127A37 /* Alamofire.framework in Frameworks */,
+				83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */,
 				83550A991E9C2C6900287AAC /* Result.framework in Frameworks */,
-				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
 				8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */,
+				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +185,7 @@
 			files = (
 				8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */,
 				83550A8F1E9C18D600287AAC /* ReactiveSwift.framework in Frameworks */,
+				83BA7C811E9D5CDA00B6472A /* SAMKeychain.framework in Frameworks */,
 				83550A901E9C18D600287AAC /* Result.framework in Frameworks */,
 				8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */,
 			);
@@ -232,6 +257,7 @@
 				832B8E741E9CBDFE00127A37 /* ReactiveMoya.framework */,
 				8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */,
 				8317E7091E9BE33C003F1AA2 /* Result.framework */,
+				83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -262,10 +288,14 @@
 			children = (
 				8317E72A1E9BE8A5003F1AA2 /* TootClient.h */,
 				8317E72B1E9BE8A5003F1AA2 /* Info.plist */,
-				832B8E711E9CBC7200127A37 /* MastodonService.swift */,
-				83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */,
-				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
-				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
+				83C95D7B1E9D41C200E22DDD /* Moya */,
+				83C95D7C1E9D41CF00E22DDD /* Types */,
+				83A1E5001E9D672700B075C0 /* Authentication.swift */,
+				83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */,
+				83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */,
+				83A1E4FC1E9D629500B075C0 /* Networking.swift */,
+				83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */,
+				83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */,
 				83550A931E9C1D7D00287AAC /* UserAccount.swift */,
 			);
 			path = TootClient;
@@ -303,6 +333,45 @@
 				8317E75E1E9BF329003F1AA2 /* Tag.swift */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		83A1E5091E9E305800B075C0 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
+		83A1E50A1E9E305E00B075C0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				832B8E711E9CBC7200127A37 /* MastodonService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		83C95D7B1E9D41C200E22DDD /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				83A1E5091E9E305800B075C0 /* Plugins */,
+				83A1E50A1E9E305E00B075C0 /* Services */,
+				83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */,
+				83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */,
+				83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */,
+				83C95D711E9D2AA100E22DDD /* SubTargetType.swift */,
+			);
+			name = Moya;
+			sourceTree = "<group>";
+		};
+		83C95D7C1E9D41CF00E22DDD /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */,
+				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
+				83A1E5111E9E950B00B075C0 /* SimpleError.swift */,
+				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
+			);
+			name = Types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,12 +537,13 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveMoya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveMoya.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
 			);
 			name = "Embed Carthage Frameworks";
 			outputPaths = (
@@ -498,8 +568,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A1E5121E9E950B00B075C0 /* SimpleError.swift in Sources */,
+				83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */,
+				83A1E50E1E9E380600B075C0 /* Networking+ApplicationCredentials.swift in Sources */,
+				83A1E4FD1E9D629500B075C0 /* Networking.swift in Sources */,
 				832B8E721E9CBC7200127A37 /* MastodonService.swift in Sources */,
+				83A1E50C1E9E347A00B075C0 /* ApplicationProperties.swift in Sources */,
+				83A1E5101E9E7E6300B075C0 /* Networking+UserCredentials.swift in Sources */,
+				83A1E5011E9D672700B075C0 /* Authentication.swift in Sources */,
+				83C95D721E9D2AA100E22DDD /* SubTargetType.swift in Sources */,
+				83A1E4FF1E9D62DF00B075C0 /* Keychain.swift in Sources */,
+				83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */,
 				83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */,
+				83C95D7E1E9D433C00E22DDD /* Moya+Freddy.swift in Sources */,
 				8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */,
 				83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */,
 				8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */,

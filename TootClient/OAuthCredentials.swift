@@ -28,7 +28,7 @@ enum OAuthCredentialsKey: String, JSONPathType {
     }
 }
 
-public struct OAuthCredentials: JSONDecodable {
+public struct OAuthCredentials: JSONDecodable, JSONEncodable {
     public var id: String
     public var clientID: String
     public var clientSecret: String
@@ -43,5 +43,13 @@ public struct OAuthCredentials: JSONDecodable {
         self.id = try json.getString(at: OAuthCredentialsKey.id)
         self.clientID = try json.getString(at: OAuthCredentialsKey.clientID)
         self.clientSecret = try json.getString(at: OAuthCredentialsKey.clientSecret)
+    }
+
+    public func toJSON() -> JSON {
+        return [
+            OAuthCredentialsKey.id.rawValue: id.toJSON(),
+            OAuthCredentialsKey.clientID.rawValue: clientID.toJSON(),
+            OAuthCredentialsKey.clientSecret.rawValue: clientSecret.toJSON(),
+        ]
     }
 }

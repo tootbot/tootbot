@@ -18,6 +18,7 @@
 import Alamofire
 import Moya
 import TootModel
+import ReactiveMoya
 
 public enum ApplicationScope: String {
     case read
@@ -25,7 +26,9 @@ public enum ApplicationScope: String {
     case follow
 }
 
-public enum MastodonRoute {
+public enum MastodonService: SubTargetType {
+    case oauthAuthorize(clientID: String, redirectURI: String, scopes: Set<ApplicationScope>, state: String?)
+    case oauthToken(clientID: String, clientSecret: String, authorizationCode: String, redirectURI: String)
     case account(id: Int)
     case currentUser
     case updateCurrentUser(displayName: String?, note: String?, avatarImage: FormData?, headerImage: FormData?)
@@ -73,6 +76,10 @@ public enum MastodonRoute {
 
     public var path: String {
         switch self {
+        case .oauthAuthorize:
+            return "/oauth/authorize"
+        case .oauthToken:
+            return "/oauth/token"
         case .account(let id):
             return "/api/v1/accounts/\(id)"
         case .currentUser:
@@ -166,6 +173,10 @@ public enum MastodonRoute {
 
     public var method: Moya.Method {
         switch self {
+        case .oauthAuthorize:
+            return .get
+        case .oauthToken:
+            return .post
         case .account:
             return .get
         case .currentUser:
@@ -259,6 +270,23 @@ public enum MastodonRoute {
 
     public var parameters: [String: Any]? {
         switch self {
+        case .oauthAuthorize(let clientID, let redirectURI, let scopes, let state):
+            var parameters: [String: Any] = [
+                "client_id": clientID,
+                "response_type": "code",
+                "redirect_uri": redirectURI,
+                "scope": scopes.map { $0.rawValue }.joined(separator: " ")
+            ]
+            parameters["state"] = state
+            return parameters
+        case .oauthToken(let clientID, let clientSecret, let authorizationCode, let redirectURI):
+            return [
+                "client_id": clientID,
+                "client_secret": clientSecret,
+                "code": authorizationCode,
+                "grant_type": "authorization_code",
+                "redirect_uri": redirectURI,
+            ]
         case .account:
             return nil
         case .currentUser:
@@ -396,66 +424,8 @@ public enum MastodonRoute {
     }
 
     public var validate: Bool {
-        return false
+        return true
     }
 }
 
-public enum MastodonService: TargetType {
-    case instance(baseURL: URL, route: MastodonRoute)
-
-    public var baseURL: URL {
-        switch self {
-        case .instance(let baseURL, _):
-            return baseURL
-        }
-    }
-
-    public var path: String {
-        switch self {
-        case .instance(_, let route):
-            return route.path
-        }
-    }
-
-    public var method: Moya.Method {
-        switch self {
-        case .instance(_, let route):
-            return route.method
-        }
-    }
-
-    public var parameters: [String: Any]? {
-        switch self {
-        case .instance(_, let route):
-            return route.parameters
-        }
-    }
-
-    public var parameterEncoding: ParameterEncoding {
-        switch self {
-        case .instance(_, let route):
-            return route.parameterEncoding
-        }
-    }
-
-    public var sampleData: Data {
-        switch self {
-        case .instance(_, let route):
-            return route.sampleData
-        }
-    }
-
-    public var task: Task {
-        switch self {
-        case .instance(_, let route):
-            return route.task
-        }
-    }
-
-    public var validate: Bool {
-        switch self {
-        case .instance(_, let route):
-            return route.validate
-        }
-    }
-}
+public typealias MastodonProvider = DynamicReactiveSwiftMoyaProvider<MastodonService>
