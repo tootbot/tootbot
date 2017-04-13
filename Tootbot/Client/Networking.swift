@@ -135,7 +135,7 @@ public class Networking {
             }
             .map(Result.success)
             .flatMapError { error in SignalProducer(value: .failure(error)) }
-            .map { (instanceURI, $0) }
+            .map { result in (instanceURI, result) }
             .start(loginResultObserver)
     }
 }

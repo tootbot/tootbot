@@ -23,7 +23,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var applicationProperties: ApplicationProperties!
-     let disposable = ScopedDisposable(CompositeDisposable())
+    let disposable = ScopedDisposable(CompositeDisposable())
     var networking: Networking!
 
     @IBOutlet var tableView: UITableView!
@@ -45,12 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             .flatMap(.latest) { _ -> Signal<UserAccount, MoyaError> in
                 return self.networking.loginResultSignal
                     .filter { resultInstanceURI, _ in instanceURI == resultInstanceURI }
-                    .flatMap(.latest) { _, result -> SignalProducer<UserAccount, MoyaError> in
-                        return result.analysis(
-                            ifSuccess: { SignalProducer(value: $0) },
-                            ifFailure: { SignalProducer(error: $0) }
-                        )
-                    }
+                    .flatMap(.latest) { _, result in SignalProducer(result: result) }
             }
             .take(first: 1)
             .on(failed: { error in
