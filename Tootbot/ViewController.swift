@@ -21,16 +21,29 @@ import Result
 import SafariServices
 import UIKit
 
+let UserDefaultsAccountsKey = "Accounts"
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    var accounts = [UserAccount]()
     var applicationProperties: ApplicationProperties!
     let disposable = ScopedDisposable(CompositeDisposable())
     var networking: Networking!
 
     @IBOutlet var tableView: UITableView!
 
-    func presentLogIn(for instanceURI: String) -> SignalProducer<UserAccount, MoyaError> {
+    func loadAccounts() {
+        let accountStrings = UserDefaults.standard.stringArray(forKey: UserDefaultsAccountsKey) ?? []
+        accounts = accountStrings.flatMap { string in UserAccount(string) }
+    }
+
+    func saveAccounts() {
+        let accountStrings = accounts.map { String(describing: $0) }
+        UserDefaults.standard.set(accountStrings, forKey: UserDefaultsAccountsKey)
+    }
+
+    func presentLogIn(for instanceURI: String) {
         let properties = applicationProperties!
-        return networking.applicationCredentials(for: properties, on: instanceURI)
+        disposable += networking.applicationCredentials(for: properties, on: instanceURI)
             .flatMap(.latest) { credentials -> SignalProducer<URL, MoyaError> in
                 if let loginURL = self.networking.loginURL(applicationProperties: properties, applicationCredentials: credentials) {
                     return SignalProducer(value: loginURL)
@@ -53,8 +66,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }, terminated: {
                 self.dismiss(animated: true)
             }, value: { account in
-                // Do something with account
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: [[0, self.accounts.count]], with: .automatic)
+                self.accounts.append(account)
+                self.tableView.endUpdates()
+
+                self.saveAccounts()
             })
+            .start()
     }
 
     // MARK: - Configuration
@@ -68,6 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadAccounts()
         configureNavigationItem()
     }
 
@@ -88,7 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 instanceURI = defaultInstance
             }
 
-            self.disposable += self.presentLogIn(for: instanceURI).start()
+            self.presentLogIn(for: instanceURI)
         }))
 
         present(alert, animated: true)
@@ -97,10 +117,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Table View
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return accounts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        fatalError()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell", for: indexPath)
+
+        let account = accounts[indexPath.row]
+        cell.textLabel!.text = "@" + account.username
+        cell.detailTextLabel!.text = account.instanceURI
+
+        return cell
     }
 }
