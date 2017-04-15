@@ -60,6 +60,11 @@
 		83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */; };
 		83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */; };
 		83C95D7E1E9D433C00E22DDD /* Moya+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */; };
+		83DB2F1D1EA22D7000AD7080 /* TootbotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */; };
+		83DB2F2B1EA22D7500AD7080 /* TootClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */; };
+		83DB2F2D1EA22D7500AD7080 /* TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; };
+		83DB2F3A1EA22D7900AD7080 /* TootModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F391EA22D7900AD7080 /* TootModelTests.swift */; };
+		83DB2F3C1EA22D7900AD7080 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +83,27 @@
 			remoteInfo = TootModel;
 		};
 		8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
+			remoteInfo = TootModel;
+		};
+		83DB2F1F1EA22D7000AD7080 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E6DF1E9BD870003F1AA2;
+			remoteInfo = Tootbot;
+		};
+		83DB2F2E1EA22D7500AD7080 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8317E7271E9BE8A5003F1AA2;
+			remoteInfo = TootClient;
+		};
+		83DB2F3D1EA22D7900AD7080 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
 			proxyType = 1;
@@ -155,6 +181,15 @@
 		83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTarget.swift; sourceTree = "<group>"; };
 		83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProvider.swift; sourceTree = "<group>"; };
 		83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
+		83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootbotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootbotTests.swift; sourceTree = "<group>"; };
+		83DB2F1E1EA22D7000AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootClientTests.swift; sourceTree = "<group>"; };
+		83DB2F2C1EA22D7500AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83DB2F391EA22D7900AD7080 /* TootModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootModelTests.swift; sourceTree = "<group>"; };
+		83DB2F3B1EA22D7900AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +225,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83DB2F171EA22D7000AD7080 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F251EA22D7500AD7080 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83DB2F2D1EA22D7500AD7080 /* TootClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F341EA22D7900AD7080 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83DB2F3C1EA22D7900AD7080 /* TootModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -197,8 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				8317E6E21E9BD870003F1AA2 /* Tootbot */,
+				83DB2F1B1EA22D7000AD7080 /* TootbotTests */,
 				8317E7291E9BE8A5003F1AA2 /* TootClient */,
+				83DB2F291EA22D7500AD7080 /* TootClientTests */,
 				8317E73E1E9BE8DB003F1AA2 /* TootModel */,
+				83DB2F381EA22D7900AD7080 /* TootModelTests */,
 				8317E7071E9BE330003F1AA2 /* Frameworks */,
 				8317E6E11E9BD870003F1AA2 /* Products */,
 			);
@@ -210,6 +271,9 @@
 				8317E6E01E9BD870003F1AA2 /* Tootbot.app */,
 				8317E7281E9BE8A5003F1AA2 /* TootClient.framework */,
 				8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */,
+				83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */,
+				83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */,
+				83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +396,33 @@
 			name = Types;
 			sourceTree = "<group>";
 		};
+		83DB2F1B1EA22D7000AD7080 /* TootbotTests */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */,
+				83DB2F1E1EA22D7000AD7080 /* Info.plist */,
+			);
+			path = TootbotTests;
+			sourceTree = "<group>";
+		};
+		83DB2F291EA22D7500AD7080 /* TootClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */,
+				83DB2F2C1EA22D7500AD7080 /* Info.plist */,
+			);
+			path = TootClientTests;
+			sourceTree = "<group>";
+		};
+		83DB2F381EA22D7900AD7080 /* TootModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F391EA22D7900AD7080 /* TootModelTests.swift */,
+				83DB2F3B1EA22D7900AD7080 /* Info.plist */,
+			);
+			path = TootModelTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -412,6 +503,60 @@
 			productReference = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		83DB2F191EA22D7000AD7080 /* TootbotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83DB2F211EA22D7000AD7080 /* Build configuration list for PBXNativeTarget "TootbotTests" */;
+			buildPhases = (
+				83DB2F161EA22D7000AD7080 /* Sources */,
+				83DB2F171EA22D7000AD7080 /* Frameworks */,
+				83DB2F181EA22D7000AD7080 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83DB2F201EA22D7000AD7080 /* PBXTargetDependency */,
+			);
+			name = TootbotTests;
+			productName = TootbotTests;
+			productReference = 83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		83DB2F271EA22D7500AD7080 /* TootClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83DB2F301EA22D7500AD7080 /* Build configuration list for PBXNativeTarget "TootClientTests" */;
+			buildPhases = (
+				83DB2F241EA22D7500AD7080 /* Sources */,
+				83DB2F251EA22D7500AD7080 /* Frameworks */,
+				83DB2F261EA22D7500AD7080 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83DB2F2F1EA22D7500AD7080 /* PBXTargetDependency */,
+			);
+			name = TootClientTests;
+			productName = TootClientTests;
+			productReference = 83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		83DB2F361EA22D7900AD7080 /* TootModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83DB2F3F1EA22D7900AD7080 /* Build configuration list for PBXNativeTarget "TootModelTests" */;
+			buildPhases = (
+				83DB2F331EA22D7900AD7080 /* Sources */,
+				83DB2F341EA22D7900AD7080 /* Frameworks */,
+				83DB2F351EA22D7900AD7080 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83DB2F3E1EA22D7900AD7080 /* PBXTargetDependency */,
+			);
+			name = TootModelTests;
+			productName = TootModelTests;
+			productReference = 83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -439,6 +584,22 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
+					83DB2F191EA22D7000AD7080 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 94C3W2AV74;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8317E6DF1E9BD870003F1AA2;
+					};
+					83DB2F271EA22D7500AD7080 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 94C3W2AV74;
+						ProvisioningStyle = Automatic;
+					};
+					83DB2F361EA22D7900AD7080 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 94C3W2AV74;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 8317E6DB1E9BD870003F1AA2 /* Build configuration list for PBXProject "Tootbot" */;
@@ -455,8 +616,11 @@
 			projectRoot = "";
 			targets = (
 				8317E6DF1E9BD870003F1AA2 /* Tootbot */,
+				83DB2F191EA22D7000AD7080 /* TootbotTests */,
 				8317E7271E9BE8A5003F1AA2 /* TootClient */,
+				83DB2F271EA22D7500AD7080 /* TootClientTests */,
 				8317E73C1E9BE8DB003F1AA2 /* TootModel */,
+				83DB2F361EA22D7900AD7080 /* TootModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -480,6 +644,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8317E73B1E9BE8DB003F1AA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F181EA22D7000AD7080 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F261EA22D7500AD7080 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F351EA22D7900AD7080 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -569,6 +754,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83DB2F161EA22D7000AD7080 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83DB2F1D1EA22D7000AD7080 /* TootbotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F241EA22D7500AD7080 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83DB2F2B1EA22D7500AD7080 /* TootClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83DB2F331EA22D7900AD7080 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83DB2F3A1EA22D7900AD7080 /* TootModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -586,6 +795,21 @@
 			isa = PBXTargetDependency;
 			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
 			targetProxy = 8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */;
+		};
+		83DB2F201EA22D7000AD7080 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E6DF1E9BD870003F1AA2 /* Tootbot */;
+			targetProxy = 83DB2F1F1EA22D7000AD7080 /* PBXContainerItemProxy */;
+		};
+		83DB2F2F1EA22D7500AD7080 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E7271E9BE8A5003F1AA2 /* TootClient */;
+			targetProxy = 83DB2F2E1EA22D7500AD7080 /* PBXContainerItemProxy */;
+		};
+		83DB2F3E1EA22D7900AD7080 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
+			targetProxy = 83DB2F3D1EA22D7900AD7080 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -850,6 +1074,82 @@
 			};
 			name = Release;
 		};
+		83DB2F221EA22D7000AD7080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootbotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootbotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tootbot.app/Tootbot";
+			};
+			name = Debug;
+		};
+		83DB2F231EA22D7000AD7080 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootbotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootbotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tootbot.app/Tootbot";
+			};
+			name = Release;
+		};
+		83DB2F311EA22D7500AD7080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		83DB2F321EA22D7500AD7080 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		83DB2F401EA22D7900AD7080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		83DB2F411EA22D7900AD7080 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 94C3W2AV74;
+				INFOPLIST_FILE = TootModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -888,6 +1188,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		83DB2F211EA22D7000AD7080 /* Build configuration list for PBXNativeTarget "TootbotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83DB2F221EA22D7000AD7080 /* Debug */,
+				83DB2F231EA22D7000AD7080 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83DB2F301EA22D7500AD7080 /* Build configuration list for PBXNativeTarget "TootClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83DB2F311EA22D7500AD7080 /* Debug */,
+				83DB2F321EA22D7500AD7080 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83DB2F3F1EA22D7900AD7080 /* Build configuration list for PBXNativeTarget "TootModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83DB2F401EA22D7900AD7080 /* Debug */,
+				83DB2F411EA22D7900AD7080 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

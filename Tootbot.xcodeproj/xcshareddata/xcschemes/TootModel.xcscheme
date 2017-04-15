@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8317E6DF1E9BD870003F1AA2"
-               BuildableName = "Tootbot.app"
-               BlueprintName = "Tootbot"
+               BlueprintIdentifier = "8317E73C1E9BE8DB003F1AA2"
+               BuildableName = "TootModel.framework"
+               BlueprintName = "TootModel"
                ReferencedContainer = "container:Tootbot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83DB2F191EA22D7000AD7080"
-               BuildableName = "TootbotTests.xctest"
-               BlueprintName = "TootbotTests"
+               BlueprintIdentifier = "83DB2F361EA22D7900AD7080"
+               BuildableName = "TootModelTests.xctest"
+               BlueprintName = "TootModelTests"
                ReferencedContainer = "container:Tootbot.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8317E6DF1E9BD870003F1AA2"
-            BuildableName = "Tootbot.app"
-            BlueprintName = "Tootbot"
+            BlueprintIdentifier = "8317E73C1E9BE8DB003F1AA2"
+            BuildableName = "TootModel.framework"
+            BlueprintName = "TootModel"
             ReferencedContainer = "container:Tootbot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8317E6DF1E9BD870003F1AA2"
-            BuildableName = "Tootbot.app"
-            BlueprintName = "Tootbot"
+            BlueprintIdentifier = "8317E73C1E9BE8DB003F1AA2"
+            BuildableName = "TootModel.framework"
+            BlueprintName = "TootModel"
             ReferencedContainer = "container:Tootbot.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8317E6DF1E9BD870003F1AA2"
-            BuildableName = "Tootbot.app"
-            BlueprintName = "Tootbot"
+            BlueprintIdentifier = "8317E73C1E9BE8DB003F1AA2"
+            BuildableName = "TootModel.framework"
+            BlueprintName = "TootModel"
             ReferencedContainer = "container:Tootbot.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
