@@ -1,3 +1,7 @@
 machine:
   xcode:
     version: 8.3
+
+test:
+  post:
+    - bundle exec danger
