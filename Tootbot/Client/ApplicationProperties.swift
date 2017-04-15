@@ -30,3 +30,31 @@ public struct ApplicationProperties {
         self.websiteURL = websiteURL
     }
 }
+
+extension Bundle {
+    var applicationProperties: ApplicationProperties? {
+        return applicationProperties(forKey: "ClientProperties")
+    }
+
+    func applicationProperties(forKey key: String) -> ApplicationProperties? {
+        guard let info = infoDictionary,
+            let properties = info[key] as? [String: Any],
+            let clientName = properties["ClientName"] as? String,
+            let redirectURI = properties["RedirectURI"] as? String,
+            let scopeString = properties["Scopes"] as? String
+        else {
+            return nil
+        }
+
+        let websiteURL: URL?
+        if let website = info["Website"] as? String {
+            websiteURL = URL(string: website)
+        } else {
+            websiteURL = nil
+        }
+
+        let scopeStrings = scopeString.characters.split(separator: " ").map(String.init)
+        let scopes = Set(scopeStrings.flatMap({ ApplicationScope(rawValue: $0) }))
+        return ApplicationProperties(clientName: clientName, redirectURI: redirectURI, scopes: scopes, websiteURL: websiteURL)
+    }
+}

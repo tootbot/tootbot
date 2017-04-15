@@ -15,20 +15,19 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import ReactiveSwift
 
-extension Networking {
-    func token(for account: UserAccount) -> String? {
-        return keychain.password(forService: account.instanceURI, account: account.username)
-    }
+extension UIActivityIndicatorView: ReactiveExtensionsProvider {
+}
 
-    @discardableResult
-    func setToken(_ token: String, for account: UserAccount) -> Bool {
-        return keychain.setPassword(token, forService: account.instanceURI, account: account.username)
-    }
-
-    @discardableResult
-    func deleteToken(for account: UserAccount) -> Bool {
-        return keychain.deletePassword(forService: account.instanceURI, account: account.username)
+extension Reactive where Base: UIActivityIndicatorView {
+    var isAnimating: BindingTarget<Bool> {
+        return BindingTarget<Bool>(on: QueueScheduler.main, lifetime: base.lifetime, action: { [unowned base] animating in
+            if animating {
+                base.startAnimating()
+            } else {
+                base.stopAnimating()
+            }
+        })
     }
 }

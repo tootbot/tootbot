@@ -19,7 +19,7 @@ import Freddy
 
 private let CredentialsService = "._credentials"
 
-extension Networking {
+extension NetworkingController {
     func applicationCredentials(for instanceURI: String) -> ApplicationCredentials? {
         return keychain.passwordData(forService: CredentialsService, account: instanceURI)
             .flatMap { passwordData -> JSON? in try? JSON(data: passwordData) }

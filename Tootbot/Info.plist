@@ -31,12 +31,21 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ClientProperties</key>
+	<dict>
+		<key>ClientName</key>
+		<string>Tootbot</string>
+		<key>RedirectURI</key>
+		<string>tootbot://auth</string>
+		<key>Scopes</key>
+		<string>read write follow</string>
+		<key>Website</key>
+		<string>https://github.com/tootbot/tootbot</string>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

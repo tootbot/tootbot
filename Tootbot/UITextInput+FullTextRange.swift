@@ -15,10 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public struct SimpleError: Error {
-    public let message: String
+import UIKit
 
-    public init(message: String) {
-        self.message = message
+extension UITextInput {
+    var fullTextRange: UITextRange? {
+        return textRange(from: beginningOfDocument, to: endOfDocument)
     }
 }
