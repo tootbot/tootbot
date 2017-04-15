@@ -1,4 +1,4 @@
 #!/bin/sh
 
-carthage bootstrap
+carthage bootstrap --no-use-binaries --platform ios
 cp Carthage.resolved Carthage/
