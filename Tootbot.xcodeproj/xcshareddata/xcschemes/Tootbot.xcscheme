@@ -38,6 +38,26 @@
                ReferencedContainer = "container:Tootbot.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83DB2F271EA22D7500AD7080"
+               BuildableName = "TootClientTests.xctest"
+               BlueprintName = "TootClientTests"
+               ReferencedContainer = "container:Tootbot.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83DB2F361EA22D7900AD7080"
+               BuildableName = "TootModelTests.xctest"
+               BlueprintName = "TootModelTests"
+               ReferencedContainer = "container:Tootbot.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
