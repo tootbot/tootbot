@@ -1,3 +1,4 @@
+require 'open3'
 require 'shellwords'
 
 module Danger
@@ -11,11 +12,11 @@ module Danger
         raise 'You have to provide files to check'
       end
 
-      escaped_license = Shellwords.escape(license)
       files.each do |file|
-        `grep -L #{escaped_license} "#{file}"`
-        unless $? == 0
-          warn("Please fix the license header", file: file, line: 1)
+        cmd = "comm -12 - #{file.shellescape}"
+        result, status = Open3.capture2(cmd, stdin_data: license)
+        unless status.success? && result == license
+          warn('Please fix the license header', file: file, line: 1)
         end
       end
     end
