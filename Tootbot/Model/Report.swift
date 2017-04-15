@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum ReportKey: String, JSONPathType {
+private enum ReportKey: String, JSONPathType {
     case id
     case actionTaken = "action_taken"
 
@@ -27,12 +27,14 @@ enum ReportKey: String, JSONPathType {
     }
 }
 
-public struct Report: JSONDecodable {
-    public var id: Int
-    public var actionTaken: String
+extension JSONEntity {
+    public struct Report: JSONDecodable {
+        public var id: Int
+        public var actionTaken: String
 
-    public init(json: JSON) throws {
-        self.id = try json.getInt(at: ReportKey.id)
-        self.actionTaken = try json.getString(at: ReportKey.actionTaken)
+        public init(json: JSON) throws {
+            self.id = try json.getInt(at: ReportKey.id)
+            self.actionTaken = try json.getString(at: ReportKey.actionTaken)
+        }
     }
 }

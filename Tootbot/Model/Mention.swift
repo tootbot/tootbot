@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum MentionKey: String, JSONPathType {
+private enum MentionKey: String, JSONPathType {
     case profileURL = "url"
     case username
     case accountName = "acct"
@@ -29,16 +29,18 @@ enum MentionKey: String, JSONPathType {
     }
 }
 
-public struct Mention: JSONDecodable {
-    public var accountID: Int
-    public var profileURL: URL
-    public var accountName: String
-    public var username: String
+extension JSONEntity {
+    public struct Mention: JSONDecodable {
+        public var accountID: Int
+        public var profileURL: URL
+        public var accountName: String
+        public var username: String
 
-    public init(json: JSON) throws {
-        self.accountID = try json.getInt(at: MentionKey.accountID)
-        self.profileURL = URL(string: try json.getString(at: MentionKey.profileURL))!
-        self.accountName = try json.getString(at: MentionKey.accountName)
-        self.username = try json.getString(at: MentionKey.username)
+        public init(json: JSON) throws {
+            self.accountID = try json.getInt(at: MentionKey.accountID)
+            self.profileURL = URL(string: try json.getString(at: MentionKey.profileURL))!
+            self.accountName = try json.getString(at: MentionKey.accountName)
+            self.username = try json.getString(at: MentionKey.username)
+        }
     }
 }

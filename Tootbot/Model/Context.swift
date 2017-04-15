@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum ContextKey: String, JSONPathType {
+private enum ContextKey: String, JSONPathType {
     case ancestors
     case descendants
 
@@ -27,12 +27,14 @@ enum ContextKey: String, JSONPathType {
     }
 }
 
-public struct Context: JSONDecodable {
-    public var ancestors: [Status]
-    public var descendants: [Status]
+extension JSONEntity {
+    public struct Context: JSONDecodable {
+        public var ancestors: [Status]
+        public var descendants: [Status]
 
-    public init(json: JSON) throws {
-        self.ancestors = try json.decodedArray(at: ContextKey.ancestors)
-        self.descendants = try json.decodedArray(at: ContextKey.descendants)
+        public init(json: JSON) throws {
+            self.ancestors = try json.decodedArray(at: ContextKey.ancestors)
+            self.descendants = try json.decodedArray(at: ContextKey.descendants)
+        }
     }
 }

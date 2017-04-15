@@ -47,6 +47,7 @@
 		83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F631EA23D1500AD7080 /* ServerError.swift */; };
 		83DB2F851EA23D1500AD7080 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F641EA23D1500AD7080 /* Status.swift */; };
 		83DB2F861EA23D1500AD7080 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F651EA23D1500AD7080 /* Tag.swift */; };
+		83DB2F8F1EA2642600AD7080 /* JSONEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		83DB2F631EA23D1500AD7080 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		83DB2F641EA23D1500AD7080 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		83DB2F651EA23D1500AD7080 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEntity.swift; sourceTree = "<group>"; };
 		D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
 		FCBE174263EF2693626E4C8F /* Pods-Tootbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				83DB2F891EA23D6A00AD7080 /* Entities */,
 				83DB2F581EA23D1500AD7080 /* Box.swift */,
 				83DB2F5B1EA23D1500AD7080 /* DateFormatter.swift */,
+				83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */,
 				83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */,
 			);
 			path = Model;
@@ -455,6 +458,7 @@
 			files = (
 				83DB2F771EA23D1500AD7080 /* Application.swift in Sources */,
 				83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */,
+				83DB2F8F1EA2642600AD7080 /* JSONEntity.swift in Sources */,
 				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
 				83DB2F851EA23D1500AD7080 /* Status.swift in Sources */,
 				83DB2F731EA23D1500AD7080 /* SimpleError.swift in Sources */,
