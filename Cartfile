@@ -1,4 +1,0 @@
-github "bignerdranch/Freddy" ~> 3.0
-github "Moya/Moya" ~> 8.0.3
-github "ReactiveCocoa/ReactiveSwift" ~> 1.1
-github "soffes/SAMKeychain" ~> 1.5.2

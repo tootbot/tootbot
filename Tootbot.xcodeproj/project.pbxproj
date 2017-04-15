@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A9851C5D775376FC9D7BE87 /* Pods_Shared_TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */; };
+		3A805281D4573B53F021826F /* Pods_Shared_TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */; };
 		8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */; };
 		8317E6E61E9BD870003F1AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E51E9BD870003F1AA2 /* ViewController.swift */; };
 		8317E6E91E9BD870003F1AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6E71E9BD870003F1AA2 /* Main.storyboard */; };
@@ -19,7 +21,6 @@
 		8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
 		8317E7451E9BE8DB003F1AA2 /* TootModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8317E74A1E9BE95B003F1AA2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7491E9BE95B003F1AA2 /* Account.swift */; };
-		8317E74C1E9BE9BC003F1AA2 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E71D1E9BE505003F1AA2 /* Freddy.framework */; };
 		8317E74E1E9BEB28003F1AA2 /* JSONTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */; };
 		8317E7501E9BED52003F1AA2 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */; };
 		8317E7521E9BEE2D003F1AA2 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7511E9BEE2D003F1AA2 /* Application.swift */; };
@@ -35,19 +36,13 @@
 		8317E7691E9BF5F1003F1AA2 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7681E9BF5F1003F1AA2 /* Relationship.swift */; };
 		8317E76B1E9BF5F7003F1AA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76A1E9BF5F7003F1AA2 /* Report.swift */; };
 		8317E76D1E9BF5FE003F1AA2 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76C1E9BF5FE003F1AA2 /* Results.swift */; };
-		8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E71D1E9BE505003F1AA2 /* Freddy.framework */; };
 		8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
 		8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7771E9BF87D003F1AA2 /* FormData.swift */; };
 		8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */; };
-		832B8E701E9CBB3C00127A37 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 832B8E6F1E9CBB3C00127A37 /* Alamofire.framework */; };
 		832B8E721E9CBC7200127A37 /* MastodonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B8E711E9CBC7200127A37 /* MastodonService.swift */; };
 		83550A7C1E9C05D800287AAC /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A7B1E9C05D800287AAC /* Card.swift */; };
-		83550A8F1E9C18D600287AAC /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */; };
-		83550A901E9C18D600287AAC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7091E9BE33C003F1AA2 /* Result.framework */; };
 		83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A931E9C1D7D00287AAC /* UserAccount.swift */; };
 		83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */; };
-		83550A991E9C2C6900287AAC /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7091E9BE33C003F1AA2 /* Result.framework */; };
-		83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */; };
 		83A1E4FD1E9D629500B075C0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FC1E9D629500B075C0 /* Networking.swift */; };
 		83A1E4FF1E9D62DF00B075C0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */; };
 		83A1E5011E9D672700B075C0 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5001E9D672700B075C0 /* Authentication.swift */; };
@@ -55,7 +50,6 @@
 		83A1E50E1E9E380600B075C0 /* Networking+ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */; };
 		83A1E5101E9E7E6300B075C0 /* Networking+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */; };
 		83A1E5121E9E950B00B075C0 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5111E9E950B00B075C0 /* SimpleError.swift */; };
-		83BA7C811E9D5CDA00B6472A /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */; };
 		83C95D721E9D2AA100E22DDD /* SubTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D711E9D2AA100E22DDD /* SubTargetType.swift */; };
 		83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */; };
 		83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */; };
@@ -65,6 +59,7 @@
 		83DB2F2D1EA22D7500AD7080 /* TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; };
 		83DB2F3A1EA22D7900AD7080 /* TootModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F391EA22D7900AD7080 /* TootModelTests.swift */; };
 		83DB2F3C1EA22D7900AD7080 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
+		88B1DBAEC1E948103552FC33 /* Pods_Shared_Tootbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +123,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_TootModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient.release.xcconfig"; sourceTree = "<group>"; };
+		4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
+		73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient.debug.xcconfig"; sourceTree = "<group>"; };
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317E6E51E9BD870003F1AA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,9 +135,6 @@
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8317E6ED1E9BD870003F1AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
-		8317E7091E9BE33C003F1AA2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		8317E71D1E9BE505003F1AA2 /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
 		8317E7281E9BE8A5003F1AA2 /* TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E72A1E9BE8A5003F1AA2 /* TootClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootClient.h; sourceTree = "<group>"; };
 		8317E72B1E9BE8A5003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,10 +159,7 @@
 		8317E76C1E9BF5FE003F1AA2 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		8317E7771E9BF87D003F1AA2 /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
 		8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
-		832B8E6F1E9CBB3C00127A37 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		832B8E711E9CBC7200127A37 /* MastodonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonService.swift; sourceTree = "<group>"; };
-		832B8E731E9CBDFE00127A37 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
-		832B8E741E9CBDFE00127A37 /* ReactiveMoya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMoya.framework; path = Carthage/Build/iOS/ReactiveMoya.framework; sourceTree = "<group>"; };
 		83550A7B1E9C05D800287AAC /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		83550A931E9C1D7D00287AAC /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCredentials.swift; sourceTree = "<group>"; };
@@ -176,7 +170,6 @@
 		83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+ApplicationCredentials.swift"; sourceTree = "<group>"; };
 		83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+UserCredentials.swift"; sourceTree = "<group>"; };
 		83A1E5111E9E950B00B075C0 /* SimpleError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
-		83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
 		83C95D711E9D2AA100E22DDD /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
 		83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTarget.swift; sourceTree = "<group>"; };
 		83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProvider.swift; sourceTree = "<group>"; };
@@ -190,6 +183,10 @@
 		83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DB2F391EA22D7900AD7080 /* TootModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootModelTests.swift; sourceTree = "<group>"; };
 		83DB2F3B1EA22D7900AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootModel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel.debug.xcconfig"; sourceTree = "<group>"; };
+		9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-Tootbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot.release.xcconfig"; sourceTree = "<group>"; };
+		AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel.release.xcconfig"; sourceTree = "<group>"; };
+		E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,11 +194,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				832B8E701E9CBB3C00127A37 /* Alamofire.framework in Frameworks */,
-				83550A9A1E9C2C6C00287AAC /* ReactiveSwift.framework in Frameworks */,
-				83550A991E9C2C6900287AAC /* Result.framework in Frameworks */,
 				8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */,
 				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
+				88B1DBAEC1E948103552FC33 /* Pods_Shared_Tootbot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,11 +204,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8317E7741E9BF7EA003F1AA2 /* Freddy.framework in Frameworks */,
-				83550A8F1E9C18D600287AAC /* ReactiveSwift.framework in Frameworks */,
-				83BA7C811E9D5CDA00B6472A /* SAMKeychain.framework in Frameworks */,
-				83550A901E9C18D600287AAC /* Result.framework in Frameworks */,
 				8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */,
+				0A9851C5D775376FC9D7BE87 /* Pods_Shared_TootClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8317E74C1E9BE9BC003F1AA2 /* Freddy.framework in Frameworks */,
+				3A805281D4573B53F021826F /* Pods_Shared_TootModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +253,7 @@
 				8317E73E1E9BE8DB003F1AA2 /* TootModel */,
 				83DB2F381EA22D7900AD7080 /* TootModelTests */,
 				8317E7071E9BE330003F1AA2 /* Frameworks */,
+				A10E7551E444AF638FE1DEC5 /* Pods */,
 				8317E6E11E9BD870003F1AA2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -294,13 +287,9 @@
 		8317E7071E9BE330003F1AA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				832B8E6F1E9CBB3C00127A37 /* Alamofire.framework */,
-				8317E71D1E9BE505003F1AA2 /* Freddy.framework */,
-				832B8E731E9CBDFE00127A37 /* Moya.framework */,
-				832B8E741E9CBDFE00127A37 /* ReactiveMoya.framework */,
-				8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */,
-				8317E7091E9BE33C003F1AA2 /* Result.framework */,
-				83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */,
+				E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */,
+				01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */,
+				4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -423,6 +412,19 @@
 			path = TootModelTests;
 			sourceTree = "<group>";
 		};
+		A10E7551E444AF638FE1DEC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */,
+				405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */,
+				985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */,
+				AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */,
+				51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */,
+				9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -449,11 +451,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8317E6F21E9BD870003F1AA2 /* Build configuration list for PBXNativeTarget "Tootbot" */;
 			buildPhases = (
+				5AB1E01ED3726288AEBF84CE /* [CP] Check Pods Manifest.lock */,
 				8317E6DC1E9BD870003F1AA2 /* Sources */,
 				8317E6DD1E9BD870003F1AA2 /* Frameworks */,
 				8317E6DE1E9BD870003F1AA2 /* Resources */,
-				8317E70C1E9BE34B003F1AA2 /* Embed Carthage Frameworks */,
 				8317E7061E9BE25B003F1AA2 /* Embed Frameworks */,
+				65727AA264727070E90DD3C8 /* [CP] Embed Pods Frameworks */,
+				284093B19785CEC5C99253A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -470,10 +474,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8317E7311E9BE8A5003F1AA2 /* Build configuration list for PBXNativeTarget "TootClient" */;
 			buildPhases = (
+				953B5058FAE78D94E05A30ED /* [CP] Check Pods Manifest.lock */,
 				8317E7231E9BE8A5003F1AA2 /* Sources */,
 				8317E7241E9BE8A5003F1AA2 /* Frameworks */,
 				8317E7251E9BE8A5003F1AA2 /* Headers */,
 				8317E7261E9BE8A5003F1AA2 /* Resources */,
+				586CFD16C0FB1B982A73E70B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -489,10 +495,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8317E7461E9BE8DB003F1AA2 /* Build configuration list for PBXNativeTarget "TootModel" */;
 			buildPhases = (
+				FB43B6C1DAD7CB56D353835C /* [CP] Check Pods Manifest.lock */,
 				8317E7381E9BE8DB003F1AA2 /* Sources */,
 				8317E7391E9BE8DB003F1AA2 /* Frameworks */,
 				8317E73A1E9BE8DB003F1AA2 /* Headers */,
 				8317E73B1E9BE8DB003F1AA2 /* Resources */,
+				FCA1269CECE1239096B193A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -674,26 +682,110 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8317E70C1E9BE34B003F1AA2 /* Embed Carthage Frameworks */ = {
+		284093B19785CEC5C99253A1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveMoya.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
 			);
-			name = "Embed Carthage Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		586CFD16C0FB1B982A73E70B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5AB1E01ED3726288AEBF84CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		65727AA264727070E90DD3C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		953B5058FAE78D94E05A30ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB43B6C1DAD7CB56D353835C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCA1269CECE1239096B193A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -930,6 +1022,7 @@
 		};
 		8317E6F31E9BD870003F1AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -948,6 +1041,7 @@
 		};
 		8317E6F41E9BD870003F1AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -966,6 +1060,7 @@
 		};
 		8317E7321E9BE8A5003F1AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -994,6 +1089,7 @@
 		};
 		8317E7331E9BE8A5003F1AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1021,6 +1117,7 @@
 		};
 		8317E7471E9BE8DB003F1AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1049,6 +1146,7 @@
 		};
 		8317E7481E9BE8DB003F1AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1196,6 +1294,7 @@
 				83DB2F231EA22D7000AD7080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83DB2F301EA22D7500AD7080 /* Build configuration list for PBXNativeTarget "TootClientTests" */ = {
 			isa = XCConfigurationList;
@@ -1204,6 +1303,7 @@
 				83DB2F321EA22D7500AD7080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83DB2F3F1EA22D7900AD7080 /* Build configuration list for PBXNativeTarget "TootModelTests" */ = {
 			isa = XCConfigurationList;
@@ -1212,6 +1312,7 @@
 				83DB2F411EA22D7900AD7080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

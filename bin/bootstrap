@@ -1,4 +1,0 @@
-#!/bin/sh
-
-carthage bootstrap --no-use-binaries --platform ios
-cp Carthage.resolved Carthage/
