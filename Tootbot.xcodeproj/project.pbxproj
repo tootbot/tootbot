@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		12EC120502C700C7DE0805F3 /* Pods_Tootbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */; };
 		8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */; };
-		8317E6E91E9BD870003F1AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6E71E9BD870003F1AA2 /* Main.storyboard */; };
 		8317E6EB1E9BD870003F1AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */; };
-		8317E6EE1E9BD870003F1AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */; };
 		832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D552B1EA2B3F700393BC5 /* Model+URL.swift */; };
+		832D553F1EA2BC9400393BC5 /* AddAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D552F1EA2BC9400393BC5 /* AddAccount.storyboard */; };
+		832D55401EA2BC9400393BC5 /* Federated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55311EA2BC9400393BC5 /* Federated.storyboard */; };
+		832D55411EA2BC9400393BC5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55331EA2BC9400393BC5 /* Home.storyboard */; };
+		832D55421EA2BC9400393BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55351EA2BC9400393BC5 /* LaunchScreen.storyboard */; };
+		832D55431EA2BC9400393BC5 /* Local.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55371EA2BC9400393BC5 /* Local.storyboard */; };
+		832D55441EA2BC9400393BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55391EA2BC9400393BC5 /* Main.storyboard */; };
+		832D55451EA2BC9400393BC5 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D553B1EA2BC9400393BC5 /* Notifications.storyboard */; };
+		832D55461EA2BC9400393BC5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D553D1EA2BC9400393BC5 /* Profile.storyboard */; };
 		83851F7E1EA2818500BFA80B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7D1EA2818500BFA80B /* RootViewController.swift */; };
 		83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */; };
 		83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F841EA2861900BFA80B /* AddAccountViewModel.swift */; };
@@ -58,12 +64,6 @@
 		83DB2F8F1EA2642600AD7080 /* JSONEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */; };
 		83DB2F951EA2727200AD7080 /* Tootbot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F931EA2727200AD7080 /* Tootbot.xcdatamodeld */; };
 		83DB2F991EA2736100AD7080 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F981EA2736100AD7080 /* DataController.swift */; };
-		83DB2F9E1EA2763800AD7080 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2F9C1EA2763800AD7080 /* Home.storyboard */; };
-		83DB2FA01EA2766500AD7080 /* Local.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2F9F1EA2766500AD7080 /* Local.storyboard */; };
-		83DB2FA21EA2766A00AD7080 /* Federated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2FA11EA2766A00AD7080 /* Federated.storyboard */; };
-		83DB2FA41EA2766E00AD7080 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2FA31EA2766E00AD7080 /* Notifications.storyboard */; };
-		83DB2FA81EA279DB00AD7080 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2FA71EA279DB00AD7080 /* Profile.storyboard */; };
-		83DB2FAA1EA27A7200AD7080 /* AddAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DB2FA91EA27A7200AD7080 /* AddAccount.storyboard */; };
 		83DB2FAD1EA27B3800AD7080 /* AddAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,11 +93,17 @@
 /* Begin PBXFileReference section */
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8317E6E81E9BD870003F1AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8317E6ED1E9BD870003F1AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		832D552B1EA2B3F700393BC5 /* Model+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Model+URL.swift"; sourceTree = "<group>"; };
+		832D55301EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddAccount.storyboard; sourceTree = "<group>"; };
+		832D55321EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Federated.storyboard; sourceTree = "<group>"; };
+		832D55341EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
+		832D55361EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		832D55381EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Local.storyboard; sourceTree = "<group>"; };
+		832D553A1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		832D553C1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
+		832D553E1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		83851F7D1EA2818500BFA80B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+FlexibleSize.swift"; sourceTree = "<group>"; };
 		83851F841EA2861900BFA80B /* AddAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewModel.swift; sourceTree = "<group>"; };
@@ -145,12 +151,6 @@
 		83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEntity.swift; sourceTree = "<group>"; };
 		83DB2F941EA2727200AD7080 /* 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1.xcdatamodel; sourceTree = "<group>"; };
 		83DB2F981EA2736100AD7080 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		83DB2F9D1EA2763800AD7080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
-		83DB2F9F1EA2766500AD7080 /* Local.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Local.storyboard; sourceTree = "<group>"; };
-		83DB2FA11EA2766A00AD7080 /* Federated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Federated.storyboard; sourceTree = "<group>"; };
-		83DB2FA31EA2766E00AD7080 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
-		83DB2FA71EA279DB00AD7080 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		83DB2FA91EA27A7200AD7080 /* AddAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddAccount.storyboard; sourceTree = "<group>"; };
 		83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewController.swift; sourceTree = "<group>"; };
 		D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 			children = (
 				832D552B1EA2B3F700393BC5 /* Model+URL.swift */,
 			);
-			name = "Core Data";
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		832D552D1EA2BA2400393BC5 /* NetworkingController */ = {
@@ -230,8 +230,7 @@
 				83DB2F4E1EA23D1500AD7080 /* NetworkingController+UserCredentials.swift */,
 				83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */,
 			);
-			name = NetworkingController;
-			path = Client;
+			path = NetworkingController;
 			sourceTree = "<group>";
 		};
 		83851F811EA2821500BFA80B /* Extensions */ = {
@@ -244,14 +243,14 @@
 				8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */,
 				83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		83DB2F1B1EA22D7000AD7080 /* TootbotTests */ = {
 			isa = PBXGroup;
 			children = (
-				83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */,
 				83DB2F1E1EA22D7000AD7080 /* Info.plist */,
+				83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */,
 			);
 			path = TootbotTests;
 			sourceTree = "<group>";
@@ -281,24 +280,31 @@
 		83DB2F871EA23D1C00AD7080 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				83DB2FA61EA2782900AD7080 /* Storyboards */,
+				832D552F1EA2BC9400393BC5 /* AddAccount.storyboard */,
 				8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */,
+				832D55311EA2BC9400393BC5 /* Federated.storyboard */,
+				832D55331EA2BC9400393BC5 /* Home.storyboard */,
 				8317E6EF1E9BD870003F1AA2 /* Info.plist */,
+				832D55351EA2BC9400393BC5 /* LaunchScreen.storyboard */,
+				832D55371EA2BC9400393BC5 /* Local.storyboard */,
+				832D55391EA2BC9400393BC5 /* Main.storyboard */,
+				832D553B1EA2BC9400393BC5 /* Notifications.storyboard */,
+				832D553D1EA2BC9400393BC5 /* Profile.storyboard */,
 				83DB2F931EA2727200AD7080 /* Tootbot.xcdatamodeld */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		83DB2F881EA23D2200AD7080 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
 				83DB2F9A1EA2756800AD7080 /* Controllers */,
 				83851F811EA2821500BFA80B /* Extensions */,
-				83DB2F9B1EA2756D00AD7080 /* View Models */,
 				83DB2FAB1EA27B2700AD7080 /* View Controllers */,
+				83DB2F9B1EA2756D00AD7080 /* View Models */,
+				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
 			);
-			name = App;
+			path = App;
 			sourceTree = "<group>";
 		};
 		83DB2F891EA23D6A00AD7080 /* Entities */ = {
@@ -319,7 +325,7 @@
 				83DB2F641EA23D1500AD7080 /* Status.swift */,
 				83DB2F651EA23D1500AD7080 /* Tag.swift */,
 			);
-			name = Entities;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		83DB2F8A1EA23D8100AD7080 /* Types */ = {
@@ -329,7 +335,7 @@
 				83DB2F491EA23D1500AD7080 /* FormData.swift */,
 				83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */,
 			);
-			name = Types;
+			path = Types;
 			sourceTree = "<group>";
 		};
 		83DB2F8B1EA23D8500AD7080 /* Services */ = {
@@ -337,7 +343,7 @@
 			children = (
 				83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */,
 			);
-			name = Services;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		83DB2F8D1EA23D9700AD7080 /* Moya */ = {
@@ -349,7 +355,7 @@
 				83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */,
 				83DB2F521EA23D1500AD7080 /* SubTargetType.swift */,
 			);
-			name = Moya;
+			path = Moya;
 			sourceTree = "<group>";
 		};
 		83DB2F971EA2730C00AD7080 /* JSON */ = {
@@ -361,7 +367,7 @@
 				83DB2F8E1EA2642600AD7080 /* JSONEntity.swift */,
 				83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */,
 			);
-			name = JSON;
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		83DB2F9A1EA2756800AD7080 /* Controllers */ = {
@@ -370,7 +376,7 @@
 				832D552D1EA2BA2400393BC5 /* NetworkingController */,
 				83DB2F981EA2736100AD7080 /* DataController.swift */,
 			);
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		83DB2F9B1EA2756D00AD7080 /* View Models */ = {
@@ -379,22 +385,7 @@
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
 				83851F861EA29ABA00BFA80B /* AppDelegateViewModel.swift */,
 			);
-			name = "View Models";
-			sourceTree = "<group>";
-		};
-		83DB2FA61EA2782900AD7080 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				83DB2FA91EA27A7200AD7080 /* AddAccount.storyboard */,
-				83DB2FA11EA2766A00AD7080 /* Federated.storyboard */,
-				83DB2F9C1EA2763800AD7080 /* Home.storyboard */,
-				8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */,
-				83DB2F9F1EA2766500AD7080 /* Local.storyboard */,
-				8317E6E71E9BD870003F1AA2 /* Main.storyboard */,
-				83DB2FA31EA2766E00AD7080 /* Notifications.storyboard */,
-				83DB2FA71EA279DB00AD7080 /* Profile.storyboard */,
-			);
-			name = Storyboards;
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		83DB2FAB1EA27B2700AD7080 /* View Controllers */ = {
@@ -403,7 +394,7 @@
 				83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */,
 				83851F7D1EA2818500BFA80B /* RootViewController.swift */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A10E7551E444AF638FE1DEC5 /* Pods */ = {
@@ -504,15 +495,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8317E6EE1E9BD870003F1AA2 /* LaunchScreen.storyboard in Resources */,
-				83DB2FA21EA2766A00AD7080 /* Federated.storyboard in Resources */,
-				83DB2FA81EA279DB00AD7080 /* Profile.storyboard in Resources */,
+				832D55441EA2BC9400393BC5 /* Main.storyboard in Resources */,
+				832D55451EA2BC9400393BC5 /* Notifications.storyboard in Resources */,
+				832D553F1EA2BC9400393BC5 /* AddAccount.storyboard in Resources */,
+				832D55401EA2BC9400393BC5 /* Federated.storyboard in Resources */,
+				832D55431EA2BC9400393BC5 /* Local.storyboard in Resources */,
 				8317E6EB1E9BD870003F1AA2 /* Assets.xcassets in Resources */,
-				8317E6E91E9BD870003F1AA2 /* Main.storyboard in Resources */,
-				83DB2FA41EA2766E00AD7080 /* Notifications.storyboard in Resources */,
-				83DB2FAA1EA27A7200AD7080 /* AddAccount.storyboard in Resources */,
-				83DB2F9E1EA2763800AD7080 /* Home.storyboard in Resources */,
-				83DB2FA01EA2766500AD7080 /* Local.storyboard in Resources */,
+				832D55461EA2BC9400393BC5 /* Profile.storyboard in Resources */,
+				832D55421EA2BC9400393BC5 /* LaunchScreen.storyboard in Resources */,
+				832D55411EA2BC9400393BC5 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,28 +638,68 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8317E6E71E9BD870003F1AA2 /* Main.storyboard */ = {
+		832D552F1EA2BC9400393BC5 /* AddAccount.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8317E6E81E9BD870003F1AA2 /* Base */,
+				832D55301EA2BC9400393BC5 /* Base */,
 			);
-			name = Main.storyboard;
+			name = AddAccount.storyboard;
 			sourceTree = "<group>";
 		};
-		8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */ = {
+		832D55311EA2BC9400393BC5 /* Federated.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8317E6ED1E9BD870003F1AA2 /* Base */,
+				832D55321EA2BC9400393BC5 /* Base */,
+			);
+			name = Federated.storyboard;
+			sourceTree = "<group>";
+		};
+		832D55331EA2BC9400393BC5 /* Home.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832D55341EA2BC9400393BC5 /* Base */,
+			);
+			name = Home.storyboard;
+			sourceTree = "<group>";
+		};
+		832D55351EA2BC9400393BC5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832D55361EA2BC9400393BC5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		83DB2F9C1EA2763800AD7080 /* Home.storyboard */ = {
+		832D55371EA2BC9400393BC5 /* Local.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				83DB2F9D1EA2763800AD7080 /* Base */,
+				832D55381EA2BC9400393BC5 /* Base */,
 			);
-			name = Home.storyboard;
+			name = Local.storyboard;
+			sourceTree = "<group>";
+		};
+		832D55391EA2BC9400393BC5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832D553A1EA2BC9400393BC5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		832D553B1EA2BC9400393BC5 /* Notifications.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832D553C1EA2BC9400393BC5 /* Base */,
+			);
+			name = Notifications.storyboard;
+			sourceTree = "<group>";
+		};
+		832D553D1EA2BC9400393BC5 /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				832D553E1EA2BC9400393BC5 /* Base */,
+			);
+			name = Profile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -776,7 +807,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = Tootbot/Info.plist;
+				INFOPLIST_FILE = "Tootbot/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tootbot.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -791,7 +822,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = Tootbot/Info.plist;
+				INFOPLIST_FILE = "Tootbot/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tootbot.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
