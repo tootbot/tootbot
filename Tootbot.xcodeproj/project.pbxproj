@@ -92,7 +92,7 @@
 
 /* Begin PBXFileReference section */
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		832D552B1EA2B3F700393BC5 /* Model+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Model+URL.swift"; sourceTree = "<group>"; };
@@ -199,9 +199,7 @@
 		8317E6E21E9BD870003F1AA2 /* Tootbot */ = {
 			isa = PBXGroup;
 			children = (
-				83DB2F881EA23D2200AD7080 /* App */,
-				83DB2F431EA23D1500AD7080 /* Client */,
-				83DB2F541EA23D1500AD7080 /* Model */,
+				832D55471EA2C24900393BC5 /* Source */,
 				83DB2F871EA23D1C00AD7080 /* Supporting Files */,
 			);
 			path = Tootbot;
@@ -233,6 +231,21 @@
 			path = NetworkingController;
 			sourceTree = "<group>";
 		};
+		832D55471EA2C24900393BC5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
+				83DB2F431EA23D1500AD7080 /* Client */,
+				83DB2F9A1EA2756800AD7080 /* Controllers */,
+				83851F811EA2821500BFA80B /* Extensions */,
+				83DB2F541EA23D1500AD7080 /* Model */,
+				83DB2FAB1EA27B2700AD7080 /* View Controllers */,
+				83DB2F9B1EA2756D00AD7080 /* View Models */,
+			);
+			name = Source;
+			path = Source;
+			sourceTree = "<group>";
+		};
 		83851F811EA2821500BFA80B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +256,7 @@
 				8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */,
 				83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */,
 			);
+			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -293,18 +307,6 @@
 				83DB2F931EA2727200AD7080 /* Tootbot.xcdatamodeld */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		83DB2F881EA23D2200AD7080 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				83DB2F9A1EA2756800AD7080 /* Controllers */,
-				83851F811EA2821500BFA80B /* Extensions */,
-				83DB2FAB1EA27B2700AD7080 /* View Controllers */,
-				83DB2F9B1EA2756D00AD7080 /* View Models */,
-				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		83DB2F891EA23D6A00AD7080 /* Entities */ = {
@@ -376,6 +378,7 @@
 				832D552D1EA2BA2400393BC5 /* NetworkingController */,
 				83DB2F981EA2736100AD7080 /* DataController.swift */,
 			);
+			name = Controllers;
 			path = Controllers;
 			sourceTree = "<group>";
 		};
@@ -385,6 +388,7 @@
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
 				83851F861EA29ABA00BFA80B /* AppDelegateViewModel.swift */,
 			);
+			name = "View Models";
 			path = "View Models";
 			sourceTree = "<group>";
 		};
@@ -394,6 +398,7 @@
 				83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */,
 				83851F7D1EA2818500BFA80B /* RootViewController.swift */,
 			);
+			name = "View Controllers";
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
@@ -644,6 +649,7 @@
 				832D55301EA2BC9400393BC5 /* Base */,
 			);
 			name = AddAccount.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D55311EA2BC9400393BC5 /* Federated.storyboard */ = {
@@ -652,6 +658,7 @@
 				832D55321EA2BC9400393BC5 /* Base */,
 			);
 			name = Federated.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D55331EA2BC9400393BC5 /* Home.storyboard */ = {
@@ -660,6 +667,7 @@
 				832D55341EA2BC9400393BC5 /* Base */,
 			);
 			name = Home.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D55351EA2BC9400393BC5 /* LaunchScreen.storyboard */ = {
@@ -668,6 +676,7 @@
 				832D55361EA2BC9400393BC5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D55371EA2BC9400393BC5 /* Local.storyboard */ = {
@@ -676,6 +685,7 @@
 				832D55381EA2BC9400393BC5 /* Base */,
 			);
 			name = Local.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D55391EA2BC9400393BC5 /* Main.storyboard */ = {
@@ -684,6 +694,7 @@
 				832D553A1EA2BC9400393BC5 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D553B1EA2BC9400393BC5 /* Notifications.storyboard */ = {
@@ -692,6 +703,7 @@
 				832D553C1EA2BC9400393BC5 /* Base */,
 			);
 			name = Notifications.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		832D553D1EA2BC9400393BC5 /* Profile.storyboard */ = {
@@ -700,6 +712,7 @@
 				832D553E1EA2BC9400393BC5 /* Base */,
 			);
 			name = Profile.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
