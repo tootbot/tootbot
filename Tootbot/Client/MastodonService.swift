@@ -17,7 +17,6 @@
 
 import Alamofire
 import Moya
-import TootModel
 
 public enum ApplicationScope: String {
     case read

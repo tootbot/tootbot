@@ -15,41 +15,35 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import TootModel
 import Freddy
 
-enum OAuthCredentialsKey: String, JSONPathType {
-    case id
-    case clientID = "client_id"
-    case clientSecret = "client_secret"
+enum ApplicationCredentialsKey: String, JSONPathType {
+    case instanceURI = "uri"
+    case oauthCredentials = "credentials"
 
     func value(in dictionary: [String : JSON]) throws -> JSON {
         return try rawValue.value(in: dictionary)
     }
 }
 
-public struct OAuthCredentials: JSONDecodable, JSONEncodable {
-    public var id: String
-    public var clientID: String
-    public var clientSecret: String
+public struct ApplicationCredentials: JSONDecodable, JSONEncodable {
+    public var instanceURI: String
+    public var oauthCredentials: OAuthCredentials
 
-    public init(id: String, clientID: String, clientSecret: String) {
-        self.id = id
-        self.clientID = clientID
-        self.clientSecret = clientSecret
+    public init(instanceURI: String, oauthCredentials: OAuthCredentials) {
+        self.instanceURI = instanceURI
+        self.oauthCredentials = oauthCredentials
     }
-    
+
     public init(json: JSON) throws {
-        self.id = try json.getString(at: OAuthCredentialsKey.id)
-        self.clientID = try json.getString(at: OAuthCredentialsKey.clientID)
-        self.clientSecret = try json.getString(at: OAuthCredentialsKey.clientSecret)
+        self.instanceURI = try json.getString(at: ApplicationCredentialsKey.instanceURI)
+        self.oauthCredentials = try json.decode(at: ApplicationCredentialsKey.oauthCredentials)
     }
 
     public func toJSON() -> JSON {
         return [
-            OAuthCredentialsKey.id.rawValue: id.toJSON(),
-            OAuthCredentialsKey.clientID.rawValue: clientID.toJSON(),
-            OAuthCredentialsKey.clientSecret.rawValue: clientSecret.toJSON(),
+            ApplicationCredentialsKey.instanceURI.rawValue: instanceURI.toJSON(),
+            ApplicationCredentialsKey.oauthCredentials.rawValue: oauthCredentials.toJSON(),
         ]
     }
 }

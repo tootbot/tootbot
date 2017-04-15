@@ -19,8 +19,6 @@ import Moya
 import ReactiveSwift
 import Result
 import SafariServices
-import TootClient
-import TootModel
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {

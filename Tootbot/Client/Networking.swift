@@ -19,7 +19,6 @@ import Freddy
 import Moya
 import ReactiveSwift
 import Result
-import TootModel
 
 public class Networking {
     let disposable: ScopedDisposable<CompositeDisposable>
