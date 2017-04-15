@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum AttachmentKey: String, JSONPathType {
+private enum AttachmentKey: String, JSONPathType {
     case id
     case type
     case url
