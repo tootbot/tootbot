@@ -15,21 +15,19 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
+import ReactiveSwift
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let applicationProperties = ApplicationProperties(
-        clientName: "Tootbot",
-        redirectURI: "tootbot://auth",
-        scopes: [.read, .write, .follow],
-        websiteURL: URL(string: "https://github.com/tootbot/tootbot")!
-    )
+    let disposable = ScopedDisposable(CompositeDisposable())
+    let rootViewController = RootViewController()
+    let viewModel = AppDelegateViewModel(dataController: DataController(), networkingController: NetworkingController())
 
-    let networking = Networking()
-    
     private func handle(url: URL) -> Bool {
-        guard url.absoluteString.hasPrefix(applicationProperties.redirectURI),
+        guard let applicationProperties = Bundle.main.applicationProperties,
+            url.absoluteString.hasPrefix(applicationProperties.redirectURI),
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
             let queryItems = components.queryItems,
             !queryItems.isEmpty,
@@ -39,8 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
-        networking.handleLoginCallback(instanceURI:  instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
+        viewModel.networkingController.handleLoginCallback(instanceURI: instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
         return true
+    }
+
+    func loadUI() {
+        do {
+            if try viewModel.hasAccounts() {
+                let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
+                rootViewController.transition(to: tabBarController)
+            } else {
+                let addAccount = UIStoryboard(name: "AddAccount", bundle: nil).instantiateInitialViewController() as! AddAccountViewController
+                addAccount.viewModel = viewModel.addAccountViewModel()
+                rootViewController.transition(to: addAccount)
+            }
+        } catch {
+            print("viewModel.hasAccounts() -> \(error)")
+        }
     }
 
     // MARK: - App Delegate
@@ -48,12 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if let navigationController = window?.rootViewController as? UINavigationController,
-            let viewController = navigationController.viewControllers.first as? ViewController
-        {
-            viewController.applicationProperties = applicationProperties
-            viewController.networking = networking
-        }
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = rootViewController
+        window.makeKeyAndVisible()
+        self.window = window
+
+        disposable += viewModel.initializeDataController()
+            .startWithCompleted(loadUI)
 
         if let url = launchOptions?[.url] as? URL {
             return handle(url: url)

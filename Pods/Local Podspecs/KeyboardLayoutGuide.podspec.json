@@ -1,0 +1,18 @@
+{
+  "name": "KeyboardLayoutGuide",
+  "version": "0.0.1",
+  "summary": "A keyboard layout guide may be used as an item in Auto Layout, for its layout anchors, or may be queried for its length property.",
+  "homepage": "https://github.com/zwaldowski/ParksAndRecreation",
+  "license": "MIT",
+  "authors": {
+    "Zachary Waldowski": "zach@waldowski.me"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "https://github.com/zwaldowski/ParksAndRecreation.git",
+    "commit": "86d4a73095da02926ce19e4b2ebb5bed57ae710d"
+  },
+  "source_files": "Swift-3/KeyboardLayoutGuide/KeyboardLayoutGuide/{KeyboardLayoutGuide,UIScrollView+KeyboardAvoidance}.swift"
+}

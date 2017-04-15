@@ -20,13 +20,13 @@ import Moya
 import ReactiveSwift
 import Result
 
-public class Networking {
+public class NetworkingController {
     let disposable: ScopedDisposable<CompositeDisposable>
     var providers: [Authentication: MastodonProvider]
     var keychain: KeychainProtocol
 
-    public typealias LoginResult = (instanceURI: String, result: Result<UserAccount, MoyaError>)
-    public let loginResultSignal: Signal<LoginResult, NoError>
+    typealias LoginResult = (instanceURI: String, result: Result<JSONEntity.Account, MoyaError>)
+    let loginResultSignal: Signal<LoginResult, NoError>
     let loginResultObserver: Observer<LoginResult, NoError>
 
     public init(keychain: KeychainProtocol = Keychain()) {
@@ -123,12 +123,12 @@ public class Networking {
                     return SignalProducer(error: .underlying(error))
                 }
             }
-            .flatMap(.latest) { accessToken -> SignalProducer<UserAccount, MoyaError> in
+            .flatMap(.latest) { accessToken -> SignalProducer<JSONEntity.Account, MoyaError> in
                 let provider = MastodonProvider(baseURL: noAuthProvider.baseURL, plugins: [AccessTokenPlugin(token: accessToken)])
                 return provider.request(.currentUser)
                     .mapFreddyJSONDecoded(JSONEntity.Account.self)
-                    .map { account in UserAccount(instanceURI: instanceURI, username: account.username) }
-                    .on(value: { userAccount in
+                    .on(value: { account in
+                        let userAccount = UserAccount(instanceURI: instanceURI, username: account.username)
                         self.providers[.authenticated(account: userAccount)] = provider
                         self.setToken(accessToken, for: userAccount)
                     })
@@ -137,5 +137,11 @@ public class Networking {
             .flatMapError { error in SignalProducer(value: .failure(error)) }
             .map { result in (instanceURI, result) }
             .start(loginResultObserver)
+    }
+
+    func loginResult(for instanceURI: String) -> Signal<JSONEntity.Account, MoyaError> {
+        return loginResultSignal
+            .filter { resultInstanceURI, _ in instanceURI == resultInstanceURI }
+            .flatMap(.latest) { _, result in SignalProducer(result: result) }
     }
 }

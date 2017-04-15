@@ -43,7 +43,7 @@ extension Response {
 }
 
 extension SignalProducerProtocol where Value == Response, Error == MoyaError {
-    private func attempt<U>(_ transform: @escaping (Value) throws -> U) -> SignalProducer<U, MoyaError> {
+    public func attemptMap<U>(_ transform: @escaping (Value) throws -> U) -> SignalProducer<U, MoyaError> {
         return producer.flatMap(.latest) { response -> SignalProducer<U, MoyaError> in
             do {
                 return SignalProducer(value: try transform(response))
@@ -57,14 +57,14 @@ extension SignalProducerProtocol where Value == Response, Error == MoyaError {
     }
 
     public func mapFreddyJSON() -> SignalProducer<JSON, MoyaError> {
-        return attempt { try $0.mapFreddyJSON() }
+        return attemptMap { try $0.mapFreddyJSON() }
     }
 
     public func mapFreddyJSONDecoded<Decoded>(_: Decoded.Type = Decoded.self) -> SignalProducer<Decoded, MoyaError> where Decoded: JSONDecodable {
-        return attempt { try $0.mapFreddyJSONDecoded() }
+        return attemptMap { try $0.mapFreddyJSONDecoded() }
     }
 
     public func mapFreddyJSONDecodedArray<Decoded>(_: Decoded.Type = Decoded.self) -> SignalProducer<[Decoded], MoyaError> where Decoded: JSONDecodable {
-        return attempt { try $0.mapFreddyJSONDecodedArray() }
+        return attemptMap { try $0.mapFreddyJSONDecodedArray() }
     }
 }
