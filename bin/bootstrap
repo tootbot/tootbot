@@ -1,0 +1,4 @@
+#!/bin/sh
+
+carthage bootstrap
+cp Carthage.resolved Carthage/

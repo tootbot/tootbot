@@ -1,3 +1,9 @@
 machine:
   xcode:
     version: 8.3
+
+dependencies:
+  post:
+    - bin/bootstrap-if-needed
+  cache_directories:
+    - "Carthage"
