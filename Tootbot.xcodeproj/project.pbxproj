@@ -221,10 +221,10 @@
 		83DB2F871EA23D1C00AD7080 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8317E6E71E9BD870003F1AA2 /* Main.storyboard */,
 				8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */,
-				8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */,
 				8317E6EF1E9BD870003F1AA2 /* Info.plist */,
+				8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */,
+				8317E6E71E9BD870003F1AA2 /* Main.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
