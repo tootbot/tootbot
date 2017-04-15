@@ -109,18 +109,9 @@
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8317E6ED1E9BD870003F1AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8317E6FC1E9BE25B003F1AA2 /* TootNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootNetworking.h; sourceTree = "<group>"; };
-		8317E6FD1E9BE25B003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8317E7081E9BE33C003F1AA2 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		8317E7091E9BE33C003F1AA2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		8317E70D1E9BE3B2003F1AA2 /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
-		8317E7101E9BE3CB003F1AA2 /* Deserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deserializer.swift; sourceTree = "<group>"; };
-		8317E7111E9BE3CB003F1AA2 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		8317E7121E9BE3CB003F1AA2 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		8317E7191E9BE432003F1AA2 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
-		8317E71A1E9BE432003F1AA2 /* URLSessionNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionNetworkService.swift; sourceTree = "<group>"; };
 		8317E71D1E9BE505003F1AA2 /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
-		8317E71F1E9BE62F003F1AA2 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		8317E7281E9BE8A5003F1AA2 /* TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E72A1E9BE8A5003F1AA2 /* TootClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootClient.h; sourceTree = "<group>"; };
 		8317E72B1E9BE8A5003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -208,7 +199,6 @@
 				8317E6E21E9BD870003F1AA2 /* Tootbot */,
 				8317E7291E9BE8A5003F1AA2 /* TootClient */,
 				8317E73E1E9BE8DB003F1AA2 /* TootModel */,
-				8317E6FB1E9BE25A003F1AA2 /* TootNetworking */,
 				8317E7071E9BE330003F1AA2 /* Frameworks */,
 				8317E6E11E9BD870003F1AA2 /* Products */,
 			);
@@ -237,17 +227,6 @@
 			path = Tootbot;
 			sourceTree = "<group>";
 		};
-		8317E6FB1E9BE25A003F1AA2 /* TootNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				8317E6FC1E9BE25B003F1AA2 /* TootNetworking.h */,
-				8317E6FD1E9BE25B003F1AA2 /* Info.plist */,
-				8317E7211E9BE7C3003F1AA2 /* Protocols */,
-				8317E7221E9BE7D2003F1AA2 /* Types */,
-			);
-			path = TootNetworking;
-			sourceTree = "<group>";
-		};
 		8317E7071E9BE330003F1AA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,27 +239,6 @@
 				83BA7C801E9D5CDA00B6472A /* SAMKeychain.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8317E7211E9BE7C3003F1AA2 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				8317E7101E9BE3CB003F1AA2 /* Deserializer.swift */,
-				8317E7111E9BE3CB003F1AA2 /* NetworkService.swift */,
-				8317E7121E9BE3CB003F1AA2 /* Request.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		8317E7221E9BE7D2003F1AA2 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				8317E7191E9BE432003F1AA2 /* JSONDeserializer.swift */,
-				8317E70D1E9BE3B2003F1AA2 /* Method.swift */,
-				8317E71F1E9BE62F003F1AA2 /* NetworkingError.swift */,
-				8317E71A1E9BE432003F1AA2 /* URLSessionNetworkService.swift */,
-			);
-			name = Types;
 			sourceTree = "<group>";
 		};
 		8317E7291E9BE8A5003F1AA2 /* TootClient */ = {
