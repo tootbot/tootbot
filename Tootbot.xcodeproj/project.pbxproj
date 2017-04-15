@@ -758,7 +758,7 @@
 				);
 				INFOPLIST_FILE = Tootbot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -776,7 +776,7 @@
 				);
 				INFOPLIST_FILE = Tootbot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = tootbot.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
