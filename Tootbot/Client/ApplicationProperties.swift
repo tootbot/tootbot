@@ -15,10 +15,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for TootModel.
-FOUNDATION_EXPORT double TootModelVersionNumber;
+public struct ApplicationProperties {
+    public var clientName: String
+    public var redirectURI: String
+    public var scopes: Set<ApplicationScope>
+    public var websiteURL: URL?
 
-//! Project version string for TootModel.
-FOUNDATION_EXPORT const unsigned char TootModelVersionString[];
+    public init(clientName: String, redirectURI: String, scopes: Set<ApplicationScope>, websiteURL: URL?) {
+        self.clientName = clientName
+        self.redirectURI = redirectURI
+        self.scopes = scopes
+        self.websiteURL = websiteURL
+    }
+}

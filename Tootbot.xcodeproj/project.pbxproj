@@ -7,103 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A9851C5D775376FC9D7BE87 /* Pods_Shared_TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */; };
-		3A805281D4573B53F021826F /* Pods_Shared_TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */; };
+		12EC120502C700C7DE0805F3 /* Pods_Tootbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */; };
 		8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */; };
 		8317E6E61E9BD870003F1AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E51E9BD870003F1AA2 /* ViewController.swift */; };
 		8317E6E91E9BD870003F1AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6E71E9BD870003F1AA2 /* Main.storyboard */; };
 		8317E6EB1E9BD870003F1AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */; };
 		8317E6EE1E9BD870003F1AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */; };
-		8317E72C1E9BE8A5003F1AA2 /* TootClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 8317E72A1E9BE8A5003F1AA2 /* TootClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; };
-		8317E7301E9BE8A5003F1AA2 /* TootClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8317E7411E9BE8DB003F1AA2 /* TootModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8317E73F1E9BE8DB003F1AA2 /* TootModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
-		8317E7451E9BE8DB003F1AA2 /* TootModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8317E74A1E9BE95B003F1AA2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7491E9BE95B003F1AA2 /* Account.swift */; };
-		8317E74E1E9BEB28003F1AA2 /* JSONTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */; };
-		8317E7501E9BED52003F1AA2 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */; };
-		8317E7521E9BEE2D003F1AA2 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7511E9BEE2D003F1AA2 /* Application.swift */; };
-		8317E7541E9BEE87003F1AA2 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7531E9BEE87003F1AA2 /* ServerError.swift */; };
-		8317E7561E9BEEC1003F1AA2 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7551E9BEEC1003F1AA2 /* Context.swift */; };
-		8317E7581E9BEF1E003F1AA2 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7571E9BEF1E003F1AA2 /* Status.swift */; };
-		8317E75A1E9BF069003F1AA2 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7591E9BF069003F1AA2 /* Box.swift */; };
-		8317E75F1E9BF329003F1AA2 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E75E1E9BF329003F1AA2 /* Tag.swift */; };
-		8317E7611E9BF376003F1AA2 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7601E9BF376003F1AA2 /* Mention.swift */; };
-		8317E7631E9BF415003F1AA2 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7621E9BF415003F1AA2 /* Attachment.swift */; };
-		8317E7651E9BF539003F1AA2 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7641E9BF539003F1AA2 /* Instance.swift */; };
-		8317E7671E9BF5D2003F1AA2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7661E9BF5D2003F1AA2 /* Notification.swift */; };
-		8317E7691E9BF5F1003F1AA2 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7681E9BF5F1003F1AA2 /* Relationship.swift */; };
-		8317E76B1E9BF5F7003F1AA2 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76A1E9BF5F7003F1AA2 /* Report.swift */; };
-		8317E76D1E9BF5FE003F1AA2 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E76C1E9BF5FE003F1AA2 /* Results.swift */; };
-		8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
-		8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7771E9BF87D003F1AA2 /* FormData.swift */; };
-		8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */; };
-		832B8E721E9CBC7200127A37 /* MastodonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B8E711E9CBC7200127A37 /* MastodonService.swift */; };
-		83550A7C1E9C05D800287AAC /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A7B1E9C05D800287AAC /* Card.swift */; };
-		83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A931E9C1D7D00287AAC /* UserAccount.swift */; };
-		83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */; };
-		83A1E4FD1E9D629500B075C0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FC1E9D629500B075C0 /* Networking.swift */; };
-		83A1E4FF1E9D62DF00B075C0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */; };
-		83A1E5011E9D672700B075C0 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5001E9D672700B075C0 /* Authentication.swift */; };
-		83A1E50C1E9E347A00B075C0 /* ApplicationProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */; };
-		83A1E50E1E9E380600B075C0 /* Networking+ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */; };
-		83A1E5101E9E7E6300B075C0 /* Networking+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */; };
-		83A1E5121E9E950B00B075C0 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1E5111E9E950B00B075C0 /* SimpleError.swift */; };
-		83C95D721E9D2AA100E22DDD /* SubTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D711E9D2AA100E22DDD /* SubTargetType.swift */; };
-		83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */; };
-		83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */; };
-		83C95D7E1E9D433C00E22DDD /* Moya+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */; };
 		83DB2F1D1EA22D7000AD7080 /* TootbotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */; };
-		83DB2F2B1EA22D7500AD7080 /* TootClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */; };
-		83DB2F2D1EA22D7500AD7080 /* TootClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */; };
-		83DB2F3A1EA22D7900AD7080 /* TootModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F391EA22D7900AD7080 /* TootModelTests.swift */; };
-		83DB2F3C1EA22D7900AD7080 /* TootModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */; };
-		88B1DBAEC1E948103552FC33 /* Pods_Shared_Tootbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */; };
+		83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F441EA23D1500AD7080 /* ApplicationCredentials.swift */; };
+		83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */; };
+		83DB2F681EA23D1500AD7080 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F461EA23D1500AD7080 /* Authentication.swift */; };
+		83DB2F691EA23D1500AD7080 /* DynamicProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F471EA23D1500AD7080 /* DynamicProvider.swift */; };
+		83DB2F6A1EA23D1500AD7080 /* DynamicTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F481EA23D1500AD7080 /* DynamicTarget.swift */; };
+		83DB2F6B1EA23D1500AD7080 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F491EA23D1500AD7080 /* FormData.swift */; };
+		83DB2F6C1EA23D1500AD7080 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4A1EA23D1500AD7080 /* Keychain.swift */; };
+		83DB2F6D1EA23D1500AD7080 /* MastodonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */; };
+		83DB2F6E1EA23D1500AD7080 /* Moya+Freddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */; };
+		83DB2F6F1EA23D1500AD7080 /* Networking+ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4D1EA23D1500AD7080 /* Networking+ApplicationCredentials.swift */; };
+		83DB2F701EA23D1500AD7080 /* Networking+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4E1EA23D1500AD7080 /* Networking+UserCredentials.swift */; };
+		83DB2F711EA23D1500AD7080 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F4F1EA23D1500AD7080 /* Networking.swift */; };
+		83DB2F721EA23D1500AD7080 /* OAuthCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */; };
+		83DB2F731EA23D1500AD7080 /* SimpleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F511EA23D1500AD7080 /* SimpleError.swift */; };
+		83DB2F741EA23D1500AD7080 /* SubTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F521EA23D1500AD7080 /* SubTargetType.swift */; };
+		83DB2F751EA23D1500AD7080 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F531EA23D1500AD7080 /* UserAccount.swift */; };
+		83DB2F761EA23D1500AD7080 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F551EA23D1500AD7080 /* Account.swift */; };
+		83DB2F771EA23D1500AD7080 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F561EA23D1500AD7080 /* Application.swift */; };
+		83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F571EA23D1500AD7080 /* Attachment.swift */; };
+		83DB2F791EA23D1500AD7080 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F581EA23D1500AD7080 /* Box.swift */; };
+		83DB2F7A1EA23D1500AD7080 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F591EA23D1500AD7080 /* Card.swift */; };
+		83DB2F7B1EA23D1500AD7080 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5A1EA23D1500AD7080 /* Context.swift */; };
+		83DB2F7C1EA23D1500AD7080 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5B1EA23D1500AD7080 /* DateFormatter.swift */; };
+		83DB2F7D1EA23D1500AD7080 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5C1EA23D1500AD7080 /* Instance.swift */; };
+		83DB2F7E1EA23D1500AD7080 /* JSONTransformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */; };
+		83DB2F7F1EA23D1500AD7080 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5E1EA23D1500AD7080 /* Mention.swift */; };
+		83DB2F801EA23D1500AD7080 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F5F1EA23D1500AD7080 /* Notification.swift */; };
+		83DB2F811EA23D1500AD7080 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F601EA23D1500AD7080 /* Relationship.swift */; };
+		83DB2F821EA23D1500AD7080 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F611EA23D1500AD7080 /* Report.swift */; };
+		83DB2F831EA23D1500AD7080 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F621EA23D1500AD7080 /* Results.swift */; };
+		83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F631EA23D1500AD7080 /* ServerError.swift */; };
+		83DB2F851EA23D1500AD7080 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F641EA23D1500AD7080 /* Status.swift */; };
+		83DB2F861EA23D1500AD7080 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F651EA23D1500AD7080 /* Tag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8317E72D1E9BE8A5003F1AA2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8317E7271E9BE8A5003F1AA2;
-			remoteInfo = TootClient;
-		};
-		8317E7421E9BE8DB003F1AA2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
-			remoteInfo = TootModel;
-		};
-		8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
-			remoteInfo = TootModel;
-		};
 		83DB2F1F1EA22D7000AD7080 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8317E6DF1E9BD870003F1AA2;
 			remoteInfo = Tootbot;
-		};
-		83DB2F2E1EA22D7500AD7080 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8317E7271E9BE8A5003F1AA2;
-			remoteInfo = TootClient;
-		};
-		83DB2F3D1EA22D7900AD7080 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8317E6D81E9BD870003F1AA2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8317E73C1E9BE8DB003F1AA2;
-			remoteInfo = TootModel;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -114,8 +66,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8317E7451E9BE8DB003F1AA2 /* TootModel.framework in Embed Frameworks */,
-				8317E7301E9BE8A5003F1AA2 /* TootClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,11 +73,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_TootModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient.release.xcconfig"; sourceTree = "<group>"; };
-		4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
-		73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient.debug.xcconfig"; sourceTree = "<group>"; };
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317E6E51E9BD870003F1AA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,58 +80,45 @@
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8317E6ED1E9BD870003F1AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8317E7281E9BE8A5003F1AA2 /* TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8317E72A1E9BE8A5003F1AA2 /* TootClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootClient.h; sourceTree = "<group>"; };
-		8317E72B1E9BE8A5003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TootModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8317E73F1E9BE8DB003F1AA2 /* TootModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TootModel.h; sourceTree = "<group>"; };
-		8317E7401E9BE8DB003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8317E7491E9BE95B003F1AA2 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTransformable.swift; sourceTree = "<group>"; };
-		8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		8317E7511E9BEE2D003F1AA2 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		8317E7531E9BEE87003F1AA2 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
-		8317E7551E9BEEC1003F1AA2 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		8317E7571E9BEF1E003F1AA2 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		8317E7591E9BF069003F1AA2 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
-		8317E75E1E9BF329003F1AA2 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		8317E7601E9BF376003F1AA2 /* Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
-		8317E7621E9BF415003F1AA2 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		8317E7641E9BF539003F1AA2 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
-		8317E7661E9BF5D2003F1AA2 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		8317E7681E9BF5F1003F1AA2 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		8317E76A1E9BF5F7003F1AA2 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
-		8317E76C1E9BF5FE003F1AA2 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
-		8317E7771E9BF87D003F1AA2 /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
-		8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
-		832B8E711E9CBC7200127A37 /* MastodonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonService.swift; sourceTree = "<group>"; };
-		83550A7B1E9C05D800287AAC /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		83550A931E9C1D7D00287AAC /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
-		83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCredentials.swift; sourceTree = "<group>"; };
-		83A1E4FC1E9D629500B075C0 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
-		83A1E5001E9D672700B075C0 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationProperties.swift; sourceTree = "<group>"; };
-		83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+ApplicationCredentials.swift"; sourceTree = "<group>"; };
-		83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+UserCredentials.swift"; sourceTree = "<group>"; };
-		83A1E5111E9E950B00B075C0 /* SimpleError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
-		83C95D711E9D2AA100E22DDD /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
-		83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTarget.swift; sourceTree = "<group>"; };
-		83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProvider.swift; sourceTree = "<group>"; };
-		83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
 		83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootbotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootbotTests.swift; sourceTree = "<group>"; };
 		83DB2F1E1EA22D7000AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootClientTests.swift; sourceTree = "<group>"; };
-		83DB2F2C1EA22D7500AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83DB2F391EA22D7900AD7080 /* TootModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootModelTests.swift; sourceTree = "<group>"; };
-		83DB2F3B1EA22D7900AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootModel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel.debug.xcconfig"; sourceTree = "<group>"; };
-		9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-Tootbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot.release.xcconfig"; sourceTree = "<group>"; };
-		AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-TootModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel.release.xcconfig"; sourceTree = "<group>"; };
-		E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shared_TootClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83DB2F441EA23D1500AD7080 /* ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCredentials.swift; sourceTree = "<group>"; };
+		83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationProperties.swift; sourceTree = "<group>"; };
+		83DB2F461EA23D1500AD7080 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		83DB2F471EA23D1500AD7080 /* DynamicProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicProvider.swift; sourceTree = "<group>"; };
+		83DB2F481EA23D1500AD7080 /* DynamicTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTarget.swift; sourceTree = "<group>"; };
+		83DB2F491EA23D1500AD7080 /* FormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
+		83DB2F4A1EA23D1500AD7080 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonService.swift; sourceTree = "<group>"; };
+		83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
+		83DB2F4D1EA23D1500AD7080 /* Networking+ApplicationCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+ApplicationCredentials.swift"; sourceTree = "<group>"; };
+		83DB2F4E1EA23D1500AD7080 /* Networking+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking+UserCredentials.swift"; sourceTree = "<group>"; };
+		83DB2F4F1EA23D1500AD7080 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
+		83DB2F511EA23D1500AD7080 /* SimpleError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleError.swift; sourceTree = "<group>"; };
+		83DB2F521EA23D1500AD7080 /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
+		83DB2F531EA23D1500AD7080 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		83DB2F551EA23D1500AD7080 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		83DB2F561EA23D1500AD7080 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		83DB2F571EA23D1500AD7080 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		83DB2F581EA23D1500AD7080 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		83DB2F591EA23D1500AD7080 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		83DB2F5A1EA23D1500AD7080 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		83DB2F5B1EA23D1500AD7080 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		83DB2F5C1EA23D1500AD7080 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
+		83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTransformable.swift; sourceTree = "<group>"; };
+		83DB2F5E1EA23D1500AD7080 /* Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
+		83DB2F5F1EA23D1500AD7080 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		83DB2F601EA23D1500AD7080 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		83DB2F611EA23D1500AD7080 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		83DB2F621EA23D1500AD7080 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		83DB2F631EA23D1500AD7080 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		83DB2F641EA23D1500AD7080 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		83DB2F651EA23D1500AD7080 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
+		FCBE174263EF2693626E4C8F /* Pods-Tootbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,26 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8317E72F1E9BE8A5003F1AA2 /* TootClient.framework in Frameworks */,
-				8317E7441E9BE8DB003F1AA2 /* TootModel.framework in Frameworks */,
-				88B1DBAEC1E948103552FC33 /* Pods_Shared_Tootbot.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E7241E9BE8A5003F1AA2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8317E7761E9BF817003F1AA2 /* TootModel.framework in Frameworks */,
-				0A9851C5D775376FC9D7BE87 /* Pods_Shared_TootClient.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E7391E9BE8DB003F1AA2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A805281D4573B53F021826F /* Pods_Shared_TootModel.framework in Frameworks */,
+				12EC120502C700C7DE0805F3 /* Pods_Tootbot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,22 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83DB2F251EA22D7500AD7080 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83DB2F2D1EA22D7500AD7080 /* TootClient.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83DB2F341EA22D7900AD7080 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83DB2F3C1EA22D7900AD7080 /* TootModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,10 +145,6 @@
 			children = (
 				8317E6E21E9BD870003F1AA2 /* Tootbot */,
 				83DB2F1B1EA22D7000AD7080 /* TootbotTests */,
-				8317E7291E9BE8A5003F1AA2 /* TootClient */,
-				83DB2F291EA22D7500AD7080 /* TootClientTests */,
-				8317E73E1E9BE8DB003F1AA2 /* TootModel */,
-				83DB2F381EA22D7900AD7080 /* TootModelTests */,
 				8317E7071E9BE330003F1AA2 /* Frameworks */,
 				A10E7551E444AF638FE1DEC5 /* Pods */,
 				8317E6E11E9BD870003F1AA2 /* Products */,
@@ -262,11 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				8317E6E01E9BD870003F1AA2 /* Tootbot.app */,
-				8317E7281E9BE8A5003F1AA2 /* TootClient.framework */,
-				8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */,
 				83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */,
-				83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */,
-				83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,12 +163,10 @@
 		8317E6E21E9BD870003F1AA2 /* Tootbot */ = {
 			isa = PBXGroup;
 			children = (
-				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
-				8317E6E51E9BD870003F1AA2 /* ViewController.swift */,
-				8317E6E71E9BD870003F1AA2 /* Main.storyboard */,
-				8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */,
-				8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */,
-				8317E6EF1E9BD870003F1AA2 /* Info.plist */,
+				83DB2F881EA23D2200AD7080 /* App */,
+				83DB2F431EA23D1500AD7080 /* Client */,
+				83DB2F541EA23D1500AD7080 /* Model */,
+				83DB2F871EA23D1C00AD7080 /* Supporting Files */,
 			);
 			path = Tootbot;
 			sourceTree = "<group>";
@@ -287,102 +174,9 @@
 		8317E7071E9BE330003F1AA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E04B0AF68F5B7CB2B22AA892 /* Pods_Shared_TootClient.framework */,
-				01456A0CFB7C9A18E93AFB96 /* Pods_Shared_TootModel.framework */,
-				4B4667C11F04E8A8450A9E20 /* Pods_Shared_Tootbot.framework */,
+				D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8317E7291E9BE8A5003F1AA2 /* TootClient */ = {
-			isa = PBXGroup;
-			children = (
-				8317E72A1E9BE8A5003F1AA2 /* TootClient.h */,
-				8317E72B1E9BE8A5003F1AA2 /* Info.plist */,
-				83C95D7B1E9D41C200E22DDD /* Moya */,
-				83C95D7C1E9D41CF00E22DDD /* Types */,
-				83A1E5001E9D672700B075C0 /* Authentication.swift */,
-				83A1E4FE1E9D62DF00B075C0 /* Keychain.swift */,
-				83A1E50B1E9E347A00B075C0 /* ApplicationProperties.swift */,
-				83A1E4FC1E9D629500B075C0 /* Networking.swift */,
-				83A1E50D1E9E380600B075C0 /* Networking+ApplicationCredentials.swift */,
-				83A1E50F1E9E7E6300B075C0 /* Networking+UserCredentials.swift */,
-				83550A931E9C1D7D00287AAC /* UserAccount.swift */,
-			);
-			path = TootClient;
-			sourceTree = "<group>";
-		};
-		8317E73E1E9BE8DB003F1AA2 /* TootModel */ = {
-			isa = PBXGroup;
-			children = (
-				8317E73F1E9BE8DB003F1AA2 /* TootModel.h */,
-				8317E7401E9BE8DB003F1AA2 /* Info.plist */,
-				8317E74B1E9BE95D003F1AA2 /* Entities */,
-				8317E7591E9BF069003F1AA2 /* Box.swift */,
-				8317E74F1E9BED52003F1AA2 /* DateFormatter.swift */,
-				8317E74D1E9BEB28003F1AA2 /* JSONTransformable.swift */,
-			);
-			path = TootModel;
-			sourceTree = "<group>";
-		};
-		8317E74B1E9BE95D003F1AA2 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				8317E7491E9BE95B003F1AA2 /* Account.swift */,
-				8317E7511E9BEE2D003F1AA2 /* Application.swift */,
-				83550A7B1E9C05D800287AAC /* Card.swift */,
-				8317E7621E9BF415003F1AA2 /* Attachment.swift */,
-				8317E7551E9BEEC1003F1AA2 /* Context.swift */,
-				8317E7641E9BF539003F1AA2 /* Instance.swift */,
-				8317E7601E9BF376003F1AA2 /* Mention.swift */,
-				8317E7661E9BF5D2003F1AA2 /* Notification.swift */,
-				8317E7681E9BF5F1003F1AA2 /* Relationship.swift */,
-				8317E76A1E9BF5F7003F1AA2 /* Report.swift */,
-				8317E76C1E9BF5FE003F1AA2 /* Results.swift */,
-				8317E7531E9BEE87003F1AA2 /* ServerError.swift */,
-				8317E7571E9BEF1E003F1AA2 /* Status.swift */,
-				8317E75E1E9BF329003F1AA2 /* Tag.swift */,
-			);
-			name = Entities;
-			sourceTree = "<group>";
-		};
-		83A1E5091E9E305800B075C0 /* Plugins */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Plugins;
-			sourceTree = "<group>";
-		};
-		83A1E50A1E9E305E00B075C0 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				832B8E711E9CBC7200127A37 /* MastodonService.swift */,
-			);
-			name = Services;
-			sourceTree = "<group>";
-		};
-		83C95D7B1E9D41C200E22DDD /* Moya */ = {
-			isa = PBXGroup;
-			children = (
-				83A1E5091E9E305800B075C0 /* Plugins */,
-				83A1E50A1E9E305E00B075C0 /* Services */,
-				83C95D791E9D3BE800E22DDD /* DynamicProvider.swift */,
-				83C95D731E9D2B1A00E22DDD /* DynamicTarget.swift */,
-				83C95D7D1E9D433C00E22DDD /* Moya+Freddy.swift */,
-				83C95D711E9D2AA100E22DDD /* SubTargetType.swift */,
-			);
-			name = Moya;
-			sourceTree = "<group>";
-		};
-		83C95D7C1E9D41CF00E22DDD /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				83550A951E9C1E0000287AAC /* ApplicationCredentials.swift */,
-				8317E7771E9BF87D003F1AA2 /* FormData.swift */,
-				83A1E5111E9E950B00B075C0 /* SimpleError.swift */,
-				8317E7961E9BFD07003F1AA2 /* OAuthCredentials.swift */,
-			);
-			name = Types;
 			sourceTree = "<group>";
 		};
 		83DB2F1B1EA22D7000AD7080 /* TootbotTests */ = {
@@ -394,57 +188,115 @@
 			path = TootbotTests;
 			sourceTree = "<group>";
 		};
-		83DB2F291EA22D7500AD7080 /* TootClientTests */ = {
+		83DB2F431EA23D1500AD7080 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				83DB2F2A1EA22D7500AD7080 /* TootClientTests.swift */,
-				83DB2F2C1EA22D7500AD7080 /* Info.plist */,
+				83DB2F8D1EA23D9700AD7080 /* Moya */,
+				83DB2F8A1EA23D8100AD7080 /* Types */,
+				83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */,
+				83DB2F461EA23D1500AD7080 /* Authentication.swift */,
+				83DB2F4A1EA23D1500AD7080 /* Keychain.swift */,
+				83DB2F4D1EA23D1500AD7080 /* Networking+ApplicationCredentials.swift */,
+				83DB2F4E1EA23D1500AD7080 /* Networking+UserCredentials.swift */,
+				83DB2F4F1EA23D1500AD7080 /* Networking.swift */,
+				83DB2F531EA23D1500AD7080 /* UserAccount.swift */,
 			);
-			path = TootClientTests;
+			path = Client;
 			sourceTree = "<group>";
 		};
-		83DB2F381EA22D7900AD7080 /* TootModelTests */ = {
+		83DB2F541EA23D1500AD7080 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				83DB2F391EA22D7900AD7080 /* TootModelTests.swift */,
-				83DB2F3B1EA22D7900AD7080 /* Info.plist */,
+				83DB2F891EA23D6A00AD7080 /* Entities */,
+				83DB2F581EA23D1500AD7080 /* Box.swift */,
+				83DB2F5B1EA23D1500AD7080 /* DateFormatter.swift */,
+				83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */,
 			);
-			path = TootModelTests;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		83DB2F871EA23D1C00AD7080 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8317E6E71E9BD870003F1AA2 /* Main.storyboard */,
+				8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */,
+				8317E6EC1E9BD870003F1AA2 /* LaunchScreen.storyboard */,
+				8317E6EF1E9BD870003F1AA2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83DB2F881EA23D2200AD7080 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */,
+				8317E6E51E9BD870003F1AA2 /* ViewController.swift */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		83DB2F891EA23D6A00AD7080 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F551EA23D1500AD7080 /* Account.swift */,
+				83DB2F561EA23D1500AD7080 /* Application.swift */,
+				83DB2F571EA23D1500AD7080 /* Attachment.swift */,
+				83DB2F591EA23D1500AD7080 /* Card.swift */,
+				83DB2F5A1EA23D1500AD7080 /* Context.swift */,
+				83DB2F5C1EA23D1500AD7080 /* Instance.swift */,
+				83DB2F5E1EA23D1500AD7080 /* Mention.swift */,
+				83DB2F5F1EA23D1500AD7080 /* Notification.swift */,
+				83DB2F601EA23D1500AD7080 /* Relationship.swift */,
+				83DB2F611EA23D1500AD7080 /* Report.swift */,
+				83DB2F621EA23D1500AD7080 /* Results.swift */,
+				83DB2F631EA23D1500AD7080 /* ServerError.swift */,
+				83DB2F641EA23D1500AD7080 /* Status.swift */,
+				83DB2F651EA23D1500AD7080 /* Tag.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		83DB2F8A1EA23D8100AD7080 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F441EA23D1500AD7080 /* ApplicationCredentials.swift */,
+				83DB2F491EA23D1500AD7080 /* FormData.swift */,
+				83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */,
+				83DB2F511EA23D1500AD7080 /* SimpleError.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		83DB2F8B1EA23D8500AD7080 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		83DB2F8D1EA23D9700AD7080 /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				83DB2F471EA23D1500AD7080 /* DynamicProvider.swift */,
+				83DB2F481EA23D1500AD7080 /* DynamicTarget.swift */,
+				83DB2F8B1EA23D8500AD7080 /* Services */,
+				83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */,
+				83DB2F521EA23D1500AD7080 /* SubTargetType.swift */,
+			);
+			name = Moya;
 			sourceTree = "<group>";
 		};
 		A10E7551E444AF638FE1DEC5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */,
-				405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */,
-				985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */,
-				AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */,
-				51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */,
-				9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */,
+				DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */,
+				FCBE174263EF2693626E4C8F /* Pods-Tootbot.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		8317E7251E9BE8A5003F1AA2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8317E72C1E9BE8A5003F1AA2 /* TootClient.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E73A1E9BE8DB003F1AA2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8317E7411E9BE8DB003F1AA2 /* TootModel.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8317E6DF1E9BD870003F1AA2 /* Tootbot */ = {
@@ -462,54 +314,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				8317E72E1E9BE8A5003F1AA2 /* PBXTargetDependency */,
-				8317E7431E9BE8DB003F1AA2 /* PBXTargetDependency */,
 			);
 			name = Tootbot;
 			productName = Tootbot;
 			productReference = 8317E6E01E9BD870003F1AA2 /* Tootbot.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8317E7271E9BE8A5003F1AA2 /* TootClient */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8317E7311E9BE8A5003F1AA2 /* Build configuration list for PBXNativeTarget "TootClient" */;
-			buildPhases = (
-				953B5058FAE78D94E05A30ED /* [CP] Check Pods Manifest.lock */,
-				8317E7231E9BE8A5003F1AA2 /* Sources */,
-				8317E7241E9BE8A5003F1AA2 /* Frameworks */,
-				8317E7251E9BE8A5003F1AA2 /* Headers */,
-				8317E7261E9BE8A5003F1AA2 /* Resources */,
-				586CFD16C0FB1B982A73E70B /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8317E7901E9BFBF2003F1AA2 /* PBXTargetDependency */,
-			);
-			name = TootClient;
-			productName = TootClient;
-			productReference = 8317E7281E9BE8A5003F1AA2 /* TootClient.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		8317E73C1E9BE8DB003F1AA2 /* TootModel */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8317E7461E9BE8DB003F1AA2 /* Build configuration list for PBXNativeTarget "TootModel" */;
-			buildPhases = (
-				FB43B6C1DAD7CB56D353835C /* [CP] Check Pods Manifest.lock */,
-				8317E7381E9BE8DB003F1AA2 /* Sources */,
-				8317E7391E9BE8DB003F1AA2 /* Frameworks */,
-				8317E73A1E9BE8DB003F1AA2 /* Headers */,
-				8317E73B1E9BE8DB003F1AA2 /* Resources */,
-				FCA1269CECE1239096B193A7 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TootModel;
-			productName = TootModel;
-			productReference = 8317E73D1E9BE8DB003F1AA2 /* TootModel.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		83DB2F191EA22D7000AD7080 /* TootbotTests */ = {
 			isa = PBXNativeTarget;
@@ -529,42 +338,6 @@
 			productReference = 83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83DB2F271EA22D7500AD7080 /* TootClientTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83DB2F301EA22D7500AD7080 /* Build configuration list for PBXNativeTarget "TootClientTests" */;
-			buildPhases = (
-				83DB2F241EA22D7500AD7080 /* Sources */,
-				83DB2F251EA22D7500AD7080 /* Frameworks */,
-				83DB2F261EA22D7500AD7080 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83DB2F2F1EA22D7500AD7080 /* PBXTargetDependency */,
-			);
-			name = TootClientTests;
-			productName = TootClientTests;
-			productReference = 83DB2F281EA22D7500AD7080 /* TootClientTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		83DB2F361EA22D7900AD7080 /* TootModelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83DB2F3F1EA22D7900AD7080 /* Build configuration list for PBXNativeTarget "TootModelTests" */;
-			buildPhases = (
-				83DB2F331EA22D7900AD7080 /* Sources */,
-				83DB2F341EA22D7900AD7080 /* Frameworks */,
-				83DB2F351EA22D7900AD7080 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83DB2F3E1EA22D7900AD7080 /* PBXTargetDependency */,
-			);
-			name = TootModelTests;
-			productName = TootModelTests;
-			productReference = 83DB2F371EA22D7900AD7080 /* TootModelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -580,33 +353,11 @@
 						DevelopmentTeam = 94C3W2AV74;
 						ProvisioningStyle = Automatic;
 					};
-					8317E7271E9BE8A5003F1AA2 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 94C3W2AV74;
-						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
-					};
-					8317E73C1E9BE8DB003F1AA2 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 94C3W2AV74;
-						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
-					};
 					83DB2F191EA22D7000AD7080 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 94C3W2AV74;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8317E6DF1E9BD870003F1AA2;
-					};
-					83DB2F271EA22D7500AD7080 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 94C3W2AV74;
-						ProvisioningStyle = Automatic;
-					};
-					83DB2F361EA22D7900AD7080 = {
-						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 94C3W2AV74;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -625,10 +376,6 @@
 			targets = (
 				8317E6DF1E9BD870003F1AA2 /* Tootbot */,
 				83DB2F191EA22D7000AD7080 /* TootbotTests */,
-				8317E7271E9BE8A5003F1AA2 /* TootClient */,
-				83DB2F271EA22D7500AD7080 /* TootClientTests */,
-				8317E73C1E9BE8DB003F1AA2 /* TootModel */,
-				83DB2F361EA22D7900AD7080 /* TootModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -644,35 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8317E7261E9BE8A5003F1AA2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E73B1E9BE8DB003F1AA2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83DB2F181EA22D7000AD7080 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83DB2F261EA22D7500AD7080 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83DB2F351EA22D7900AD7080 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -694,22 +413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		586CFD16C0FB1B982A73E70B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-TootClient/Pods-Shared-TootClient-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5AB1E01ED3726288AEBF84CE /* [CP] Check Pods Manifest.lock */ = {
@@ -739,52 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-Tootbot/Pods-Shared-Tootbot-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		953B5058FAE78D94E05A30ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FB43B6C1DAD7CB56D353835C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FCA1269CECE1239096B193A7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shared-TootModel/Pods-Shared-TootModel-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -794,55 +453,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DB2F771EA23D1500AD7080 /* Application.swift in Sources */,
+				83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */,
+				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
+				83DB2F851EA23D1500AD7080 /* Status.swift in Sources */,
+				83DB2F731EA23D1500AD7080 /* SimpleError.swift in Sources */,
+				83DB2F691EA23D1500AD7080 /* DynamicProvider.swift in Sources */,
+				83DB2F751EA23D1500AD7080 /* UserAccount.swift in Sources */,
+				83DB2F791EA23D1500AD7080 /* Box.swift in Sources */,
 				8317E6E61E9BD870003F1AA2 /* ViewController.swift in Sources */,
 				8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E7231E9BE8A5003F1AA2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83A1E5121E9E950B00B075C0 /* SimpleError.swift in Sources */,
-				83C95D7A1E9D3BE800E22DDD /* DynamicProvider.swift in Sources */,
-				83A1E50E1E9E380600B075C0 /* Networking+ApplicationCredentials.swift in Sources */,
-				83A1E4FD1E9D629500B075C0 /* Networking.swift in Sources */,
-				832B8E721E9CBC7200127A37 /* MastodonService.swift in Sources */,
-				83A1E50C1E9E347A00B075C0 /* ApplicationProperties.swift in Sources */,
-				83A1E5101E9E7E6300B075C0 /* Networking+UserCredentials.swift in Sources */,
-				83A1E5011E9D672700B075C0 /* Authentication.swift in Sources */,
-				83C95D721E9D2AA100E22DDD /* SubTargetType.swift in Sources */,
-				83A1E4FF1E9D62DF00B075C0 /* Keychain.swift in Sources */,
-				83C95D741E9D2B1A00E22DDD /* DynamicTarget.swift in Sources */,
-				83550A941E9C1D7D00287AAC /* UserAccount.swift in Sources */,
-				83C95D7E1E9D433C00E22DDD /* Moya+Freddy.swift in Sources */,
-				8317E7781E9BF87D003F1AA2 /* FormData.swift in Sources */,
-				83550A961E9C1E0000287AAC /* ApplicationCredentials.swift in Sources */,
-				8317E7971E9BFD07003F1AA2 /* OAuthCredentials.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8317E7381E9BE8DB003F1AA2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8317E7541E9BEE87003F1AA2 /* ServerError.swift in Sources */,
-				8317E7521E9BEE2D003F1AA2 /* Application.swift in Sources */,
-				8317E75F1E9BF329003F1AA2 /* Tag.swift in Sources */,
-				8317E7581E9BEF1E003F1AA2 /* Status.swift in Sources */,
-				8317E7631E9BF415003F1AA2 /* Attachment.swift in Sources */,
-				8317E7501E9BED52003F1AA2 /* DateFormatter.swift in Sources */,
-				83550A7C1E9C05D800287AAC /* Card.swift in Sources */,
-				8317E7561E9BEEC1003F1AA2 /* Context.swift in Sources */,
-				8317E7671E9BF5D2003F1AA2 /* Notification.swift in Sources */,
-				8317E75A1E9BF069003F1AA2 /* Box.swift in Sources */,
-				8317E7691E9BF5F1003F1AA2 /* Relationship.swift in Sources */,
-				8317E76D1E9BF5FE003F1AA2 /* Results.swift in Sources */,
-				8317E7611E9BF376003F1AA2 /* Mention.swift in Sources */,
-				8317E76B1E9BF5F7003F1AA2 /* Report.swift in Sources */,
-				8317E74E1E9BEB28003F1AA2 /* JSONTransformable.swift in Sources */,
-				8317E7651E9BF539003F1AA2 /* Instance.swift in Sources */,
-				8317E74A1E9BE95B003F1AA2 /* Account.swift in Sources */,
+				83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */,
+				83DB2F6D1EA23D1500AD7080 /* MastodonService.swift in Sources */,
+				83DB2F6E1EA23D1500AD7080 /* Moya+Freddy.swift in Sources */,
+				83DB2F681EA23D1500AD7080 /* Authentication.swift in Sources */,
+				83DB2F7E1EA23D1500AD7080 /* JSONTransformable.swift in Sources */,
+				83DB2F741EA23D1500AD7080 /* SubTargetType.swift in Sources */,
+				83DB2F6F1EA23D1500AD7080 /* Networking+ApplicationCredentials.swift in Sources */,
+				83DB2F861EA23D1500AD7080 /* Tag.swift in Sources */,
+				83DB2F7C1EA23D1500AD7080 /* DateFormatter.swift in Sources */,
+				83DB2F6C1EA23D1500AD7080 /* Keychain.swift in Sources */,
+				83DB2F6A1EA23D1500AD7080 /* DynamicTarget.swift in Sources */,
+				83DB2F721EA23D1500AD7080 /* OAuthCredentials.swift in Sources */,
+				83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */,
+				83DB2F7A1EA23D1500AD7080 /* Card.swift in Sources */,
+				83DB2F801EA23D1500AD7080 /* Notification.swift in Sources */,
+				83DB2F6B1EA23D1500AD7080 /* FormData.swift in Sources */,
+				83DB2F7F1EA23D1500AD7080 /* Mention.swift in Sources */,
+				83DB2F701EA23D1500AD7080 /* Networking+UserCredentials.swift in Sources */,
+				83DB2F831EA23D1500AD7080 /* Results.swift in Sources */,
+				83DB2F811EA23D1500AD7080 /* Relationship.swift in Sources */,
+				83DB2F7B1EA23D1500AD7080 /* Context.swift in Sources */,
+				83DB2F761EA23D1500AD7080 /* Account.swift in Sources */,
+				83DB2F7D1EA23D1500AD7080 /* Instance.swift in Sources */,
+				83DB2F711EA23D1500AD7080 /* Networking.swift in Sources */,
+				83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,54 +499,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83DB2F241EA22D7500AD7080 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83DB2F2B1EA22D7500AD7080 /* TootClientTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83DB2F331EA22D7900AD7080 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83DB2F3A1EA22D7900AD7080 /* TootModelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8317E72E1E9BE8A5003F1AA2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8317E7271E9BE8A5003F1AA2 /* TootClient */;
-			targetProxy = 8317E72D1E9BE8A5003F1AA2 /* PBXContainerItemProxy */;
-		};
-		8317E7431E9BE8DB003F1AA2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
-			targetProxy = 8317E7421E9BE8DB003F1AA2 /* PBXContainerItemProxy */;
-		};
-		8317E7901E9BFBF2003F1AA2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
-			targetProxy = 8317E78F1E9BFBF2003F1AA2 /* PBXContainerItemProxy */;
-		};
 		83DB2F201EA22D7000AD7080 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8317E6DF1E9BD870003F1AA2 /* Tootbot */;
 			targetProxy = 83DB2F1F1EA22D7000AD7080 /* PBXContainerItemProxy */;
-		};
-		83DB2F2F1EA22D7500AD7080 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8317E7271E9BE8A5003F1AA2 /* TootClient */;
-			targetProxy = 83DB2F2E1EA22D7500AD7080 /* PBXContainerItemProxy */;
-		};
-		83DB2F3E1EA22D7900AD7080 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8317E73C1E9BE8DB003F1AA2 /* TootModel */;
-			targetProxy = 83DB2F3D1EA22D7900AD7080 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1022,7 +626,7 @@
 		};
 		8317E6F31E9BD870003F1AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51EE4B04FE236BF892C9C0A7 /* Pods-Shared-Tootbot.debug.xcconfig */;
+			baseConfigurationReference = DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1037,7 +641,7 @@
 		};
 		8317E6F41E9BD870003F1AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F6CC33187B924E85FE2C584 /* Pods-Shared-Tootbot.release.xcconfig */;
+			baseConfigurationReference = FCBE174263EF2693626E4C8F /* Pods-Tootbot.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1047,104 +651,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tootbot.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		8317E7321E9BE8A5003F1AA2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73767557489A56C9ACD66442 /* Pods-Shared-TootClient.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TootClient/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClient;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8317E7331E9BE8A5003F1AA2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 405D8DD6253491A5F5AF85BA /* Pods-Shared-TootClient.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TootClient/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClient;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8317E7471E9BE8DB003F1AA2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 985C6EE97CA82D338FB482F0 /* Pods-Shared-TootModel.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TootModel/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8317E7481E9BE8DB003F1AA2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE11B1DF64E2BAA72BA0B8A9 /* Pods-Shared-TootModel.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TootModel/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1176,54 +682,6 @@
 			};
 			name = Release;
 		};
-		83DB2F311EA22D7500AD7080 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = TootClientTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClientTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		83DB2F321EA22D7500AD7080 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = TootClientTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootClientTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		83DB2F401EA22D7900AD7080 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = TootModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModelTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		83DB2F411EA22D7900AD7080 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = 94C3W2AV74;
-				INFOPLIST_FILE = TootModelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tootbot.TootModelTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1245,47 +703,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8317E7311E9BE8A5003F1AA2 /* Build configuration list for PBXNativeTarget "TootClient" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8317E7321E9BE8A5003F1AA2 /* Debug */,
-				8317E7331E9BE8A5003F1AA2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8317E7461E9BE8DB003F1AA2 /* Build configuration list for PBXNativeTarget "TootModel" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8317E7471E9BE8DB003F1AA2 /* Debug */,
-				8317E7481E9BE8DB003F1AA2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		83DB2F211EA22D7000AD7080 /* Build configuration list for PBXNativeTarget "TootbotTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83DB2F221EA22D7000AD7080 /* Debug */,
 				83DB2F231EA22D7000AD7080 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83DB2F301EA22D7500AD7080 /* Build configuration list for PBXNativeTarget "TootClientTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83DB2F311EA22D7500AD7080 /* Debug */,
-				83DB2F321EA22D7500AD7080 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83DB2F3F1EA22D7900AD7080 /* Build configuration list for PBXNativeTarget "TootModelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83DB2F401EA22D7900AD7080 /* Debug */,
-				83DB2F411EA22D7900AD7080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

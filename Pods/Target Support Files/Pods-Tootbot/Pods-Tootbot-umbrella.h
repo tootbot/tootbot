@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Shared_TootClientVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Shared_TootClientVersionString[];
+FOUNDATION_EXPORT double Pods_TootbotVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TootbotVersionString[];
 
