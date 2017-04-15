@@ -18,12 +18,6 @@
 import Foundation
 import Freddy
 
-public enum AttachmentType: String, JSONTransformable {
-    case image
-    case video
-    case gifv
-}
-
 enum AttachmentKey: String, JSONPathType {
     case id
     case type
@@ -37,20 +31,28 @@ enum AttachmentKey: String, JSONPathType {
     }
 }
 
-public struct Attachment: JSONDecodable {
-    public var id: Int
-    public var type: AttachmentType
-    public var url: URL
-    public var remoteURL: URL?
-    public var previewURL: URL
-    public var textURL: URL?
+extension JSONEntity {
+    public enum AttachmentType: String, JSONTransformable {
+        case image
+        case video
+        case gifv
+    }
 
-    public init(json: JSON) throws {
-        self.id = try json.getInt(at: AttachmentKey.id)
-        self.type = try json.decode(at: AttachmentKey.type)
-        self.url = URL(string: try json.getString(at: AttachmentKey.url))!
-        self.remoteURL = (try json.getString(at: AttachmentKey.remoteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
-        self.previewURL = URL(string: try json.getString(at: AttachmentKey.previewURL))!
-        self.textURL = (try json.getString(at: AttachmentKey.textURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+    public struct Attachment: JSONDecodable {
+        public var id: Int
+        public var type: AttachmentType
+        public var url: URL
+        public var remoteURL: URL?
+        public var previewURL: URL
+        public var textURL: URL?
+
+        public init(json: JSON) throws {
+            self.id = try json.getInt(at: AttachmentKey.id)
+            self.type = try json.decode(at: AttachmentKey.type)
+            self.url = URL(string: try json.getString(at: AttachmentKey.url))!
+            self.remoteURL = (try json.getString(at: AttachmentKey.remoteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+            self.previewURL = URL(string: try json.getString(at: AttachmentKey.previewURL))!
+            self.textURL = (try json.getString(at: AttachmentKey.textURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+        }
     }
 }

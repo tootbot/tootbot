@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum ApplicationKey: String, JSONPathType {
+private enum ApplicationKey: String, JSONPathType {
     case name
     case websiteURL = "website"
 
@@ -27,12 +27,14 @@ enum ApplicationKey: String, JSONPathType {
     }
 }
 
-public struct Application: JSONDecodable {
-    public var name: String
-    public var websiteURL: URL?
+extension JSONEntity {
+    public struct Application: JSONDecodable {
+        public var name: String
+        public var websiteURL: URL?
 
-    public init(json: JSON) throws {
-        self.name = try json.getString(at: ApplicationKey.name)
-        self.websiteURL = (try json.getString(at: ApplicationKey.websiteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+        public init(json: JSON) throws {
+            self.name = try json.getString(at: ApplicationKey.name)
+            self.websiteURL = (try json.getString(at: ApplicationKey.websiteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+        }
     }
 }

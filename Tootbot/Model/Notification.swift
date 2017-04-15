@@ -18,14 +18,7 @@
 import Foundation
 import Freddy
 
-public enum NotificationType: String, JSONTransformable {
-    case mention
-    case reblog
-    case favorite = "favourite"
-    case follow
-}
-
-enum NotificationKey: String, JSONPathType {
+private enum NotificationKey: String, JSONPathType {
     case id
     case type
     case createdAt = "created_at"
@@ -37,18 +30,27 @@ enum NotificationKey: String, JSONPathType {
     }
 }
 
-public struct Notification: JSONDecodable {
-    public var id: Int
-    public var type: NotificationType
-    public var createdAt: Date
-    public var account: Account
-    public var status: Status?
+extension JSONEntity {
+    public enum NotificationType: String, JSONTransformable {
+        case mention
+        case reblog
+        case favorite = "favourite"
+        case follow
+    }
 
-    public init(json: JSON) throws {
-        self.id = try json.getInt(at: NotificationKey.id)
-        self.type = try json.decode(at: NotificationKey.type)
-        self.createdAt = SharedDateFormatter.date(from: try json.getString(at: NotificationKey.createdAt))!
-        self.account = try json.decode(at: NotificationKey.account)
-        self.status = try json.decode(at: NotificationKey.status, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+    public struct Notification: JSONDecodable {
+        public var id: Int
+        public var type: NotificationType
+        public var createdAt: Date
+        public var account: Account
+        public var status: Status?
+
+        public init(json: JSON) throws {
+            self.id = try json.getInt(at: NotificationKey.id)
+            self.type = try json.decode(at: NotificationKey.type)
+            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: NotificationKey.createdAt))!
+            self.account = try json.decode(at: NotificationKey.account)
+            self.status = try json.decode(at: NotificationKey.status, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        }
     }
 }

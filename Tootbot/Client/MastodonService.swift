@@ -62,7 +62,7 @@ public enum MastodonService: SubTargetType {
     case statusCard(id: Int)
     case statusRebloggedBy(id: Int)
     case statusFavoritedBy(id: Int)
-    case postStatus(status: String, inReplyToID: Int?, mediaIDs: [Int]?, isSensitive: Bool?, spoilerText: Bool?, visibility: StatusVisibility?)
+    case postStatus(status: String, inReplyToID: Int?, mediaIDs: [Int]?, isSensitive: Bool?, spoilerText: Bool?, visibility: JSONEntity.StatusVisibility?)
     case deleteStatus(id: Int)
     case reblogStatus(id: Int)
     case unreblogStatus(id: Int)

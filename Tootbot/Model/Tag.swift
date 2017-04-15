@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum TagKey: String, JSONPathType {
+private enum TagKey: String, JSONPathType {
     case name
     case url
 
@@ -27,12 +27,14 @@ enum TagKey: String, JSONPathType {
     }
 }
 
-public struct Tag: JSONDecodable {
-    public var name: String
-    public var url: URL
+extension JSONEntity {
+    public struct Tag: JSONDecodable {
+        public var name: String
+        public var url: URL
 
-    public init(json: JSON) throws {
-        self.name = try json.getString(at: TagKey.name)
-        self.url = URL(string: try json.getString(at: TagKey.url))!
+        public init(json: JSON) throws {
+            self.name = try json.getString(at: TagKey.name)
+            self.url = URL(string: try json.getString(at: TagKey.url))!
+        }
     }
 }

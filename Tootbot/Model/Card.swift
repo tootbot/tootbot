@@ -18,7 +18,7 @@
 import Foundation
 import Freddy
 
-enum CardKey: String, JSONPathType {
+private enum CardKey: String, JSONPathType {
     case url
     case title
     case description
@@ -29,16 +29,18 @@ enum CardKey: String, JSONPathType {
     }
 }
 
-public struct Card: JSONDecodable {
-    public var url: URL
-    public var title: String
-    public var description: String
-    public var image: String?
+extension JSONEntity {
+    public struct Card: JSONDecodable {
+        public var url: URL
+        public var title: String
+        public var description: String
+        public var image: String?
 
-    public init(json: JSON) throws {
-        self.url = URL(string: try json.getString(at: CardKey.url))!
-        self.title = try json.getString(at: CardKey.title)
-        self.description = try json.getString(at: CardKey.description)
-        self.image = try json.getString(at: CardKey.image, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        public init(json: JSON) throws {
+            self.url = URL(string: try json.getString(at: CardKey.url))!
+            self.title = try json.getString(at: CardKey.title)
+            self.description = try json.getString(at: CardKey.description)
+            self.image = try json.getString(at: CardKey.image, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        }
     }
 }

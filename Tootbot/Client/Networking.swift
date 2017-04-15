@@ -126,7 +126,7 @@ public class Networking {
             .flatMap(.latest) { accessToken -> SignalProducer<UserAccount, MoyaError> in
                 let provider = MastodonProvider(baseURL: noAuthProvider.baseURL, plugins: [AccessTokenPlugin(token: accessToken)])
                 return provider.request(.currentUser)
-                    .mapFreddyJSONDecoded(Account.self)
+                    .mapFreddyJSONDecoded(JSONEntity.Account.self)
                     .map { account in UserAccount(instanceURI: instanceURI, username: account.username) }
                     .on(value: { userAccount in
                         self.providers[.authenticated(account: userAccount)] = provider
