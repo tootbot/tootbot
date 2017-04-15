@@ -17,7 +17,6 @@
 
 import Freddy
 import Moya
-import ReactiveMoya
 import ReactiveSwift
 import Result
 import TootModel

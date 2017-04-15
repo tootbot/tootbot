@@ -16,7 +16,6 @@
 //
 
 import Moya
-import ReactiveMoya
 import ReactiveSwift
 
 public class DynamicMoyaProvider<SubTarget>: MoyaProvider<DynamicTarget<SubTarget>> where SubTarget: SubTargetType {
