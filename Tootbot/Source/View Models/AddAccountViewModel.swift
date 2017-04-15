@@ -82,6 +82,10 @@ class AddAccountViewModel {
                     account.instanceURI = instanceURI
                     account.username = jsonAccount.username
 
+                    let timeline = Timeline(context: context)
+                    timeline.account = account
+                    timeline.timelineTypeValue = .home
+
                     do {
                         try context.save()
                     } catch {

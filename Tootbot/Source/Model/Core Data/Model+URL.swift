@@ -86,6 +86,17 @@ extension Mention {
     }
 }
 
+extension Status {
+    var applicationURL: URL? {
+        get {
+            return applicationURLString.flatMap { URL(string: $0) }
+        }
+        set {
+            applicationURLString = newValue?.absoluteString
+        }
+    }
+}
+
 extension User {
     var avatarURL: URL? {
         get {

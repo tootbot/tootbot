@@ -19,6 +19,13 @@
 		832D55441EA2BC9400393BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55391EA2BC9400393BC5 /* Main.storyboard */; };
 		832D55451EA2BC9400393BC5 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D553B1EA2BC9400393BC5 /* Notifications.storyboard */; };
 		832D55461EA2BC9400393BC5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D553D1EA2BC9400393BC5 /* Profile.storyboard */; };
+		832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55481EA2C2FC00393BC5 /* HomeTimelineViewController.swift */; };
+		832D554B1EA2C30400393BC5 /* HomeTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */; };
+		832D554D1EA2CBBC00393BC5 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */; };
+		832D55511EA2CD4400393BC5 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55501EA2CD4400393BC5 /* StatusCell.swift */; };
+		832D55531EA2CDB900393BC5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55521EA2CDB900393BC5 /* TableViewCell.swift */; };
+		832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */; };
+		832D55571EA2D75A00393BC5 /* Account+Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55561EA2D75A00393BC5 /* Account+Timeline.swift */; };
 		83851F7E1EA2818500BFA80B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7D1EA2818500BFA80B /* RootViewController.swift */; };
 		83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */; };
 		83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F841EA2861900BFA80B /* AddAccountViewModel.swift */; };
@@ -92,7 +99,7 @@
 
 /* Begin PBXFileReference section */
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		832D552B1EA2B3F700393BC5 /* Model+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Model+URL.swift"; sourceTree = "<group>"; };
@@ -104,6 +111,13 @@
 		832D553A1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		832D553C1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
 		832D553E1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		832D55481EA2C2FC00393BC5 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
+		832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewModel.swift; sourceTree = "<group>"; };
+		832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
+		832D55501EA2CD4400393BC5 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
+		832D55521EA2CDB900393BC5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timeline+TimelineType.swift"; sourceTree = "<group>"; };
+		832D55561EA2D75A00393BC5 /* Account+Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Timeline.swift"; sourceTree = "<group>"; };
 		83851F7D1EA2818500BFA80B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+FlexibleSize.swift"; sourceTree = "<group>"; };
 		83851F841EA2861900BFA80B /* AddAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewModel.swift; sourceTree = "<group>"; };
@@ -216,7 +230,9 @@
 		832D552A1EA2B3EA00393BC5 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				832D55561EA2D75A00393BC5 /* Account+Timeline.swift */,
 				832D552B1EA2B3F700393BC5 /* Model+URL.swift */,
+				832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -239,11 +255,29 @@
 				83DB2F9A1EA2756800AD7080 /* Controllers */,
 				83851F811EA2821500BFA80B /* Extensions */,
 				83DB2F541EA23D1500AD7080 /* Model */,
+				832D554E1EA2CD3800393BC5 /* Views */,
 				83DB2FAB1EA27B2700AD7080 /* View Controllers */,
 				83DB2F9B1EA2756D00AD7080 /* View Models */,
 			);
-			name = Source;
 			path = Source;
+			sourceTree = "<group>";
+		};
+		832D554E1EA2CD3800393BC5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				832D554F1EA2CD3C00393BC5 /* Cells */,
+			);
+			name = Views;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		832D554F1EA2CD3C00393BC5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				832D55501EA2CD4400393BC5 /* StatusCell.swift */,
+				832D55521EA2CDB900393BC5 /* TableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		83851F811EA2821500BFA80B /* Extensions */ = {
@@ -256,7 +290,6 @@
 				8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */,
 				83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -378,7 +411,6 @@
 				832D552D1EA2BA2400393BC5 /* NetworkingController */,
 				83DB2F981EA2736100AD7080 /* DataController.swift */,
 			);
-			name = Controllers;
 			path = Controllers;
 			sourceTree = "<group>";
 		};
@@ -387,8 +419,9 @@
 			children = (
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
 				83851F861EA29ABA00BFA80B /* AppDelegateViewModel.swift */,
+				832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */,
+				832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */,
 			);
-			name = "View Models";
 			path = "View Models";
 			sourceTree = "<group>";
 		};
@@ -396,9 +429,9 @@
 			isa = PBXGroup;
 			children = (
 				83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */,
+				832D55481EA2C2FC00393BC5 /* HomeTimelineViewController.swift */,
 				83851F7D1EA2818500BFA80B /* RootViewController.swift */,
 			);
-			name = "View Controllers";
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
@@ -578,6 +611,7 @@
 				83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */,
 				83DB2F8F1EA2642600AD7080 /* JSONEntity.swift in Sources */,
 				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
+				832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */,
 				8386B4E21EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift in Sources */,
 				83DB2F851EA23D1500AD7080 /* Status.swift in Sources */,
 				83DB2F691EA23D1500AD7080 /* DynamicProvider.swift in Sources */,
@@ -586,6 +620,7 @@
 				83DB2F951EA2727200AD7080 /* Tootbot.xcdatamodeld in Sources */,
 				8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */,
 				8386B4E41EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift in Sources */,
+				832D55531EA2CDB900393BC5 /* TableViewCell.swift in Sources */,
 				83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */,
 				83DB2FAD1EA27B3800AD7080 /* AddAccountViewController.swift in Sources */,
 				83DB2F6D1EA23D1500AD7080 /* MastodonService.swift in Sources */,
@@ -604,6 +639,7 @@
 				83DB2F6A1EA23D1500AD7080 /* DynamicTarget.swift in Sources */,
 				83DB2F721EA23D1500AD7080 /* OAuthCredentials.swift in Sources */,
 				83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */,
+				832D55571EA2D75A00393BC5 /* Account+Timeline.swift in Sources */,
 				832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */,
 				83DB2F7A1EA23D1500AD7080 /* Card.swift in Sources */,
 				8386B4E01EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift in Sources */,
@@ -611,6 +647,7 @@
 				83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */,
 				83DB2F6B1EA23D1500AD7080 /* FormData.swift in Sources */,
 				83DB2F7F1EA23D1500AD7080 /* Mention.swift in Sources */,
+				832D55511EA2CD4400393BC5 /* StatusCell.swift in Sources */,
 				83851F7E1EA2818500BFA80B /* RootViewController.swift in Sources */,
 				83DB2F991EA2736100AD7080 /* DataController.swift in Sources */,
 				83DB2F701EA23D1500AD7080 /* NetworkingController+UserCredentials.swift in Sources */,
@@ -619,8 +656,11 @@
 				83DB2F7B1EA23D1500AD7080 /* Context.swift in Sources */,
 				83DB2F761EA23D1500AD7080 /* Account.swift in Sources */,
 				83DB2F7D1EA23D1500AD7080 /* Instance.swift in Sources */,
+				832D554D1EA2CBBC00393BC5 /* StatusViewModel.swift in Sources */,
 				83DB2F711EA23D1500AD7080 /* NetworkingController.swift in Sources */,
+				832D554B1EA2C30400393BC5 /* HomeTimelineViewModel.swift in Sources */,
 				83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */,
+				832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
