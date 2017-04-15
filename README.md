@@ -1,5 +1,15 @@
 # Tootbot
 
+[![CircleCI](https://circleci.com/gh/tootbot/tootbot.svg?style=svg)](https://circleci.com/gh/tootbot/tootbot)
+
+A multi-user [Mastodon](https://mastodon.social) client for iOS.
+
+## Getting Started
+
+Tootbot must be built with [Xcode](https://developer.apple.com/xcode/) 8.3 or later. The [xcode-install](https://github.com/KrauseFx/xcode-install) gem can help with multiple installed Xcode versions.
+
+Tootbot uses [CocoaPods](https://cocoapods.org) for dependency management. Make sure to open the `Tootbot.xcworkspace` workspace, not the `Tootbot.xcodeproj` project.
+
 ## License
 
 > Copyright (C) 2017 Alexsander Akers and Tootbot Contributors
