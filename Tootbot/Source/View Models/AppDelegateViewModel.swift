@@ -31,9 +31,13 @@ class AppDelegateViewModel {
         self.networkingController = networkingController
     }
 
-    func hasAccounts() throws -> Bool {
-        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
-        return try dataController.viewContext.count(for: fetchRequest) > 0
+    func accounts() -> [Account] {
+        do {
+            return try dataController.viewContext.fetch(Account.fetchRequest())
+        } catch {
+            print("Fetch accounts error -> \(error)")
+            return []
+        }
     }
 
     func initializeDataController() -> SignalProducer<Void, AppDelegateError> {
@@ -44,5 +48,10 @@ class AppDelegateViewModel {
 
     func addAccountViewModel() -> AddAccountViewModel {
         return AddAccountViewModel(dataController: dataController, networkingController: networkingController)
+    }
+
+    func homeTimelineViewModel(account: Account) -> HomeTimelineViewModel? {
+        guard let timeline = account.timeline(with: .home) else { return nil }
+        return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkController: networkingController)
     }
 }
