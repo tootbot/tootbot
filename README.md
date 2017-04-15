@@ -1,6 +1,7 @@
 # Tootbot
 
-[![CircleCI](https://circleci.com/gh/tootbot/tootbot.svg?style=svg)](https://circleci.com/gh/tootbot/tootbot)
+[![License](http://img.shields.io/badge/license-AGPL-blue.svg?style=flat)](https://github.com/tootbot/tootbot/blob/master/LICENSE)
+[![CircleCI](https://img.shields.io/circleci/project/github/tootbot/tootbot.svg)](https://circleci.com/gh/tootbot/tootbot)
 
 A multi-user [Mastodon](https://mastodon.social) client for iOS.
 
