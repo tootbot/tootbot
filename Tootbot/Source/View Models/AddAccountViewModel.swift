@@ -52,11 +52,11 @@ class AddAccountViewModel {
             }
     }
 
-    func loginResult(on instanceURI: String) -> Signal<JSONEntity.Account, AddAccountError> {
+    func loginResult(on instanceURI: String) -> Signal<API.Account, AddAccountError> {
         return networkingController.loginResult(for: instanceURI).mapError { _ in .authenticationFailure }
     }
 
-    func newOrExistingAccount(from jsonAccount: JSONEntity.Account, instanceURI: String) -> SignalProducer<Account, AddAccountError> {
+    func newOrExistingAccount(from jsonAccount: API.Account, instanceURI: String) -> SignalProducer<Account, AddAccountError> {
         return SignalProducer { observer, disposable in
             self.dataController.perform { context in
                 guard !disposable.isDisposed else { return }

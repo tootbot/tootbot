@@ -18,28 +18,28 @@
 import Foundation
 import Freddy
 
-private enum AccountKey: String, JSONPathType {
-    case id
-    case username
-    case accountName = "acct"
-    case displayName = "display_name"
-    case note
-    case websiteURL = "url"
-    case avatarURL = "avatar"
-    case headerURL = "header"
-    case isLocked = "locked"
-    case createdAt = "created_at"
-    case followersCount = "followers_count"
-    case followingCount = "following_count"
-    case statusesCount = "statuses_count"
+extension API {
+    public struct Account: JSONDecodable, CoreDataExportable {
+        enum Key: String, CoreDataKey {
+            case id
+            case username
+            case accountName = "acct"
+            case displayName = "display_name"
+            case note
+            case websiteURL = "url"
+            case avatarURL = "avatar"
+            case headerURL = "header"
+            case isLocked = "locked"
+            case createdAt = "created_at"
+            case followersCount = "followers_count"
+            case followingCount = "following_count"
+            case statusesCount = "statuses_count"
 
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
+            static var primaryKey: Key {
+                return .id
+            }
+        }
 
-extension JSONEntity {
-    public struct Account: JSONDecodable {
         public var id: Int
         public var username: String
         public var accountName: String
@@ -54,20 +54,24 @@ extension JSONEntity {
         public var followingCount: Int
         public var statusesCount: Int
 
+        public var primaryKeyValue: Any {
+            return id
+        }
+
         public init(json: JSON) throws {
-            self.id = try json.getInt(at: AccountKey.id)
-            self.username = try json.getString(at: AccountKey.username)
-            self.accountName = try json.getString(at: AccountKey.accountName)
-            self.displayName = try json.getString(at: AccountKey.displayName)
-            self.note = try json.getString(at: AccountKey.note)
-            self.websiteURL = URL(string: try json.getString(at: AccountKey.websiteURL))!
-            self.avatarURL = URL(string: try json.getString(at: AccountKey.avatarURL))!
-            self.headerURL = URL(string: try json.getString(at: AccountKey.headerURL))!
-            self.isLocked = try json.getBool(at: AccountKey.isLocked)
-            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: AccountKey.createdAt))!
-            self.followersCount = try json.getInt(at: AccountKey.followersCount)
-            self.followingCount = try json.getInt(at: AccountKey.followingCount)
-            self.statusesCount = try json.getInt(at: AccountKey.statusesCount)
+            self.id = try json.getInt(at: Key.id)
+            self.username = try json.getString(at: Key.username)
+            self.accountName = try json.getString(at: Key.accountName)
+            self.displayName = try json.getString(at: Key.displayName)
+            self.note = try json.getString(at: Key.note)
+            self.websiteURL = URL(string: try json.getString(at: Key.websiteURL))!
+            self.avatarURL = URL(string: try json.getString(at: Key.avatarURL))!
+            self.headerURL = URL(string: try json.getString(at: Key.headerURL))!
+            self.isLocked = try json.getBool(at: Key.isLocked)
+            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: Key.createdAt))!
+            self.followersCount = try json.getInt(at: Key.followersCount)
+            self.followingCount = try json.getInt(at: Key.followingCount)
+            self.statusesCount = try json.getInt(at: Key.statusesCount)
         }
     }
 }

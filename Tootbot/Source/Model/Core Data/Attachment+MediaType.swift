@@ -15,5 +15,19 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public enum JSONEntity {
+//enum TimelineType: String {
+//    case home
+//}
+
+extension Attachment {
+    public typealias MediaType = API.Attachment.MediaType
+
+    var mediaTypeValue: MediaType? {
+        get {
+            return mediaType.flatMap { MediaType(rawValue: $0) }
+        }
+        set {
+            mediaType = newValue?.rawValue
+        }
+    }
 }

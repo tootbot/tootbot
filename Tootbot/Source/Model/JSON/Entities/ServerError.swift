@@ -18,20 +18,20 @@
 import Foundation
 import Freddy
 
-private enum ServerErrorKey: String, JSONPathType {
-    case message = "error"
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct ServerError: CustomStringConvertible, JSONDecodable {
+        enum Key: String, JSONPathType {
+            case message = "error"
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var message: String
 
         public init(json: JSON) throws {
-            self.message = try json.getString(at: ServerErrorKey.message)
+            self.message = try json.getString(at: Key.message)
         }
 
         public var description: String {

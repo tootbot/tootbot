@@ -11,7 +11,7 @@
     </entity>
     <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
         <attribute name="attachmentID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="attachmentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="previewURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textURLString" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,10 +22,9 @@
     <entity name="Mention" representedClassName="Mention" syncable="YES" codeGenerationType="class">
         <attribute name="accountName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileURLString" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="mentions" inverseEntity="Status" syncable="YES"/>
+        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Status" inverseName="mentions" inverseEntity="Status" syncable="YES"/>
     </entity>
     <entity name="Status" representedClassName="Status" syncable="YES" codeGenerationType="class">
         <attribute name="applicationName" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +38,7 @@
         <attribute name="statusID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attachment" inverseName="status" inverseEntity="Attachment" syncable="YES"/>
-        <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mention" inverseName="status" inverseEntity="Mention" syncable="YES"/>
+        <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mention" inverseName="statuses" inverseEntity="Mention" syncable="YES"/>
         <relationship name="rebloggedStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="reblogs" inverseEntity="Status" syncable="YES"/>
         <relationship name="reblogs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Status" inverseName="rebloggedStatus" inverseEntity="Status" syncable="YES"/>
         <relationship name="timelines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Timeline" inverseName="statuses" inverseEntity="Timeline" syncable="YES"/>
@@ -70,7 +69,7 @@
     <elements>
         <element name="Account" positionX="-36" positionY="9" width="128" height="150"/>
         <element name="Attachment" positionX="9" positionY="126" width="128" height="165"/>
-        <element name="Mention" positionX="18" positionY="90" width="128" height="135"/>
+        <element name="Mention" positionX="18" positionY="90" width="128" height="120"/>
         <element name="Status" positionX="0" positionY="45" width="128" height="285"/>
         <element name="Timeline" positionX="0" positionY="108" width="128" height="90"/>
         <element name="User" positionX="27" positionY="72" width="128" height="270"/>

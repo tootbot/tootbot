@@ -18,23 +18,23 @@
 import Foundation
 import Freddy
 
-private enum ContextKey: String, JSONPathType {
-    case ancestors
-    case descendants
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct Context: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case ancestors
+            case descendants
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var ancestors: [Status]
         public var descendants: [Status]
 
         public init(json: JSON) throws {
-            self.ancestors = try json.decodedArray(at: ContextKey.ancestors)
-            self.descendants = try json.decodedArray(at: ContextKey.descendants)
+            self.ancestors = try json.decodedArray(at: Key.ancestors)
+            self.descendants = try json.decodedArray(at: Key.descendants)
         }
     }
 }

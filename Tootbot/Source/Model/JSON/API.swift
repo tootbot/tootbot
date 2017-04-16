@@ -15,26 +15,5 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Freddy
-
-extension API {
-    public struct Report: JSONDecodable {
-        enum Key: String, JSONPathType {
-            case id
-            case actionTaken = "action_taken"
-
-            func value(in dictionary: [String : JSON]) throws -> JSON {
-                return try rawValue.value(in: dictionary)
-            }
-        }
-
-        public var id: Int
-        public var actionTaken: String
-
-        public init(json: JSON) throws {
-            self.id = try json.getInt(at: Key.id)
-            self.actionTaken = try json.getString(at: Key.actionTaken)
-        }
-    }
+public enum API {
 }

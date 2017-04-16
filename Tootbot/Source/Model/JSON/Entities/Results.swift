@@ -18,26 +18,26 @@
 import Foundation
 import Freddy
 
-private enum ResultsKey: String, JSONPathType {
-    case accounts
-    case statuses
-    case hashtags
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct Results: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case accounts
+            case statuses
+            case hashtags
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var accounts: [Account]
         public var statuses: [Status]
         public var hashtags: [String]
 
         public init(json: JSON) throws {
-            self.accounts = try json.decodedArray(at: ResultsKey.accounts)
-            self.statuses = try json.decodedArray(at: ResultsKey.statuses)
-            self.hashtags = try json.decodedArray(at: ResultsKey.hashtags)
+            self.accounts = try json.decodedArray(at: Key.accounts)
+            self.statuses = try json.decodedArray(at: Key.statuses)
+            self.hashtags = try json.decodedArray(at: Key.hashtags)
         }
     }
 }

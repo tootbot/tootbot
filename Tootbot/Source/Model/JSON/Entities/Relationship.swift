@@ -18,20 +18,20 @@
 import Foundation
 import Freddy
 
-private enum RelationshipKey: String, JSONPathType {
-    case isFollowing = "following"
-    case isFollowedBy = "followed_by"
-    case isBlocking = "blocking"
-    case isMuting = "muting"
-    case isRequested = "requested"
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct Relationship: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case isFollowing = "following"
+            case isFollowedBy = "followed_by"
+            case isBlocking = "blocking"
+            case isMuting = "muting"
+            case isRequested = "requested"
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var isFollowing: Bool
         public var isFollowedBy: Bool
         public var isBlocking: Bool
@@ -39,11 +39,11 @@ extension JSONEntity {
         public var isRequested: Bool
 
         public init(json: JSON) throws {
-            self.isFollowing = try json.getBool(at: RelationshipKey.isFollowing)
-            self.isFollowedBy = try json.getBool(at: RelationshipKey.isFollowedBy)
-            self.isBlocking = try json.getBool(at: RelationshipKey.isBlocking)
-            self.isMuting = try json.getBool(at: RelationshipKey.isMuting)
-            self.isRequested = try json.getBool(at: RelationshipKey.isRequested)
+            self.isFollowing = try json.getBool(at: Key.isFollowing)
+            self.isFollowedBy = try json.getBool(at: Key.isFollowedBy)
+            self.isBlocking = try json.getBool(at: Key.isBlocking)
+            self.isMuting = try json.getBool(at: Key.isMuting)
+            self.isRequested = try json.getBool(at: Key.isRequested)
         }
     }
 }
