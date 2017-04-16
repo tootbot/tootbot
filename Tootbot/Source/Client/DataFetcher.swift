@@ -27,6 +27,30 @@ enum NetworkRequestError: Swift.Error {
     case underlying(Swift.Error)
 }
 
+struct JSONCollection<T>: JSONDecodable, CustomStringConvertible, CustomDebugStringConvertible where T: JSONDecodable {
+    var elements: [T]
+
+    init(_ elements: [T]) {
+        self.elements = elements
+    }
+
+    init(json: JSON) throws {
+        guard case .array(let elements) = json else {
+            throw JSON.Error.valueNotConvertible(value: json, to: JSONCollection<T>.self)
+        }
+
+        self.elements = try elements.map { json in try T(json: json) }
+    }
+
+    var description: String {
+        return String(describing: elements)
+    }
+
+    var debugDescription: String {
+        return String(reflecting: elements)
+    }
+}
+
 protocol NetworkRequestProtocol {
     associatedtype Output
 
@@ -34,7 +58,9 @@ protocol NetworkRequestProtocol {
     func parse(response: Response) -> Result<Output, NetworkRequestError>
 }
 
-class NetworkRequest<Output>: NetworkRequestProtocol {
+class NetworkRequest<T>: NetworkRequestProtocol where T: JSONDecodable {
+    typealias Output = T
+
     let networkingController: NetworkingController
     let userAccount: UserAccount
     let endpoint: MastodonService
@@ -50,39 +76,10 @@ class NetworkRequest<Output>: NetworkRequestProtocol {
     }
 
     func parse(response: Response) -> Result<Output, NetworkRequestError> {
-        return .failure(.unimplementedParseMethod)
-    }
-}
-
-extension NetworkRequestProtocol where Output: JSONDecodable {
-    func parse(response: Response) -> Result<Output, NetworkRequestError> {
         do {
             let json = try JSON(data: response.data)
             let value = try Output(json: json)
             return .success(value)
-        } catch {
-            return .failure(.underlying(error))
-        }
-    }
-}
-
-extension NetworkRequestProtocol where Output: RangeReplaceableCollection, Output.Iterator.Element: JSONDecodable {
-    func parse(response: Response) -> Result<Output, NetworkRequestError> {
-        do {
-            let json = try JSON(data: response.data)
-            guard case .array(let jsonFragments) = json else {
-                throw JSON.Error.valueNotConvertible(value: json, to: Output.self)
-            }
-
-            var collection = Output()
-            collection.reserveCapacity(numericCast(jsonFragments.count))
-
-            for jsonFragment in jsonFragments {
-                let value = try Output.Iterator.Element(json: jsonFragment)
-                collection.append(value)
-            }
-
-            return .success(collection)
         } catch {
             return .failure(.underlying(error))
         }
@@ -99,8 +96,8 @@ enum CachePolicy {
     }
 }
 
-struct ManagedObjectRequest<ManagedObject>: NetworkRequestProtocol where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
-    typealias Output = [ManagedObject.JSONModel]
+struct ManagedObjectRequest<ManagedObject>: NetworkRequestProtocol where ManagedObject: APIImportable, ManagedObject.T == ManagedObject, ManagedObject.JSONModel: JSONDecodable {
+    typealias Output = JSONCollection<ManagedObject.JSONModel>
 
     let requestFunction: () -> SignalProducer<Response, MoyaError>
     let parseFunction: (Response) -> Result<Output, NetworkRequestError>
@@ -129,7 +126,7 @@ struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObj
     let request: ManagedObjectRequest<ManagedObject>
     let cacheRequest: CacheRequest<ManagedObject>
 
-    init<Request>(request: Request, cacheRequest: CacheRequest<ManagedObject>) where Request: NetworkRequestProtocol, Request.Output == [ManagedObject.JSONModel] {
+    init<Request>(request: Request, cacheRequest: CacheRequest<ManagedObject>) where Request: NetworkRequestProtocol, Request.Output == JSONCollection<ManagedObject.JSONModel> {
         self.request = ManagedObjectRequest(request)
         self.cacheRequest = cacheRequest
     }
@@ -148,9 +145,9 @@ struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObj
                 .observe(on: QueueScheduler.main)
                 .map { models -> [ManagedObject] in
                     let context = self.cacheRequest.dataController.viewContext
-                    return models.map { model in ManagedObject.upsert(model: model, in: context) }
+                    return models.elements.map { model in ManagedObject.upsert(model: model, in: context) }
                 }
-                .then(fetch(cachePolicy: .localOnly))
+                .concat(fetch(cachePolicy: .localOnly))
         case .localThenRemote:
             let local = fetch(cachePolicy: .localOnly)
             let remote = fetch(cachePolicy: .remoteOnly)
@@ -179,6 +176,7 @@ struct CacheRequest<ManagedObject> where ManagedObject: APIImportable, ManagedOb
             do {
                 let results = try self.dataController.viewContext.fetch(self.fetchRequest)
                 observer.send(value: results)
+                observer.sendCompleted()
             } catch {
                 observer.send(error: error as NSError)
             }
