@@ -25,7 +25,7 @@ enum HomeTimelineError: Swift.Error {
     case coreDataFetchError
 }
 
-class HomeTimelineRequest: NetworkRequest<API.Status> {
+class HomeTimelineRequest: NetworkRequest<[API.Status]> {
     init(userAccount: UserAccount, networkingController: NetworkingController) {
         super.init(userAccount: userAccount, networkingController: networkingController, endpoint: .homeTimeline)
     }
