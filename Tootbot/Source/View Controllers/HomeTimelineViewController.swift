@@ -42,6 +42,7 @@ class HomeTimelineViewController: UITableViewController {
     // MARK: - Table View
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(viewModel.statusViewModels.count)
         return viewModel.statusViewModels.count
     }
 

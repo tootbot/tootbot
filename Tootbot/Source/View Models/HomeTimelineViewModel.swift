@@ -25,7 +25,7 @@ enum HomeTimelineError: Swift.Error {
     case coreDataFetchError
 }
 
-class HomeTimelineRequest: NetworkRequest<[API.Status]> {
+class HomeTimelineRequest: NetworkRequest<JSONCollection<API.Status>> {
     init(userAccount: UserAccount, networkingController: NetworkingController) {
         super.init(userAccount: userAccount, networkingController: networkingController, endpoint: .homeTimeline)
     }
@@ -54,20 +54,20 @@ class HomeTimelineViewModel {
                 return
             }
 
-//            let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "%@ IN timelines", self.timeline)
+            let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "%@ IN timelines", self.timeline)
 
             let request = HomeTimelineRequest(userAccount: account, networkingController: self.networkController)
             let cacheRequest = CacheRequest<Status>(dataController: self.dataController, fetchRequest: Status.fetchRequest())
             let dataSource = DataFetcher<Status>(request: request, cacheRequest: cacheRequest)
 
-//            let request = HomeTimelineRequest(userAccount: account, networkingController: self.networkController)
-//            let fetcher = DataFetcher<HomeTimelineRequest, Status>(request: request, dataController: self.dataController)
-
-//            _ = fetcher
-//            disposable += fetcher.fetch()
-//                .mapError { _ in .networkingError }
-//                .start(observer)
+            disposable += dataSource.fetch()
+                .mapError { error in
+                    print(error)
+                    return .networkingError
+                }
+                .on(value: { self.statuses = $0 })
+                .start(observer)
         }
     }
 }
