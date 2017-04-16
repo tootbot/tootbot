@@ -25,6 +25,12 @@ enum HomeTimelineError: Swift.Error {
     case coreDataFetchError
 }
 
+class HomeTimelineRequest: NetworkRequest<API.Status> {
+    init(userAccount: UserAccount, networkingController: NetworkingController) {
+        super.init(userAccount: userAccount, networkingController: networkingController, endpoint: .homeTimeline)
+    }
+}
+
 class HomeTimelineViewModel {
     let dataController: DataController
     let networkController: NetworkingController
@@ -39,126 +45,29 @@ class HomeTimelineViewModel {
         self.dataController = dataController
         self.networkController = networkController
         self.timeline = timeline
-
-        let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
-        fetchRequest.fetchBatchSize = 20
-        fetchRequest.predicate = NSPredicate(format: "timelines CONTAINS %@", timeline)
-        fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "createdAt", ascending: false)]
-
-        do {
-            self.statuses = try dataController.viewContext.fetch(fetchRequest)
-        } catch {
-            print("Could not fetch statuses -> \(error)")
-        }
     }
 
     func fetchNewestToots() -> SignalProducer<[Status], HomeTimelineError> {
         return SignalProducer { observer, disposable in
-            guard let account = self.timeline.account.flatMap(UserAccount.init)
-            else {
+            guard let account = self.timeline.account.flatMap(UserAccount.init) else {
                 observer.send(error: .invalidTimeline)
                 return
             }
 
-            disposable += self.networkController.request(.homeTimeline, authentication: .authenticated(account: account))
-                .mapFreddyJSONDecodedArray(JSONEntity.Status.self)
-                .startWithResult { result in
-                    switch result {
-                    case .success(let statuses):
-                        self.dataController.perform { context in
-                            guard !disposable.isDisposed else { return }
+//            let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
+//            fetchRequest.predicate = NSPredicate(format: "%@ IN timelines", self.timeline)
 
-                            let statusIDs = statuses.map { $0.id }
-                            let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
-                            fetchRequest.predicate = NSPredicate(format: "statusID in %@", statusIDs)
+            let request = HomeTimelineRequest(userAccount: account, networkingController: self.networkController)
+            let cacheRequest = CacheRequest<Status>(dataController: self.dataController, fetchRequest: Status.fetchRequest())
+            let dataSource = DataFetcher<Status>(request: request, cacheRequest: cacheRequest)
 
-                            var statusEntities: [Status]
-                            do {
-                                statusEntities = try context.fetch(fetchRequest)
-                            } catch {
-                                observer.send(error: .coreDataFetchError)
-                                return
-                            }
+//            let request = HomeTimelineRequest(userAccount: account, networkingController: self.networkController)
+//            let fetcher = DataFetcher<HomeTimelineRequest, Status>(request: request, dataController: self.dataController)
 
-                            let now = NSDate()
-
-                            var userEntites = [Int64: User]()
-
-                            for jsonStatus in statuses {
-                                let statusEntity: Status
-                                if let existingStatus = statusEntities.first(where: { $0.statusID == Int64(jsonStatus.id) }) {
-                                    statusEntity = existingStatus
-                                } else {
-                                    statusEntity = Status(context: context)
-                                    statusEntity.applicationName = jsonStatus.application?.name
-                                    statusEntity.applicationURL = jsonStatus.application?.websiteURL
-                                    statusEntity.content = jsonStatus.content
-                                    statusEntity.createdAt = jsonStatus.createdAt as NSDate?
-                                    statusEntity.isFavorited = jsonStatus.isFavorited
-                                    statusEntity.isReblogged = jsonStatus.isReblogged
-                                    statusEntity.isSensitive = jsonStatus.isSensitive
-                                    statusEntity.spoilerText = jsonStatus.spoilerText
-                                    statusEntity.statusID = Int64(jsonStatus.id)
-
-                                    statusEntities.append(statusEntity)
-                                }
-
-                                statusEntity.updatedAt = now
-
-                                let userEntity: User
-                                if let existingUser = userEntites[Int64(jsonStatus.account.id)] {
-                                    userEntity = existingUser
-                                } else if let existingUser = statusEntity.user {
-                                    userEntity = existingUser
-                                } else {
-                                    let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-                                    fetchRequest.fetchLimit = 1
-                                    fetchRequest.predicate = NSPredicate(format: "userID == %@", jsonStatus.account.id as NSNumber)
-
-                                    if let existingUser = (try? context.fetch(fetchRequest))?.first {
-                                        userEntity = existingUser
-                                    } else {
-                                        userEntity = User(context: context)
-                                    }
-                                }
-
-                                userEntity.updatedAt = now
-                                userEntity.userID = Int64(jsonStatus.account.id)
-                                userEntity.username = jsonStatus.account.username
-                                userEntity.accountName = jsonStatus.account.accountName
-                                userEntity.displayName = jsonStatus.account.displayName
-                                userEntity.statusesCount = Int64(jsonStatus.account.statusesCount)
-                                userEntity.followersCount = Int64(jsonStatus.account.followersCount)
-                                userEntity.followingCount = Int64(jsonStatus.account.followingCount)
-                                userEntity.createdAt = jsonStatus.account.createdAt as NSDate
-                                userEntity.isLocked = jsonStatus.account.isLocked
-                                userEntity.note = jsonStatus.account.note
-                                userEntity.websiteURL = jsonStatus.account.websiteURL
-                                userEntity.avatarURL = jsonStatus.account.avatarURL
-                                userEntity.headerURL = jsonStatus.account.headerURL
-
-                                userEntites[userEntity.userID] = userEntity
-                            }
-
-                            _ = try? context.save()
-
-                            let objectIDs = statusEntities.map { $0.objectID }
-
-                            DispatchQueue.main.async {
-                                guard !disposable.isDisposed else { return }
-
-                                let mainQueueObjects = objectIDs.map { self.dataController.viewContext.object(with: $0) as! Status }
-                                self.statuses = mainQueueObjects
-                                observer.send(value: mainQueueObjects)
-                                observer.sendCompleted()
-                            }
-                        }
-
-
-                    case .failure:
-                        observer.send(error: .networkingError)
-                    }
-                }
+//            _ = fetcher
+//            disposable += fetcher.fetch()
+//                .mapError { _ in .networkingError }
+//                .start(observer)
         }
     }
 }

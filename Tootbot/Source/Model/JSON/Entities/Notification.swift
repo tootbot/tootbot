@@ -18,27 +18,27 @@
 import Foundation
 import Freddy
 
-private enum NotificationKey: String, JSONPathType {
-    case id
-    case type
-    case createdAt = "created_at"
-    case account
-    case status
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
-    public enum NotificationType: String, JSONTransformable {
-        case mention
-        case reblog
-        case favorite = "favourite"
-        case follow
-    }
-
+extension API {
     public struct Notification: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case id
+            case type
+            case createdAt = "created_at"
+            case account
+            case status
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
+        public enum NotificationType: String, JSONTransformable {
+            case mention
+            case reblog
+            case favorite = "favourite"
+            case follow
+        }
+
         public var id: Int
         public var type: NotificationType
         public var createdAt: Date
@@ -46,11 +46,11 @@ extension JSONEntity {
         public var status: Status?
 
         public init(json: JSON) throws {
-            self.id = try json.getInt(at: NotificationKey.id)
-            self.type = try json.decode(at: NotificationKey.type)
-            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: NotificationKey.createdAt))!
-            self.account = try json.decode(at: NotificationKey.account)
-            self.status = try json.decode(at: NotificationKey.status, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+            self.id = try json.getInt(at: Key.id)
+            self.type = try json.decode(at: Key.type)
+            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: Key.createdAt))!
+            self.account = try json.decode(at: Key.account)
+            self.status = try json.decode(at: Key.status, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
         }
     }
 }

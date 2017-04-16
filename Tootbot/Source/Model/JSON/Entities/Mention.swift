@@ -18,29 +18,33 @@
 import Foundation
 import Freddy
 
-private enum MentionKey: String, JSONPathType {
-    case profileURL = "url"
-    case username
-    case accountName = "acct"
-    case accountID = "id"
+extension API {
+    public struct Mention: JSONDecodable, CoreDataExportable {
+        enum Key: String, CoreDataKey {
+            case profileURL = "url"
+            case username
+            case accountName = "acct"
+            case accountID = "id"
 
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
+            static var primaryKey: Key {
+                return .accountID
+            }
+        }
 
-extension JSONEntity {
-    public struct Mention: JSONDecodable {
         public var accountID: Int
         public var profileURL: URL
         public var accountName: String
         public var username: String
 
+        var primaryKeyValue: Any {
+            return accountID
+        }
+        
         public init(json: JSON) throws {
-            self.accountID = try json.getInt(at: MentionKey.accountID)
-            self.profileURL = URL(string: try json.getString(at: MentionKey.profileURL))!
-            self.accountName = try json.getString(at: MentionKey.accountName)
-            self.username = try json.getString(at: MentionKey.username)
+            self.accountID = try json.getInt(at: Key.accountID)
+            self.profileURL = URL(string: try json.getString(at: Key.profileURL))!
+            self.accountName = try json.getString(at: Key.accountName)
+            self.username = try json.getString(at: Key.username)
         }
     }
 }

@@ -25,7 +25,7 @@ public class NetworkingController {
     var providers: [Authentication: MastodonProvider]
     var keychain: KeychainProtocol
 
-    typealias LoginResult = (instanceURI: String, result: Result<JSONEntity.Account, MoyaError>)
+    typealias LoginResult = (instanceURI: String, result: Result<API.Account, MoyaError>)
     let loginResultSignal: Signal<LoginResult, NoError>
     let loginResultObserver: Observer<LoginResult, NoError>
 
@@ -123,10 +123,10 @@ public class NetworkingController {
                     return SignalProducer(error: .underlying(error))
                 }
             }
-            .flatMap(.latest) { accessToken -> SignalProducer<JSONEntity.Account, MoyaError> in
+            .flatMap(.latest) { accessToken -> SignalProducer<API.Account, MoyaError> in
                 let provider = MastodonProvider(baseURL: noAuthProvider.baseURL, plugins: [AccessTokenPlugin(token: accessToken)])
                 return provider.request(.currentUser)
-                    .mapFreddyJSONDecoded(JSONEntity.Account.self)
+                    .mapFreddyJSONDecoded(API.Account.self)
                     .on(value: { account in
                         let userAccount = UserAccount(instanceURI: instanceURI, username: account.username)
                         self.providers[.authenticated(account: userAccount)] = provider
@@ -139,7 +139,7 @@ public class NetworkingController {
             .start(loginResultObserver)
     }
 
-    func loginResult(for instanceURI: String) -> Signal<JSONEntity.Account, MoyaError> {
+    func loginResult(for instanceURI: String) -> Signal<API.Account, MoyaError> {
         return loginResultSignal
             .filter { resultInstanceURI, _ in instanceURI == resultInstanceURI }
             .flatMap(.latest) { _, result in SignalProducer(result: result) }

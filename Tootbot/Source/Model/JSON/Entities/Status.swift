@@ -18,42 +18,42 @@
 import Foundation
 import Freddy
 
-private enum StatusKey: String, JSONPathType {
-    case id
-    case fediverseURI = "uri"
-    case statusURL = "url"
-    case account
-    case inReplyToID = "in_reply_to_id"
-    case inReplyToAccountID = "in_reply_to_account_id"
-    case rebloggedStatus = "reblog"
-    case content
-    case createdAt = "created_at"
-    case reblogsCount = "reblogs_count"
-    case favoritesCount = "favourites_count"
-    case isReblogged = "reblogged"
-    case isFavorited = "favourited"
-    case isSensitive = "sensitive"
-    case spoilerText = "spoiler_text"
-    case visibility
-    case mediaAttachments = "media_attachments"
-    case mentions
-    case tags
-    case application
+extension API {
+    public struct Status: JSONDecodable, CoreDataExportable {
+        enum Key: String, CoreDataKey {
+            case id
+            case fediverseURI = "uri"
+            case statusURL = "url"
+            case account
+            case inReplyToID = "in_reply_to_id"
+            case inReplyToAccountID = "in_reply_to_account_id"
+            case rebloggedStatus = "reblog"
+            case content
+            case createdAt = "created_at"
+            case reblogsCount = "reblogs_count"
+            case favoritesCount = "favourites_count"
+            case isReblogged = "reblogged"
+            case isFavorited = "favourited"
+            case isSensitive = "sensitive"
+            case spoilerText = "spoiler_text"
+            case visibility
+            case mediaAttachments = "media_attachments"
+            case mentions
+            case tags
+            case application
 
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
+            static var primaryKey: Key {
+                return .id
+            }
+        }
 
-extension JSONEntity {
-    public enum StatusVisibility: String, JSONTransformable {
-        case `public`
-        case unlisted
-        case `private`
-        case direct
-    }
+        public enum Visibility: String, JSONTransformable {
+            case `public`
+            case unlisted
+            case `private`
+            case direct
+        }
 
-    public struct Status: JSONDecodable {
         public var id: Int
         public var fediverseURI: String
         public var statusURL: URL
@@ -69,33 +69,37 @@ extension JSONEntity {
         public var isFavorited: Bool
         public var isSensitive: Bool
         public var spoilerText: String
-        public var visibility: StatusVisibility
+        public var visibility: Visibility
         public var mediaAttachments: [Attachment]
         public var mentions: [Mention]
         public var tags: [Tag]
         public var application: Application?
 
+        var primaryKeyValue: Any {
+            return id
+        }
+
         public init(json: JSON) throws {
-            self.id = try json.getInt(at: StatusKey.id)
-            self.fediverseURI = try json.getString(at: StatusKey.fediverseURI)
-            self.statusURL = URL(string: try json.getString(at: StatusKey.statusURL))!
-            self.account = try json.decode(at: StatusKey.account)
-            self.inReplyToID = try json.getInt(at: StatusKey.inReplyToID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
-            self.inReplyToAccountID = try json.getInt(at: StatusKey.inReplyToAccountID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
-            self.rebloggedStatus = (try json.decode(at: StatusKey.rebloggedStatus, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).map(Box.init)
-            self.content = try json.getString(at: StatusKey.content)
-            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: StatusKey.createdAt))!
-            self.reblogsCount = try json.getInt(at: StatusKey.reblogsCount)
-            self.favoritesCount = try json.getInt(at: StatusKey.favoritesCount)
-            self.isReblogged = try json.getBool(at: StatusKey.isReblogged, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
-            self.isFavorited = try json.getBool(at: StatusKey.isFavorited, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
-            self.isSensitive = try json.getBool(at: StatusKey.isSensitive, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
-            self.spoilerText = try json.getString(at: StatusKey.spoilerText)
-            self.visibility = try json.decode(at: StatusKey.visibility)
-            self.mediaAttachments = try json.decodedArray(at: StatusKey.mediaAttachments)
-            self.mentions = try json.decodedArray(at: StatusKey.mentions)
-            self.tags = try json.decodedArray(at: StatusKey.tags)
-            self.application = try json.decode(at: StatusKey.application, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+            self.id = try json.getInt(at: Key.id)
+            self.fediverseURI = try json.getString(at: Key.fediverseURI)
+            self.statusURL = URL(string: try json.getString(at: Key.statusURL))!
+            self.account = try json.decode(at: Key.account)
+            self.inReplyToID = try json.getInt(at: Key.inReplyToID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+            self.inReplyToAccountID = try json.getInt(at: Key.inReplyToAccountID, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+            self.rebloggedStatus = (try json.decode(at: Key.rebloggedStatus, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).map(Box.init)
+            self.content = try json.getString(at: Key.content)
+            self.createdAt = SharedDateFormatter.date(from: try json.getString(at: Key.createdAt))!
+            self.reblogsCount = try json.getInt(at: Key.reblogsCount)
+            self.favoritesCount = try json.getInt(at: Key.favoritesCount)
+            self.isReblogged = try json.getBool(at: Key.isReblogged, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
+            self.isFavorited = try json.getBool(at: Key.isFavorited, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
+            self.isSensitive = try json.getBool(at: Key.isSensitive, alongPath: [.missingKeyBecomesNil, .nullBecomesNil]) ?? false
+            self.spoilerText = try json.getString(at: Key.spoilerText)
+            self.visibility = try json.decode(at: Key.visibility)
+            self.mediaAttachments = try json.decodedArray(at: Key.mediaAttachments)
+            self.mentions = try json.decodedArray(at: Key.mentions)
+            self.tags = try json.decodedArray(at: Key.tags)
+            self.application = try json.decode(at: Key.application, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
         }
     }
 }

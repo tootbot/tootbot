@@ -18,29 +18,29 @@
 import Foundation
 import Freddy
 
-private enum InstanceKey: String, JSONPathType {
-    case uri
-    case title
-    case description
-    case email
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct Instance: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case uri
+            case title
+            case description
+            case email
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var uri: String
         public var title: String
         public var description: String
         public var email: String
 
         public init(json: JSON) throws {
-            self.uri = try json.getString(at: InstanceKey.uri)
-            self.title = try json.getString(at: InstanceKey.title)
-            self.description = try json.getString(at: InstanceKey.description)
-            self.email = try json.getString(at: InstanceKey.email)
+            self.uri = try json.getString(at: Key.uri)
+            self.title = try json.getString(at: Key.title)
+            self.description = try json.getString(at: Key.description)
+            self.email = try json.getString(at: Key.email)
         }
     }
 }

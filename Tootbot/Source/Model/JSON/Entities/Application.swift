@@ -18,23 +18,23 @@
 import Foundation
 import Freddy
 
-private enum ApplicationKey: String, JSONPathType {
-    case name
-    case websiteURL = "website"
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
-extension JSONEntity {
+extension API {
     public struct Application: JSONDecodable {
+        enum Key: String, JSONPathType {
+            case name
+            case websiteURL = "website"
+
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
+            }
+        }
+
         public var name: String
         public var websiteURL: URL?
 
         public init(json: JSON) throws {
-            self.name = try json.getString(at: ApplicationKey.name)
-            self.websiteURL = (try json.getString(at: ApplicationKey.websiteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
+            self.name = try json.getString(at: Key.name)
+            self.websiteURL = (try json.getString(at: Key.websiteURL, alongPath: [.missingKeyBecomesNil, .nullBecomesNil])).flatMap { URL(string: $0) }
         }
     }
 }
