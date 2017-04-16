@@ -24,6 +24,14 @@ public struct UserAccount: Hashable, LosslessStringConvertible {
         self.username = username
     }
 
+    public init?(account: Account) {
+        guard let instanceURI = account.instanceURI, let username = account.username else {
+            return nil
+        }
+
+        self.init(instanceURI: instanceURI, username: username)
+    }
+
     public init?(_ description: String) {
         let split = description.characters.split(separator: "@")
         guard split.count == 2 else {

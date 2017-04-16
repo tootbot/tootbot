@@ -54,16 +54,13 @@ class HomeTimelineViewModel {
 
     func fetchNewestToots() -> SignalProducer<[Status], HomeTimelineError> {
         return SignalProducer { observer, disposable in
-            guard let account = self.timeline.account,
-                let instanceURI = account.instanceURI,
-                let username = account.username
+            guard let account = self.timeline.account.flatMap(UserAccount.init)
             else {
                 observer.send(error: .invalidTimeline)
                 return
             }
 
-            let userAccount = UserAccount(instanceURI: instanceURI, username: username)
-            disposable += self.networkController.request(.homeTimeline, authentication: .authenticated(account: userAccount))
+            disposable += self.networkController.request(.homeTimeline, authentication: .authenticated(account: account))
                 .mapFreddyJSONDecodedArray(JSONEntity.Status.self)
                 .startWithResult { result in
                     switch result {
