@@ -81,14 +81,12 @@ public class NetworkingController {
     }
 
     public func applicationCredentials(for application: ApplicationProperties, on instanceURI: String) -> SignalProducer<ApplicationCredentials, MoyaError> {
-        return SignalProducer { observer, disposable in
+        return SignalProducer.deferred {
             if let credentials = self.applicationCredentials(for: instanceURI) {
-                disposable += SignalProducer(value: credentials).start(observer)
-                return
+                return SignalProducer(value: credentials)
+            } else {
+                return self.register(application: application, on: instanceURI)
             }
-
-            let provider = self.register(application: application, on: instanceURI)
-            disposable += provider.start(observer)
         }
     }
 

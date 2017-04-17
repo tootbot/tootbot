@@ -166,15 +166,6 @@ struct CacheRequest<ManagedObject> where ManagedObject: APIImportable, ManagedOb
     }
 
     func fetch() -> SignalProducer<[ManagedObject], NSError> {
-        return SignalProducer { observer, disposable in
-            do {
-                let results = try self.dataController.viewContext.fetch(self.fetchRequest)
-                observer.send(value: results)
-                observer.sendCompleted()
-            } catch {
-                observer.send(error: error as NSError)
-            }
-
-        }
+        return SignalProducer(attempt: { try self.dataController.viewContext.fetch(self.fetchRequest) })
     }
 }

@@ -34,7 +34,7 @@ class HomeTimelineViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        disposable += viewModel.fetchNewestToots().logEvents().startWithCompleted {
+        disposable += viewModel.fetchNewestToots().startWithCompleted {
             self.tableView.reloadData()
         }
     }
@@ -42,7 +42,6 @@ class HomeTimelineViewController: UITableViewController {
     // MARK: - Table View
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel.statusViewModels.count)
         return viewModel.statusViewModels.count
     }
 
