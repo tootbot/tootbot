@@ -62,6 +62,10 @@ GEM
       kramdown (~> 1.5)
       octokit (~> 4.2)
       terminal-table (~> 1)
+    danger-linear_history (0.0.1)
+      danger-plugin-api (~> 1.0)
+    danger-plugin-api (1.0.0)
+      danger (> 2.0)
     escape (0.0.4)
     faraday (0.12.0.1)
       multipart-post (>= 1.2, < 3)
@@ -112,6 +116,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods (~> 1.2)
   danger (~> 4.3.5)
+  danger-linear_history (~> 0.0.1)
   pry
   rb-readline
 
