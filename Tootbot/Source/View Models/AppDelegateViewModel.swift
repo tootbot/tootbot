@@ -51,7 +51,7 @@ class AppDelegateViewModel {
     }
 
     func homeTimelineViewModel(account: Account) -> HomeTimelineViewModel? {
-        guard let timeline = account.timeline(with: .home) else { return nil }
+        guard let timeline = account.timeline(ofType: .home) else { return nil }
         return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkController: networkingController)
     }
 }
