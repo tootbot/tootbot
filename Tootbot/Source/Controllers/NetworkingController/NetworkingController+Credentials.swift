@@ -20,6 +20,15 @@ import Freddy
 private let CredentialsService = "._credentials"
 
 extension NetworkingController {
+    func allAccounts() -> [UserAccount] {
+        let accounts = keychain.allAccounts() ?? []
+        return accounts.lazy
+            .filter { serviceName, _ in serviceName != CredentialsService }
+            .map { serviceName, account in UserAccount(instanceURI: serviceName, username: account) }
+    }
+
+    // MARK: - Application Credentials
+    
     func applicationCredentials(for instanceURI: String) -> ApplicationCredentials? {
         return keychain.passwordData(forService: CredentialsService, account: instanceURI)
             .flatMap { passwordData -> JSON? in try? JSON(data: passwordData) }
@@ -39,4 +48,21 @@ extension NetworkingController {
     func deleteApplicationCredentials(for instanceURI: String) -> Bool {
         return keychain.deletePassword(forService: CredentialsService, account: instanceURI)
     }
+
+    // MARK: - Token
+
+    func token(for account: UserAccount) -> String? {
+        return keychain.password(forService: account.instanceURI, account: account.username)
+    }
+
+    @discardableResult
+    func setToken(_ token: String, for account: UserAccount) -> Bool {
+        return keychain.setPassword(token, forService: account.instanceURI, account: account.username)
+    }
+
+    @discardableResult
+    func deleteToken(for account: UserAccount) -> Bool {
+        return keychain.deletePassword(forService: account.instanceURI, account: account.username)
+    }
+
 }

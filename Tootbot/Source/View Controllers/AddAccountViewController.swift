@@ -32,8 +32,8 @@ class AddAccountViewController: UIViewController {
     var loginURLAction: Action<String, URL, AddAccountError>!
     var viewModel: AddAccountViewModel!
 
-    let doneSignal: Signal<Void, NoError>
-    private let doneObserver: Observer<Void, NoError>
+    let doneSignal: Signal<DataController, NoError>
+    private let doneObserver: Observer<DataController, NoError>
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         (self.doneSignal, self.doneObserver) = Signal.pipe()
@@ -59,20 +59,13 @@ class AddAccountViewController: UIViewController {
 
         disposable += loginURLAction.apply(instanceURI).start()
         disposable += viewModel.loginResult(on: instanceURI)
-            .flatMap(.latest) { account in self.viewModel.newOrExistingAccount(from: account, instanceURI: instanceURI) }
-            .observe(on: QueueScheduler.main)
-            .observe { event in
-                switch event {
-                case .failed(let error):
-                    print(error)
-                default:
-                    break
-                }
-
-                if event.isTerminating {
-                    self.dismiss(animated: true)
-                }
-            }
+            .observe(Observer(value: doneObserver.send(value:), failed: { error in
+                print("Login result failed -> \(error)")
+                self.dismiss(animated: true)
+            }, completed: {
+                // Dismiss Safari view controller
+                self.dismiss(animated: true)
+            }))
     }
 
     // MARK: - 

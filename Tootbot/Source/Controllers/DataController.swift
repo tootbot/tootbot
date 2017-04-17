@@ -18,20 +18,90 @@
 import CoreData
 import ReactiveSwift
 
+enum DataControllerError: Error {
+    case loadFailure(Error)
+    case saveFailure(Error)
+}
+
 class DataController {
     let container: NSPersistentContainer
 
-    init() {
-        self.container = NSPersistentContainer(name: "Tootbot")
+    fileprivate init(userAccount: UserAccount) {
+        let name = String(describing: userAccount)
+
+        let modelURL = Bundle.main.url(forResource: "Tootbot", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
+
+        self.container = NSPersistentContainer(name: name, managedObjectModel: model)
     }
 
-    func load() -> SignalProducer<NSPersistentStoreDescription, NSError> {
+    static func load(forAccount userAccount: UserAccount) -> SignalProducer<DataController, DataControllerError> {
+        return SignalProducer.deferred {
+            let dataController = DataController(userAccount: userAccount)
+            return dataController.load()
+                .observe(on: QueueScheduler.main)
+                .map { _ in dataController }
+        }
+    }
+
+    static func create(forAccount accountModel: API.Account, instanceURI: String) -> SignalProducer<DataController, DataControllerError> {
+        return SignalProducer.deferred {
+            let userAccount = UserAccount(instanceURI: instanceURI, username: accountModel.username)
+            let dataController = DataController(userAccount: userAccount)
+            return dataController.load()
+                .flatMap(.latest) { _ in dataController.insertAccount(from: accountModel, instanceURI: instanceURI) }
+                .observe(on: QueueScheduler.main)
+                .map { _ in dataController }
+        }
+    }
+
+    fileprivate func insertAccount(from accountModel: API.Account, instanceURI: String) -> SignalProducer<Account, DataControllerError> {
+        return SignalProducer { observer, disposable in
+            self.perform(backgroundTask: { context in
+                guard !disposable.isDisposed else { return }
+
+                let account = Account(context: context)
+                account.instanceURI = instanceURI
+                account.update(with: accountModel)
+
+                let timeline = Timeline(context: context)
+                timeline.account = account
+                timeline.timelineTypeValue = .home
+
+                do {
+                    try context.save()
+                } catch {
+                    observer.send(error: .saveFailure(error))
+                }
+
+                let managedObjectID = account.objectID
+                DispatchQueue.main.async {
+                    guard !disposable.isDisposed else { return }
+
+                    let viewContext = self.viewContext
+                    let account = viewContext.object(with: managedObjectID) as! Account
+                    observer.send(value: account)
+                    observer.sendCompleted()
+                }
+            })
+        }
+    }
+
+    func account() throws -> Account {
+        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        fetchRequest.fetchLimit = 1
+
+        let results = try viewContext.fetch(fetchRequest)
+        return results[0]
+    }
+
+    fileprivate func load() -> SignalProducer<NSPersistentStoreDescription, DataControllerError> {
         return SignalProducer { observer, disposable in
             self.container.loadPersistentStores { storeDescription, error in
                 observer.send(value: storeDescription)
 
                 if let error = error {
-                    observer.send(error: error as NSError)
+                    observer.send(error: .loadFailure(error))
                 } else {
                     observer.sendCompleted()
                 }

@@ -17,18 +17,12 @@
 
 import Foundation
 
-extension NetworkingController {
-    func token(for account: UserAccount) -> String? {
-        return keychain.password(forService: account.instanceURI, account: account.username)
-    }
-
-    @discardableResult
-    func setToken(_ token: String, for account: UserAccount) -> Bool {
-        return keychain.setPassword(token, forService: account.instanceURI, account: account.username)
-    }
-
-    @discardableResult
-    func deleteToken(for account: UserAccount) -> Bool {
-        return keychain.deletePassword(forService: account.instanceURI, account: account.username)
+extension Account {
+    func update(with model: API.Account) {
+        username = model.username
+        displayName = model.displayName
+        avatarURL = model.avatarURL
+        headerURL = model.headerURL
+        isLocked = model.isLocked
     }
 }

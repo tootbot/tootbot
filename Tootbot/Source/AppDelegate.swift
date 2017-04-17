@@ -15,14 +15,24 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import ReactiveSwift
+import Result
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let disposable = ScopedDisposable(CompositeDisposable())
-    let rootViewController = RootViewController()
-    let viewModel = AppDelegateViewModel(dataController: DataController(), networkingController: NetworkingController())
+    let disposable: ScopedDisposable<CompositeDisposable>
+    let networkingController: NetworkingController
+    let keychain: KeychainProtocol
+    let rootViewController: RootViewController
+
+    override init() {
+        self.disposable = ScopedDisposable(CompositeDisposable())
+        self.keychain = Keychain()
+        self.networkingController = NetworkingController(keychain: self.keychain)
+        self.rootViewController = RootViewController()
+    }
 
     func handle(url: URL) -> Bool {
         guard let applicationProperties = Bundle.main.applicationProperties,
@@ -36,34 +46,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
-        viewModel.networkingController.handleLoginCallback(instanceURI: instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
+        networkingController.handleLoginCallback(instanceURI: instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
         return true
     }
 
-    func loadUI() {
-        let accounts = viewModel.accounts()
-        if let account = accounts.first {
-            let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
-            for viewController in tabBarController.viewControllers ?? [] {
-                guard let navigationController = viewController as? UINavigationController,
-                    let rootViewController = navigationController.viewControllers.first
-                    else { continue }
+    func homeTimelineViewModel(dataController: DataController) -> HomeTimelineViewModel {
+        let account = try! dataController.account()
+        let timeline = account.timeline(ofType: .home)!
+        return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkingController: self.networkingController)!
+    }
 
-                switch rootViewController {
-                case is HomeTimelineViewController:
-                    let homeTimelineViewController = rootViewController as! HomeTimelineViewController
-                    homeTimelineViewController.viewModel = viewModel.homeTimelineViewModel(account: account)
-                default:
-                    break
+    func loadLoggedInStoryboard(homeTimelineViewModel: HomeTimelineViewModel) {
+        let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
+        for viewController in tabBarController.viewControllers ?? [] {
+            guard let navigationController = viewController as? UINavigationController,
+                let rootViewController = navigationController.viewControllers.first
+                else { continue }
+
+            switch rootViewController {
+            case is HomeTimelineViewController:
+                let homeTimelineViewController = rootViewController as! HomeTimelineViewController
+                homeTimelineViewController.viewModel = homeTimelineViewModel
+            default:
+                break
+            }
+        }
+
+        rootViewController.transition(to: tabBarController)
+    }
+
+    func loadLoggedInUI(forAccount userAccount: UserAccount) {
+        disposable += DataController.load(forAccount: userAccount)
+            .mapError { $0 as NSError }
+            .map(homeTimelineViewModel(dataController:))
+            .startWithResult { [unowned self] result in
+                switch result {
+                case .success(let viewModel):
+                    self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel)
+                case .failure(let error):
+                    print("Load UI failure -> \(error)")
                 }
             }
+    }
 
-            rootViewController.transition(to: tabBarController)
-        } else {
-            let addAccount = UIStoryboard(name: "AddAccount", bundle: nil).instantiateInitialViewController() as! AddAccountViewController
-            addAccount.viewModel = viewModel.addAccountViewModel()
-            rootViewController.transition(to: addAccount)
+    func loadLoggedOutUI() {
+        let addAccount = UIStoryboard(name: "AddAccount", bundle: nil).instantiateInitialViewController() as! AddAccountViewController
+        addAccount.viewModel = AddAccountViewModel(networkingController: networkingController)
+
+        disposable += addAccount.doneSignal.observeValues { [unowned self] dataController in
+            let viewModel = self.homeTimelineViewModel(dataController: dataController)
+            self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel)
         }
+
+        rootViewController.transition(to: addAccount)
     }
 
     // MARK: - App Delegate
@@ -76,8 +111,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
-        disposable += viewModel.initializeDataController()
-            .startWithCompleted(loadUI)
+        let accounts = networkingController.allAccounts()
+        if let userAccount = accounts.first {
+            loadLoggedInUI(forAccount: userAccount)
+        } else {
+            loadLoggedOutUI()
+        }
 
         if let url = launchOptions?[.url] as? URL {
             return handle(url: url)

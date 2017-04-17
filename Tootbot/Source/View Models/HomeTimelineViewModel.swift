@@ -28,7 +28,7 @@ enum HomeTimelineError: Swift.Error {
 class HomeTimelineViewModel {
     let dataController: DataController
     let dataFetcher: DataFetcher<Status>
-    let networkController: NetworkingController
+    let networkingController: NetworkingController
     let timeline: Timeline
 
     var statuses = [Status]()
@@ -36,19 +36,19 @@ class HomeTimelineViewModel {
         return statuses.lazy.map { status in StatusViewModel(status: status, managedObjectContext: self.dataController.viewContext) }
     }
 
-    init?(timeline: Timeline, dataController: DataController, networkController: NetworkingController) {
+    init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
         guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
             return nil
         }
 
         self.dataController = dataController
-        self.networkController = networkController
+        self.networkingController = networkingController
         self.timeline = timeline
 
         let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%@ IN %K", timeline, #keyPath(Status.timelines))
 
-        let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkController, endpoint: .homeTimeline)
+        let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkingController, endpoint: .homeTimeline)
         let cacheRequest = CacheRequest(managedObjectContext: self.dataController.viewContext, fetchRequest: fetchRequest)
         let dataImporter = DataImporter<Status>(dataController: self.dataController) { managedObjects in
             managedObjects.forEach { $0.addToTimelines(timeline) }

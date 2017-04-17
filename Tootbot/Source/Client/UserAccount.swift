@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-public struct UserAccount: Hashable, LosslessStringConvertible {
+public struct UserAccount: Hashable, CustomStringConvertible {
     public var instanceURI: String
     public var username: String
 
@@ -30,16 +30,6 @@ public struct UserAccount: Hashable, LosslessStringConvertible {
         }
 
         self.init(instanceURI: instanceURI, username: username)
-    }
-
-    public init?(_ description: String) {
-        let split = description.characters.split(separator: "@")
-        guard split.count == 2 else {
-            return nil
-        }
-
-        self.username = String(split[0])
-        self.instanceURI = String(split[1])
     }
 
     public static func ==(lhs: UserAccount, rhs: UserAccount) -> Bool {
