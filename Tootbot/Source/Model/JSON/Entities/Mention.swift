@@ -19,15 +19,15 @@ import Foundation
 import Freddy
 
 extension API {
-    public struct Mention: JSONDecodable, CoreDataExportable {
-        enum Key: String, CoreDataKey {
+    public struct Mention: JSONDecodable {
+        enum Key: String, JSONPathType {
             case profileURL = "url"
             case username
             case accountName = "acct"
             case accountID = "id"
 
-            static var primaryKey: Key {
-                return .accountID
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
             }
         }
 
@@ -35,10 +35,6 @@ extension API {
         public var profileURL: URL
         public var accountName: String
         public var username: String
-
-        var primaryKeyValue: Any {
-            return accountID
-        }
         
         public init(json: JSON) throws {
             self.accountID = try json.getInt(at: Key.accountID)

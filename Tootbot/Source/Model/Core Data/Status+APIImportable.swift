@@ -21,8 +21,8 @@ import Foundation
 extension Status: APIImportable {
     typealias JSONModel = API.Status
 
-    static var primaryKeyPath: String {
-        return #keyPath(statusID)
+    static func predicate(matching model: API.Status) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", #keyPath(statusID), model.id as NSNumber)
     }
 
     func update(with model: API.Status) {

@@ -40,11 +40,12 @@ enum DataFetcherCachePolicy {
 
 enum DataFetcherError: Swift.Error {
     case moya(MoyaError)
-    case networkRequest(NetworkRequestError)
-    case coreData(NSError)
+    case network(NetworkRequestError)
+    case cache(CacheRequestError)
+    case importer(DataImporterError)
 }
 
-struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
+class DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
     struct JSONModelRequest: NetworkRequestProtocol  {
         typealias Output = JSONCollection<ManagedObject.JSONModel>
 
@@ -65,29 +66,32 @@ struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObj
         }
     }
 
-    let request: JSONModelRequest
     let cacheRequest: CacheRequest<ManagedObject>
+    let dataImporter: DataImporter<ManagedObject>
+    let networkRequest: JSONModelRequest
 
-    init<Request>(request: Request, cacheRequest: CacheRequest<ManagedObject>) where Request: NetworkRequestProtocol, Request.Output == JSONCollection<ManagedObject.JSONModel> {
-        self.request = JSONModelRequest(request)
+    init<Request>(networkRequest: Request, cacheRequest: CacheRequest<ManagedObject>, dataImporter: DataImporter<ManagedObject>)
+        where Request: NetworkRequestProtocol, Request.Output == JSONCollection<ManagedObject.JSONModel>
+    {
         self.cacheRequest = cacheRequest
+        self.dataImporter = dataImporter
+        self.networkRequest = JSONModelRequest(networkRequest)
     }
 
     func fetch(cachePolicy: DataFetcherCachePolicy = .default) -> SignalProducer<[ManagedObject], DataFetcherError> {
         switch cachePolicy {
         case .cacheOnly:
-            return cacheRequest.fetch().mapError(DataFetcherError.coreData)
+            return cacheRequest.fetch().mapError(DataFetcherError.cache)
         case .networkOnly:
-            return request.request()
+            return networkRequest.request()
                 .mapError(DataFetcherError.moya)
                 .attemptMap { response in
-                    self.request.parse(response: response)
-                        .mapError(DataFetcherError.networkRequest)
+                    self.networkRequest.parse(response: response)
+                        .mapError(DataFetcherError.network)
                 }
-                .observe(on: QueueScheduler.main)
-                .map { models -> [ManagedObject] in
-                    let context = self.cacheRequest.dataController.viewContext
-                    return models.elements.map { model in ManagedObject.upsert(model: model, in: context) }
+                .flatMap(.latest) { models in
+                    self.dataImporter.importModels(collection: models)
+                        .mapError(DataFetcherError.importer)
                 }
                 .concat(fetch(cachePolicy: .cacheOnly))
         case .cacheThenNetwork:

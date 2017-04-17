@@ -25,14 +25,9 @@ enum HomeTimelineError: Swift.Error {
     case coreDataFetchError
 }
 
-class HomeTimelineRequest: NetworkRequest<JSONCollection<API.Status>> {
-    init(userAccount: UserAccount, networkingController: NetworkingController) {
-        super.init(userAccount: userAccount, networkingController: networkingController, endpoint: .homeTimeline)
-    }
-}
-
 class HomeTimelineViewModel {
     let dataController: DataController
+    let dataFetcher: DataFetcher<Status>
     let networkController: NetworkingController
     let timeline: Timeline
 
@@ -41,33 +36,28 @@ class HomeTimelineViewModel {
         return statuses.lazy.map { status in StatusViewModel(status: status, managedObjectContext: self.dataController.viewContext) }
     }
 
-    init(timeline: Timeline, dataController: DataController, networkController: NetworkingController) {
+    init?(timeline: Timeline, dataController: DataController, networkController: NetworkingController) {
+        guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
+            return nil
+        }
+
         self.dataController = dataController
         self.networkController = networkController
         self.timeline = timeline
+
+        let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%@ IN %K", timeline, #keyPath(Status.timelines))
+
+        let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkController, endpoint: .homeTimeline)
+        let cacheRequest = CacheRequest(managedObjectContext: self.dataController.viewContext, fetchRequest: fetchRequest)
+        let dataImporter = DataImporter<Status>(dataController: self.dataController) { managedObjects in
+            managedObjects.forEach { $0.addToTimelines(timeline) }
+        }
+        self.dataFetcher = DataFetcher(networkRequest: networkRequest, cacheRequest: cacheRequest, dataImporter: dataImporter)
     }
 
-    func fetchNewestToots() -> SignalProducer<[Status], HomeTimelineError> {
-        return SignalProducer { observer, disposable in
-            guard let account = self.timeline.account.flatMap(UserAccount.init) else {
-                observer.send(error: .invalidTimeline)
-                return
-            }
-
-            let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "%@ IN timelines", self.timeline)
-
-            let request = HomeTimelineRequest(userAccount: account, networkingController: self.networkController)
-            let cacheRequest = CacheRequest<Status>(dataController: self.dataController, fetchRequest: Status.fetchRequest())
-            let dataSource = DataFetcher<Status>(request: request, cacheRequest: cacheRequest)
-
-            disposable += dataSource.fetch()
-                .mapError { error in
-                    print(error)
-                    return .networkingError
-                }
-                .on(value: { self.statuses = $0 })
-                .start(observer)
-        }
+    func fetchNewestToots() -> SignalProducer<[Status], DataFetcherError> {
+        return dataFetcher.fetch()
+            .on(value: { self.statuses = $0 })
     }
 }

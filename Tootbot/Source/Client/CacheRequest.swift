@@ -18,16 +18,31 @@
 import CoreData
 import ReactiveSwift
 
+enum CacheRequestError: Error {
+    case coreData(Error)
+}
+
 struct CacheRequest<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
-    let dataController: DataController
+    let managedObjectContext: NSManagedObjectContext
     let fetchRequest: NSFetchRequest<ManagedObject>
 
-    init(dataController: DataController, fetchRequest: NSFetchRequest<ManagedObject>) {
-        self.dataController = dataController
+    init(managedObjectContext: NSManagedObjectContext, fetchRequest: NSFetchRequest<ManagedObject>) {
+        self.managedObjectContext = managedObjectContext
         self.fetchRequest = fetchRequest
     }
 
-    func fetch() -> SignalProducer<[ManagedObject], NSError> {
-        return SignalProducer(attempt: { try self.dataController.viewContext.fetch(self.fetchRequest) })
+    func fetch() -> SignalProducer<[ManagedObject], CacheRequestError> {
+        return SignalProducer { observer, disposable in
+            let context = self.managedObjectContext
+            context.perform {
+                do {
+                    let results = try context.fetch(self.fetchRequest)
+                    observer.send(value: results)
+                    observer.sendCompleted()
+                } catch {
+                    observer.send(error: .coreData(error))
+                }
+            }
+        }
     }
 }

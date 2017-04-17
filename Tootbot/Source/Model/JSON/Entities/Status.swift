@@ -19,8 +19,8 @@ import Foundation
 import Freddy
 
 extension API {
-    public struct Status: JSONDecodable, CoreDataExportable {
-        enum Key: String, CoreDataKey {
+    public struct Status: JSONDecodable {
+        enum Key: String, JSONPathType {
             case id
             case fediverseURI = "uri"
             case statusURL = "url"
@@ -42,8 +42,8 @@ extension API {
             case tags
             case application
 
-            static var primaryKey: Key {
-                return .id
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
             }
         }
 
