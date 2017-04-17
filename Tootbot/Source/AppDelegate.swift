@@ -97,7 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
-        // Temporary hack until we have some kind of last used account / multiple user support
+        // TODO: Hack until we have some kind of last used account / multiple user support
+        // https://github.com/tootbot/tootbot/issues/28
         func loadAccount(atIndex index: Int, fromAccounts userAccounts: [UserAccount]) {
             guard index < userAccounts.count else {
                 loadLoggedOutUI()
