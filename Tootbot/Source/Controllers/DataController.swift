@@ -21,6 +21,7 @@ import ReactiveSwift
 enum DataControllerError: Error {
     case loadFailure(Error)
     case saveFailure(Error)
+    case invalidStore
 }
 
 class DataController {
@@ -40,7 +41,18 @@ class DataController {
             let dataController = DataController(userAccount: userAccount)
             return dataController.load()
                 .observe(on: QueueScheduler.main)
-                .map { _ in dataController }
+                .attemptMap { _ in
+                    do {
+                        if try dataController.account() != nil {
+                            return .success(dataController)
+                        } else {
+                            // No account -> bad store
+                            return .failure(.invalidStore)
+                        }
+                    } catch {
+                        return .failure(.loadFailure(error))
+                    }
+                }
         }
     }
 
@@ -87,12 +99,12 @@ class DataController {
         }
     }
 
-    func account() throws -> Account {
+    func account() throws -> Account? {
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
         fetchRequest.fetchLimit = 1
 
         let results = try viewContext.fetch(fetchRequest)
-        return results[0]
+        return results.first
     }
 
     fileprivate func load() -> SignalProducer<NSPersistentStoreDescription, DataControllerError> {
