@@ -18,6 +18,7 @@
 import CoreData
 import Moya
 import ReactiveSwift
+import Result
 
 enum AddAccountError: Swift.Error {
     case invalidApplicationProperties
@@ -44,11 +45,16 @@ class AddAccountViewModel {
             .map { credentials in self.networkingController.loginURL(applicationProperties: properties, applicationCredentials: credentials)! }
     }
 
-    func loginResult(on instanceURI: String) -> Signal<DataController, AddAccountError> {
+    /// Result sends a signal when credential verification begins.
+    /// That signal sends a single DataController and completes, or sends an `AddAccountError`.
+    func loginResult(on instanceURI: String) -> Signal<Signal<DataController, AddAccountError>, NoError> {
         return networkingController.loginResult(for: instanceURI)
-            .mapError(AddAccountError.authenticationFailure)
-            .flatMap(.latest) { accountModel in
-                DataController.create(forAccount: accountModel, instanceURI: instanceURI).mapError(AddAccountError.dataController)
+            .map { signal in
+                return signal
+                    .mapError(AddAccountError.authenticationFailure)
+                    .flatMap(.latest) { accountModel in
+                        DataController.create(forAccount: accountModel, instanceURI: instanceURI).mapError(AddAccountError.dataController)
+                    }
             }
     }
 }

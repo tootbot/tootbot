@@ -22,17 +22,9 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let disposable: ScopedDisposable<CompositeDisposable>
-    let networkingController: NetworkingController
-    let keychain: KeychainProtocol
-    let rootViewController: RootViewController
-
-    override init() {
-        self.disposable = ScopedDisposable(CompositeDisposable())
-        self.keychain = Keychain()
-        self.networkingController = NetworkingController(keychain: self.keychain)
-        self.rootViewController = RootViewController()
-    }
+    let disposable = ScopedDisposable(CompositeDisposable())
+    let networkingController = NetworkingController(keychain: Keychain())
+    let rootViewController = RootViewController()
 
     func handle(url: URL) -> Bool {
         guard let applicationProperties = Bundle.main.applicationProperties,
@@ -51,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func homeTimelineViewModel(dataController: DataController) -> HomeTimelineViewModel {
-        let account = try! dataController.account()
+        let account = try! dataController.account()!
         let timeline = account.timeline(ofType: .home)!
         return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkingController: self.networkingController)!
     }
@@ -75,18 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootViewController.transition(to: tabBarController)
     }
 
-    func loadLoggedInUI(forAccount userAccount: UserAccount) {
-        disposable += DataController.load(forAccount: userAccount)
+    func loadLoggedInUI(forAccount userAccount: UserAccount) -> SignalProducer<Void, NSError> {
+        return DataController.load(forAccount: userAccount)
             .mapError { $0 as NSError }
             .map(homeTimelineViewModel(dataController:))
-            .startWithResult { [unowned self] result in
-                switch result {
-                case .success(let viewModel):
-                    self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel)
-                case .failure(let error):
-                    print("Load UI failure -> \(error)")
-                }
-            }
+            .on(value: { viewModel in self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel) })
+            .ignoreValues()
     }
 
     func loadLoggedOutUI() {
@@ -111,12 +97,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
-        let accounts = networkingController.allAccounts()
-        if let userAccount = accounts.first {
-            loadLoggedInUI(forAccount: userAccount)
-        } else {
-            loadLoggedOutUI()
+        // Temporary hack until we have some kind of last used account / multiple user support
+        func loadAccount(atIndex index: Int, fromAccounts userAccounts: [UserAccount]) {
+            guard index < userAccounts.count else {
+                loadLoggedOutUI()
+                return
+            }
+
+            let userAccount = userAccounts[index]
+            loadLoggedInUI(forAccount: userAccount).startWithFailed { error in
+                print("Could not load UI for \(userAccount) -> \(error)")
+                loadAccount(atIndex: index + 1, fromAccounts: userAccounts)
+            }
         }
+
+        loadAccount(atIndex: 0, fromAccounts: networkingController.allAccounts())
 
         if let url = launchOptions?[.url] as? URL {
             return handle(url: url)

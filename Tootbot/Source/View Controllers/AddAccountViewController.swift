@@ -29,11 +29,11 @@ class AddAccountViewController: UIViewController {
     @IBOutlet var logInButton: UIButton!
 
     let disposable = ScopedDisposable(CompositeDisposable())
-    var loginURLAction: Action<String, URL, AddAccountError>!
+    var loginAction: Action<String, DataController, AddAccountError>!
     var viewModel: AddAccountViewModel!
 
     let doneSignal: Signal<DataController, NoError>
-    private let doneObserver: Observer<DataController, NoError>
+    let doneObserver: Observer<DataController, NoError>
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         (self.doneSignal, self.doneObserver) = Signal.pipe()
@@ -57,15 +57,7 @@ class AddAccountViewController: UIViewController {
             instanceURI = "mastodon.social"
         }
 
-        disposable += loginURLAction.apply(instanceURI).start()
-        disposable += viewModel.loginResult(on: instanceURI)
-            .observe(Observer(value: doneObserver.send(value:), failed: { error in
-                print("Login result failed -> \(error)")
-                self.dismiss(animated: true)
-            }, completed: {
-                // Dismiss Safari view controller
-                self.dismiss(animated: true)
-            }))
+        disposable += loginAction.apply(instanceURI).start()
     }
 
     // MARK: - 
@@ -76,18 +68,34 @@ class AddAccountViewController: UIViewController {
 
     func configureReactivity() {
         // Set up action
-        loginURLAction = Action(viewModel.loginURL)
+        loginAction = Action { [unowned self] instanceURI in
+            let replacement = self.viewModel.loginResult(on: instanceURI)
+                .on(value: { [unowned self] signal in
+                    // Credential verification began
+                    self.dismiss(animated: true)
+                })
+                .flatten(.latest)
 
-        // Show Safari view controller with login URLs
-        disposable += loginURLAction.values.observeValues { loginURL in
-            let safariViewController = SFSafariViewController(url: loginURL)
-            self.present(safariViewController, animated: true)
+            return self.viewModel.loginURL(on: instanceURI)
+                .on(value: { [unowned self] loginURL in
+                    let safariViewController = SFSafariViewController(url: loginURL)
+                    self.present(safariViewController, animated: true)
+                })
+
+                // fatalError is NOT called; `filter()` passes through no values
+                .filter { _ in false }
+                .map { _ in fatalError() }
+
+                .take(untilReplacement: replacement)
         }
 
+        // Pass login results through to `doneSignal`
+        loginAction.values.take(first: 1).observe(doneObserver)
+
         // Toggle activity view animating
-        disposable += activityIndicatorView.reactive.isAnimating <~ loginURLAction.isExecuting
+        disposable += activityIndicatorView.reactive.isAnimating <~ loginAction.isExecuting
         // Toggle button enabled
-        disposable += logInButton.reactive.isEnabled <~ loginURLAction.isExecuting.negate()
+        disposable += logInButton.reactive.isEnabled <~ loginAction.isExecuting.negate()
     }
 
     // MARK: - View Life Cycle
@@ -102,7 +110,9 @@ class AddAccountViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        instanceTextField.becomeFirstResponder()
-        instanceTextField.selectedTextRange = instanceTextField.fullTextRange
+        if !loginAction.isExecuting.value {
+            instanceTextField.becomeFirstResponder()
+            instanceTextField.selectedTextRange = instanceTextField.fullTextRange
+        }
     }
 }

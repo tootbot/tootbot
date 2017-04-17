@@ -25,7 +25,7 @@ class NetworkingController {
     var providers: [Authentication: MastodonProvider]
     var keychain: KeychainProtocol
 
-    typealias LoginResult = (instanceURI: String, result: Result<API.Account, MoyaError>)
+    typealias LoginResult = (instanceURI: String, signal: Signal<API.Account, MoyaError>)
     let loginResultSignal: Signal<LoginResult, NoError>
     let loginResultObserver: Observer<LoginResult, NoError>
 
@@ -111,7 +111,7 @@ class NetworkingController {
 
         let noAuthProvider = self.provider(with: .unauthenticated(instanceURI: instanceURI))
         let endpoint = MastodonService.oauthToken(clientID: credentials.oauthCredentials.clientID, clientSecret: credentials.oauthCredentials.clientSecret, authorizationCode: authorizationCode, redirectURI: redirectURI)
-        disposable += noAuthProvider.request(endpoint)
+        noAuthProvider.request(endpoint)
             .mapFreddyJSON()
             .flatMap(.latest) { json -> SignalProducer<String, MoyaError> in
                 do {
@@ -131,15 +131,16 @@ class NetworkingController {
                         self.setToken(accessToken, for: userAccount)
                     })
             }
-            .map(Result.success)
-            .flatMapError { error in SignalProducer(value: .failure(error)) }
-            .map { result in (instanceURI, result) }
-            .start(loginResultObserver)
+            .startWithSignal { signal, observingDisposable in
+                self.loginResultObserver.send(value: (instanceURI, signal))
+                self.disposable += observingDisposable
+            }
+
     }
 
-    func loginResult(for instanceURI: String) -> Signal<API.Account, MoyaError> {
+    func loginResult(for instanceURI: String) -> Signal<Signal<API.Account, MoyaError>, NoError> {
         return loginResultSignal
-            .filter { resultInstanceURI, _ in instanceURI == resultInstanceURI }
-            .flatMap(.latest) { _, result in SignalProducer(result: result) }
+            .filter { value in instanceURI == value.instanceURI }
+            .map { value in value.signal }
     }
 }

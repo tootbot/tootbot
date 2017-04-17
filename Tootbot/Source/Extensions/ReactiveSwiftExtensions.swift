@@ -17,6 +17,14 @@
 
 import ReactiveSwift
 
+extension SignalProtocol {
+    func ignoreValues() -> Signal<Void, Error> {
+        return signal
+            .filter { _ in false }
+            .map { _ in () }
+    }
+}
+
 extension SignalProducerProtocol {
     static func deferred(_ function: @escaping () -> SignalProducer<Value, Error>) -> Self {
         return Self { observer, disposable in disposable += function().start(observer) }
@@ -37,8 +45,6 @@ extension SignalProducerProtocol {
     }
 
     func ignoreValues() -> SignalProducer<Void, Error> {
-        return producer
-            .filter { _ in false }
-            .map { _ in () }
+        return lift { signal in signal.ignoreValues() }
     }
 }
