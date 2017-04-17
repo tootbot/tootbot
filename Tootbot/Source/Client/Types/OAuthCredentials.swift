@@ -17,17 +17,17 @@
 
 import Freddy
 
-enum OAuthCredentialsKey: String, JSONPathType {
-    case id
-    case clientID = "client_id"
-    case clientSecret = "client_secret"
-
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
-    }
-}
-
 public struct OAuthCredentials: JSONDecodable, JSONEncodable {
+    enum Key: String, JSONPathType {
+        case id
+        case clientID = "client_id"
+        case clientSecret = "client_secret"
+
+        func value(in dictionary: [String : JSON]) throws -> JSON {
+            return try rawValue.value(in: dictionary)
+        }
+    }
+
     public var id: String
     public var clientID: String
     public var clientSecret: String
@@ -39,16 +39,16 @@ public struct OAuthCredentials: JSONDecodable, JSONEncodable {
     }
     
     public init(json: JSON) throws {
-        self.id = try json.getString(at: OAuthCredentialsKey.id)
-        self.clientID = try json.getString(at: OAuthCredentialsKey.clientID)
-        self.clientSecret = try json.getString(at: OAuthCredentialsKey.clientSecret)
+        self.id = try json.getString(at: Key.id)
+        self.clientID = try json.getString(at: Key.clientID)
+        self.clientSecret = try json.getString(at: Key.clientSecret)
     }
 
     public func toJSON() -> JSON {
         return [
-            OAuthCredentialsKey.id.rawValue: id.toJSON(),
-            OAuthCredentialsKey.clientID.rawValue: clientID.toJSON(),
-            OAuthCredentialsKey.clientSecret.rawValue: clientSecret.toJSON(),
+            Key.id.rawValue: id.toJSON(),
+            Key.clientID.rawValue: clientID.toJSON(),
+            Key.clientSecret.rawValue: clientSecret.toJSON(),
         ]
     }
 }
