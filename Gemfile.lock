@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/a2/danger-linear_history.git
+  revision: 2760b895114b20c2a1257bbf7adb5f9c2ff4265f
+  branch: a2/fix-failure
+  specs:
+    danger-linear_history (0.0.1)
+      danger-plugin-api (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,7 +59,7 @@ GEM
     colored2 (3.1.2)
     cork (0.3.0)
       colored2 (~> 3.1)
-    danger (4.3.5)
+    danger (5.0.0)
       claide (~> 1.0)
       claide-plugins (>= 0.9.2)
       colored2 (~> 3.1)
@@ -62,8 +70,6 @@ GEM
       kramdown (~> 1.5)
       octokit (~> 4.2)
       terminal-table (~> 1)
-    danger-linear_history (0.0.1)
-      danger-plugin-api (~> 1.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
     escape (0.0.4)
@@ -115,8 +121,8 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (~> 1.2)
-  danger (~> 4.3.5)
-  danger-linear_history (~> 0.0.1)
+  danger (~> 5.0.0)
+  danger-linear_history!
   pry
   rb-readline
 
