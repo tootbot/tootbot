@@ -18,6 +18,7 @@
 import Freddy
 import Moya
 import ReactiveSwift
+import Result
 
 extension Response {
     public func mapFreddyJSON() throws -> JSON {
@@ -43,28 +44,27 @@ extension Response {
 }
 
 extension SignalProducerProtocol where Value == Response, Error == MoyaError {
-    public func attemptMap<U>(_ transform: @escaping (Value) throws -> U) -> SignalProducer<U, MoyaError> {
-        return producer.flatMap(.latest) { response -> SignalProducer<U, MoyaError> in
+    private func wrapMoyaOperation<T, U>(_ operation: @escaping (T) throws -> U) -> (T) -> Result<U, MoyaError> {
+        return { value in
             do {
-                return SignalProducer(value: try transform(response))
+                return .success(try operation(value))
             } catch let error as MoyaError {
-                return SignalProducer(error: error)
+                return .failure(error)
             } catch {
-                // Cast shouldn't fail, but appease the compiler.
-                return SignalProducer(error: .underlying(error))
+                return .failure(.underlying(error))
             }
         }
     }
 
     public func mapFreddyJSON() -> SignalProducer<JSON, MoyaError> {
-        return attemptMap { try $0.mapFreddyJSON() }
+        return attemptMap(wrapMoyaOperation({ try $0.mapFreddyJSON() }))
     }
 
     public func mapFreddyJSONDecoded<Decoded>(_: Decoded.Type = Decoded.self) -> SignalProducer<Decoded, MoyaError> where Decoded: JSONDecodable {
-        return attemptMap { try $0.mapFreddyJSONDecoded() }
+        return attemptMap(wrapMoyaOperation({ try $0.mapFreddyJSONDecoded() }))
     }
 
     public func mapFreddyJSONDecodedArray<Decoded>(_: Decoded.Type = Decoded.self) -> SignalProducer<[Decoded], MoyaError> where Decoded: JSONDecodable {
-        return attemptMap { try $0.mapFreddyJSONDecodedArray() }
+        return attemptMap(wrapMoyaOperation({ try $0.mapFreddyJSONDecodedArray() }))
     }
 }

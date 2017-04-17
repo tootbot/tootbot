@@ -18,10 +18,27 @@
 import ReactiveSwift
 
 extension SignalProducerProtocol {
+    static func deferred(_ function: @escaping () -> SignalProducer<Value, Error>) -> Self {
+        return Self { observer, disposable in disposable += function().start(observer) }
+    }
+
+    init(attempt: @escaping () throws -> Value, transformError: @escaping (Swift.Error) -> Error = { $0 as! Error }) {
+        self.init { observer, disposable in
+            do {
+                let value = try attempt()
+                observer.send(value: value)
+                observer.sendCompleted()
+            } catch let error as Error {
+                observer.send(error: error)
+            } catch {
+                observer.send(error: transformError(error))
+            }
+        }
+    }
+
     func ignoreValues() -> SignalProducer<Void, Error> {
         return producer
             .filter { _ in false }
             .map { _ in () }
     }
 }
-
