@@ -16,23 +16,21 @@
 //
 
 import CoreData
+import Moya
 import ReactiveSwift
 
-enum AddAccountError: Error {
+enum AddAccountError: Swift.Error {
     case invalidApplicationProperties
-    case applicationRegistrationFailure
-    case loginURLGenerationFailure
-    case authenticationFailure
-    case coreDataFetchError
+    case applicationRegistrationFailure(MoyaError)
+    case authenticationFailure(MoyaError)
+    case dataController(DataControllerError)
     case coreDataSaveError
 }
 
 class AddAccountViewModel {
-    let dataController: DataController
     let networkingController: NetworkingController
 
-    init(dataController: DataController, networkingController: NetworkingController) {
-        self.dataController = dataController
+    init(networkingController: NetworkingController) {
         self.networkingController = networkingController
     }
 
@@ -42,64 +40,15 @@ class AddAccountViewModel {
         }
 
         return networkingController.applicationCredentials(for: properties, on: instanceURI)
-            .mapError { _ in .applicationRegistrationFailure }
-            .flatMap(.latest) { credentials -> SignalProducer<URL, AddAccountError> in
-                if let loginURL = self.networkingController.loginURL(applicationProperties: properties, applicationCredentials: credentials) {
-                    return SignalProducer(value: loginURL)
-                } else {
-                    return SignalProducer(error: .loginURLGenerationFailure)
-                }
-            }
+            .mapError(AddAccountError.applicationRegistrationFailure)
+            .map { credentials in self.networkingController.loginURL(applicationProperties: properties, applicationCredentials: credentials)! }
     }
 
-    func loginResult(on instanceURI: String) -> Signal<API.Account, AddAccountError> {
-        return networkingController.loginResult(for: instanceURI).mapError { _ in .authenticationFailure }
-    }
-
-    func newOrExistingAccount(from jsonAccount: API.Account, instanceURI: String) -> SignalProducer<Account, AddAccountError> {
-        return SignalProducer { observer, disposable in
-            self.dataController.perform { context in
-                guard !disposable.isDisposed else { return }
-
-                let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
-                fetchRequest.fetchLimit = 1
-                fetchRequest.predicate = NSPredicate(format: "username == %@ AND instanceURI == %@", jsonAccount.username, instanceURI)
-                fetchRequest.returnsObjectsAsFaults = true
-
-                let existingAccounts: [Account]
-                do {
-                    existingAccounts = try context.fetch(fetchRequest)
-                }  catch {
-                    observer.send(error: .coreDataFetchError)
-                    return
-                }
-
-                let account: Account
-                if let existingAccount = existingAccounts.first {
-                    account = existingAccount
-                } else {
-                    account = Account(context: context)
-                    account.instanceURI = instanceURI
-                    account.username = jsonAccount.username
-
-                    let timeline = Timeline(context: context)
-                    timeline.account = account
-                    timeline.timelineTypeValue = .home
-
-                    do {
-                        try context.save()
-                    } catch {
-                        observer.send(error: AddAccountError.coreDataSaveError)
-                    }
-                }
-
-                let objectID = account.objectID
-                DispatchQueue.main.async {
-                    let accountOnMainQueue = self.dataController.viewContext.object(with: objectID) as! Account
-                    observer.send(value: accountOnMainQueue)
-                    observer.sendCompleted()
-                }
+    func loginResult(on instanceURI: String) -> Signal<DataController, AddAccountError> {
+        return networkingController.loginResult(for: instanceURI)
+            .mapError(AddAccountError.authenticationFailure)
+            .flatMap(.latest) { accountModel in
+                DataController.create(forAccount: accountModel, instanceURI: instanceURI).mapError(AddAccountError.dataController)
             }
-        }
     }
 }

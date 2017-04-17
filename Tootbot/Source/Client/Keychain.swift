@@ -17,7 +17,11 @@
 
 import SAMKeychain
 
-public protocol KeychainProtocol {
+protocol KeychainProtocol {
+    func allAccounts() -> [(serviceName: String, account: String)]?
+    func allServiceNames() -> Set<String>?
+    func accounts(forService serviceName: String) -> [String]?
+
     func passwordData(forService serviceName: String, account: String) -> Data?
 
     @discardableResult
@@ -28,36 +32,63 @@ public protocol KeychainProtocol {
 }
 
 extension KeychainProtocol {
-    public func password(forService serviceName: String, account: String) -> String? {
+    func password(forService serviceName: String, account: String) -> String? {
         return passwordData(forService: serviceName, account: account)
             .flatMap { passwordData in String(data: passwordData, encoding: .utf8) }
     }
 
     @discardableResult
-    public func setPassword(_ password: String, forService serviceName: String, account: String) -> Bool {
-        guard let passwordData = password.data(using: .utf8) else {
-            return false
-        }
-
+    func setPassword(_ password: String, forService serviceName: String, account: String) -> Bool {
+        guard let passwordData = password.data(using: .utf8) else { return false }
         return setPasswordData(passwordData, forService: serviceName, account: account)
     }
 }
 
-public struct Keychain: KeychainProtocol {
-    public init() {
+struct Keychain: KeychainProtocol {
+    init() {
     }
 
-    public func passwordData(forService serviceName: String, account: String) -> Data? {
+    func allAccounts() -> [(serviceName: String, account: String)]? {
+        guard let accounts = SAMKeychain.allAccounts() else {
+            return nil
+        }
+
+        return accounts.flatMap { properties in
+            if let serviceName = properties[kSecAttrService as String] as? String, let account = properties[kSecAttrAccount as String] as? String {
+                return (serviceName, account)
+            } else {
+                return nil
+            }
+        }
+    }
+
+    func allServiceNames() -> Set<String>? {
+        guard let accounts = allAccounts() else {
+            return nil
+        }
+
+        return Set(accounts.map({ $0.serviceName }))
+    }
+
+    func accounts(forService serviceName: String) -> [String]? {
+        guard let accounts = SAMKeychain.accounts(forService: serviceName) else {
+            return nil
+        }
+
+        return accounts.flatMap { account in account[kSecAttrAccount as String] as? String }
+    }
+
+    func passwordData(forService serviceName: String, account: String) -> Data? {
         return SAMKeychain.passwordData(forService: serviceName, account: account)
     }
 
     @discardableResult
-    public func deletePassword(forService serviceName: String, account: String) -> Bool {
+    func deletePassword(forService serviceName: String, account: String) -> Bool {
         return SAMKeychain.deletePassword(forService: serviceName, account: account)
     }
 
     @discardableResult
-    public func setPasswordData(_ passwordData: Data, forService serviceName: String, account: String) -> Bool {
+    func setPasswordData(_ passwordData: Data, forService serviceName: String, account: String) -> Bool {
         return SAMKeychain.setPasswordData(passwordData, forService: serviceName, account: account)
     }
 }

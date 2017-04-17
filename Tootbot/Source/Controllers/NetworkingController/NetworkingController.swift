@@ -20,7 +20,7 @@ import Moya
 import ReactiveSwift
 import Result
 
-public class NetworkingController {
+class NetworkingController {
     let disposable: ScopedDisposable<CompositeDisposable>
     var providers: [Authentication: MastodonProvider]
     var keychain: KeychainProtocol
@@ -29,7 +29,7 @@ public class NetworkingController {
     let loginResultSignal: Signal<LoginResult, NoError>
     let loginResultObserver: Observer<LoginResult, NoError>
 
-    public init(keychain: KeychainProtocol = Keychain()) {
+    init(keychain: KeychainProtocol) {
         let disposable = ScopedDisposable(CompositeDisposable())
         self.disposable = disposable
         self.keychain = keychain
@@ -56,7 +56,7 @@ public class NetworkingController {
         return provider
     }
 
-    public func request(_ endpoint: MastodonService, authentication: Authentication) -> SignalProducer<Response, MoyaError> {
+    func request(_ endpoint: MastodonService, authentication: Authentication) -> SignalProducer<Response, MoyaError> {
         return SignalProducer { observer, disposable in
             let provider = self.provider(with: authentication)
             disposable += provider.request(endpoint).start(observer)
@@ -70,7 +70,7 @@ public class NetworkingController {
         return components.url
     }
 
-    public func loginURL(applicationProperties: ApplicationProperties, applicationCredentials: ApplicationCredentials) -> URL? {
+    func loginURL(applicationProperties: ApplicationProperties, applicationCredentials: ApplicationCredentials) -> URL? {
         guard let baseURL = baseURL(for: applicationCredentials.instanceURI) else {
             return nil
         }
@@ -80,7 +80,7 @@ public class NetworkingController {
         return MoyaProvider<DynamicTarget<MastodonService>>.defaultEndpointMapping(for: target).urlRequest?.url
     }
 
-    public func applicationCredentials(for application: ApplicationProperties, on instanceURI: String) -> SignalProducer<ApplicationCredentials, MoyaError> {
+    func applicationCredentials(for application: ApplicationProperties, on instanceURI: String) -> SignalProducer<ApplicationCredentials, MoyaError> {
         return SignalProducer.deferred {
             if let credentials = self.applicationCredentials(for: instanceURI) {
                 return SignalProducer(value: credentials)
@@ -90,7 +90,7 @@ public class NetworkingController {
         }
     }
 
-    public func register(application: ApplicationProperties, on instanceURI: String) -> SignalProducer<ApplicationCredentials, MoyaError> {
+    func register(application: ApplicationProperties, on instanceURI: String) -> SignalProducer<ApplicationCredentials, MoyaError> {
         let endpoint = MastodonService.registerApp(
             clientName: application.clientName,
             redirectURI: application.redirectURI,
@@ -104,7 +104,7 @@ public class NetworkingController {
             .on(value: { credentials in self.setApplicationCredentials(credentials, for: instanceURI) })
     }
 
-    public func handleLoginCallback(instanceURI: String, authorizationCode: String, redirectURI: String) {
+    func handleLoginCallback(instanceURI: String, authorizationCode: String, redirectURI: String) {
         guard let credentials = applicationCredentials(for: instanceURI) else {
             return
         }
