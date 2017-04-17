@@ -10,3 +10,5 @@ license_checker.check(
   files: changed_swift,
   license_path: 'danger_plugins/required_license.txt'
 )
+
+linear_history.validate!(soft_fail: false)
