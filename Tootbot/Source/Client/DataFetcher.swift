@@ -21,151 +21,79 @@ import Result
 import Moya
 import Freddy
 
-enum NetworkRequestError: Swift.Error {
-    case unimplementedParseMethod
-    case json(JSON.Error)
-    case underlying(Swift.Error)
-}
+enum DataFetcherCachePolicy {
+    /// Load from the Core Data cache without making a network request
+    case cacheOnly
 
-struct JSONCollection<T>: JSONDecodable, CustomStringConvertible, CustomDebugStringConvertible where T: JSONDecodable {
-    var elements: [T]
+    /// Ignoring cached data, makes a network request and returns resulting data
+    case networkOnly
 
-    init(_ elements: [T]) {
-        self.elements = elements
-    }
+    /// Reads from cache and loads from network simultaneously.
+    /// Provides cached results as 'value' event before network returns (two 'value' events).
+    /// If network returns first, cached values are not returne (one 'value' event).
+    case cacheThenNetwork
 
-    init(json: JSON) throws {
-        guard case .array(let elements) = json else {
-            throw JSON.Error.valueNotConvertible(value: json, to: JSONCollection<T>.self)
-        }
-
-        self.elements = try elements.map { json in try T(json: json) }
-    }
-
-    var description: String {
-        return String(describing: elements)
-    }
-
-    var debugDescription: String {
-        return String(reflecting: elements)
+    static var `default`: DataFetcherCachePolicy {
+        return .cacheThenNetwork
     }
 }
 
-protocol NetworkRequestProtocol {
-    associatedtype Output
-
-    func request() -> SignalProducer<Response, MoyaError>
-    func parse(response: Response) -> Result<Output, NetworkRequestError>
-}
-
-class NetworkRequest<T>: NetworkRequestProtocol where T: JSONDecodable {
-    typealias Output = T
-
-    let networkingController: NetworkingController
-    let userAccount: UserAccount
-    let endpoint: MastodonService
-
-    init(userAccount: UserAccount, networkingController: NetworkingController, endpoint: MastodonService) {
-        self.endpoint = endpoint
-        self.networkingController = networkingController
-        self.userAccount = userAccount
-    }
-
-    func request() -> SignalProducer<Response, MoyaError> {
-        return networkingController.request(endpoint, authentication: .authenticated(account: userAccount))
-    }
-
-    func parse(response: Response) -> Result<Output, NetworkRequestError> {
-        do {
-            let json = try JSON(data: response.data)
-            let value = try Output(json: json)
-            return .success(value)
-        } catch {
-            return .failure(.underlying(error))
-        }
-    }
-}
-
-enum CachePolicy {
-    case localOnly
-    case remoteOnly
-    case localThenRemote
-
-    static var `default`: CachePolicy {
-        return .localThenRemote
-    }
-}
-
-struct ManagedObjectRequest<ManagedObject>: NetworkRequestProtocol where ManagedObject: APIImportable, ManagedObject.T == ManagedObject, ManagedObject.JSONModel: JSONDecodable {
-    typealias Output = JSONCollection<ManagedObject.JSONModel>
-
-    let requestFunction: () -> SignalProducer<Response, MoyaError>
-    let parseFunction: (Response) -> Result<Output, NetworkRequestError>
-
-    init<R>(_ request: R) where R: NetworkRequestProtocol, R.Output == Output {
-        self.requestFunction = request.request
-        self.parseFunction = request.parse
-    }
-
-    func request() -> SignalProducer<Response, MoyaError> {
-        return requestFunction()
-    }
-
-    func parse(response: Response) -> Result<Output, NetworkRequestError> {
-        return parseFunction(response)
-    }
+enum DataFetcherError: Swift.Error {
+    case moya(MoyaError)
+    case networkRequest(NetworkRequestError)
+    case coreData(NSError)
 }
 
 struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
-    enum Error: Swift.Error {
-        case moya(MoyaError)
-        case networkRequest(NetworkRequestError)
-        case coreData(NSError)
+    struct JSONModelRequest: NetworkRequestProtocol  {
+        typealias Output = JSONCollection<ManagedObject.JSONModel>
+
+        private let requestFunction: () -> SignalProducer<Response, MoyaError>
+        private let parseFunction: (Response) -> Result<Output, NetworkRequestError>
+
+        init<R>(_ request: R) where R: NetworkRequestProtocol, R.Output == Output {
+            self.requestFunction = request.request
+            self.parseFunction = request.parse
+        }
+
+        func request() -> SignalProducer<Response, MoyaError> {
+            return requestFunction()
+        }
+
+        func parse(response: Response) -> Result<Output, NetworkRequestError> {
+            return parseFunction(response)
+        }
     }
-    
-    let request: ManagedObjectRequest<ManagedObject>
+
+    let request: JSONModelRequest
     let cacheRequest: CacheRequest<ManagedObject>
 
     init<Request>(request: Request, cacheRequest: CacheRequest<ManagedObject>) where Request: NetworkRequestProtocol, Request.Output == JSONCollection<ManagedObject.JSONModel> {
-        self.request = ManagedObjectRequest(request)
+        self.request = JSONModelRequest(request)
         self.cacheRequest = cacheRequest
     }
 
-    func fetch(cachePolicy: CachePolicy = .default) -> SignalProducer<[ManagedObject], Error> {
+    func fetch(cachePolicy: DataFetcherCachePolicy = .default) -> SignalProducer<[ManagedObject], DataFetcherError> {
         switch cachePolicy {
-        case .localOnly:
-            return cacheRequest.fetch().mapError(Error.coreData)
-        case .remoteOnly:
+        case .cacheOnly:
+            return cacheRequest.fetch().mapError(DataFetcherError.coreData)
+        case .networkOnly:
             return request.request()
-                .mapError(Error.moya)
+                .mapError(DataFetcherError.moya)
                 .attemptMap { response in
                     self.request.parse(response: response)
-                        .mapError(Error.networkRequest)
+                        .mapError(DataFetcherError.networkRequest)
                 }
                 .observe(on: QueueScheduler.main)
                 .map { models -> [ManagedObject] in
                     let context = self.cacheRequest.dataController.viewContext
                     return models.elements.map { model in ManagedObject.upsert(model: model, in: context) }
                 }
-                .concat(fetch(cachePolicy: .localOnly))
-        case .localThenRemote:
-            let local = fetch(cachePolicy: .localOnly)
-            let remote = fetch(cachePolicy: .remoteOnly)
+                .concat(fetch(cachePolicy: .cacheOnly))
+        case .cacheThenNetwork:
+            let local = fetch(cachePolicy: .cacheOnly)
+            let remote = fetch(cachePolicy: .networkOnly)
             return local.take(untilReplacement: remote)
         }
-    }
-}
-
-struct CacheRequest<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
-    let dataController: DataController
-    let fetchRequest: NSFetchRequest<ManagedObject>
-
-    init(dataController: DataController, fetchRequest: NSFetchRequest<ManagedObject>) {
-        self.dataController = dataController
-        self.fetchRequest = fetchRequest
-    }
-
-    func fetch() -> SignalProducer<[ManagedObject], NSError> {
-        return SignalProducer(attempt: { try self.dataController.viewContext.fetch(self.fetchRequest) })
     }
 }
