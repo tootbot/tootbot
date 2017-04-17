@@ -19,15 +19,20 @@ import CoreData
 import Foundation
 
 extension Account {
-    func timeline(with type: TimelineType) -> Timeline? {
+    func timeline(ofType timelineType: TimelineType) -> Timeline? {
         guard let context = managedObjectContext else {
             return nil
         }
 
         let fetchRequest: NSFetchRequest<Timeline> = Timeline.fetchRequest()
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "account == %@ AND timelineType == %@", self, type.rawValue)
+        fetchRequest.predicate = NSPredicate(format: "account == %@ AND timelineType == %@", self, timelineType.rawValue)
 
-        return (try? context.fetch(fetchRequest))?.first
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results.first
+        } catch {
+            return nil
+        }
     }
 }
