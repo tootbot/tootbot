@@ -13,7 +13,7 @@ Tootbot uses [CocoaPods](https://cocoapods.org) for dependency management. Make 
 
 ## License
 
-> Copyright (C) 2017 Alexsander Akers and Tootbot Contributors
+> Copyright (C) 2017 Tootbot Contributors
 >
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU Affero General Public License as published
