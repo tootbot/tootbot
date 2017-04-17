@@ -15,18 +15,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Freddy
+import CoreData
+import Foundation
 
-protocol CoreDataKey: JSONPathType {
-    static var primaryKey: Self { get }
-}
+extension Mention: APIImportable {
+    typealias JSONModel = API.Mention
 
-extension CoreDataKey where Self: RawRepresentable, Self.RawValue: JSONPathType {
-    func value(in dictionary: [String : JSON]) throws -> JSON {
-        return try rawValue.value(in: dictionary)
+    static func predicate(matching model: API.Mention) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", #keyPath(userID), model.accountID as NSNumber)
     }
 
-    func value(in array: [JSON]) throws -> JSON {
-        return try rawValue.value(in: array)
+    func update(with model: API.Mention) {
+        accountName = model.accountName
+        profileURL = model.profileURL
+        userID = Int64(model.accountID)
+        username = model.username
     }
 }

@@ -32,9 +32,7 @@ protocol NetworkRequestProtocol {
     func parse(response: Response) -> Result<Output, NetworkRequestError>
 }
 
-class NetworkRequest<T>: NetworkRequestProtocol where T: JSONDecodable {
-    typealias Output = T
-
+struct NetworkRequest<Output>: NetworkRequestProtocol where Output: JSONDecodable {
     let networkingController: NetworkingController
     let userAccount: UserAccount
     let endpoint: MastodonService

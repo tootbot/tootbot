@@ -19,8 +19,8 @@ import Foundation
 import Freddy
 
 extension API {
-    public struct Account: JSONDecodable, CoreDataExportable {
-        enum Key: String, CoreDataKey {
+    public struct Account: JSONDecodable {
+        enum Key: String, JSONPathType {
             case id
             case username
             case accountName = "acct"
@@ -35,8 +35,8 @@ extension API {
             case followingCount = "following_count"
             case statusesCount = "statuses_count"
 
-            static var primaryKey: Key {
-                return .id
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
             }
         }
 
@@ -53,10 +53,6 @@ extension API {
         public var followersCount: Int
         public var followingCount: Int
         public var statusesCount: Int
-
-        public var primaryKeyValue: Any {
-            return id
-        }
 
         public init(json: JSON) throws {
             self.id = try json.getInt(at: Key.id)

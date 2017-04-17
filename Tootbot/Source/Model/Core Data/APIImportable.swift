@@ -16,13 +16,14 @@
 //
 
 import CoreData
+import Freddy
 
 protocol APIImportable {
-    associatedtype JSONModel: CoreDataExportable
+    associatedtype JSONModel: JSONDecodable
 
     associatedtype T: NSManagedObject = Self
 
-    static var primaryKeyPath: String { get }
+    static func predicate(matching model: JSONModel) -> NSPredicate
 
     static func find(matching model: JSONModel, in context: NSManagedObjectContext) -> T?
 
@@ -33,13 +34,25 @@ protocol APIImportable {
 
 extension APIImportable where Self == T {
     static func find(matching model: JSONModel, in context: NSManagedObjectContext) -> T? {
-        let fetchRequest = Self.fetchRequest()
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSComparisonPredicate(leftExpression: NSExpression(forKeyPath: Self.primaryKeyPath), rightExpression: NSExpression(forConstantValue: model.primaryKeyValue), modifier: .direct, type: .equalTo)
+        let predicate = self.predicate(matching: model)
+
+        let fetchRequest = T.fetchRequest()
+        fetchRequest.predicate = predicate
+
+        #if !DEBUG
+            fetchRequest.fetchLimit = 1
+        #endif
 
         do {
             let results = try context.fetch(fetchRequest)
-            return results.first as? Self
+
+            #if DEBUG
+                if results.count > 1 {
+                    print("Multiple \(T.self) entities match predicate \(predicate) -> \(results)")
+                }
+            #endif
+
+            return results.first as? T
         } catch {
             print("Core Data fetch error -> \(error)")
             return nil

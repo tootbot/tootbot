@@ -21,8 +21,8 @@ import Foundation
 extension Attachment: APIImportable {
     typealias JSONModel = API.Attachment
 
-    static var primaryKeyPath: String {
-        return #keyPath(attachmentID)
+    static func predicate(matching model: API.Attachment) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", #keyPath(attachmentID), model.id as NSNumber)
     }
 
     func update(with model: API.Attachment) {

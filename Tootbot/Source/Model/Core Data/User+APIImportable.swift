@@ -18,17 +18,28 @@
 import CoreData
 import Foundation
 
-extension Mention: APIImportable {
-    typealias JSONModel = API.Mention
+extension User: APIImportable {
+    typealias JSONModel = API.Account
 
-    static var primaryKeyPath: String {
-        return #keyPath(userID)
+    static func predicate(matching model: API.Account) -> NSPredicate {
+        return NSPredicate(format: "%K == %@", #keyPath(userID), model.id as NSNumber)
     }
 
-    func update(with model: API.Mention) {
-        accountName = model.accountName
-        profileURL = model.profileURL
-        userID = Int64(model.accountID)
+    func update(with model: API.Account) {
+        userID = Int64(model.id)
         username = model.username
+        accountName = model.accountName
+        displayName = model.displayName
+        note = model.note
+        websiteURL = model.websiteURL
+        avatarURL = model.avatarURL
+        headerURL = model.headerURL
+        isLocked = model.isLocked
+        createdAt = model.createdAt as NSDate
+        followersCount = Int64(model.followersCount)
+        followingCount = Int64(model.followersCount)
+        statusesCount = Int64(model.statusesCount)
+
+        updatedAt = NSDate()
     }
 }

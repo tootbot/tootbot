@@ -19,14 +19,14 @@ import Foundation
 import Freddy
 
 extension API {
-    public struct Attachment: JSONDecodable, CoreDataExportable {
+    public struct Attachment: JSONDecodable {
         public enum MediaType: String, JSONTransformable {
             case image
             case video
             case gifv
         }
 
-        enum Key: String, CoreDataKey {
+        enum Key: String, JSONPathType {
             case id
             case type
             case url
@@ -34,8 +34,8 @@ extension API {
             case previewURL = "preview_url"
             case textURL = "text_url"
 
-            static var primaryKey: Key {
-                return .id
+            func value(in dictionary: [String : JSON]) throws -> JSON {
+                return try rawValue.value(in: dictionary)
             }
         }
 
@@ -46,10 +46,6 @@ extension API {
         public var previewURL: URL
         public var textURL: URL?
 
-        var primaryKeyValue: Any {
-            return id
-        }
-        
         public init(json: JSON) throws {
             self.id = try json.getInt(at: Key.id)
             self.type = try json.decode(at: Key.type)
