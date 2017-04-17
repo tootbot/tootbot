@@ -154,8 +154,8 @@
 		83DB2F4A1EA23D1500AD7080 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonService.swift; sourceTree = "<group>"; };
 		83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
-		83DB2F4D1EA23D1500AD7080 /* NetworkingController+Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NetworkingController+Credentials.swift"; path = "NetworkingController/NetworkingController+Credentials.swift"; sourceTree = "<group>"; };
-		83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingController.swift; path = NetworkingController/NetworkingController.swift; sourceTree = "<group>"; };
+		83DB2F4D1EA23D1500AD7080 /* NetworkingController+Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NetworkingController+Credentials.swift"; path = "NetworkingController+Credentials.swift"; sourceTree = "<group>"; };
+		83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingController.swift; path = NetworkingController.swift; sourceTree = "<group>"; };
 		83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
 		83DB2F521EA23D1500AD7080 /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
 		83DB2F531EA23D1500AD7080 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -213,6 +213,7 @@
 				2E646AC81EA3E54A00D05E73 /* Attachment+MediaType.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8317E6D71E9BD870003F1AA2 = {
@@ -284,7 +285,7 @@
 				832D554F1EA2CD3C00393BC5 /* Cells */,
 			);
 			name = Views;
-			path = "View Controllers";
+			path = Views;
 			sourceTree = "<group>";
 		};
 		832D554F1EA2CD3C00393BC5 /* Cells */ = {
@@ -294,6 +295,7 @@
 				832D55521EA2CDB900393BC5 /* TableViewCell.swift */,
 			);
 			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		83606DDF1EA546C4003F9D45 /* Networking */ = {
@@ -304,7 +306,7 @@
 				83DB2F461EA23D1500AD7080 /* Authentication.swift */,
 			);
 			name = Networking;
-			path = Client;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		83606DE01EA54A28003F9D45 /* Data Import */ = {
@@ -317,6 +319,7 @@
 				2E646ABC1EA3D96300D05E73 /* User+APIImportable.swift */,
 			);
 			name = "Data Import";
+			path = "Data Import";
 			sourceTree = "<group>";
 		};
 		83851F811EA2821500BFA80B /* Extensions */ = {
