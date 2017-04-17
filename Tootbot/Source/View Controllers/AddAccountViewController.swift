@@ -16,6 +16,7 @@
 //
 
 import KeyboardLayoutGuide
+import ReactiveCocoa
 import ReactiveSwift
 import Result
 import SafariServices

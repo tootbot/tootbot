@@ -40,10 +40,7 @@
 		83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F841EA2861900BFA80B /* AddAccountViewModel.swift */; };
 		83851F871EA29ABA00BFA80B /* AppDelegateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F861EA29ABA00BFA80B /* AppDelegateViewModel.swift */; };
 		83851F891EA29C3300BFA80B /* ReactiveSwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */; };
-		8386B4E01EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8386B4DF1EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift */; };
-		8386B4E21EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8386B4E11EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift */; };
 		8386B4E41EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */; };
-		8386B4E61EA2A8B600B58EB2 /* UIButton+ReactiveSwift copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8386B4E51EA2A8B600B58EB2 /* UIButton+ReactiveSwift copy.swift */; };
 		83DB2F1D1EA22D7000AD7080 /* TootbotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */; };
 		83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F441EA23D1500AD7080 /* ApplicationCredentials.swift */; };
 		83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */; };
@@ -141,10 +138,7 @@
 		83851F841EA2861900BFA80B /* AddAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewModel.swift; sourceTree = "<group>"; };
 		83851F861EA29ABA00BFA80B /* AppDelegateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateViewModel.swift; sourceTree = "<group>"; };
 		83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensions.swift; sourceTree = "<group>"; };
-		8386B4DF1EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+ReactiveSwift.swift"; sourceTree = "<group>"; };
-		8386B4E11EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ReactiveSwift.swift"; sourceTree = "<group>"; };
 		8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextInput+FullTextRange.swift"; sourceTree = "<group>"; };
-		8386B4E51EA2A8B600B58EB2 /* UIButton+ReactiveSwift copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ReactiveSwift copy.swift"; sourceTree = "<group>"; };
 		83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootbotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootbotTests.swift; sourceTree = "<group>"; };
 		83DB2F1E1EA22D7000AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,10 +311,7 @@
 		83851F811EA2821500BFA80B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8386B4E11EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift */,
 				83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */,
-				8386B4DF1EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift */,
-				8386B4E51EA2A8B600B58EB2 /* UIButton+ReactiveSwift copy.swift */,
 				8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */,
 				83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */,
 			);
@@ -647,7 +638,6 @@
 				83DB2F8F1EA2642600AD7080 /* API.swift in Sources */,
 				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
 				832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */,
-				8386B4E21EA2A49900B58EB2 /* NSObject+ReactiveSwift.swift in Sources */,
 				2E646AC31EA3E12700D05E73 /* Status+DataImport.swift in Sources */,
 				83DB2F851EA23D1500AD7080 /* Status.swift in Sources */,
 				83DB2F691EA23D1500AD7080 /* DynamicProvider.swift in Sources */,
@@ -663,7 +653,6 @@
 				83DB2F6E1EA23D1500AD7080 /* Moya+Freddy.swift in Sources */,
 				83DB2F681EA23D1500AD7080 /* Authentication.swift in Sources */,
 				83DB2F7E1EA23D1500AD7080 /* JSONTransformable.swift in Sources */,
-				8386B4E61EA2A8B600B58EB2 /* UIButton+ReactiveSwift copy.swift in Sources */,
 				83DB2F741EA23D1500AD7080 /* SubTargetType.swift in Sources */,
 				83DB2F6F1EA23D1500AD7080 /* NetworkingController+ApplicationCredentials.swift in Sources */,
 				83851F891EA29C3300BFA80B /* ReactiveSwiftExtensions.swift in Sources */,
@@ -680,7 +669,6 @@
 				832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */,
 				2E646ABF1EA3DB0900D05E73 /* CoreDataKey.swift in Sources */,
 				83DB2F7A1EA23D1500AD7080 /* Card.swift in Sources */,
-				8386B4E01EA2A44700B58EB2 /* UIActivityIndicatorView+ReactiveSwift.swift in Sources */,
 				83DB2F801EA23D1500AD7080 /* Notification.swift in Sources */,
 				83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */,
 				83DB2F6B1EA23D1500AD7080 /* FormData.swift in Sources */,
