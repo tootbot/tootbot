@@ -151,13 +151,7 @@ struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObj
         case .localThenRemote:
             let local = fetch(cachePolicy: .localOnly)
             let remote = fetch(cachePolicy: .remoteOnly)
-            return SignalProducer { observer, disposable in
-                let localDisposable = local.start(observer)
-                disposable += localDisposable
-
-                let remoteDisposable = remote.on(completed: localDisposable.dispose).start(observer)
-                disposable += remoteDisposable
-            }
+            return local.take(untilReplacement: remote)
         }
     }
 }
