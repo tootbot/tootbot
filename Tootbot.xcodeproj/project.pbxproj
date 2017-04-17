@@ -35,6 +35,9 @@
 		832D55531EA2CDB900393BC5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55521EA2CDB900393BC5 /* TableViewCell.swift */; };
 		832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */; };
 		832D55571EA2D75A00393BC5 /* Account+Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55561EA2D75A00393BC5 /* Account+Timeline.swift */; };
+		83606DD81EA518DD003F9D45 /* JSONCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DD71EA518DD003F9D45 /* JSONCollection.swift */; };
+		83606DDA1EA518F4003F9D45 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DD91EA518F4003F9D45 /* NetworkRequest.swift */; };
+		83606DDC1EA5199C003F9D45 /* CacheRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DDB1EA5199C003F9D45 /* CacheRequest.swift */; };
 		83851F7E1EA2818500BFA80B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7D1EA2818500BFA80B /* RootViewController.swift */; };
 		83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */; };
 		83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F841EA2861900BFA80B /* AddAccountViewModel.swift */; };
@@ -133,6 +136,9 @@
 		832D55521EA2CDB900393BC5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timeline+TimelineType.swift"; sourceTree = "<group>"; };
 		832D55561EA2D75A00393BC5 /* Account+Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Timeline.swift"; sourceTree = "<group>"; };
+		83606DD71EA518DD003F9D45 /* JSONCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollection.swift; sourceTree = "<group>"; };
+		83606DD91EA518F4003F9D45 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		83606DDB1EA5199C003F9D45 /* CacheRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheRequest.swift; sourceTree = "<group>"; };
 		83851F7D1EA2818500BFA80B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		83851F7F1EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAutoresizing+FlexibleSize.swift"; sourceTree = "<group>"; };
 		83851F841EA2861900BFA80B /* AddAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewModel.swift; sourceTree = "<group>"; };
@@ -334,8 +340,10 @@
 				83DB2F8A1EA23D8100AD7080 /* Types */,
 				83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */,
 				83DB2F461EA23D1500AD7080 /* Authentication.swift */,
+				83606DDB1EA5199C003F9D45 /* CacheRequest.swift */,
 				2E646AB61EA3BADA00D05E73 /* DataFetcher.swift */,
 				83DB2F4A1EA23D1500AD7080 /* Keychain.swift */,
+				83606DD91EA518F4003F9D45 /* NetworkRequest.swift */,
 				83DB2F531EA23D1500AD7080 /* UserAccount.swift */,
 			);
 			path = Client;
@@ -424,6 +432,7 @@
 			children = (
 				83DB2F891EA23D6A00AD7080 /* Entities */,
 				83DB2F8E1EA2642600AD7080 /* API.swift */,
+				83606DD71EA518DD003F9D45 /* JSONCollection.swift */,
 				83DB2F581EA23D1500AD7080 /* Box.swift */,
 				83DB2F5B1EA23D1500AD7080 /* DateFormatter.swift */,
 				83DB2F5D1EA23D1500AD7080 /* JSONTransformable.swift */,
@@ -637,6 +646,7 @@
 				83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */,
 				83DB2F8F1EA2642600AD7080 /* API.swift in Sources */,
 				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
+				83606DDA1EA518F4003F9D45 /* NetworkRequest.swift in Sources */,
 				832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */,
 				2E646AC31EA3E12700D05E73 /* Status+DataImport.swift in Sources */,
 				83DB2F851EA23D1500AD7080 /* Status.swift in Sources */,
@@ -655,6 +665,7 @@
 				83DB2F7E1EA23D1500AD7080 /* JSONTransformable.swift in Sources */,
 				83DB2F741EA23D1500AD7080 /* SubTargetType.swift in Sources */,
 				83DB2F6F1EA23D1500AD7080 /* NetworkingController+ApplicationCredentials.swift in Sources */,
+				83606DDC1EA5199C003F9D45 /* CacheRequest.swift in Sources */,
 				83851F891EA29C3300BFA80B /* ReactiveSwiftExtensions.swift in Sources */,
 				83DB2F861EA23D1500AD7080 /* Tag.swift in Sources */,
 				83DB2F7C1EA23D1500AD7080 /* DateFormatter.swift in Sources */,
@@ -687,6 +698,7 @@
 				83DB2F761EA23D1500AD7080 /* Account.swift in Sources */,
 				83DB2F7D1EA23D1500AD7080 /* Instance.swift in Sources */,
 				832D554D1EA2CBBC00393BC5 /* StatusViewModel.swift in Sources */,
+				83606DD81EA518DD003F9D45 /* JSONCollection.swift in Sources */,
 				83DB2F711EA23D1500AD7080 /* NetworkingController.swift in Sources */,
 				832D554B1EA2C30400393BC5 /* HomeTimelineViewModel.swift in Sources */,
 				83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */,
