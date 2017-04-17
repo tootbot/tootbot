@@ -2,9 +2,7 @@ source 'https://rubygems.org'
 
 gem 'cocoapods', '~> 1.2'
 gem 'danger', '~> 5.0.0'
-gem 'danger-linear_history',
-  github: 'a2/danger-linear_history',
-  branch: 'a2/fix-failure'
+gem 'danger-linear_history', '~> 0.0.2'
 
 group :development do
   gem 'pry'
