@@ -92,6 +92,10 @@ class AddAccountViewController: UIViewController {
         // Pass login results through to `doneSignal`
         loginAction.values.take(first: 1).observe(doneObserver)
 
+        // TODO: Handle login verification errors
+        // https://github.com/tootbot/tootbot/issues/26
+        // disposable += loginAction.errors.observeValues { error in }
+
         // Toggle activity view animating
         disposable += activityIndicatorView.reactive.isAnimating <~ loginAction.isExecuting
         // Toggle button enabled
