@@ -44,6 +44,16 @@ extension Status: APIImportable {
         rebloggedStatus = (model.rebloggedStatus?.value).map { status in Status.upsert(model: status, in: context) }
         user = User.upsert(model: model.account, in: context)
 
+
+        if let attachments = attachments {
+            removeFromAttachments(attachments)
+        }
+
+        for attachmentModel in model.mediaAttachments {
+            let attachment = Attachment.upsert(model: attachmentModel, in: context)
+            addToAttachments(attachment)
+        }
+
         if let mentions = mentions {
             removeFromMentions(mentions)
         }
