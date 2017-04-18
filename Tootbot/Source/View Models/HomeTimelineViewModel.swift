@@ -26,7 +26,7 @@ class HomeTimelineViewModel {
     let timeline: Timeline
 
     public var statuses = [Status]()
-    private var viewModels = [Int: StatusViewModel]()
+    private var viewModels = [Int: StatusCellViewModel]()
 
   init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
         guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
@@ -54,12 +54,12 @@ class HomeTimelineViewModel {
             .on(value: { self.statuses = $0 })
     }
 
-    func viewModel(at index: IndexPath) -> StatusViewModel {
+    func viewModel(at index: IndexPath) -> StatusCellViewModel {
         if let viewModel = viewModels[index.row] {
             return viewModel
         } else {
             let status = statuses[index.row]
-            let viewModel = StatusViewModel(status: status,
+            let viewModel = StatusCellViewModel(status: status,
                                                 managedObjectContext: dataController.viewContext)
             viewModels[index.row] = viewModel
             return self.viewModel(at: index)

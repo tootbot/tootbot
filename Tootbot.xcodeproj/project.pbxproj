@@ -30,7 +30,7 @@
 		832D55461EA2BC9400393BC5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D553D1EA2BC9400393BC5 /* Profile.storyboard */; };
 		832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55481EA2C2FC00393BC5 /* HomeTimelineViewController.swift */; };
 		832D554B1EA2C30400393BC5 /* HomeTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */; };
-		832D554D1EA2CBBC00393BC5 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */; };
+		832D554D1EA2CBBC00393BC5 /* StatusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D554C1EA2CBBC00393BC5 /* StatusCellViewModel.swift */; };
 		832D55511EA2CD4400393BC5 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55501EA2CD4400393BC5 /* StatusCell.swift */; };
 		832D55531EA2CDB900393BC5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55521EA2CDB900393BC5 /* TableViewCell.swift */; };
 		832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */; };
@@ -132,7 +132,7 @@
 		832D553E1EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		832D55481EA2C2FC00393BC5 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewModel.swift; sourceTree = "<group>"; };
-		832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
+		832D554C1EA2CBBC00393BC5 /* StatusCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellViewModel.swift; sourceTree = "<group>"; };
 		832D55501EA2CD4400393BC5 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		832D55521EA2CDB900393BC5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timeline+TimelineType.swift"; sourceTree = "<group>"; };
@@ -465,7 +465,7 @@
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
 				834CD9F81EA5FE1000282189 /* AppDelegateViewModel.swift */,
 				832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */,
-				832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */,
+				832D554C1EA2CBBC00393BC5 /* StatusCellViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -708,7 +708,7 @@
 				83DB2F7B1EA23D1500AD7080 /* Context.swift in Sources */,
 				83DB2F761EA23D1500AD7080 /* Account.swift in Sources */,
 				83DB2F7D1EA23D1500AD7080 /* Instance.swift in Sources */,
-				832D554D1EA2CBBC00393BC5 /* StatusViewModel.swift in Sources */,
+				832D554D1EA2CBBC00393BC5 /* StatusCellViewModel.swift in Sources */,
 				83606DD81EA518DD003F9D45 /* JSONCollection.swift in Sources */,
 				83DB2F711EA23D1500AD7080 /* NetworkingController.swift in Sources */,
 				832D554B1EA2C30400393BC5 /* HomeTimelineViewModel.swift in Sources */,

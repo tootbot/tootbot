@@ -17,7 +17,7 @@
 
 import CoreData
 
-class StatusViewModel {
+class StatusCellViewModel {
     let status: Status
     let managedObjectContext: NSManagedObjectContext
 
