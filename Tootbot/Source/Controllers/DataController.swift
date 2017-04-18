@@ -18,13 +18,13 @@
 import CoreData
 import ReactiveSwift
 
-enum DataControllerError: Error {
-    case loadFailure(Error)
-    case saveFailure(Error)
-    case invalidStore
-}
-
 class DataController {
+    enum Error: Swift.Error {
+        case loadFailure(Swift.Error)
+        case saveFailure(Swift.Error)
+        case invalidStore
+    }
+
     let container: NSPersistentContainer
 
     fileprivate init(userAccount: UserAccount) {
@@ -36,7 +36,7 @@ class DataController {
         self.container = NSPersistentContainer(name: name, managedObjectModel: model)
     }
 
-    static func load(forAccount userAccount: UserAccount) -> SignalProducer<DataController, DataControllerError> {
+    static func load(forAccount userAccount: UserAccount) -> SignalProducer<DataController, Error> {
         return SignalProducer.deferred {
             let dataController = DataController(userAccount: userAccount)
             return dataController.load()
@@ -56,7 +56,7 @@ class DataController {
         }
     }
 
-    static func create(forAccount accountModel: API.Account, instanceURI: String) -> SignalProducer<DataController, DataControllerError> {
+    static func create(forAccount accountModel: API.Account, instanceURI: String) -> SignalProducer<DataController, Error> {
         return SignalProducer.deferred {
             let userAccount = UserAccount(instanceURI: instanceURI, username: accountModel.username)
             let dataController = DataController(userAccount: userAccount)
@@ -67,7 +67,7 @@ class DataController {
         }
     }
 
-    fileprivate func insertAccount(from accountModel: API.Account, instanceURI: String) -> SignalProducer<Account, DataControllerError> {
+    fileprivate func insertAccount(from accountModel: API.Account, instanceURI: String) -> SignalProducer<Account, Error> {
         return SignalProducer { observer, disposable in
             self.perform(backgroundTask: { context in
                 guard !disposable.isDisposed else { return }
@@ -107,7 +107,7 @@ class DataController {
         return results.first
     }
 
-    fileprivate func load() -> SignalProducer<NSPersistentStoreDescription, DataControllerError> {
+    fileprivate func load() -> SignalProducer<NSPersistentStoreDescription, Error> {
         return SignalProducer { observer, disposable in
             self.container.loadPersistentStores { storeDescription, error in
                 observer.send(value: storeDescription)

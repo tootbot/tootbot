@@ -20,40 +20,41 @@ import Moya
 import ReactiveSwift
 import Result
 
-enum AddAccountError: Swift.Error {
-    case invalidApplicationProperties
-    case applicationRegistrationFailure(MoyaError)
-    case authenticationFailure(MoyaError)
-    case dataController(DataControllerError)
-    case coreDataSaveError
-}
 
 class AddAccountViewModel {
+    enum Error: Swift.Error {
+        case invalidApplicationProperties
+        case applicationRegistrationFailure(MoyaError)
+        case authenticationFailure(MoyaError)
+        case dataController(DataController.Error)
+    }
+
     let networkingController: NetworkingController
 
     init(networkingController: NetworkingController) {
         self.networkingController = networkingController
     }
 
-    func loginURL(on instanceURI: String) -> SignalProducer<URL, AddAccountError> {
+    func loginURL(on instanceURI: String) -> SignalProducer<URL, Error> {
         guard let properties = Bundle.main.applicationProperties else {
             return SignalProducer(error: .invalidApplicationProperties)
         }
 
         return networkingController.applicationCredentials(for: properties, on: instanceURI)
-            .mapError(AddAccountError.applicationRegistrationFailure)
+            .mapError(Error.applicationRegistrationFailure)
             .map { credentials in self.networkingController.loginURL(applicationProperties: properties, applicationCredentials: credentials)! }
     }
 
     /// Result sends a signal when credential verification begins.
-    /// That signal sends a single DataController and completes, or sends an `AddAccountError`.
-    func loginResult(on instanceURI: String) -> Signal<Signal<DataController, AddAccountError>, NoError> {
+    /// That signal sends a single DataController and completes, or sends an `AddAccountViewModel.Error`.
+    func loginResult(on instanceURI: String) -> Signal<Signal<DataController, Error>, NoError> {
         return networkingController.loginResult(for: instanceURI)
             .map { signal in
                 return signal
-                    .mapError(AddAccountError.authenticationFailure)
+                    .mapError(Error.authenticationFailure)
                     .flatMap(.latest) { accountModel in
-                        DataController.create(forAccount: accountModel, instanceURI: instanceURI).mapError(AddAccountError.dataController)
+                        DataController.create(forAccount: accountModel, instanceURI: instanceURI)
+                            .mapError(Error.dataController)
                     }
             }
     }

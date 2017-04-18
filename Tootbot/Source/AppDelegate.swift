@@ -23,69 +23,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposable = ScopedDisposable(CompositeDisposable())
-    let networkingController = NetworkingController(keychain: Keychain())
     let rootViewController = RootViewController()
-
-    func handle(url: URL) -> Bool {
-        guard let applicationProperties = Bundle.main.applicationProperties,
-            url.absoluteString.hasPrefix(applicationProperties.redirectURI),
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            let queryItems = components.queryItems,
-            !queryItems.isEmpty,
-            let authorizationCode = queryItems.first(where: { $0.name == "code" })?.value,
-            let instanceURI = queryItems.first(where: { $0.name == "state" })?.value
-        else {
-            return false
-        }
-
-        networkingController.handleLoginCallback(instanceURI: instanceURI, authorizationCode: authorizationCode, redirectURI: applicationProperties.redirectURI)
-        return true
-    }
-
-    func homeTimelineViewModel(dataController: DataController) -> HomeTimelineViewModel {
-        let account = try! dataController.account()!
-        let timeline = account.timeline(ofType: .home)!
-        return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkingController: self.networkingController)!
-    }
-
-    func loadLoggedInStoryboard(homeTimelineViewModel: HomeTimelineViewModel) {
-        let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
-        for viewController in tabBarController.viewControllers ?? [] {
-            guard let navigationController = viewController as? UINavigationController,
-                let rootViewController = navigationController.viewControllers.first
-                else { continue }
-
-            switch rootViewController {
-            case is HomeTimelineViewController:
-                let homeTimelineViewController = rootViewController as! HomeTimelineViewController
-                homeTimelineViewController.viewModel = homeTimelineViewModel
-            default:
-                break
-            }
-        }
-
-        rootViewController.transition(to: tabBarController)
-    }
-
-    func loadLoggedInUI(forAccount userAccount: UserAccount) -> SignalProducer<Void, NSError> {
-        return DataController.load(forAccount: userAccount)
-            .mapError { $0 as NSError }
-            .map(homeTimelineViewModel(dataController:))
-            .on(value: { viewModel in self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel) })
-            .ignoreValues()
-    }
-
-    func loadLoggedOutUI() {
-        let addAccount = UIStoryboard(name: "AddAccount", bundle: nil).instantiateInitialViewController() as! AddAccountViewController
-        addAccount.viewModel = AddAccountViewModel(networkingController: networkingController)
-
-        disposable += addAccount.doneSignal.observeValues { [unowned self] dataController in
-            let viewModel = self.homeTimelineViewModel(dataController: dataController)
-            self.loadLoggedInStoryboard(homeTimelineViewModel: viewModel)
-        }
-
-        rootViewController.transition(to: addAccount)
-    }
+    let viewModel = AppDelegateViewModel(networkingController: NetworkingController(keychain: Keychain()))
 
     // MARK: - App Delegate
 
@@ -97,31 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
 
-        // TODO: Hack until we have some kind of last used account / multiple user support
-        // https://github.com/tootbot/tootbot/issues/28
-        func loadAccount(atIndex index: Int, fromAccounts userAccounts: [UserAccount]) {
-            guard index < userAccounts.count else {
-                loadLoggedOutUI()
-                return
+        disposable += viewModel.loadUI()
+            .startWithValues { [unowned self] viewController in
+                self.rootViewController.transition(to: viewController)
             }
-
-            let userAccount = userAccounts[index]
-            loadLoggedInUI(forAccount: userAccount).startWithFailed { error in
-                print("Could not load UI for \(userAccount) -> \(error)")
-                loadAccount(atIndex: index + 1, fromAccounts: userAccounts)
-            }
-        }
-
-        loadAccount(atIndex: 0, fromAccounts: networkingController.allAccounts())
 
         if let url = launchOptions?[.url] as? URL {
-            return handle(url: url)
+            return viewModel.handleURL(url)
         } else {
             return true
         }
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
-        return handle(url: url)
+        return viewModel.handleURL(url)
     }
 }
