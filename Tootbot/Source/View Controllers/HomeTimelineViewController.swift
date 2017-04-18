@@ -49,9 +49,7 @@ class HomeTimelineViewController: UITableViewController {
         let statusViewModel = viewModel.viewModel(at: indexPath)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
-        cell.contentLabel.text = statusViewModel.content
-        cell.displayNameLabel.text = statusViewModel.displayName
-        cell.usernameLabel.text = statusViewModel.username
+        cell.viewModel = statusViewModel
         return cell
     }
 }

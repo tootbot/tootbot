@@ -16,29 +16,66 @@
 //
 
 import CoreData
+import Alamofire
+import ReactiveSwift
+import ReactiveCocoa
+import Result
 
 class StatusCellViewModel {
-    let status: Status
-    let managedObjectContext: NSManagedObjectContext
+    let displayName = MutableProperty<String?>(nil)
+    let userName = MutableProperty<String?>(nil)
+    let attachments = MutableProperty<[UIImage?]>([])
+    let boosted = MutableProperty<Bool>(false)
+    let boostedByName = MutableProperty<String?>(nil)
+    let createdAtDate = MutableProperty<Date?>(nil)
+    let hasAttachments = MutableProperty<Bool>(false)
+
+    let contentSignalProducer: SignalProducer<NSAttributedString, NoError>
+    let avatarSignalProducer: SignalProducer<UIImage, ImageCacheController.Error>
+
+    private let status: Status
+    private let imageCacheController = ImageCacheController()
+    private let managedObjectContext: NSManagedObjectContext
 
     init(status: Status, managedObjectContext: NSManagedObjectContext) {
         self.status = status
         self.managedObjectContext = managedObjectContext
-    }
 
-    var avatarURL: URL? {
-        return status.user?.avatarURL
-    }
+        boosted.value = status.rebloggedStatus != nil
 
-    var content: String? {
-        return status.content
-    }
+        let displayedStatus = status.rebloggedStatus ?? status
+        userName.value = displayedStatus.user?.username
+        displayName.value = displayedStatus.user?.displayName
+        boostedByName.value = status.user?.displayName
+        createdAtDate.value = status.createdAt as Date?
 
-    var displayName: String? {
-        return status.user?.displayName
-    }
+        avatarSignalProducer = imageCacheController
+            .fetch(url: (displayedStatus.user?.avatarURL)!)
 
-    var username: String? {
-        return status.user?.accountName
+        contentSignalProducer = SignalProducer { observer, disposable in
+            guard let data = displayedStatus.content?.data(using: .utf16) else {
+                observer.sendCompleted()
+                return
+            }
+
+            if disposable.isDisposed {
+                observer.sendInterrupted()
+                return
+            }
+
+            let options = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType]
+            guard let attributedString = try? NSMutableAttributedString(data: data, options: options, documentAttributes: nil) else {
+                observer.sendCompleted()
+                return
+            }
+
+            let range = NSMakeRange(0, attributedString.string.utf16.count)
+            attributedString.addAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 17),
+                                            NSForegroundColorAttributeName: UIColor.white],
+                                           range: range)
+
+            observer.send(value: attributedString.attributedStringByTrimmingCharacterSet(.whitespacesAndNewlines))
+            observer.sendCompleted()
+        }
     }
 }
