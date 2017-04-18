@@ -45,7 +45,7 @@ enum DataFetcherError: Swift.Error {
     case importer(DataImporterError)
 }
 
-class DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
+struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObject.T == ManagedObject {
     struct JSONModelRequest: NetworkRequestProtocol  {
         typealias Output = JSONCollection<ManagedObject.JSONModel>
 
