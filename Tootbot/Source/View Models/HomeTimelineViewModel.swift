@@ -25,12 +25,10 @@ class HomeTimelineViewModel {
     let networkingController: NetworkingController
     let timeline: Timeline
 
-    var statuses = [Status]()
-    var statusViewModels: LazyMapCollection<[Status], StatusViewModel> {
-        return statuses.lazy.map { status in StatusViewModel(status: status, managedObjectContext: self.dataController.viewContext) }
-    }
+    public var statuses = [Status]()
+    private var viewModels = [Int: StatusViewModel]()
 
-    init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
+  init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
         guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
             return nil
         }
@@ -54,5 +52,17 @@ class HomeTimelineViewModel {
     func fetchNewestToots() -> SignalProducer<[Status], DataFetcherError> {
         return dataFetcher.fetch()
             .on(value: { self.statuses = $0 })
+    }
+
+    func viewModel(at index: IndexPath) -> StatusViewModel {
+        if let viewModel = viewModels[index.row] {
+            return viewModel
+        } else {
+            let status = statuses[index.row]
+            let viewModel = StatusViewModel(status: status,
+                                                managedObjectContext: dataController.viewContext)
+            viewModels[index.row] = viewModel
+            return self.viewModel(at: index)
+        }
     }
 }
