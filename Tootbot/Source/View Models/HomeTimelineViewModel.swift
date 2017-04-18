@@ -41,6 +41,7 @@ class HomeTimelineViewModel {
 
         let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%@ IN %K", timeline, #keyPath(Status.timelines))
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Status.createdAt), ascending: false)]
 
         let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkingController, endpoint: .homeTimeline)
         let cacheRequest = CacheRequest(managedObjectContext: self.dataController.viewContext, fetchRequest: fetchRequest)
