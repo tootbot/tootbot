@@ -75,10 +75,6 @@ extension API {
         public var tags: [Tag]
         public var application: Application?
 
-        var primaryKeyValue: Any {
-            return id
-        }
-
         public init(json: JSON) throws {
             self.id = try json.getInt(at: Key.id)
             self.fediverseURI = try json.getString(at: Key.fediverseURI)
