@@ -29,7 +29,7 @@ class AddAccountViewController: UIViewController {
     @IBOutlet var logInButton: UIButton!
 
     let disposable = ScopedDisposable(CompositeDisposable())
-    var loginAction: Action<String, DataController, AddAccountError>!
+    var loginAction: Action<String, DataController, AddAccountViewModel.Error>!
     var viewModel: AddAccountViewModel!
 
     let doneSignal: Signal<DataController, NoError>

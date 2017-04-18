@@ -19,12 +19,6 @@ import CoreData
 import Moya
 import ReactiveSwift
 
-enum HomeTimelineError: Swift.Error {
-    case invalidTimeline
-    case networkingError
-    case coreDataFetchError
-}
-
 class HomeTimelineViewModel {
     let dataController: DataController
     let dataFetcher: DataFetcher<Status>

@@ -33,6 +33,7 @@
 		832D55531EA2CDB900393BC5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55521EA2CDB900393BC5 /* TableViewCell.swift */; };
 		832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */; };
 		832D55571EA2D75A00393BC5 /* Account+Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D55561EA2D75A00393BC5 /* Account+Timeline.swift */; };
+		834CD9F91EA5FE1000282189 /* AppDelegateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834CD9F81EA5FE1000282189 /* AppDelegateViewModel.swift */; };
 		83606DD81EA518DD003F9D45 /* JSONCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DD71EA518DD003F9D45 /* JSONCollection.swift */; };
 		83606DDA1EA518F4003F9D45 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DD91EA518F4003F9D45 /* NetworkRequest.swift */; };
 		83606DDC1EA5199C003F9D45 /* CacheRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83606DDB1EA5199C003F9D45 /* CacheRequest.swift */; };
@@ -132,6 +133,7 @@
 		832D55521EA2CDB900393BC5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timeline+TimelineType.swift"; sourceTree = "<group>"; };
 		832D55561EA2D75A00393BC5 /* Account+Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Account+Timeline.swift"; sourceTree = "<group>"; };
+		834CD9F81EA5FE1000282189 /* AppDelegateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateViewModel.swift; sourceTree = "<group>"; };
 		83606DD71EA518DD003F9D45 /* JSONCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollection.swift; sourceTree = "<group>"; };
 		83606DD91EA518F4003F9D45 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		83606DDB1EA5199C003F9D45 /* CacheRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheRequest.swift; sourceTree = "<group>"; };
@@ -154,8 +156,8 @@
 		83DB2F4A1EA23D1500AD7080 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		83DB2F4B1EA23D1500AD7080 /* MastodonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonService.swift; sourceTree = "<group>"; };
 		83DB2F4C1EA23D1500AD7080 /* Moya+Freddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya+Freddy.swift"; sourceTree = "<group>"; };
-		83DB2F4D1EA23D1500AD7080 /* NetworkingController+Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NetworkingController+Credentials.swift"; path = "NetworkingController+Credentials.swift"; sourceTree = "<group>"; };
-		83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingController.swift; path = NetworkingController.swift; sourceTree = "<group>"; };
+		83DB2F4D1EA23D1500AD7080 /* NetworkingController+Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkingController+Credentials.swift"; sourceTree = "<group>"; };
+		83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingController.swift; sourceTree = "<group>"; };
 		83DB2F501EA23D1500AD7080 /* OAuthCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthCredentials.swift; sourceTree = "<group>"; };
 		83DB2F521EA23D1500AD7080 /* SubTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubTargetType.swift; sourceTree = "<group>"; };
 		83DB2F531EA23D1500AD7080 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
@@ -212,7 +214,6 @@
 				832D55541EA2D6B900393BC5 /* Timeline+TimelineType.swift */,
 				2E646AC81EA3E54A00D05E73 /* Attachment+MediaType.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -284,7 +285,6 @@
 			children = (
 				832D554F1EA2CD3C00393BC5 /* Cells */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -294,7 +294,6 @@
 				832D55501EA2CD4400393BC5 /* StatusCell.swift */,
 				832D55521EA2CDB900393BC5 /* TableViewCell.swift */,
 			);
-			name = Cells;
 			path = Cells;
 			sourceTree = "<group>";
 		};
@@ -305,7 +304,6 @@
 				83DB2F8A1EA23D8100AD7080 /* Types */,
 				83DB2F461EA23D1500AD7080 /* Authentication.swift */,
 			);
-			name = Networking;
 			path = Networking;
 			sourceTree = "<group>";
 		};
@@ -318,7 +316,6 @@
 				2E646AC21EA3E12700D05E73 /* Status+APIImportable.swift */,
 				2E646ABC1EA3D96300D05E73 /* User+APIImportable.swift */,
 			);
-			name = "Data Import";
 			path = "Data Import";
 			sourceTree = "<group>";
 		};
@@ -460,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
+				834CD9F81EA5FE1000282189 /* AppDelegateViewModel.swift */,
 				832D554A1EA2C30400393BC5 /* HomeTimelineViewModel.swift */,
 				832D554C1EA2CBBC00393BC5 /* StatusViewModel.swift */,
 			);
@@ -651,6 +649,7 @@
 				83DB2F771EA23D1500AD7080 /* Application.swift in Sources */,
 				83DB2F781EA23D1500AD7080 /* Attachment.swift in Sources */,
 				83DB2F8F1EA2642600AD7080 /* API.swift in Sources */,
+				834CD9F91EA5FE1000282189 /* AppDelegateViewModel.swift in Sources */,
 				83DB2F821EA23D1500AD7080 /* Report.swift in Sources */,
 				83606DDA1EA518F4003F9D45 /* NetworkRequest.swift in Sources */,
 				832D55491EA2C2FC00393BC5 /* HomeTimelineViewController.swift in Sources */,
