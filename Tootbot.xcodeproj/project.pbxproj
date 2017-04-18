@@ -15,6 +15,7 @@
 		2E646AC51EA3E34000D05E73 /* Mention+APIImportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E646AC41EA3E34000D05E73 /* Mention+APIImportable.swift */; };
 		2E646AC71EA3E4CA00D05E73 /* Attachment+APIImportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E646AC61EA3E4CA00D05E73 /* Attachment+APIImportable.swift */; };
 		2E646AC91EA3E54A00D05E73 /* Attachment+MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E646AC81EA3E54A00D05E73 /* Attachment+MediaType.swift */; };
+		2E9F15F61EA551DC0051B59C /* ImageCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F15F51EA551DC0051B59C /* ImageCacheController.swift */; };
 		8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */; };
 		8317E6EB1E9BD870003F1AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */; };
 		832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D552B1EA2B3F700393BC5 /* Model+URL.swift */; };
@@ -113,6 +114,7 @@
 		2E646AC41EA3E34000D05E73 /* Mention+APIImportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mention+APIImportable.swift"; sourceTree = "<group>"; };
 		2E646AC61EA3E4CA00D05E73 /* Attachment+APIImportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+APIImportable.swift"; sourceTree = "<group>"; };
 		2E646AC81EA3E54A00D05E73 /* Attachment+MediaType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+MediaType.swift"; sourceTree = "<group>"; };
+		2E9F15F51EA551DC0051B59C /* ImageCacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheController.swift; sourceTree = "<group>"; };
 		8317E6E01E9BD870003F1AA2 /* Tootbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317E6E31E9BD870003F1AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				83DB2F981EA2736100AD7080 /* DataController.swift */,
 				83DB2F4F1EA23D1500AD7080 /* NetworkingController.swift */,
 				83DB2F4D1EA23D1500AD7080 /* NetworkingController+Credentials.swift */,
+				2E9F15F51EA551DC0051B59C /* ImageCacheController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				83DB2F691EA23D1500AD7080 /* DynamicProvider.swift in Sources */,
 				83DB2F751EA23D1500AD7080 /* UserAccount.swift in Sources */,
 				83DB2F791EA23D1500AD7080 /* Box.swift in Sources */,
+				2E9F15F61EA551DC0051B59C /* ImageCacheController.swift in Sources */,
 				83DB2F951EA2727200AD7080 /* Tootbot.xcdatamodeld in Sources */,
 				8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */,
 				8386B4E41EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift in Sources */,
