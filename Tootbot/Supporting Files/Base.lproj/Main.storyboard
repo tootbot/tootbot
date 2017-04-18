@@ -13,17 +13,19 @@
         <scene sceneID="b5D-7H-k4t">
             <objects>
                 <tabBarController id="soR-Zq-F2E" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="jtz-y6-8nd">
+                    <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="jtz-y6-8nd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.065668441355228424" green="0.16730195283889771" blue="0.24215683341026306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.070588235289999995" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="nor-b4-pZf" kind="relationship" relationship="viewControllers" id="hQS-nt-14a"/>
                         <segue destination="6rN-7X-W6G" kind="relationship" relationship="viewControllers" id="Slx-IN-jA5"/>
                         <segue destination="4u1-9f-KRx" kind="relationship" relationship="viewControllers" id="bCb-bH-Yp8"/>
-                        <segue destination="ir0-Cj-cuf" kind="relationship" relationship="viewControllers" id="NIA-YE-jUv"/>
                         <segue destination="ZOB-e8-Oi2" kind="relationship" relationship="viewControllers" id="ksN-sz-Gmv"/>
+                        <segue destination="ir0-Cj-cuf" kind="relationship" relationship="viewControllers" id="NIA-YE-jUv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLy-qj-hHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
