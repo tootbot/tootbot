@@ -15,67 +15,71 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Alamofire
-import ReactiveSwift
+import CoreData
 import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 class StatusCellViewModel {
-    let displayName = MutableProperty<String?>(nil)
-    let userName = MutableProperty<String?>(nil)
-    let attachments = MutableProperty<[UIImage?]>([])
-    let boosted = MutableProperty<Bool>(false)
-    let boostedByName = MutableProperty<String?>(nil)
-    let createdAtDate = MutableProperty<Date?>(nil)
-    let hasAttachments = MutableProperty<Bool>(false)
+    let displayName: String?
+    let username: String?
+    let attachments: [UIImage?] = []
+    let boostedByName: String?
+    let createdAtDate: Date
+    let hasAttachments: Bool = false
 
-    let contentSignalProducer: SignalProducer<NSAttributedString, NoError>
-    let avatarSignalProducer: SignalProducer<UIImage, ImageCacheController.Error>
+    var isBoosted: Bool {
+        return boostedByName != nil
+    }
+    
+    let attributedContent: SignalProducer<NSAttributedString, NoError>
+    let avatarImage: SignalProducer<UIImage, ImageCacheController.Error>
 
     private let status: Status
-    private let imageCacheController = ImageCacheController()
     private let managedObjectContext: NSManagedObjectContext
+    private let imageCacheController: ImageCacheController
 
-    init(status: Status, managedObjectContext: NSManagedObjectContext) {
+    init(status: Status, managedObjectContext: NSManagedObjectContext, imageCacheController: ImageCacheController) {
         self.status = status
         self.managedObjectContext = managedObjectContext
-
-        boosted.value = status.rebloggedStatus != nil
+        self.imageCacheController = imageCacheController
 
         let displayedStatus = status.rebloggedStatus ?? status
-        userName.value = displayedStatus.user?.username
-        displayName.value = displayedStatus.user?.displayName
-        boostedByName.value = status.user?.displayName
-        createdAtDate.value = status.createdAt as Date?
+        username = displayedStatus.user!.username!
+        displayName = displayedStatus.user!.displayName!
+        boostedByName = status.rebloggedStatus != nil ? status.user!.displayName! : nil
+        createdAtDate = status.createdAt! as Date
 
-        avatarSignalProducer = imageCacheController
-            .fetch(url: (displayedStatus.user?.avatarURL)!)
+        avatarImage = imageCacheController
+            .fetch(url: displayedStatus.user!.avatarURL!)
 
-        contentSignalProducer = SignalProducer { observer, disposable in
-            guard let data = displayedStatus.content?.data(using: .utf16) else {
+        attributedContent = SignalProducer { observer, disposable in
+            guard let data = displayedStatus.content?.data(using: .utf8) else {
                 observer.sendCompleted()
                 return
             }
 
-            if disposable.isDisposed {
-                observer.sendInterrupted()
-                return
-            }
+            let options: [String : Any] = [
+                NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue as NSNumber,
+                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            ]
 
-            let options = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType]
             guard let attributedString = try? NSMutableAttributedString(data: data, options: options, documentAttributes: nil) else {
                 observer.sendCompleted()
                 return
             }
 
-            let range = NSMakeRange(0, attributedString.string.utf16.count)
-            attributedString.addAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 17),
-                                            NSForegroundColorAttributeName: UIColor.white],
-                                           range: range)
+            let range = NSRange(0 ..< (attributedString.string as NSString).length)
+            attributedString.addAttributes([
+                NSFontAttributeName: UIFont.systemFont(ofSize: 17),
+                NSForegroundColorAttributeName: UIColor.white
+            ], range: range)
 
-            observer.send(value: attributedString.attributedStringByTrimmingCharacterSet(.whitespacesAndNewlines))
+            attributedString.trimCharacters(in: .whitespacesAndNewlines)
+
+            observer.send(value: attributedString)
             observer.sendCompleted()
-        }
+        }.replayLazily(upTo: 1)
     }
 }

@@ -15,12 +15,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 import ReactiveSwift
 
 class ImageCacheController {
-
     enum Error: Swift.Error {
         case downloadFailed(Swift.Error?)
         case writeToFileFailed(Swift.Error?)
@@ -28,17 +27,16 @@ class ImageCacheController {
 
     private static let memoryCache = NSCache<NSString, UIImage>()
     private static let cacheDirectoryURL: URL = {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let url = URL(fileURLWithPath: documentsPath)
-        return url.appendingPathComponent("ImageCache")
+        let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        return cachesDirectory.appendingPathComponent("ImageCache")
     }()
 
     private let fileManager = FileManager.default
 
     init() {
-        if fileManager.fileExists(atPath: ImageCacheController.cacheDirectoryURL.path) == false {
+        if !fileManager.fileExists(atPath: ImageCacheController.cacheDirectoryURL.path) {
             try? fileManager.createDirectory(at: ImageCacheController.cacheDirectoryURL,
-                                        withIntermediateDirectories: true)
+                                             withIntermediateDirectories: true)
         }
     }
 
@@ -47,6 +45,7 @@ class ImageCacheController {
         return downloadImage(from: url)
             .take(untilReplacement: fetchImageFromDisk(with: key))
             .take(untilReplacement: fetchImageFromMemory(with: key))
+            .take(first: 1)
     }
 
     private func key(for url: URL) -> String {

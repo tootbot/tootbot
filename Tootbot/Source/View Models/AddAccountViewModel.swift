@@ -20,7 +20,6 @@ import Moya
 import ReactiveSwift
 import Result
 
-
 class AddAccountViewModel {
     enum Error: Swift.Error {
         case invalidApplicationProperties

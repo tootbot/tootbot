@@ -42,14 +42,12 @@ class HomeTimelineViewController: UITableViewController {
     // MARK: - Table View
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.statuses.count
+        return viewModel.numberOfStatuses
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let statusViewModel = viewModel.viewModel(at: indexPath)
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
-        cell.viewModel = statusViewModel
+        cell.viewModel = viewModel.viewModel(at: indexPath)
         return cell
     }
 }
