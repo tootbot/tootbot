@@ -44,7 +44,6 @@ extension Status: APIImportable {
         rebloggedStatus = (model.rebloggedStatus?.value).map { status in Status.upsert(model: status, in: context) }
         user = User.upsert(model: model.account, in: context)
 
-
         if let attachments = attachments {
             removeFromAttachments(attachments)
         }

@@ -18,29 +18,25 @@
 import UIKit
 import ReactiveSwift
 import ReactiveCocoa
+import Result
 
 class StatusCell: TableViewCell {
     @IBOutlet var contentLabel: UITextView!
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet weak var boostedByStackView: UIStackView!
-    @IBOutlet weak var boosterNameLabel: UILabel!
+    @IBOutlet var boostedByStackView: UIStackView!
+    @IBOutlet var boosterNameLabel: UILabel!
 
     private var disposable = ScopedDisposable(CompositeDisposable())
 
-    let dateFormatter: DateFormatter = {
+    static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
         dateFormatter.dateStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }()
-
-    override func awakeFromNib() {
-        avatarImageView.layer.cornerRadius = 4
-        avatarImageView.layer.masksToBounds = true
-    }
 
     override func prepareForReuse() {
         avatarImageView.image = nil
@@ -50,33 +46,26 @@ class StatusCell: TableViewCell {
 
     var viewModel: StatusCellViewModel? {
         didSet {
-            guard let vm = viewModel else { return }
+            guard let viewModel = viewModel else { return }
 
-
-            boostedByStackView.reactive.isHidden <~ vm.boosted.negate()
-            boosterNameLabel.reactive.text <~ vm.boostedByName.map {
-                guard let name = $0 else {
-                    return ""
-                }
-                return "\(name) boosted"
-            }
-
-            displayNameLabel.reactive.text <~ vm.displayName
-            usernameLabel.reactive.text <~ vm.createdAtDate.map {
-                guard let date = $0 else {
-                    return ""
-                }
-                return self.dateFormatter.string(from: date)
-            }
-
-            contentLabel.reactive.attributedText <~ vm.contentSignalProducer.take(until: reactive.prepareForReuse)
-
-            vm.avatarSignalProducer
+            avatarImageView.reactive.image <~ SignalProducer<UIImage?, NoError>(value: nil)
+                .concat(viewModel.avatarImage
+                    .map(Optional.some)
+                    .flatMapError({ _ in SignalProducer(value: nil) })
+                )
                 .take(until: reactive.prepareForReuse)
-                .on(value: {
-                    self.avatarImageView?.image = $0
-                })
-                .start()
+
+            boostedByStackView.isHidden = !viewModel.isBoosted
+
+            boosterNameLabel.text = viewModel.boostedByName
+                .map { name in String(format: NSLocalizedString("%@ boosted", comment: ""), name) }
+
+            contentLabel.reactive.attributedText <~ viewModel.attributedContent
+                .take(until: reactive.prepareForReuse)
+
+            displayNameLabel.text = viewModel.displayName
+
+            usernameLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
         }
     }
 }

@@ -1,36 +1,45 @@
 //
-//  NSAttributedString+Trimming.swift
-//  Tootbot
+// Copyright (C) 2017 Tootbot Contributors
 //
-//  Created by Michał Kałużny on 18/04/2017.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
 import Foundation
 
 extension NSAttributedString {
-    public func attributedStringByTrimmingCharacterSet(_ characterSet: CharacterSet) -> NSAttributedString {
+    public func trimmingCharacters(in set: CharacterSet) -> NSAttributedString {
         let modifiedString = NSMutableAttributedString(attributedString: self)
-        modifiedString.trimCharactersInSet(characterSet)
+        modifiedString.trimCharacters(in: set)
         return NSAttributedString(attributedString: modifiedString)
     }
 }
 
 extension NSMutableAttributedString {
-    public func trimCharactersInSet(_ characterSet: CharacterSet) {
-        var range = (string as NSString).rangeOfCharacter(from: characterSet)
+    public func trimCharacters(in set: CharacterSet) {
+        var range = (string as NSString).rangeOfCharacter(from: set, options: .anchored)
 
         // Trim leading characters from character set.
-        while range.length != 0 && range.location == 0 {
+        while range.location != NSNotFound {
             replaceCharacters(in: range, with: "")
-            range = (string as NSString).rangeOfCharacter(from: characterSet)
+            range = (string as NSString).rangeOfCharacter(from: set, options: .anchored)
         }
 
         // Trim trailing characters from character set.
-        range = (string as NSString).rangeOfCharacter(from: characterSet, options: .backwards)
-        while range.length != 0 && NSMaxRange(range) == length {
+        range = (string as NSString).rangeOfCharacter(from: set, options: [.anchored, .backwards])
+        while range.location != NSNotFound {
             replaceCharacters(in: range, with: "")
-            range = (string as NSString).rangeOfCharacter(from: characterSet, options: .backwards)
+            range = (string as NSString).rangeOfCharacter(from: set, options: [.anchored, .backwards])
         }
     }
 }

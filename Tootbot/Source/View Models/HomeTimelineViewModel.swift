@@ -22,18 +22,20 @@ import ReactiveSwift
 class HomeTimelineViewModel {
     let dataController: DataController
     let dataFetcher: DataFetcher<Status>
+    let imageCacheController: ImageCacheController
     let networkingController: NetworkingController
     let timeline: Timeline
 
-    public var statuses = [Status]()
+    private var statuses = [Status]()
     private var viewModels = [Int: StatusCellViewModel]()
 
-  init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
+    init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
         guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
             return nil
         }
 
         self.dataController = dataController
+        self.imageCacheController = ImageCacheController()
         self.networkingController = networkingController
         self.timeline = timeline
 
@@ -54,15 +56,18 @@ class HomeTimelineViewModel {
             .on(value: { self.statuses = $0 })
     }
 
-    func viewModel(at index: IndexPath) -> StatusCellViewModel {
-        if let viewModel = viewModels[index.row] {
+    var numberOfStatuses: Int {
+        return statuses.count
+    }
+
+    func viewModel(at indexPath: IndexPath) -> StatusCellViewModel {
+        if let viewModel = viewModels[indexPath.row] {
             return viewModel
         } else {
-            let status = statuses[index.row]
-            let viewModel = StatusCellViewModel(status: status,
-                                                managedObjectContext: dataController.viewContext)
-            viewModels[index.row] = viewModel
-            return self.viewModel(at: index)
+            let status = statuses[indexPath.row]
+            let viewModel = StatusCellViewModel(status: status, managedObjectContext: dataController.viewContext, imageCacheController: imageCacheController)
+            viewModels[indexPath.row] = viewModel
+            return viewModel
         }
     }
 }

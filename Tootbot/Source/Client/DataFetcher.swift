@@ -16,10 +16,10 @@
 //
 
 import CoreData
+import Freddy
 import ReactiveSwift
 import Result
 import Moya
-import Freddy
 
 enum DataFetcherCachePolicy {
     /// Load from the Core Data cache without making a network request
