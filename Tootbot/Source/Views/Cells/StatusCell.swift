@@ -20,7 +20,7 @@ import ReactiveSwift
 import ReactiveCocoa
 import Result
 
-class StatusCell: TableViewCell {
+class StatusCell: UITableViewCell {
     @IBOutlet var contentLabel: UITextView!
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var displayNameLabel: UILabel!
