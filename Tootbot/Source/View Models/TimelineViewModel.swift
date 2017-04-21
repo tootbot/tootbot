@@ -24,7 +24,6 @@ class TimelineViewModel {
     let dataController: DataController
     let dataFetcher: DataFetcher<Status>
     let fetchNewestTootsAction: Action<(), [Status], DataFetcherError>
-    let imageCacheController: ImageCacheController
     let networkingController: NetworkingController
     let timeline: Timeline
 
@@ -38,7 +37,6 @@ class TimelineViewModel {
         }
 
         self.dataController = dataController
-        self.imageCacheController = ImageCacheController()
         self.networkingController = networkingController
         self.timeline = timeline
 
@@ -72,7 +70,7 @@ class TimelineViewModel {
         if let viewModel = viewModelCache[objectID] {
             return viewModel
         } else {
-            let viewModel = StatusCellViewModel(status: status, managedObjectContext: dataController.viewContext, imageCacheController: imageCacheController)
+            let viewModel = StatusCellViewModel(status: status, managedObjectContext: dataController.viewContext)
             viewModelCache[objectID] = viewModel
             return viewModel
         }
