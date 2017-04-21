@@ -15,28 +15,45 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
-class HomeTimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController {
     let disposable = ScopedDisposable(CompositeDisposable())
-    var viewModel: HomeTimelineViewModel!
+    var viewModel: TimelineViewModel!
+
+    func configureTableView() {
+        tableView.estimatedRowHeight = 82
+        tableView.rowHeight = UITableViewAutomaticDimension
+
+        viewModel.statusesUpdated.observeValues { [unowned self] in
+            self.tableView.reloadData()
+        }
+    }
+
+    func configureRefreshControl() {
+        refreshControl!.beginRefreshing()
+        refreshControl!.reactive.refresh = CocoaAction(viewModel.fetchNewestTootsAction, { _ in () })
+    }
+
+    func reloadData() {
+        disposable += viewModel.fetchNewestTootsAction.apply().start()
+    }
 
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.estimatedRowHeight = 82
-        tableView.rowHeight = UITableViewAutomaticDimension
+        configureTableView()
+        configureRefreshControl()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        disposable += viewModel.fetchNewestToots().startWithCompleted {
-            self.tableView.reloadData()
-        }
+        reloadData()
     }
     
     // MARK: - Table View
@@ -49,5 +66,11 @@ class HomeTimelineViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
         cell.viewModel = viewModel.viewModel(at: indexPath)
         return cell
+    }
+
+    // MARK: - Status Bar
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

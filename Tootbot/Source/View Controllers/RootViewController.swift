@@ -23,20 +23,12 @@ class RootViewController: UIViewController {
             childViewController.view.removeFromSuperview()
             childViewController.removeFromParentViewController()
         }
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
     }
 
-    func addFullSizeChildViewController(_ viewController: UIViewController) {
-        addChildViewController(viewController)
-        view.addSubview(viewController.view)
-        viewController.view.autoresizingMask = .flexibleSize
-        viewController.view.frame = view.bounds
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        addFullSizeChildViewController(childViewController)
-    }
+    // MARK: - Public API
 
     func transition(to viewController: UIViewController, duration: TimeInterval = 0.3, completion: @escaping (Bool) -> Void = { _ in }) {
         addFullSizeChildViewController(viewController)
@@ -47,5 +39,32 @@ class RootViewController: UIViewController {
 
             completion(finished)
         })
+    }
+
+    // MARK: - Helpers
+
+    private func addFullSizeChildViewController(_ viewController: UIViewController) {
+        addChildViewController(viewController)
+        view.addSubview(viewController.view)
+        viewController.view.autoresizingMask = .flexibleSize
+        viewController.view.frame = view.bounds
+    }
+
+    // MARK: - View Life Cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addFullSizeChildViewController(childViewController)
+    }
+
+    // MARK: - Status Bar
+
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return childViewController
+    }
+
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return childViewController
     }
 }

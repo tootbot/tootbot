@@ -15,34 +15,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-enum TimelineType: String {
-    case home
-    case local
-    case federated
+import UIKit
 
-    static var all: Set<TimelineType> {
-        return [.home, .local, .federated]
+class NavigationController: UINavigationController {
+    override func endAppearanceTransition() {
+        super.endAppearanceTransition()
+
+        setNeedsStatusBarAppearanceUpdate()
     }
 
-    var endpoint: MastodonService {
-        switch self {
-        case .home:
-            return .homeTimeline
-        case .local:
-            return .publicTimeline(localOnly: true)
-        case .federated:
-            return .publicTimeline(localOnly: false)
-        }
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return visibleViewController
     }
-}
 
-extension Timeline {
-    var timelineTypeValue: TimelineType? {
-        get {
-            return timelineType.flatMap { TimelineType(rawValue: $0) }
-        }
-        set {
-            timelineType = newValue?.rawValue
-        }
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return visibleViewController
     }
 }

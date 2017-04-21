@@ -41,18 +41,19 @@ class DataController {
             let dataController = DataController(userAccount: userAccount)
             return dataController.load()
                 .observe(on: QueueScheduler.main)
-                .attemptMap { _ in
+                .flatMap(.latest) { _ -> SignalProducer<Account, Error> in
                     do {
-                        if try dataController.account() != nil {
-                            return .success(dataController)
+                        if let account = try dataController.account() {
+                            return dataController.setUpAccount(account)
                         } else {
-                            // No account -> bad store
-                            return .failure(.invalidStore)
+                            return SignalProducer(error: .invalidStore)
                         }
                     } catch {
-                        return .failure(.loadFailure(error))
+                        return SignalProducer(error: .loadFailure(error))
                     }
                 }
+                .observe(on: QueueScheduler.main)
+                .map { _ in dataController }
         }
     }
 
@@ -76,9 +77,7 @@ class DataController {
                 account.instanceURI = instanceURI
                 account.update(with: accountModel)
 
-                let timeline = Timeline(context: context)
-                timeline.account = account
-                timeline.timelineTypeValue = .home
+                _ = self.performSetup(for: account)
 
                 do {
                     try context.save()
@@ -87,6 +86,49 @@ class DataController {
                 }
 
                 let managedObjectID = account.objectID
+                DispatchQueue.main.async {
+                    guard !disposable.isDisposed else { return }
+
+                    let viewContext = self.viewContext
+                    let account = viewContext.object(with: managedObjectID) as! Account
+                    observer.send(value: account)
+                    observer.sendCompleted()
+                }
+            })
+        }
+    }
+
+    fileprivate func performSetup(for account: Account) -> Bool {
+        let context = account.managedObjectContext!
+
+        var needsSave = false
+        for timelineType in TimelineType.all {
+            if account.timeline(ofType: timelineType) == nil {
+                let timeline = Timeline(context: context)
+                timeline.account = account
+                timeline.timelineTypeValue = timelineType
+                needsSave = true
+            }
+        }
+
+        return needsSave
+    }
+
+    fileprivate func setUpAccount(_ account: Account) -> SignalProducer<Account, Error> {
+        let managedObjectID = account.objectID
+        return SignalProducer { observer, disposable in
+            self.perform(backgroundTask: { context in
+                guard !disposable.isDisposed else { return }
+
+                let account = context.object(with: managedObjectID) as! Account
+                if self.performSetup(for: account) {
+                    do {
+                        try context.save()
+                    } catch {
+                        observer.send(error: .saveFailure(error))
+                    }
+                }
+
                 DispatchQueue.main.async {
                     guard !disposable.isDisposed else { return }
 

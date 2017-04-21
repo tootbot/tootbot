@@ -21,28 +21,21 @@ import ReactiveCocoa
 import Result
 
 class StatusCell: UITableViewCell {
-    @IBOutlet var contentLabel: UITextView!
     @IBOutlet var avatarImageView: UIImageView!
-    @IBOutlet var displayNameLabel: UILabel!
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var boostedByStackView: UIStackView!
     @IBOutlet var boosterNameLabel: UILabel!
+    @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var displayNameLabel: UILabel!
 
     private var disposable = ScopedDisposable(CompositeDisposable())
 
-    static let dateFormatter: DateFormatter = {
+    private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
-
-    override func prepareForReuse() {
-        avatarImageView.image = nil
-        
-        super.prepareForReuse()
-    }
 
     var viewModel: StatusCellViewModel? {
         didSet {
@@ -55,17 +48,30 @@ class StatusCell: UITableViewCell {
                 )
                 .take(until: reactive.prepareForReuse)
 
-            boostedByStackView.isHidden = !viewModel.isBoosted
-
+            boosterNameLabel.isHidden = !viewModel.isBoosted
             boosterNameLabel.text = viewModel.boostedByName
                 .map { name in String(format: NSLocalizedString("%@ boosted", comment: ""), name) }
 
-            contentLabel.reactive.attributedText <~ viewModel.attributedContent
+            contentTextView.reactive.attributedText <~ viewModel.attributedContent
                 .take(until: reactive.prepareForReuse)
 
-            displayNameLabel.text = viewModel.displayName
+            dateLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
 
-            usernameLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
+            displayNameLabel.text = viewModel.displayName
         }
+    }
+
+    // MARK: - Table View Cell
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        contentTextView.textContainerInset = UIEdgeInsets(top: -4, left: -4, bottom: -4, right: -4)
+    }
+
+    override func prepareForReuse() {
+        avatarImageView.image = nil
+        
+        super.prepareForReuse()
     }
 }

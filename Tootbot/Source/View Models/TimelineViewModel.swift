@@ -18,16 +18,19 @@
 import CoreData
 import Moya
 import ReactiveSwift
+import Result
 
-class HomeTimelineViewModel {
+class TimelineViewModel {
     let dataController: DataController
     let dataFetcher: DataFetcher<Status>
+    let fetchNewestTootsAction: Action<(), [Status], DataFetcherError>
     let imageCacheController: ImageCacheController
     let networkingController: NetworkingController
     let timeline: Timeline
 
-    private var statuses = [Status]()
-    private var viewModels = [Int: StatusCellViewModel]()
+    private let statuses = MutableProperty<[Status]>([])
+    private var viewModelCache = [NSManagedObjectID: StatusCellViewModel]()
+    let statusesUpdated: Signal<(), NoError>
 
     init?(timeline: Timeline, dataController: DataController, networkingController: NetworkingController) {
         guard let account = timeline.account, let userAccount = UserAccount(account: account) else {
@@ -43,30 +46,33 @@ class HomeTimelineViewModel {
         fetchRequest.predicate = NSPredicate(format: "%@ IN %K", timeline, #keyPath(Status.timelines))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Status.createdAt), ascending: false)]
 
-        let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkingController, endpoint: .homeTimeline)
+        let endpoint = (timeline.timelineTypeValue ?? .home).endpoint
+        let networkRequest = NetworkRequest<JSONCollection<API.Status>>(userAccount: userAccount, networkingController: self.networkingController, endpoint: endpoint)
         let cacheRequest = CacheRequest(managedObjectContext: self.dataController.viewContext, fetchRequest: fetchRequest)
         let dataImporter = DataImporter<Status>(dataController: self.dataController) { managedObjects in
             managedObjects.forEach { $0.addToTimelines(timeline) }
         }
-        self.dataFetcher = DataFetcher(networkRequest: networkRequest, cacheRequest: cacheRequest, dataImporter: dataImporter)
-    }
+        let dataFetcher = DataFetcher(networkRequest: networkRequest, cacheRequest: cacheRequest, dataImporter: dataImporter)
+        self.dataFetcher = dataFetcher
 
-    func fetchNewestToots() -> SignalProducer<[Status], DataFetcherError> {
-        return dataFetcher.fetch()
-            .on(value: { self.statuses = $0 })
+        self.fetchNewestTootsAction = Action { _ in dataFetcher.fetch() }
+        self.statuses <~ self.fetchNewestTootsAction.values
+        self.statusesUpdated = self.fetchNewestTootsAction.completed
     }
 
     var numberOfStatuses: Int {
-        return statuses.count
+        return statuses.value.count
     }
 
     func viewModel(at indexPath: IndexPath) -> StatusCellViewModel {
-        if let viewModel = viewModels[indexPath.row] {
+        let status = statuses.value[indexPath.row]
+        let objectID = status.objectID
+
+        if let viewModel = viewModelCache[objectID] {
             return viewModel
         } else {
-            let status = statuses[indexPath.row]
             let viewModel = StatusCellViewModel(status: status, managedObjectContext: dataController.viewContext, imageCacheController: imageCacheController)
-            viewModels[indexPath.row] = viewModel
+            viewModelCache[objectID] = viewModel
             return viewModel
         }
     }
