@@ -26,7 +26,7 @@ extension Account {
 
         let fetchRequest: NSFetchRequest<Timeline> = Timeline.fetchRequest()
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "account == %@ AND timelineType == %@", self, timelineType.rawValue)
+        fetchRequest.predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Timeline.account), self, #keyPath(Timeline.timelineType), timelineType.rawValue)
 
         do {
             let results = try context.fetch(fetchRequest)

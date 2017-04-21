@@ -47,20 +47,45 @@ class AppDelegateViewModel {
         return true
     }
 
-    fileprivate func loggedInUI(homeTimelineViewModel: HomeTimelineViewModel) -> UIViewController {
-        let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
-        for viewController in tabBarController.viewControllers ?? [] {
-            guard let navigationController = viewController as? UINavigationController,
-                let rootViewController = navigationController.viewControllers.first
-                else { continue }
+    fileprivate func loggedInUI(dataController: DataController) -> UIViewController {
+        let account = try! dataController.account()!
 
-            switch rootViewController {
-            case let homeTimelineViewController as HomeTimelineViewController:
-                homeTimelineViewController.viewModel = homeTimelineViewModel
-            default:
-                break
-            }
+        func loadStoryboard(_ name: String) -> UIViewController {
+            return UIStoryboard(name: name, bundle: nil).instantiateInitialViewController()!
         }
+
+        func makeTimelineViewController(type: TimelineType) -> UIViewController {
+            let title: String
+            switch type {
+            case .home:
+                title = NSLocalizedString("Home", comment: "")
+            case .local:
+                title = NSLocalizedString("Local", comment: "")
+            case .federated:
+                title = NSLocalizedString("Federated", comment: "")
+            }
+
+            let navigationController = loadStoryboard("Timeline") as! UINavigationController
+            navigationController.tabBarItem.title = title
+
+            let timeline = account.timeline(ofType: type)!
+            let timelineViewController = navigationController.viewControllers[0] as! TimelineViewController
+            timelineViewController.navigationItem.title = title
+            timelineViewController.viewModel = TimelineViewModel(timeline: timeline, dataController: dataController, networkingController: networkingController)
+
+            return navigationController
+        }
+
+        let tabBarController = TabBarController()
+        tabBarController.tabBar.barTintColor = #colorLiteral(red: 0.2508022785, green: 0.2717204094, blue: 0.3323762417, alpha: 1)
+        tabBarController.tabBar.tintColor = .white
+        tabBarController.viewControllers = [
+            makeTimelineViewController(type: .home),
+            makeTimelineViewController(type: .local),
+            makeTimelineViewController(type: .federated),
+            loadStoryboard("Notifications"),
+            loadStoryboard("Profile"),
+        ]
 
         return tabBarController
     }
@@ -68,8 +93,7 @@ class AppDelegateViewModel {
     func loadLoggedInUI(forAccount userAccount: UserAccount) -> SignalProducer<UIViewController, Error> {
         return DataController.load(forAccount: userAccount)
             .mapError(Error.dataController)
-            .map(homeTimelineViewModel(dataController:))
-            .map(loggedInUI(homeTimelineViewModel:))
+            .map(loggedInUI(dataController:))
     }
 
     func loadLoggedOutUI() -> SignalProducer<UIViewController, NoError> {
@@ -79,18 +103,11 @@ class AppDelegateViewModel {
             observer.send(value: addAccount)
 
             disposable += addAccount.doneSignal
-                .map(self.homeTimelineViewModel(dataController:))
-                .map(self.loggedInUI(homeTimelineViewModel:))
+                .map(self.loggedInUI(dataController:))
                 .observeValues { viewController in
                     observer.send(value: viewController)
                 }
         }
-    }
-
-    fileprivate func homeTimelineViewModel(dataController: DataController) -> HomeTimelineViewModel {
-        let account = try! dataController.account()!
-        let timeline = account.timeline(ofType: .home)!
-        return HomeTimelineViewModel(timeline: timeline, dataController: dataController, networkingController: self.networkingController)!
     }
 
     func loadUI() -> SignalProducer<UIViewController, NoError> {
