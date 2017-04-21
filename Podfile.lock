@@ -9,6 +9,11 @@ PODS:
   - Moya/ReactiveSwift (8.0.3):
     - Moya/Core
     - ReactiveSwift (~> 1.0)
+  - PINCache (2.3)
+  - PINRemoteImage/Core (2.1.4):
+    - PINCache (>= 2.1)
+  - PINRemoteImage/iOS (2.1.4):
+    - PINRemoteImage/Core
   - ReactiveCocoa (5.0.3):
     - ReactiveSwift (~> 1.1)
   - ReactiveSwift (1.1.1):
@@ -21,6 +26,7 @@ DEPENDENCIES:
   - Freddy (from `https://github.com/bignerdranch/Freddy.git`, tag `3.0.2`)
   - KeyboardLayoutGuide (from `Pods/Local Podspecs/KeyboardLayoutGuide.podspec.json`)
   - Moya/ReactiveSwift (~> 8.0.3)
+  - PINRemoteImage/iOS (~> 2.1)
   - ReactiveCocoa (~> 5.0.0)
   - ReactiveSwift (~> 1.1.1)
   - SAMKeychain (~> 1.5.2)
@@ -43,11 +49,13 @@ SPEC CHECKSUMS:
   Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   KeyboardLayoutGuide: 8e71a5681e49f7272c24db9ae8654bd45779a871
   Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   ReactiveCocoa: 066a855f613fb72f68258771095805fdb10312d2
   ReactiveSwift: 2489549e3231a6ff68ec99f3d320bb264f10ba0a
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
 
-PODFILE CHECKSUM: a8629e8f0533eacc1a23954f7b29ac4d1bc632c2
+PODFILE CHECKSUM: f15e080434aee21a9793b83abf906059f15bd203
 
 COCOAPODS: 1.2.1
