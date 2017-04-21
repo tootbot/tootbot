@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import PINRemoteImage
 import ReactiveCocoa
 import ReactiveSwift
 import Result
@@ -61,12 +62,7 @@ class StatusCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
 
-            avatarImageView.reactive.image <~ SignalProducer<UIImage?, NoError>(value: nil)
-                .concat(viewModel.avatarImage
-                    .map(Optional.some)
-                    .flatMapError({ _ in SignalProducer(value: nil) })
-                )
-                .take(until: reactive.prepareForReuse)
+            avatarImageView.pin_setImage(from: viewModel.avatarImageURL)
 
             boosterNameLabel.isHidden = !viewModel.isBoosted
             boosterNameLabel.text = viewModel.boostedByName
@@ -146,8 +142,9 @@ class StatusCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        avatarImageView.pin_cancelImageDownload()
         avatarImageView.image = nil
-        
+
         super.prepareForReuse()
     }
 }

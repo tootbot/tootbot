@@ -28,6 +28,7 @@ class StatusCellViewModel {
     let boostedByName: String?
     let createdAtDate: Date
     let attributedContent: NSAttributedString
+    let avatarImageURL: URL
 
     var hasAttachments: Bool {
         return !attachmentURLs.isEmpty
@@ -37,25 +38,19 @@ class StatusCellViewModel {
         return boostedByName != nil
     }
 
-    let avatarImage: SignalProducer<UIImage, ImageCacheController.Error>
-
     private let status: Status
     private let managedObjectContext: NSManagedObjectContext
-    private let imageCacheController: ImageCacheController
 
-    init(status: Status, managedObjectContext: NSManagedObjectContext, imageCacheController: ImageCacheController) {
+    init(status: Status, managedObjectContext: NSManagedObjectContext) {
         self.status = status
         self.managedObjectContext = managedObjectContext
-        self.imageCacheController = imageCacheController
 
         let displayedStatus = status.rebloggedStatus ?? status
         username = displayedStatus.user!.username!
         displayName = displayedStatus.user!.displayName!
         boostedByName = status.rebloggedStatus != nil ? status.user!.displayName! : nil
         createdAtDate = status.createdAt! as Date
-
-        avatarImage = imageCacheController
-            .fetch(url: displayedStatus.user!.avatarURL!)
+        avatarImageURL = displayedStatus.user!.avatarURL!
 
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(Attachment.attachmentID), ascending: true)]
         let attachmentURLs: [(preview: URL, remote: URL?, url: URL, text: URL?)]
