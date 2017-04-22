@@ -28,12 +28,12 @@ class StatusCellViewModel {
     let boostedByName: String?
     let createdAtDate: Date
     let hasAttachments: Bool = false
+    let attributedContent: NSAttributedString
 
     var isBoosted: Bool {
         return boostedByName != nil
     }
-    
-    let attributedContent: SignalProducer<NSAttributedString, NoError>
+
     let avatarImage: SignalProducer<UIImage, ImageCacheController.Error>
 
     private let status: Status
@@ -54,32 +54,18 @@ class StatusCellViewModel {
         avatarImage = imageCacheController
             .fetch(url: displayedStatus.user!.avatarURL!)
 
-        attributedContent = SignalProducer { observer, disposable in
-            guard let data = displayedStatus.content?.data(using: .utf8) else {
-                observer.sendCompleted()
-                return
-            }
-
-            let options: [String : Any] = [
-                NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue as NSNumber,
-                NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            ]
-
-            guard let attributedString = try? NSMutableAttributedString(data: data, options: options, documentAttributes: nil) else {
-                observer.sendCompleted()
-                return
-            }
-
-            let range = NSRange(0 ..< (attributedString.string as NSString).length)
-            attributedString.addAttributes([
-                NSFontAttributeName: UIFont.systemFont(ofSize: 17),
-                NSForegroundColorAttributeName: UIColor.white
-            ], range: range)
-
+        if let content = displayedStatus.content, let attributedString = NSMutableAttributedString(htmlString: content, handlers: MastodonHTMLElementHandler.common) {
             attributedString.trimCharacters(in: .whitespacesAndNewlines)
 
-            observer.send(value: attributedString)
-            observer.sendCompleted()
-        }.replayLazily(upTo: 1)
+            let attributes: [String: Any] = [
+                NSFontAttributeName: UIFont.systemFont(ofSize: 17),
+                NSForegroundColorAttributeName: UIColor.white,
+            ]
+            attributedString.addAttributes(attributes, range: NSRange(0 ..< (attributedString.string as NSString).length))
+
+            attributedContent = attributedString
+        } else {
+            attributedContent = NSAttributedString()
+        }
     }
 }
