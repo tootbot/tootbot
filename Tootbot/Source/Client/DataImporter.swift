@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import ReactiveSwift
 
 enum DataImporterError: Error {
@@ -32,13 +33,14 @@ struct DataImporter<ManagedObject> where ManagedObject: APIImportable, ManagedOb
 
     func importModels(collection: JSONCollection<ManagedObject.JSONModel>) -> SignalProducer<[ManagedObject], DataImporterError> {
         return SignalProducer { observer, disposable in
-            self.dataController.perform(backgroundTask: { context in
+            self.dataController.performWrite(backgroundTask: { context in
                 guard !disposable.isDisposed else { return }
 
                 let managedObjects = collection.elements.map { model in ManagedObject.upsert(model: model, in: context) }
                 self.beforeSaveHandler(managedObjects)
 
                 do {
+                    context.mergePolicy = NSMergePolicy.overwrite
                     try context.save()
                 } catch {
                     observer.send(error: .coreData(error))

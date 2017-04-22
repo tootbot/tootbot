@@ -25,7 +25,8 @@ class DataController {
         case invalidStore
     }
 
-    let container: NSPersistentContainer
+    private let container: NSPersistentContainer
+    private let writeQueue = DispatchQueue(label: "tootbot.iOS.DataController.WriteQueue")
 
     fileprivate init(userAccount: UserAccount) {
         let name = String(describing: userAccount)
@@ -173,5 +174,17 @@ class DataController {
 
     func perform(backgroundTask: @escaping (NSManagedObjectContext) -> Void) {
         container.performBackgroundTask(backgroundTask)
+    }
+
+    func performWrite(backgroundTask: @escaping (NSManagedObjectContext) -> Void) {
+        writeQueue.async {
+            let semaphore = DispatchSemaphore(value: 0)
+            self.perform(backgroundTask: { context in
+                backgroundTask(context)
+                semaphore.signal()
+            })
+
+            semaphore.wait()
+        }
     }
 }
