@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
+  - Axt (0.0.1)
   - Freddy (3.0.0)
   - KeyboardLayoutGuide (0.0.1)
   - Moya/Core (8.0.3):
@@ -16,6 +17,7 @@ PODS:
   - SAMKeychain (1.5.2)
 
 DEPENDENCIES:
+  - Axt (~> 0.0.1)
   - Freddy (from `https://github.com/bignerdranch/Freddy.git`, tag `3.0.2`)
   - KeyboardLayoutGuide (from `Pods/Local Podspecs/KeyboardLayoutGuide.podspec.json`)
   - Moya/ReactiveSwift (~> 8.0.3)
@@ -37,6 +39,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Axt: e924899db428fa6d11a4627d207b0f98fdef6b37
   Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
   KeyboardLayoutGuide: 8e71a5681e49f7272c24db9ae8654bd45779a871
   Moya: d3721622e3cc0cc2f038d69a258686f0b66e7252
@@ -45,6 +48,6 @@ SPEC CHECKSUMS:
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
 
-PODFILE CHECKSUM: af69c913a61bad18a917a5af35dbc3b0c828d313
+PODFILE CHECKSUM: a8629e8f0533eacc1a23954f7b29ac4d1bc632c2
 
 COCOAPODS: 1.2.1
