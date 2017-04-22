@@ -52,8 +52,7 @@ class StatusCell: UITableViewCell {
             boosterNameLabel.text = viewModel.boostedByName
                 .map { name in String(format: NSLocalizedString("%@ boosted", comment: ""), name) }
 
-            contentTextView.reactive.attributedText <~ viewModel.attributedContent
-                .take(until: reactive.prepareForReuse)
+            contentTextView.attributedText = viewModel.attributedContent
 
             dateLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
 

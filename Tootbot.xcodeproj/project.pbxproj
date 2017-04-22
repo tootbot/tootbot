@@ -21,6 +21,8 @@
 		8317E6EB1E9BD870003F1AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8317E6EA1E9BD870003F1AA2 /* Assets.xcassets */; };
 		832A809D1EAA75BF000404B6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A809C1EAA75BF000404B6 /* NavigationController.swift */; };
 		832A809F1EAA75CE000404B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A809E1EAA75CE000404B6 /* TabBarController.swift */; };
+		832A80A21EABA9EB000404B6 /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A80A11EABA9EB000404B6 /* NSAttributedString+HTML.swift */; };
+		832A80A41EABE098000404B6 /* MastodonHTMLElementHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A80A31EABE098000404B6 /* MastodonHTMLElementHandler.swift */; };
 		832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D552B1EA2B3F700393BC5 /* Model+URL.swift */; };
 		832D553F1EA2BC9400393BC5 /* AddAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D552F1EA2BC9400393BC5 /* AddAccount.storyboard */; };
 		832D55411EA2BC9400393BC5 /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832D55331EA2BC9400393BC5 /* Timeline.storyboard */; };
@@ -121,6 +123,8 @@
 		8317E6EF1E9BD870003F1AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		832A809C1EAA75BF000404B6 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		832A809E1EAA75CE000404B6 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		832A80A11EABA9EB000404B6 /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		832A80A31EABE098000404B6 /* MastodonHTMLElementHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonHTMLElementHandler.swift; sourceTree = "<group>"; };
 		832D552B1EA2B3F700393BC5 /* Model+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Model+URL.swift"; sourceTree = "<group>"; };
 		832D55301EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddAccount.storyboard; sourceTree = "<group>"; };
 		832D55341EA2BC9400393BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timeline.storyboard; sourceTree = "<group>"; };
@@ -331,6 +335,8 @@
 		83851F811EA2821500BFA80B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				832A80A31EABE098000404B6 /* MastodonHTMLElementHandler.swift */,
+				832A80A11EABA9EB000404B6 /* NSAttributedString+HTML.swift */,
 				2E89B6F01EA69ADC008395B2 /* NSAttributedString+Trimming.swift */,
 				83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */,
 				8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */,
@@ -668,6 +674,7 @@
 				2E89B6F11EA69ADC008395B2 /* NSAttributedString+Trimming.swift in Sources */,
 				8317E6E41E9BD870003F1AA2 /* AppDelegate.swift in Sources */,
 				8386B4E41EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift in Sources */,
+				832A80A41EABE098000404B6 /* MastodonHTMLElementHandler.swift in Sources */,
 				83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */,
 				83DB2FAD1EA27B3800AD7080 /* AddAccountViewController.swift in Sources */,
 				83DB2F6D1EA23D1500AD7080 /* MastodonService.swift in Sources */,
@@ -713,6 +720,7 @@
 				83DB2F711EA23D1500AD7080 /* NetworkingController.swift in Sources */,
 				832D554B1EA2C30400393BC5 /* TimelineViewModel.swift in Sources */,
 				83DB2F841EA23D1500AD7080 /* ServerError.swift in Sources */,
+				832A80A21EABA9EB000404B6 /* NSAttributedString+HTML.swift in Sources */,
 				832D55551EA2D6B900393BC5 /* Timeline+TimelineType.swift in Sources */,
 				2E646ABD1EA3D96300D05E73 /* User+APIImportable.swift in Sources */,
 				2E646AC71EA3E4CA00D05E73 /* Attachment+APIImportable.swift in Sources */,
