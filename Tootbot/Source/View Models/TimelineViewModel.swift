@@ -57,7 +57,7 @@ class TimelineViewModel {
 
         self.fetchNewestTootsAction = Action { _ in dataFetcher.fetch() }
         self.statuses <~ self.fetchNewestTootsAction.values
-        self.statusesUpdated = self.fetchNewestTootsAction.completed
+        self.statusesUpdated = self.statuses.signal.map { _ in () }
     }
 
     var numberOfStatuses: Int {
