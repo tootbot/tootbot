@@ -123,7 +123,16 @@ class AppDelegateViewModel {
                     })
                     .flatMapError { _ in SignalProducer.empty }
             }
-            .concat(value: loadLoggedOutUI())
             .flatten(.concat)
+            .map(Optional.some)
+            .concat(SignalProducer(value: UIViewController?.none))
+            .take(first: 1)
+            .flatMap(.latest) { maybeViewController -> SignalProducer<UIViewController, NoError> in
+                if let viewController = maybeViewController {
+                    return SignalProducer(value: viewController)
+                } else {
+                    return self.loadLoggedOutUI()
+                }
+            }
     }
 }
