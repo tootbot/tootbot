@@ -121,10 +121,9 @@ class AppDelegateViewModel {
                     .on(failed: { error in
                         print("Could not load UI for \(userAccount) -> \(error)")
                     })
-                    .flatMapError { _ in SignalProducer<UIViewController, NoError>.empty }
+                    .flatMapError { _ in SignalProducer.empty }
             }
             .concat(value: loadLoggedOutUI())
             .flatten(.concat)
-            .take(first: 1)
     }
 }

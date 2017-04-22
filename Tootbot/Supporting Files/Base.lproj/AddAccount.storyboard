@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZWo-eU-4FW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZWo-eU-4FW">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,50 +21,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-oG-Ryc">
-                                <rect key="frame" x="20" y="40" width="374" height="152"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-oG-Ryc">
+                                <rect key="frame" x="20" y="285" width="374" height="166"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Tootbot!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sng-ff-dfj">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Iuc-4Q-qsl">
-                                        <rect key="frame" x="0.0" y="53.666666666666679" width="374" height="58.333333333333321"/>
+                                        <rect key="frame" x="0.0" y="54" width="374" height="59"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where is your instance located?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-sK-za9">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where is your instance located?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-sK-za9">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mastodon.social" borderStyle="roundedRect" placeholder="mastodon.social" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yuR-YA-2ZW">
-                                                <rect key="frame" x="0.0" y="28.333333333333329" width="374" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mastodon.social" borderStyle="roundedRect" placeholder="mastodon.social" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yuR-YA-2ZW">
+                                                <rect key="frame" x="0.0" y="29" width="374" height="30"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                                 <connections>
                                                     <action selector="logIn:" destination="ZWo-eU-4FW" eventType="editingDidEndOnExit" id="9ce-fn-Cw8"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kqx-Yl-AXG">
-                                        <rect key="frame" x="0.0" y="132" width="374" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kqx-Yl-AXG">
+                                        <rect key="frame" x="0.0" y="133" width="374" height="33"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-N7-FXh">
-                                                <rect key="frame" x="152" y="0.0" width="70" height="20"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-N7-FXh">
+                                                <rect key="frame" x="150" y="0.0" width="75" height="33"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcd-5h-pZc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcd-5h-pZc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="33"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <state key="normal" title="Log In"/>
                                                         <connections>
                                                             <action selector="logIn:" destination="ZWo-eU-4FW" eventType="touchUpInside" id="dTH-ba-8fR"/>
                                                         </connections>
                                                     </button>
-                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="t36-1y-ZhV">
-                                                        <rect key="frame" x="50" y="0.0" width="20" height="20"/>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t36-1y-ZhV">
+                                                        <rect key="frame" x="55" y="0.0" width="20" height="33"/>
                                                     </activityIndicatorView>
                                                 </subviews>
                                             </stackView>
@@ -76,16 +78,17 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.15623295309999999" green="0.17170935870000001" blue="0.2173686326" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wHs-oG-Ryc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rBW-is-CUP" secondAttribute="bottom" constant="20" id="3WW-mr-t43"/>
-                            <constraint firstItem="wHs-oG-Ryc" firstAttribute="top" secondItem="rBW-is-CUP" secondAttribute="bottom" constant="20" placeholder="YES" id="JPM-sO-MS7"/>
+                            <constraint firstItem="wHs-oG-Ryc" firstAttribute="centerY" secondItem="cnN-Sq-wBa" secondAttribute="centerY" placeholder="YES" id="UhI-45-Bhs"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wHs-oG-Ryc" secondAttribute="trailing" constant="20" id="Ve1-Zk-6A8"/>
                             <constraint firstItem="wHs-oG-Ryc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cnN-Sq-wBa" secondAttribute="leading" constant="20" id="Wah-Sf-OT0"/>
                             <constraint firstItem="wHs-oG-Ryc" firstAttribute="centerX" secondItem="cnN-Sq-wBa" secondAttribute="centerX" id="mdw-Kp-C4M"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tEt-1A-aKV"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="t36-1y-ZhV" id="OAQ-LO-TPj"/>
                         <outlet property="containerStackView" destination="wHs-oG-Ryc" id="vO9-c9-qoy"/>
