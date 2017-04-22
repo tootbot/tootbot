@@ -4,6 +4,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Tootbot' do
+  pod 'Axt', '~> 0.0.1'
   pod 'Freddy', git: 'https://github.com/bignerdranch/Freddy.git', tag: '3.0.2'
   pod 'KeyboardLayoutGuide', podspec: 'Pods/Local Podspecs/KeyboardLayoutGuide.podspec.json'
   pod 'Moya/ReactiveSwift', '~> 8.0.3'
