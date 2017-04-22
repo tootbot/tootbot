@@ -93,7 +93,7 @@ struct DataFetcher<ManagedObject> where ManagedObject: APIImportable, ManagedObj
                     self.dataImporter.importModels(collection: models)
                         .mapError(DataFetcherError.importer)
                 }
-                .concat(fetch(cachePolicy: .cacheOnly))
+                .then(fetch(cachePolicy: .cacheOnly))
         case .cacheThenNetwork:
             let local = fetch(cachePolicy: .cacheOnly)
             let remote = fetch(cachePolicy: .networkOnly)
