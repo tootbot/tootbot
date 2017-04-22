@@ -22,7 +22,7 @@ import Result
 import SafariServices
 import UIKit
 
-class AddAccountViewController: UIViewController {
+class AddAccountViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet var containerStackView: UIStackView!
     @IBOutlet var instanceTextField: UITextField!
@@ -66,6 +66,14 @@ class AddAccountViewController: UIViewController {
         keyboardLayoutGuide.centerYAnchor.constraint(equalTo: containerStackView.centerYAnchor).isActive = true
     }
 
+    func presentSafariViewController(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        safariViewController.preferredBarTintColor = #colorLiteral(red: 0.1921568627, green: 0.2078431373, blue: 0.262745098, alpha: 1)
+        safariViewController.preferredControlTintColor = .white
+        present(safariViewController, animated: true)
+    }
+
     func configureReactivity() {
         // Set up action
         loginAction = Action { [unowned self] instanceURI in
@@ -78,8 +86,7 @@ class AddAccountViewController: UIViewController {
 
             return self.viewModel.loginURL(on: instanceURI)
                 .on(value: { [unowned self] loginURL in
-                    let safariViewController = SFSafariViewController(url: loginURL)
-                    self.present(safariViewController, animated: true)
+                    self.presentSafariViewController(url: loginURL)
                 })
 
                 // fatalError is NOT called; `filter()` passes through no values
@@ -87,19 +94,24 @@ class AddAccountViewController: UIViewController {
                 .map { _ in fatalError() }
 
                 .take(untilReplacement: replacement)
+                .take(until: self.reactive.trigger(for: #selector(AddAccountViewController.safariViewControllerDidFinish)))
         }
 
         // Pass login results through to `doneSignal`
-        loginAction.values.take(first: 1).observe(doneObserver)
+        disposable += loginAction.values.take(first: 1).observe(doneObserver)
 
         // TODO: Handle login verification errors
         // https://github.com/tootbot/tootbot/issues/26
-        // disposable += loginAction.errors.observeValues { error in }
+        disposable += loginAction.errors.observeValues { error in
+            print(error)
+        }
 
         // Toggle activity view animating
         disposable += activityIndicatorView.reactive.isAnimating <~ loginAction.isExecuting
         // Toggle button enabled
         disposable += logInButton.reactive.isEnabled <~ loginAction.isExecuting.negate()
+        // Toggle text field enabled
+        instanceTextField.reactive.isEnabled <~ loginAction.isExecuting.negate()
     }
 
     // MARK: - View Life Cycle
@@ -118,5 +130,17 @@ class AddAccountViewController: UIViewController {
             instanceTextField.becomeFirstResponder()
             instanceTextField.selectedTextRange = instanceTextField.fullTextRange
         }
+    }
+
+    // MARK: - Status Bar
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    // MARK: - Safari View Controller
+
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        // Stub implementation for ReactiveCocoa
     }
 }
