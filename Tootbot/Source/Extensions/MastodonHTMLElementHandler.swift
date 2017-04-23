@@ -52,9 +52,10 @@ enum MastodonHTMLElementHandler {
 
     static func hashtagMention(_ tag: HTMLTag, _ contents: NSAttributedString) -> NSAttributedString? {
         if tag.name == "a", let className = tag.className, className.contains("mention") && className.contains("hashtag"), let href = tag.attributes["href"], let hrefURL = URL(string: href) {
-            let hashtag = hrefURL.lastPathComponent
+            let value = hrefURL.lastPathComponent
+
             let mutableContents = NSMutableAttributedString(attributedString: contents)
-            mutableContents.addAttribute(HashtagMentionAttributeName, value: hashtag, range: NSRange(0 ..< mutableContents.length))
+            mutableContents.addAttribute(HashtagMentionAttributeName, value: value, range: NSRange(0 ..< mutableContents.length))
             return mutableContents
         }
         
@@ -72,7 +73,7 @@ enum MastodonHTMLElementHandler {
             let value = user + "@" + host
 
             let mutableContents = NSMutableAttributedString(attributedString: contents)
-            mutableContents.addAttribute(HashtagMentionAttributeName, value: value, range: NSRange(0 ..< mutableContents.length))
+            mutableContents.addAttribute(UserMentionAttributeName, value: value, range: NSRange(0 ..< mutableContents.length))
             return mutableContents
         }
         
@@ -80,17 +81,9 @@ enum MastodonHTMLElementHandler {
     }
 
     static func hyperlink(_ tag: HTMLTag, _ contents: NSAttributedString) -> NSAttributedString? {
-        if let className = tag.className, className.contains("mention"), let href = tag.attributes["href"], let hrefComponents = URLComponents(string: href) {
-            let host = hrefComponents.host ?? ""
-            let user: String = {
-                let atIndex = hrefComponents.path.characters.index(of: "@")!
-                let characters = hrefComponents.path.characters[atIndex ..< hrefComponents.path.characters.endIndex]
-                return String(characters)
-            }()
-            let value = user + "@" + host
-
+        if let href = tag.attributes["href"] {
             let mutableContents = NSMutableAttributedString(attributedString: contents)
-            mutableContents.addAttribute(HashtagMentionAttributeName, value: value, range: NSRange(0 ..< mutableContents.length))
+            mutableContents.addAttribute(NSLinkAttributeName, value: href, range: NSRange(0 ..< mutableContents.length))
             return mutableContents
         }
         

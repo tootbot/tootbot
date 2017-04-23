@@ -23,9 +23,10 @@ import Result
 class StatusCell: UITableViewCell {
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var boosterNameLabel: UILabel!
-    @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var contentContainerStackView: UIStackView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var displayNameLabel: UILabel!
+    var contentTextView: StatusTextView!
 
     private var disposable = ScopedDisposable(CompositeDisposable())
 
@@ -65,7 +66,27 @@ class StatusCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        contentTextView.textContainerInset = UIEdgeInsets(top: -4, left: -4, bottom: -4, right: -4)
+        contentTextView = StatusTextView(frame: .zero)
+        contentTextView.backgroundColor = .clear
+        contentTextView.isEditable = false
+        contentTextView.isSelectable = false
+        contentTextView.isScrollEnabled = false
+
+        let color = #colorLiteral(red: 0.8791071773, green: 0.9057380557, blue: 0.9279155135, alpha: 1)
+        let attributes: [String: Any] = [
+            NSBackgroundColorAttributeName: color.withAlphaComponent(0.15),
+            NSUnderlineColorAttributeName: color.withAlphaComponent(0.35),
+            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue,
+        ]
+
+        contentTextView.statusTextStorage.overlaidAttributes = [
+            HashtagMentionAttributeName: attributes,
+            UserMentionAttributeName: attributes,
+            NSLinkAttributeName: attributes,
+        ]
+
+        contentContainerStackView.arrangedSubviews.last!.removeFromSuperview()
+        contentContainerStackView.addArrangedSubview(contentTextView)
     }
 
     override func prepareForReuse() {
