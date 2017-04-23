@@ -72,7 +72,6 @@ private class HTMLParserDelegate: NSObject, AXHTMLParserDelegate {
             return contents
         }()
 
-
         workingAttributedString!.replaceCharacters(in: subrange, with: replacementString)
     }
 
@@ -93,9 +92,7 @@ extension NSAttributedString {
         }
 
         let stream = InputStream(data: data)
-        guard let parser = AXHTMLParser(stream: stream) else {
-            return nil
-        }
+        let parser = AXHTMLParser(stream: stream)!
 
         let delegate = HTMLParserDelegate(handlers: handlers)
         parser.delegate = delegate

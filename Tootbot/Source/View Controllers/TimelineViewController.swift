@@ -17,9 +17,10 @@
 
 import ReactiveCocoa
 import ReactiveSwift
+import SafariServices
 import UIKit
 
-class TimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController, UIViewControllerPreviewingDelegate {
     let disposable = ScopedDisposable(CompositeDisposable())
     var viewModel: TimelineViewModel!
 
@@ -48,6 +49,8 @@ class TimelineViewController: UITableViewController {
 
         configureTableView()
         configureRefreshControl()
+
+        registerForPreviewing(with: self, sourceView: tableView)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -72,5 +75,55 @@ class TimelineViewController: UITableViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+    // MARK: - 3D Touch
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard previewingContext.sourceView == tableView else {
+            return nil
+        }
+
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
+            return nil
+        }
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? StatusCell else {
+            return nil
+        }
+
+        let relativePoint = tableView.convert(location, to: cell.contentTextView)
+        var boundingRect = CGRect()
+        guard let attributes = cell.contentTextView.attributes(at: relativePoint, boundingRect: &boundingRect) else {
+            return nil
+        }
+
+        previewingContext.sourceRect = cell.contentTextView.convert(boundingRect, to: tableView)
+
+        let linkURL: URL?
+        if let url = attributes[NSLinkAttributeName] as? URL {
+            linkURL = url
+        } else if let string = attributes[NSLinkAttributeName] as? String {
+            linkURL = URL(string: string)
+        } else {
+            linkURL = nil
+        }
+
+        if let linkURL = linkURL {
+            let safariViewController = SFSafariViewController(url: linkURL)
+            safariViewController.preferredBarTintColor = #colorLiteral(red: 0.1921568627, green: 0.2078431373, blue: 0.262745098, alpha: 1)
+            safariViewController.preferredControlTintColor = .white
+            return safariViewController
+        }
+
+        return nil
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        if viewControllerToCommit is SFSafariViewController {
+            present(viewControllerToCommit, animated: true)
+        } else {
+            navigationController!.pushViewController(viewControllerToCommit, animated: true)
+        }
     }
 }

@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="500"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="ubI-ty-t94" id="R5w-sP-U8l">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="499.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dIC-uo-6eV">
@@ -56,13 +56,13 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="38C-Jf-53x">
-                                                            <rect key="frame" x="70" y="0.0" width="285" height="449"/>
+                                                            <rect key="frame" x="70" y="0.0" width="285" height="81.5"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGf-vJ-nRr">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eGf-vJ-nRr">
                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="20.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ash Furrow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WS7-6m-vq1">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="194" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="190" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -75,10 +75,9 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5F-d1-mfo">
-                                                                    <rect key="frame" x="0.0" y="24.5" width="285" height="424.5"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This TextView is replaced at run-time with a StatusTextView." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZJ-el-XNP">
+                                                                    <rect key="frame" x="0.0" y="24.5" width="285" height="57"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -99,10 +98,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gNK-0c-73R" secondAttribute="bottom" constant="10" id="d7W-S5-OiS"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="avatarImageView" destination="gNK-0c-73R" id="vH1-dV-yQD"/>
                                     <outlet property="boosterNameLabel" destination="Xjk-Ke-6Rs" id="lFo-Kk-J4U"/>
-                                    <outlet property="contentTextView" destination="W5F-d1-mfo" id="8pb-v7-zyX"/>
+                                    <outlet property="contentContainerStackView" destination="38C-Jf-53x" id="gFc-Pr-VnO"/>
                                     <outlet property="dateLabel" destination="OMu-Re-Ie8" id="JF3-NM-JIa"/>
                                     <outlet property="displayNameLabel" destination="WS7-6m-vq1" id="jyb-qB-ab0"/>
                                 </connections>
@@ -117,6 +119,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="74l-HV-9Yh">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSe-P4-PNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
