@@ -26,6 +26,7 @@ class StatusCell: UITableViewCell {
     @IBOutlet var contentContainerStackView: UIStackView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var displayNameLabel: UILabel!
+    @IBOutlet var placeholderContentView: UIView!
     var contentTextView: StatusTextView!
 
     private var disposable = ScopedDisposable(CompositeDisposable())
@@ -85,8 +86,8 @@ class StatusCell: UITableViewCell {
             NSLinkAttributeName: attributes,
         ]
 
-        contentContainerStackView.arrangedSubviews.last!.removeFromSuperview()
         contentContainerStackView.addArrangedSubview(contentTextView)
+        placeholderContentView.removeFromSuperview()
     }
 
     override func prepareForReuse() {
