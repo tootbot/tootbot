@@ -485,8 +485,8 @@
 			isa = PBXGroup;
 			children = (
 				83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */,
-				832D55481EA2C2FC00393BC5 /* TimelineViewController.swift */,
 				832A80A01EAA780C000404B6 /* Helpers */,
+				832D55481EA2C2FC00393BC5 /* TimelineViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
