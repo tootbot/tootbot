@@ -72,6 +72,7 @@ class StatusCell: UITableViewCell {
         contentTextView.isEditable = false
         contentTextView.isSelectable = false
         contentTextView.isScrollEnabled = false
+        contentTextView.tintColor = .white
 
         let color = #colorLiteral(red: 0.8791071773, green: 0.9057380557, blue: 0.9279155135, alpha: 1)
         let attributes: [String: Any] = [
