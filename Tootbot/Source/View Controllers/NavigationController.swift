@@ -25,10 +25,10 @@ class NavigationController: UINavigationController {
     }
 
     override var childViewControllerForStatusBarStyle: UIViewController? {
-        return visibleViewController
+        return topViewController
     }
 
     override var childViewControllerForStatusBarHidden: UIViewController? {
-        return visibleViewController
+        return topViewController
     }
 }
