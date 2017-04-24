@@ -20,19 +20,7 @@ import Foundation
 
 extension Account {
     func timeline(ofType timelineType: TimelineType) -> Timeline? {
-        guard let context = managedObjectContext else {
-            return nil
-        }
-
-        let fetchRequest: NSFetchRequest<Timeline> = Timeline.fetchRequest()
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Timeline.account), self, #keyPath(Timeline.timelineType), timelineType.rawValue)
-
-        do {
-            let results = try context.fetch(fetchRequest)
-            return results.first
-        } catch {
-            return nil
-        }
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Timeline.timelineType), timelineType.rawValue)
+        return timelines?.filtered(using: predicate).first as! Timeline?
     }
 }
