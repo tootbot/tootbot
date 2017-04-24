@@ -29,8 +29,6 @@ class StatusCell: UITableViewCell {
     @IBOutlet var placeholderContentView: UIView!
     var contentTextView: StatusTextView!
 
-    private var disposable = ScopedDisposable(CompositeDisposable())
-
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
