@@ -17,8 +17,14 @@
 
 import UIKit
 
+private class InitialViewController: UIViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 class RootViewController: UIViewController {
-    var childViewController: UIViewController = UIViewController() {
+    var childViewController: UIViewController = InitialViewController() {
         willSet {
             childViewController.view.removeFromSuperview()
             childViewController.removeFromParentViewController()
