@@ -44,6 +44,7 @@ class TimelineViewModel {
 
         let fetchRequest: NSFetchRequest<Status> = Status.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%@ IN %K", timeline, #keyPath(Status.timelines))
+        fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(Status.attachments)]
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Status.createdAt), ascending: false)]
 
         let endpoint = (timeline.timelineTypeValue ?? .home).endpoint

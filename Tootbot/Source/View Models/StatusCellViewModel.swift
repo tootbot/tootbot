@@ -24,11 +24,14 @@ import Result
 class StatusCellViewModel {
     let displayName: String?
     let username: String?
-    let attachments: [UIImage?] = []
+    let attachmentURLs: [(preview: URL, fullSize: URL)]
     let boostedByName: String?
     let createdAtDate: Date
-    let hasAttachments: Bool = false
     let attributedContent: NSAttributedString
+
+    var hasAttachments: Bool {
+        return !attachmentURLs.isEmpty
+    }
 
     var isBoosted: Bool {
         return boostedByName != nil
@@ -54,14 +57,50 @@ class StatusCellViewModel {
         avatarImage = imageCacheController
             .fetch(url: displayedStatus.user!.avatarURL!)
 
+        let sortDescriptors = [NSSortDescriptor(key: #keyPath(Attachment.attachmentID), ascending: true)]
+        let attachmentURLs: [(preview: URL, remote: URL?, url: URL, text: URL?)]
+        if let attachments = displayedStatus.attachments?.sortedArray(using: sortDescriptors) as! [Attachment]?, !attachments.isEmpty {
+            attachmentURLs = attachments.flatMap { attachment in
+                if let preview = attachment.previewURL, let url = attachment.url {
+                    return (preview, attachment.remoteURL, url, attachment.textURL)
+                } else {
+                    return nil
+                }
+            }
+        } else {
+            attachmentURLs = []
+        }
+
+        self.attachmentURLs = attachmentURLs.map { preview, remote, url, _ in (preview, remote ?? url) }
+
         if let content = displayedStatus.content, let attributedString = NSMutableAttributedString(htmlString: content, handlers: MastodonHTMLElementHandler.common) {
             attributedString.trimCharacters(in: .whitespacesAndNewlines)
 
+            let fontSize: CGFloat = 17
             let attributes: [String: Any] = [
-                NSFontAttributeName: UIFont.systemFont(ofSize: 17),
+                NSFontAttributeName: UIFont.systemFont(ofSize: fontSize),
                 NSForegroundColorAttributeName: UIColor.white,
             ]
-            attributedString.addAttributes(attributes, range: NSRange(0 ..< (attributedString.string as NSString).length))
+            attributedString.addAttributes(attributes, range: NSRange(0 ..< attributedString.length))
+
+            if !attachmentURLs.isEmpty {
+                attributedString.enumerateAttributes(in: NSRange(0 ..< attributedString.length)) { attributes, range, stop in
+                    if let link = attributes[NSLinkAttributeName] as? String, let linkURL = URL(string: link) {
+                        let contains = attachmentURLs.contains(where: { _, remote, _, text in
+                            linkURL == text || linkURL == remote
+                        })
+
+                        if contains {
+                            let replacementString = " " + FontAwesome.pictureO.rawValue + " "
+                            let replacement = NSMutableAttributedString(string: replacementString)
+                            let fullRange = NSRange(0 ..< replacement.length)
+                            replacement.addAttributes(attributes, range: fullRange)
+                            replacement.addAttribute(NSFontAttributeName, value: FontAwesome.ofSize(fontSize)!, range: fullRange)
+                            attributedString.replaceCharacters(in: range, with: replacement)
+                        }
+                    }
+                }
+            }
 
             attributedContent = attributedString
         } else {
