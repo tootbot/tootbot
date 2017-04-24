@@ -35,7 +35,7 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
     func configureRefreshControl() {
         refreshControl!.beginRefreshing()
-        refreshControl!.reactive.refresh = CocoaAction(viewModel.fetchNewestTootsAction, { _ in () })
+        refreshControl!.reactive.refresh = CocoaAction(viewModel.fetchNewestTootsAction)
     }
 
     func reloadData() {
