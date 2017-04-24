@@ -107,6 +107,7 @@
                                     <outlet property="contentContainerStackView" destination="38C-Jf-53x" id="gFc-Pr-VnO"/>
                                     <outlet property="dateLabel" destination="OMu-Re-Ie8" id="JF3-NM-JIa"/>
                                     <outlet property="displayNameLabel" destination="WS7-6m-vq1" id="jyb-qB-ab0"/>
+                                    <outlet property="placeholderContentView" destination="kZJ-el-XNP" id="rSF-Zt-bYx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
