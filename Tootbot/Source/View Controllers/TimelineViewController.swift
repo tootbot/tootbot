@@ -80,15 +80,10 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
     // MARK: - 3D Touch
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard previewingContext.sourceView == tableView else {
-            return nil
-        }
-
-        guard let indexPath = tableView.indexPathForRow(at: location) else {
-            return nil
-        }
-
-        guard let cell = tableView.cellForRow(at: indexPath) as? StatusCell else {
+        guard previewingContext.sourceView == tableView,
+            let indexPath = tableView.indexPathForRow(at: location),
+            let cell = tableView.cellForRow(at: indexPath) as? StatusCell
+        else {
             return nil
         }
 
