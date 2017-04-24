@@ -62,11 +62,7 @@ class StatusCell: UITableViewCell {
         }
     }
 
-    // MARK: - Table View Cell
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
+    private func configureContentTextView() {
         contentTextView = StatusTextView(frame: .zero)
         contentTextView.backgroundColor = .clear
         contentTextView.isEditable = false
@@ -89,6 +85,14 @@ class StatusCell: UITableViewCell {
 
         contentContainerStackView.addArrangedSubview(contentTextView)
         placeholderContentView.removeFromSuperview()
+    }
+
+    // MARK: - Table View Cell
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        configureContentTextView()
     }
 
     override func prepareForReuse() {
