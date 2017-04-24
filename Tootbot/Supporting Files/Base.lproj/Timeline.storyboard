@@ -13,7 +13,7 @@
         <scene sceneID="qMa-SL-9NR">
             <objects>
                 <tableViewController id="oTb-Xc-gjK" customClass="TimelineViewController" customModule="Tootbot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" id="RRS-4C-dWe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="500" sectionHeaderHeight="28" sectionFooterHeight="28" id="RRS-4C-dWe">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15623295307159424" green="0.17170935869216919" blue="0.21736863255500793" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
