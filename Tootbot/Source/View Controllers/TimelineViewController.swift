@@ -42,7 +42,42 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
         disposable += viewModel.fetchNewestTootsAction.apply().start()
     }
 
+    func safariViewController(url: URL) -> SFSafariViewController {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.preferredBarTintColor = #colorLiteral(red: 0.1921568627, green: 0.2078431373, blue: 0.262745098, alpha: 1)
+        safariViewController.preferredControlTintColor = .white
+        return safariViewController
+    }
+
+    func handleLinkTapped(type: LinkType, link: String, sourceRect: CGRect, sourceView: UIView) {
+        let viewController: UIViewController
+
+        switch type {
+        case .hashtagMention:
+            // TODO: Hashtag mention timeline
+            // https://github.com/tootbot/tootbot/issues/41
+            return
+        case .userMention:
+            // TODO: User profile screen
+            // https://github.com/tootbot/tootbot/issues/40
+            return
+        case .hyperlink:
+            guard let url = URL(string: link) else { return }
+            viewController = safariViewController(url: url)
+        }
+
+        show(viewController, sender: sourceView)
+    }
+
     // MARK: - View Life Cycle
+
+    override func show(_ vc: UIViewController, sender: Any?) {
+        if vc is SFSafariViewController {
+            present(vc, animated: true)
+        } else {
+            navigationController!.pushViewController(vc, animated: true)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +103,12 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
         cell.viewModel = viewModel.viewModel(at: indexPath)
+
+        _ = cell.linkTappedSignal
+            .map { type, link, boundingRect in (type, link, boundingRect, cell.contentTextView) }
+            .take(until: cell.reactive.prepareForReuse)
+            .observeValues(handleLinkTapped)
+
         return cell
     }
 
@@ -95,30 +136,14 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
         previewingContext.sourceRect = cell.contentTextView.convert(boundingRect, to: tableView)
 
-        let linkURL: URL?
-        if let url = attributes[NSLinkAttributeName] as? URL {
-            linkURL = url
-        } else if let string = attributes[NSLinkAttributeName] as? String {
-            linkURL = URL(string: string)
+        if let string = attributes[NSLinkAttributeName] as? String, let linkURL = URL(string: string) {
+            return safariViewController(url: linkURL)
         } else {
-            linkURL = nil
+            return nil
         }
-
-        if let linkURL = linkURL {
-            let safariViewController = SFSafariViewController(url: linkURL)
-            safariViewController.preferredBarTintColor = #colorLiteral(red: 0.1921568627, green: 0.2078431373, blue: 0.262745098, alpha: 1)
-            safariViewController.preferredControlTintColor = .white
-            return safariViewController
-        }
-
-        return nil
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        if viewControllerToCommit is SFSafariViewController {
-            present(viewControllerToCommit, animated: true)
-        } else {
-            navigationController!.pushViewController(viewControllerToCommit, animated: true)
-        }
+        show(viewControllerToCommit, sender: nil)
     }
 }
