@@ -24,11 +24,12 @@ import Result
 class StatusCellViewModel {
     let displayName: String?
     let username: String?
-    let attachmentURLs: [(preview: URL, fullSize: URL)]
+    let attachmentURLs: [(preview: URL, fullSize: URL, type: Attachment.MediaType)]
     let boostedByName: String?
     let createdAtDate: Date
     let attributedContent: NSAttributedString
     let avatarImageURL: URL
+    let isSensitive: Bool
 
     var hasAttachments: Bool {
         return !attachmentURLs.isEmpty
@@ -37,6 +38,10 @@ class StatusCellViewModel {
     var isBoosted: Bool {
         return boostedByName != nil
     }
+
+    lazy var attachmentsViewModel: StatusCellAttachmentsViewModel = {
+        return StatusCellAttachmentsViewModel(attachments: self.attachmentURLs, isSensitive: self.isSensitive)
+    }()
 
     private let status: Status
     private let managedObjectContext: NSManagedObjectContext
@@ -51,13 +56,14 @@ class StatusCellViewModel {
         boostedByName = status.rebloggedStatus != nil ? status.user!.displayName! : nil
         createdAtDate = status.createdAt! as Date
         avatarImageURL = displayedStatus.user!.avatarURL!
+        isSensitive = status.isSensitive
 
         let sortDescriptors = [NSSortDescriptor(key: #keyPath(Attachment.attachmentID), ascending: true)]
-        let attachmentURLs: [(preview: URL, remote: URL?, url: URL, text: URL?)]
+        let attachmentURLs: [(preview: URL, remote: URL?, url: URL, text: URL?, type: Attachment.MediaType)]
         if let attachments = displayedStatus.attachments?.sortedArray(using: sortDescriptors) as! [Attachment]?, !attachments.isEmpty {
             attachmentURLs = attachments.flatMap { attachment in
-                if let preview = attachment.previewURL, let url = attachment.url {
-                    return (preview, attachment.remoteURL, url, attachment.textURL)
+                if let preview = attachment.previewURL, let url = attachment.url, let type = attachment.mediaTypeValue {
+                    return (preview, attachment.remoteURL, url, attachment.textURL, type)
                 } else {
                     return nil
                 }
@@ -66,7 +72,7 @@ class StatusCellViewModel {
             attachmentURLs = []
         }
 
-        self.attachmentURLs = attachmentURLs.map { preview, remote, url, _ in (preview, remote ?? url) }
+        self.attachmentURLs = attachmentURLs.map { ($0.preview, $0.remote ?? $0.url, $0.type) }
 
         if let content = displayedStatus.content, let attributedString = NSMutableAttributedString(htmlString: content, handlers: MastodonHTMLElementHandler.common) {
             attributedString.trimCharacters(in: .whitespacesAndNewlines)
@@ -81,10 +87,7 @@ class StatusCellViewModel {
             if !attachmentURLs.isEmpty {
                 attributedString.enumerateAttributes(in: NSRange(0 ..< attributedString.length)) { attributes, range, stop in
                     if let link = attributes[NSLinkAttributeName] as? String, let linkURL = URL(string: link) {
-                        let contains = attachmentURLs.contains(where: { _, remote, _, text in
-                            linkURL == text || linkURL == remote
-                        })
-
+                        let contains = attachmentURLs.contains(where: { linkURL == $0.text || linkURL == $0.remote })
                         if contains {
                             let replacementString = " " + FontAwesome.pictureO.rawValue + " "
                             let replacement = NSMutableAttributedString(string: replacementString)

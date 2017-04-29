@@ -34,6 +34,7 @@ class StatusCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var displayNameLabel: UILabel!
     @IBOutlet var placeholderContentView: UIView!
+    @IBOutlet var attachmentsCollectionView: UICollectionView!
     var contentTextView: StatusTextView!
 
     typealias LinkTappedValue = (linkType: LinkType, link: String, boundingRect: CGRect)
@@ -61,6 +62,17 @@ class StatusCell: UITableViewCell {
     var viewModel: StatusCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
+
+            if viewModel.hasAttachments {
+                attachmentsCollectionView.isHidden = false
+                attachmentsCollectionView.dataSource = viewModel.attachmentsViewModel.dataSource
+                attachmentsCollectionView.delegate = viewModel.attachmentsViewModel.delegate
+
+            } else {
+                attachmentsCollectionView.isHidden = true
+                attachmentsCollectionView.dataSource = nil
+                attachmentsCollectionView.delegate = nil
+            }
 
             avatarImageView.pin_setImage(from: viewModel.avatarImageURL)
 
@@ -97,7 +109,8 @@ class StatusCell: UITableViewCell {
             NSLinkAttributeName: attributes,
         ]
 
-        contentContainerStackView.addArrangedSubview(contentTextView)
+        let index = contentContainerStackView.arrangedSubviews.index(of: placeholderContentView)!
+        contentContainerStackView.insertArrangedSubview(contentTextView, at: index)
         placeholderContentView.removeFromSuperview()
     }
 

@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="500"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="ubI-ty-t94" id="R5w-sP-U8l">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="499.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dIC-uo-6eV">
@@ -56,7 +56,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="38C-Jf-53x">
-                                                            <rect key="frame" x="70" y="0.0" width="285" height="81.5"/>
+                                                            <rect key="frame" x="70" y="0.0" width="285" height="185.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eGf-vJ-nRr">
                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="20.5"/>
@@ -82,6 +82,102 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-GD-ktB">
+                                                                    <rect key="frame" x="0.0" y="85.5" width="285" height="100"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" priority="900" constant="100" id="esL-AH-vbC"/>
+                                                                    </constraints>
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0pR-4h-McR">
+                                                                        <size key="itemSize" width="100" height="100"/>
+                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                    </collectionViewFlowLayout>
+                                                                    <cells>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="1Fj-F9-mml" customClass="StatusAttachmentImageCell" customModule="Tootbot" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tLf-cK-twe">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                    </imageView>
+                                                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6r-Wa-vMC">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="heS-ME-Rdh">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                        </view>
+                                                                                        <blurEffect style="dark"/>
+                                                                                    </visualEffectView>
+                                                                                </subviews>
+                                                                            </view>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="trailing" secondItem="D6r-Wa-vMC" secondAttribute="trailing" id="GWY-sA-FAA"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="tLf-cK-twe" secondAttribute="trailing" id="Jr9-P3-Wii"/>
+                                                                                <constraint firstItem="D6r-Wa-vMC" firstAttribute="leading" secondItem="1Fj-F9-mml" secondAttribute="leading" id="NT3-HY-GbQ"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="D6r-Wa-vMC" secondAttribute="bottom" id="O8z-gX-JT1"/>
+                                                                                <constraint firstItem="tLf-cK-twe" firstAttribute="leading" secondItem="1Fj-F9-mml" secondAttribute="leading" id="QyP-rk-kid"/>
+                                                                                <constraint firstItem="D6r-Wa-vMC" firstAttribute="top" secondItem="1Fj-F9-mml" secondAttribute="top" id="boZ-da-8W4"/>
+                                                                                <constraint firstItem="tLf-cK-twe" firstAttribute="top" secondItem="1Fj-F9-mml" secondAttribute="top" id="uq0-Op-4eR"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="tLf-cK-twe" secondAttribute="bottom" id="wTM-je-5JU"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="4"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <outlet property="imageView" destination="tLf-cK-twe" id="oxc-qc-5s6"/>
+                                                                                <outlet property="sensitiveOverlayView" destination="D6r-Wa-vMC" id="Hf0-nu-BSq"/>
+                                                                            </connections>
+                                                                        </collectionViewCell>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCell" id="R0W-UA-pqM" customClass="StatusAttachmentVideoCell" customModule="Tootbot" customModuleProvider="target">
+                                                                            <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chT-gw-1Cm" customClass="PlayerView" customModule="Tootbot" customModuleProvider="target">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    </view>
+                                                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvU-v1-Mjv">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="y4E-gw-qDf">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                        </view>
+                                                                                        <blurEffect style="dark"/>
+                                                                                    </visualEffectView>
+                                                                                </subviews>
+                                                                            </view>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="trailing" secondItem="chT-gw-1Cm" secondAttribute="trailing" id="23G-JR-R3D"/>
+                                                                                <constraint firstItem="kvU-v1-Mjv" firstAttribute="top" secondItem="R0W-UA-pqM" secondAttribute="top" id="RWj-nC-EVD"/>
+                                                                                <constraint firstItem="kvU-v1-Mjv" firstAttribute="leading" secondItem="R0W-UA-pqM" secondAttribute="leading" id="TCl-8N-y3V"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="kvU-v1-Mjv" secondAttribute="trailing" id="YlX-a0-wgR"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="kvU-v1-Mjv" secondAttribute="bottom" id="fFh-T8-FaH"/>
+                                                                                <constraint firstItem="chT-gw-1Cm" firstAttribute="top" secondItem="R0W-UA-pqM" secondAttribute="top" id="js0-Pj-ESd"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="chT-gw-1Cm" secondAttribute="bottom" id="ksn-c3-5yd"/>
+                                                                                <constraint firstItem="chT-gw-1Cm" firstAttribute="leading" secondItem="R0W-UA-pqM" secondAttribute="leading" id="xax-hh-99V"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="4"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <outlet property="playerView" destination="chT-gw-1Cm" id="WpA-sT-xf7"/>
+                                                                                <outlet property="sensitiveOverlayView" destination="kvU-v1-Mjv" id="bV2-G7-Z0l"/>
+                                                                            </connections>
+                                                                        </collectionViewCell>
+                                                                    </cells>
+                                                                </collectionView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -100,8 +196,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gNK-0c-73R" secondAttribute="bottom" constant="10" id="d7W-S5-OiS"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="38C-Jf-53x" secondAttribute="bottom" constant="10" id="pS8-ah-W3y"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="attachmentsCollectionView" destination="mRb-GD-ktB" id="z3P-wy-FxV"/>
                                     <outlet property="avatarImageView" destination="gNK-0c-73R" id="vH1-dV-yQD"/>
                                     <outlet property="boosterNameLabel" destination="Xjk-Ke-6Rs" id="lFo-Kk-J4U"/>
                                     <outlet property="contentContainerStackView" destination="38C-Jf-53x" id="gFc-Pr-VnO"/>
@@ -134,7 +232,7 @@
                     <tabBarItem key="tabBarItem" title="" id="b4d-FV-sUK"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="TG6-fd-iQe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="TG6-fd-iQe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.19215686274509802" green="0.20784313725490194" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

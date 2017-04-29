@@ -46,6 +46,8 @@
 		83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F841EA2861900BFA80B /* AddAccountViewModel.swift */; };
 		83851F891EA29C3300BFA80B /* ReactiveSwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */; };
 		8386B4E41EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */; };
+		83CF42F91EB4C67E008017F3 /* StatusAttachmentImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF42F81EB4C67E008017F3 /* StatusAttachmentImageCell.swift */; };
+		83CF42FD1EB4CB2F008017F3 /* StatusCellAttachmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF42FC1EB4CB2F008017F3 /* StatusCellAttachmentsViewModel.swift */; };
 		83DB2F1D1EA22D7000AD7080 /* TootbotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */; };
 		83DB2F661EA23D1500AD7080 /* ApplicationCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F441EA23D1500AD7080 /* ApplicationCredentials.swift */; };
 		83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2F451EA23D1500AD7080 /* ApplicationProperties.swift */; };
@@ -84,6 +86,7 @@
 		83DB2FAD1EA27B3800AD7080 /* AddAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */; };
 		83E356A51EAF3FBF000CCB0B /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83E356A41EAF3FBF000CCB0B /* FontAwesome.otf */; };
 		83E356A71EAF4966000CCB0B /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E356A61EAF4966000CCB0B /* FontAwesome.swift */; };
+		83E9DBFA1EB4D0FF00E750E2 /* StatusAttachmentVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E9DBF91EB4D0FF00E750E2 /* StatusAttachmentVideoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +153,8 @@
 		83851F841EA2861900BFA80B /* AddAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewModel.swift; sourceTree = "<group>"; };
 		83851F881EA29C3300BFA80B /* ReactiveSwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensions.swift; sourceTree = "<group>"; };
 		8386B4E31EA2A5B300B58EB2 /* UITextInput+FullTextRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextInput+FullTextRange.swift"; sourceTree = "<group>"; };
+		83CF42F81EB4C67E008017F3 /* StatusAttachmentImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAttachmentImageCell.swift; sourceTree = "<group>"; };
+		83CF42FC1EB4CB2F008017F3 /* StatusCellAttachmentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCellAttachmentsViewModel.swift; sourceTree = "<group>"; };
 		83DB2F1A1EA22D7000AD7080 /* TootbotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TootbotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DB2F1C1EA22D7000AD7080 /* TootbotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootbotTests.swift; sourceTree = "<group>"; };
 		83DB2F1E1EA22D7000AD7080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,6 +195,7 @@
 		83DB2FAC1EA27B3800AD7080 /* AddAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountViewController.swift; sourceTree = "<group>"; };
 		83E356A41EAF3FBF000CCB0B /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		83E356A61EAF4966000CCB0B /* FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
+		83E9DBF91EB4D0FF00E750E2 /* StatusAttachmentVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAttachmentVideoCell.swift; sourceTree = "<group>"; };
 		D1B78148836D3B3B68CCA76C /* Pods_Tootbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBBD1C62070AD64387150C5D /* Pods-Tootbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.debug.xcconfig"; sourceTree = "<group>"; };
 		FCBE174263EF2693626E4C8F /* Pods-Tootbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tootbot/Pods-Tootbot.release.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +316,8 @@
 		832D554F1EA2CD3C00393BC5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				83CF42F81EB4C67E008017F3 /* StatusAttachmentImageCell.swift */,
+				83E9DBF91EB4D0FF00E750E2 /* StatusAttachmentVideoCell.swift */,
 				832D55501EA2CD4400393BC5 /* StatusCell.swift */,
 			);
 			path = Cells;
@@ -479,6 +487,7 @@
 				83851F841EA2861900BFA80B /* AddAccountViewModel.swift */,
 				834CD9F81EA5FE1000282189 /* AppDelegateViewModel.swift */,
 				832D554C1EA2CBBC00393BC5 /* StatusCellViewModel.swift */,
+				83CF42FC1EB4CB2F008017F3 /* StatusCellAttachmentsViewModel.swift */,
 				832D554A1EA2C30400393BC5 /* TimelineViewModel.swift */,
 			);
 			path = "View Models";
@@ -698,16 +707,19 @@
 				83DB2F7C1EA23D1500AD7080 /* DateFormatter.swift in Sources */,
 				83851F851EA2861900BFA80B /* AddAccountViewModel.swift in Sources */,
 				83DB2F6C1EA23D1500AD7080 /* Keychain.swift in Sources */,
+				83CF42F91EB4C67E008017F3 /* StatusAttachmentImageCell.swift in Sources */,
 				83DB2F6A1EA23D1500AD7080 /* DynamicTarget.swift in Sources */,
 				83DB2F721EA23D1500AD7080 /* OAuthCredentials.swift in Sources */,
 				83DB2F671EA23D1500AD7080 /* ApplicationProperties.swift in Sources */,
 				83606DE21EA54A44003F9D45 /* Account+APIImportable.swift in Sources */,
 				832D55571EA2D75A00393BC5 /* Account+Timeline.swift in Sources */,
+				83CF42FD1EB4CB2F008017F3 /* StatusCellAttachmentsViewModel.swift in Sources */,
 				2E646AC51EA3E34000D05E73 /* Mention+APIImportable.swift in Sources */,
 				832D552C1EA2B3F700393BC5 /* Model+URL.swift in Sources */,
 				83DB2F7A1EA23D1500AD7080 /* Card.swift in Sources */,
 				83DB2F801EA23D1500AD7080 /* Notification.swift in Sources */,
 				832A809D1EAA75BF000404B6 /* NavigationController.swift in Sources */,
+				83E9DBFA1EB4D0FF00E750E2 /* StatusAttachmentVideoCell.swift in Sources */,
 				83851F801EA2820C00BFA80B /* UIViewAutoresizing+FlexibleSize.swift in Sources */,
 				83DB2F6B1EA23D1500AD7080 /* FormData.swift in Sources */,
 				2E646AC91EA3E54A00D05E73 /* Attachment+MediaType.swift in Sources */,
