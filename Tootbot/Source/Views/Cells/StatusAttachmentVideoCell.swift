@@ -20,43 +20,8 @@ import ReactiveCocoa
 import ReactiveSwift
 import UIKit
 
-class PlayerView: UIView {
-    override class var layerClass: AnyClass {
-        return AVPlayerLayer.self
-    }
-
-    var loops: Bool {
-        return looper != nil
-    }
-
-    var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
-    }
-
-    private let disposable = SerialDisposable()
-
-    var looper: AVPlayerLooper?
-
-    var player: AVPlayer? {
-        get {
-            return playerLayer.player
-        }
-        set {
-            playerLayer.player = newValue
-        }
-    }
-
-    func play() {
-        player?.play()
-    }
-
-    func pause() {
-        player?.pause()
-    }
-}
-
 class StatusAttachmentVideoCell: UICollectionViewCell {
-    @IBOutlet var playerView: PlayerView!
+    @IBOutlet var playerView: VideoPlayerView!
     @IBOutlet var sensitiveOverlayView: UIVisualEffectView!
 
     // MARK: - Collection View Cell
@@ -65,9 +30,5 @@ class StatusAttachmentVideoCell: UICollectionViewCell {
         super.awakeFromNib()
 
         playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
     }
 }

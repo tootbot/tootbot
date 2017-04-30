@@ -41,6 +41,9 @@ class StatusCell: UITableViewCell {
     let linkTappedSignal: Signal<LinkTappedValue, NoError>
     private let linkTappedObserver: Observer<LinkTappedValue, NoError>
 
+    let attachmentTappedSignal: Signal<Int, NoError>
+    private let attachmentTappedObserver: Observer<Int, NoError>
+
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -49,43 +52,57 @@ class StatusCell: UITableViewCell {
         return dateFormatter
     }()
 
+    let collectionDelegateDisposable = SerialDisposable()
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         (self.linkTappedSignal, self.linkTappedObserver) = Signal.pipe()
+        (self.attachmentTappedSignal, self.attachmentTappedObserver) = Signal.pipe()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     required init?(coder aDecoder: NSCoder) {
         (self.linkTappedSignal, self.linkTappedObserver) = Signal.pipe()
+        (self.attachmentTappedSignal, self.attachmentTappedObserver) = Signal.pipe()
         super.init(coder: aDecoder)
     }
 
-    var viewModel: StatusCellViewModel? {
-        didSet {
-            guard let viewModel = viewModel else { return }
+    deinit {
+        collectionDelegateDisposable.dispose()
+    }
 
-            if viewModel.hasAttachments {
-                attachmentsCollectionView.isHidden = false
-                attachmentsCollectionView.dataSource = viewModel.attachmentsViewModel.dataSource
-                attachmentsCollectionView.delegate = viewModel.attachmentsViewModel.delegate
+    func configure(with viewModel: StatusCellViewModel) {
+        if let attachments = viewModel.attachmentsViewModel {
+            attachmentsCollectionView.isHidden = false
+            attachmentsCollectionView.dataSource = attachments.collectionDataSource
+            attachmentsCollectionView.delegate = attachments.collectionDelegate
+            attachmentsCollectionView.reloadData()
 
-            } else {
-                attachmentsCollectionView.isHidden = true
-                attachmentsCollectionView.dataSource = nil
-                attachmentsCollectionView.delegate = nil
-            }
+            collectionDelegateDisposable.inner = attachments.collectionDelegate.itemTapped
+                .take(until: reactive.prepareForReuse)
+                .map { indexPath in indexPath.item }
+                .observeValues { x in
+                    self.attachmentTappedObserver.send(value: x)
+                }
+        } else {
+            collectionDelegateDisposable.inner = nil
 
-            avatarImageView.pin_setImage(from: viewModel.avatarImageURL)
-
-            boosterNameLabel.isHidden = !viewModel.isBoosted
-            boosterNameLabel.text = viewModel.boostedByName
-                .map { name in String(format: NSLocalizedString("%@ boosted", comment: ""), name) }
-
-            contentTextView.attributedText = viewModel.attributedContent
-
-            dateLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
-
-            displayNameLabel.text = viewModel.displayName
+            attachmentsCollectionView.isHidden = true
+            attachmentsCollectionView.dataSource = nil
+            attachmentsCollectionView.delegate = nil
+            attachmentsCollectionView.reloadData()
         }
+
+        avatarImageView.pin_setImage(from: viewModel.avatarImageURL)
+
+        boosterNameLabel.isHidden = !viewModel.isBoosted
+        boosterNameLabel.text = viewModel.boostedByName
+            .map { name in String(format: NSLocalizedString("%@ boosted", comment: ""), name) }
+
+        contentTextView.attributedText = viewModel.attributedContent
+
+        dateLabel.text = StatusCell.dateFormatter.string(from: viewModel.createdAtDate)
+
+        displayNameLabel.text = viewModel.displayName
     }
 
     private func configureContentTextView() {
@@ -115,8 +132,10 @@ class StatusCell: UITableViewCell {
     }
 
     private func configureLinkTappedHandler() {
+        precondition(contentTextView != nil, "Call configureContentTextView() before configureLinkTappedHandler()")
+        
         let tap = UITapGestureRecognizer()
-        contentContainerStackView.addGestureRecognizer(tap)
+        contentTextView.addGestureRecognizer(tap)
 
         tap.reactive.stateChanged
             .filter { gesture in gesture.state == .recognized }

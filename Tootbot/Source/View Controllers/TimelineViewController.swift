@@ -18,10 +18,41 @@
 import ReactiveCocoa
 import ReactiveSwift
 import SafariServices
+import Spyglass
 import UIKit
 
-class TimelineViewController: UITableViewController, UIViewControllerPreviewingDelegate {
+struct SpyglassUserInfoKey: Hashable, RawRepresentable {
+    let rawValue: String
+
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    static func ==(lhs: SpyglassUserInfoKey, rhs: SpyglassUserInfoKey) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+
+    var hashValue: Int {
+        return rawValue.hashValue
+    }
+
+    static var index: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "index")
+    }
+
+    static var rect: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "rect")
+    }
+
+    static var snapshot: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "snapshot")
+    }
+}
+
+class TimelineViewController: UITableViewController, SpyglassTransitionDestination, SpyglassTransitionSource, UIViewControllerPreviewingDelegate {
     let disposable = ScopedDisposable(CompositeDisposable())
+    lazy var spyglass = Spyglass()
+    var selectedAttachment: (statusIndex: Int, attachmentIndex: Int)?
     var viewModel: TimelineViewModel!
 
     func configureTableView() {
@@ -47,6 +78,25 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
         safariViewController.preferredBarTintColor = #colorLiteral(red: 0.1921568627, green: 0.2078431373, blue: 0.262745098, alpha: 1)
         safariViewController.preferredControlTintColor = .white
         return safariViewController
+    }
+
+    func handleAttachmentTapped(statusIndex: Int, attachmentIndex: Int) {
+        selectedAttachment = (statusIndex, attachmentIndex)
+
+        let attachmentsViewModel = viewModel.statusCellViewModel(atIndex: statusIndex).attachmentsViewModel!
+        let galleryViewController = GalleryViewController(viewModel: attachmentsViewModel, initialIndex: attachmentIndex)
+
+        let navigationController = NavigationController(rootViewController: galleryViewController)
+        navigationController.transitioningDelegate = spyglass
+        navigationController.setNavigationBarHidden(true, animated: false)
+
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationController.navigationBar.barTintColor = navigationBar.barTintColor
+            navigationController.navigationBar.tintColor = navigationBar.tintColor
+            navigationController.navigationBar.titleTextAttributes = navigationBar.titleTextAttributes
+        }
+
+        present(navigationController, animated: true)
     }
 
     func handleLinkTapped(type: LinkType, link: String, sourceRect: CGRect, sourceView: UIView) {
@@ -102,7 +152,12 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
-        cell.viewModel = viewModel.viewModel(at: indexPath)
+        cell.configure(with: viewModel.statusCellViewModel(atIndex: indexPath.item))
+
+        _ = cell.attachmentTappedSignal
+            .take(until: cell.reactive.prepareForReuse)
+            .map { attachmentIndex in (indexPath.item, attachmentIndex) }
+            .observeValues(handleAttachmentTapped)
 
         _ = cell.linkTappedSignal
             .map { type, link, boundingRect in (type, link, boundingRect, cell.contentTextView) }
@@ -145,5 +200,49 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: nil)
+    }
+
+    // MARK: - Spyglass
+
+    func userInfo(for transitionType: SpyglassTransitionType, from initialViewController: UIViewController, to finalViewController: UIViewController) -> SpyglassUserInfo? {
+        return nil
+    }
+
+    func sourceSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
+        guard let (statusIndex, attachmentIndex) = selectedAttachment,
+            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
+            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
+        else { preconditionFailure() }
+
+        return collectionViewCell.snapshotView(afterScreenUpdates: true)!
+    }
+
+    func sourceRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
+        guard let (statusIndex, attachmentIndex) = selectedAttachment,
+            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
+            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
+        else { preconditionFailure() }
+
+        return SpyglassRelativeRect(view: collectionViewCell)
+    }
+
+    func destinationSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
+        guard let attachmentIndex = userInfo?[SpyglassUserInfoKey.index] as? Int,
+            let (statusIndex, _) = selectedAttachment,
+            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
+            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
+        else { preconditionFailure() }
+
+        return collectionViewCell.snapshotView(afterScreenUpdates: true)!
+    }
+
+    func destinationRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
+        guard let attachmentIndex = userInfo?[SpyglassUserInfoKey.index] as? Int,
+            let (statusIndex, _) = selectedAttachment,
+            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
+            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
+        else { preconditionFailure() }
+
+        return SpyglassRelativeRect(view: collectionViewCell)
     }
 }

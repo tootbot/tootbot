@@ -15,19 +15,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import PINRemoteImage
-import UIKit
+import Foundation
 
-class StatusAttachmentImageCell: UICollectionViewCell {
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var sensitiveOverlayView: UIVisualEffectView!
+extension IndexPath {
+    init(row: Int, col: Int) {
+        self.init(row: row, section: col)
+    }
 
-    // MARK: - Collection View Cell
-    
-    override func prepareForReuse() {
-        imageView.pin_cancelImageDownload()
-        imageView.image = nil
-
-        super.prepareForReuse()
+    var col: Int {
+        return section
     }
 }
