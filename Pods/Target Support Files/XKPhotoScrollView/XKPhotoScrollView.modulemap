@@ -1,0 +1,6 @@
+framework module XKPhotoScrollView {
+  umbrella header "XKPhotoScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

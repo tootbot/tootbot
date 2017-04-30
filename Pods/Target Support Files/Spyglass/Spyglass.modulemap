@@ -1,0 +1,6 @@
+framework module Spyglass {
+  umbrella header "Spyglass-umbrella.h"
+
+  export *
+  module * { export * }
+}
