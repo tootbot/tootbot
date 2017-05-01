@@ -89,8 +89,8 @@ class StatusCellViewModel {
                     if let link = attributes[NSLinkAttributeName] as? String, let linkURL = URL(string: link) {
                         let contains = attachmentURLs.contains(where: { linkURL == $0.text || linkURL == $0.remote })
                         if contains {
-                            let replacementString = " " + FontAwesome.pictureO.rawValue + " "
-                            let replacement = NSMutableAttributedString(string: replacementString)
+                            let nbsp = "\u{00a0}"
+                            let replacement = NSMutableAttributedString(string: nbsp + FontAwesome.pictureO.rawValue + nbsp)
                             let fullRange = NSRange(0 ..< replacement.length)
                             replacement.addAttributes(attributes, range: fullRange)
                             replacement.addAttribute(NSFontAttributeName, value: FontAwesome.ofSize(fontSize)!, range: fullRange)
