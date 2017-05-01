@@ -119,6 +119,36 @@ class TimelineViewController: UITableViewController, SpyglassTransitionDestinati
         show(viewController, sender: sourceView)
     }
 
+    func forEachVisibleVideoAttachment(_ body: (StatusAttachmentVideoCell) -> Void) {
+        for cell in tableView.visibleCells {
+            guard let statusCell = cell as? StatusCell,
+                !statusCell.attachmentsCollectionView.isHidden
+                else { continue }
+
+            for attachmentCell in statusCell.attachmentsCollectionView.visibleCells {
+                if let attachmentVideoCell = attachmentCell as? StatusAttachmentVideoCell {
+                    body(attachmentVideoCell)
+                }
+            }
+        }
+    }
+
+    func playVisibleVideoAttachments() {
+        forEachVisibleVideoAttachment { cell in
+            if cell.sensitiveOverlayView.isHidden {
+                cell.playerView.play()
+            }
+        }
+    }
+
+    func pauseVisibleVideoAttachments() {
+        forEachVisibleVideoAttachment { cell in
+            if cell.sensitiveOverlayView.isHidden {
+                cell.playerView.pause()
+            }
+        }
+    }
+
     // MARK: - View Life Cycle
 
     override func show(_ vc: UIViewController, sender: Any?) {
@@ -142,6 +172,13 @@ class TimelineViewController: UITableViewController, SpyglassTransitionDestinati
         super.viewDidAppear(animated)
 
         reloadData()
+        playVisibleVideoAttachments()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        pauseVisibleVideoAttachments()
     }
     
     // MARK: - Table View
