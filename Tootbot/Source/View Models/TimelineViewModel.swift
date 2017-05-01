@@ -63,8 +63,8 @@ class TimelineViewModel {
         return statuses.value.count
     }
 
-    func viewModel(at indexPath: IndexPath) -> StatusCellViewModel {
-        let status = statuses.value[indexPath.row]
+    func statusCellViewModel(atIndex index: Int) -> StatusCellViewModel {
+        let status = statuses.value[index]
         let objectID = status.objectID
 
         if let viewModel = viewModelCache[objectID] {

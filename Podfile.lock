@@ -20,6 +20,8 @@ PODS:
     - Result (~> 3.2)
   - Result (3.2.1)
   - SAMKeychain (1.5.2)
+  - Spyglass (0.0.2)
+  - XKPhotoScrollView (0.1.4)
 
 DEPENDENCIES:
   - Axt (~> 0.0.1)
@@ -30,6 +32,8 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 5.0.0)
   - ReactiveSwift (~> 1.1.1)
   - SAMKeychain (~> 1.5.2)
+  - Spyglass (~> 0.0.2)
+  - XKPhotoScrollView (from `https://github.com/karlvr/XKPhotoScrollView.git`, commit `3e0c0fd50cb05340a016d7de616fc924726f7936`)
 
 EXTERNAL SOURCES:
   Freddy:
@@ -37,11 +41,17 @@ EXTERNAL SOURCES:
     :tag: 3.0.2
   KeyboardLayoutGuide:
     :podspec: Pods/Local Podspecs/KeyboardLayoutGuide.podspec.json
+  XKPhotoScrollView:
+    :commit: 3e0c0fd50cb05340a016d7de616fc924726f7936
+    :git: https://github.com/karlvr/XKPhotoScrollView.git
 
 CHECKOUT OPTIONS:
   Freddy:
     :git: https://github.com/bignerdranch/Freddy.git
     :tag: 3.0.2
+  XKPhotoScrollView:
+    :commit: 3e0c0fd50cb05340a016d7de616fc924726f7936
+    :git: https://github.com/karlvr/XKPhotoScrollView.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -55,7 +65,9 @@ SPEC CHECKSUMS:
   ReactiveSwift: 2489549e3231a6ff68ec99f3d320bb264f10ba0a
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
+  Spyglass: 398f0759de282c0ff789f3c3a11683b8cdb7077d
+  XKPhotoScrollView: 6e18f91c036d000ce13b3c996e8c4aa71a5872cc
 
-PODFILE CHECKSUM: f15e080434aee21a9793b83abf906059f15bd203
+PODFILE CHECKSUM: 3fbc7e03b78f503a2dbf3f7266748ff9ec6dfad1
 
 COCOAPODS: 1.2.1

@@ -18,10 +18,41 @@
 import ReactiveCocoa
 import ReactiveSwift
 import SafariServices
+import Spyglass
 import UIKit
 
-class TimelineViewController: UITableViewController, UIViewControllerPreviewingDelegate {
+struct SpyglassUserInfoKey: Hashable, RawRepresentable {
+    let rawValue: String
+
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    static func ==(lhs: SpyglassUserInfoKey, rhs: SpyglassUserInfoKey) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+
+    var hashValue: Int {
+        return rawValue.hashValue
+    }
+
+    static var index: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "index")
+    }
+
+    static var rect: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "rect")
+    }
+
+    static var snapshot: SpyglassUserInfoKey {
+        return SpyglassUserInfoKey(rawValue: "snapshot")
+    }
+}
+
+class TimelineViewController: UITableViewController, SpyglassTransitionDestination, SpyglassTransitionSource, UIViewControllerPreviewingDelegate {
     let disposable = ScopedDisposable(CompositeDisposable())
+    lazy var spyglass = Spyglass()
+    var selectedAttachment: (statusIndex: Int, attachmentIndex: Int)?
     var viewModel: TimelineViewModel!
 
     func configureTableView() {
@@ -49,6 +80,25 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
         return safariViewController
     }
 
+    func handleAttachmentTapped(statusIndex: Int, attachmentIndex: Int) {
+        selectedAttachment = (statusIndex, attachmentIndex)
+
+        let attachmentsViewModel = viewModel.statusCellViewModel(atIndex: statusIndex).attachmentsViewModel!
+        let galleryViewController = GalleryViewController(viewModel: attachmentsViewModel, initialIndex: attachmentIndex)
+
+        let navigationController = NavigationController(rootViewController: galleryViewController)
+        navigationController.transitioningDelegate = spyglass
+        navigationController.setNavigationBarHidden(true, animated: false)
+
+        if let navigationBar = self.navigationController?.navigationBar {
+            navigationController.navigationBar.barTintColor = navigationBar.barTintColor
+            navigationController.navigationBar.tintColor = navigationBar.tintColor
+            navigationController.navigationBar.titleTextAttributes = navigationBar.titleTextAttributes
+        }
+
+        present(navigationController, animated: true)
+    }
+
     func handleLinkTapped(type: LinkType, link: String, sourceRect: CGRect, sourceView: UIView) {
         let viewController: UIViewController
 
@@ -67,6 +117,36 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
         }
 
         show(viewController, sender: sourceView)
+    }
+
+    func forEachVisibleVideoAttachment(_ body: (StatusAttachmentVideoCell) -> Void) {
+        for cell in tableView.visibleCells {
+            guard let statusCell = cell as? StatusCell,
+                !statusCell.attachmentsCollectionView.isHidden
+                else { continue }
+
+            for attachmentCell in statusCell.attachmentsCollectionView.visibleCells {
+                if let attachmentVideoCell = attachmentCell as? StatusAttachmentVideoCell {
+                    body(attachmentVideoCell)
+                }
+            }
+        }
+    }
+
+    func playVisibleVideoAttachments() {
+        forEachVisibleVideoAttachment { cell in
+            if cell.sensitiveOverlayView.isHidden {
+                cell.playerView.play()
+            }
+        }
+    }
+
+    func pauseVisibleVideoAttachments() {
+        forEachVisibleVideoAttachment { cell in
+            if cell.sensitiveOverlayView.isHidden {
+                cell.playerView.pause()
+            }
+        }
     }
 
     // MARK: - View Life Cycle
@@ -92,6 +172,13 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
         super.viewDidAppear(animated)
 
         reloadData()
+        playVisibleVideoAttachments()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        pauseVisibleVideoAttachments()
     }
     
     // MARK: - Table View
@@ -102,7 +189,12 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StatusCell", for: indexPath) as! StatusCell
-        cell.viewModel = viewModel.viewModel(at: indexPath)
+        cell.configure(with: viewModel.statusCellViewModel(atIndex: indexPath.item))
+
+        _ = cell.attachmentTappedSignal
+            .take(until: cell.reactive.prepareForReuse)
+            .map { attachmentIndex in (indexPath.item, attachmentIndex) }
+            .observeValues(handleAttachmentTapped)
 
         _ = cell.linkTappedSignal
             .map { type, link, boundingRect in (type, link, boundingRect, cell.contentTextView) }
@@ -145,5 +237,80 @@ class TimelineViewController: UITableViewController, UIViewControllerPreviewingD
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         show(viewControllerToCommit, sender: nil)
+    }
+
+    // MARK: - Spyglass
+
+    func attachmentsCollectionView(statusIndex: Int) -> UICollectionView? {
+        if let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell {
+            return tableViewCell.attachmentsCollectionView
+        } else {
+            return nil
+        }
+    }
+
+    var attachmentsCollectionViewForSelectedAttachment: UICollectionView? {
+        return (selectedAttachment?.statusIndex).flatMap(attachmentsCollectionView)
+    }
+
+    func attachmentCollectionViewCell(statusIndex: Int, attachmentIndex: Int) -> UICollectionViewCell? {
+        return attachmentsCollectionView(statusIndex: statusIndex)?.cellForItem(at: [0, attachmentIndex])
+    }
+
+    var attachmentCollectionViewCellForSelectedAttachment: UICollectionViewCell? {
+        return selectedAttachment.flatMap(attachmentCollectionViewCell)
+    }
+
+    func userInfo(for transitionType: SpyglassTransitionType, from initialViewController: UIViewController, to finalViewController: UIViewController) -> SpyglassUserInfo? {
+        return [
+            SpyglassUserInfoKey.index: selectedAttachment!.attachmentIndex,
+        ]
+    }
+
+    func sourceSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
+        return attachmentCollectionViewCellForSelectedAttachment!.snapshotView(afterScreenUpdates: true)!
+    }
+
+    func sourceRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
+        return SpyglassRelativeRect(view: attachmentCollectionViewCellForSelectedAttachment!)
+    }
+
+    func sourceTransitionWillBegin(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?) {
+        attachmentCollectionViewCellForSelectedAttachment?.isHidden = true
+    }
+
+    func sourceTransitionDidEnd(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?, completed: Bool) {
+        attachmentsCollectionViewForSelectedAttachment?.visibleCells.forEach { $0.isHidden = false }
+    }
+
+    func destinationSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionViewCell = attachmentCollectionViewCell(statusIndex: statusIndex, attachmentIndex: attachmentIndex)!
+        return collectionViewCell.snapshotView(afterScreenUpdates: true)!
+    }
+
+    func destinationRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionViewCell = attachmentCollectionViewCell(statusIndex: statusIndex, attachmentIndex: attachmentIndex)!
+        return SpyglassRelativeRect(view: collectionViewCell)
+    }
+
+    func destinationTransitionWillBegin(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?) {
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionView = attachmentsCollectionView(statusIndex: statusIndex)!
+        let attachmentIndexPath: IndexPath = [0, attachmentIndex]
+        collectionView.scrollToItem(at: attachmentIndexPath, at: [], animated: false)
+
+        let collectionViewCell = collectionView.cellForItem(at: attachmentIndexPath)!
+        collectionViewCell.isHidden = true
+    }
+
+    func destinationTransitionDidEnd(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?, completed: Bool) {
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionView = attachmentsCollectionView(statusIndex: statusIndex)!
+        collectionView.visibleCells.forEach { $0.isHidden = false }
     }
 }
