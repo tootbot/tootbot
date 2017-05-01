@@ -204,45 +204,76 @@ class TimelineViewController: UITableViewController, SpyglassTransitionDestinati
 
     // MARK: - Spyglass
 
+    func attachmentsCollectionView(statusIndex: Int) -> UICollectionView? {
+        if let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell {
+            return tableViewCell.attachmentsCollectionView
+        } else {
+            return nil
+        }
+    }
+
+    var attachmentsCollectionViewForSelectedAttachment: UICollectionView? {
+        return (selectedAttachment?.statusIndex).flatMap(attachmentsCollectionView)
+    }
+
+    func attachmentCollectionViewCell(statusIndex: Int, attachmentIndex: Int) -> UICollectionViewCell? {
+        return attachmentsCollectionView(statusIndex: statusIndex)?.cellForItem(at: [0, attachmentIndex])
+    }
+
+    var attachmentCollectionViewCellForSelectedAttachment: UICollectionViewCell? {
+        return selectedAttachment.flatMap(attachmentCollectionViewCell)
+    }
+
     func userInfo(for transitionType: SpyglassTransitionType, from initialViewController: UIViewController, to finalViewController: UIViewController) -> SpyglassUserInfo? {
-        return nil
+        return [
+            SpyglassUserInfoKey.index: selectedAttachment!.attachmentIndex,
+        ]
     }
 
     func sourceSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
-        guard let (statusIndex, attachmentIndex) = selectedAttachment,
-            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
-            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
-        else { preconditionFailure() }
-
-        return collectionViewCell.snapshotView(afterScreenUpdates: true)!
+        return attachmentCollectionViewCellForSelectedAttachment!.snapshotView(afterScreenUpdates: true)!
     }
 
     func sourceRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
-        guard let (statusIndex, attachmentIndex) = selectedAttachment,
-            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
-            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
-        else { preconditionFailure() }
+        return SpyglassRelativeRect(view: attachmentCollectionViewCellForSelectedAttachment!)
+    }
 
-        return SpyglassRelativeRect(view: collectionViewCell)
+    func sourceTransitionWillBegin(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?) {
+        attachmentCollectionViewCellForSelectedAttachment?.isHidden = true
+    }
+
+    func sourceTransitionDidEnd(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?, completed: Bool) {
+        attachmentsCollectionViewForSelectedAttachment?.visibleCells.forEach { $0.isHidden = false }
     }
 
     func destinationSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
-        guard let attachmentIndex = userInfo?[SpyglassUserInfoKey.index] as? Int,
-            let (statusIndex, _) = selectedAttachment,
-            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
-            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
-        else { preconditionFailure() }
-
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionViewCell = attachmentCollectionViewCell(statusIndex: statusIndex, attachmentIndex: attachmentIndex)!
         return collectionViewCell.snapshotView(afterScreenUpdates: true)!
     }
 
     func destinationRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
-        guard let attachmentIndex = userInfo?[SpyglassUserInfoKey.index] as? Int,
-            let (statusIndex, _) = selectedAttachment,
-            let tableViewCell = tableView.cellForRow(at: [0, statusIndex]) as? StatusCell,
-            let collectionViewCell = tableViewCell.attachmentsCollectionView.cellForItem(at: [0, attachmentIndex])
-        else { preconditionFailure() }
-
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionViewCell = attachmentCollectionViewCell(statusIndex: statusIndex, attachmentIndex: attachmentIndex)!
         return SpyglassRelativeRect(view: collectionViewCell)
+    }
+
+    func destinationTransitionWillBegin(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?) {
+        let attachmentIndex = userInfo![SpyglassUserInfoKey.index] as! Int
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionView = attachmentsCollectionView(statusIndex: statusIndex)!
+        let attachmentIndexPath: IndexPath = [0, attachmentIndex]
+        collectionView.scrollToItem(at: attachmentIndexPath, at: [], animated: false)
+
+        let collectionViewCell = collectionView.cellForItem(at: attachmentIndexPath)!
+        collectionViewCell.isHidden = true
+    }
+
+    func destinationTransitionDidEnd(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?, completed: Bool) {
+        let statusIndex = selectedAttachment!.statusIndex
+        let collectionView = attachmentsCollectionView(statusIndex: statusIndex)!
+        collectionView.visibleCells.forEach { $0.isHidden = false }
     }
 }

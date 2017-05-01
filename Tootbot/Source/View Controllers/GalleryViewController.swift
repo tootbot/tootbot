@@ -130,7 +130,12 @@ class GalleryViewController: UIViewController, SpyglassTransitionDestination, Sp
     }
     
     func sourceSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
-        return photoScrollView.currentView.snapshotView(afterScreenUpdates: false)!
+        let index = userInfo![SpyglassUserInfoKey.index] as! Int
+        let attachment = viewModel.attachments[index]
+
+        let imageView = UIImageView()
+        imageView.pin_setImage(from: attachment.previewURL)
+        return imageView
     }
 
     func sourceRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
@@ -146,12 +151,23 @@ class GalleryViewController: UIViewController, SpyglassTransitionDestination, Sp
     }
 
     func destinationSnapshotView(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> UIView {
-        let view = photoScrollView.currentView ?? photoScrollView!
-        return view.snapshotView(afterScreenUpdates: true)!
+        let index = userInfo![SpyglassUserInfoKey.index] as! Int
+        let attachment = viewModel.attachments[index]
+
+        let imageView = UIImageView()
+        imageView.pin_setImage(from: attachment.previewURL)
+        return imageView
     }
 
     func destinationRect(for transitionType: SpyglassTransitionType, userInfo: SpyglassUserInfo?) -> SpyglassRelativeRect {
-        let view = photoScrollView.currentView ?? photoScrollView!
-        return SpyglassRelativeRect(view: view)
+        return SpyglassRelativeRect(rect: photoScrollView.viewFrame, relativeTo: photoScrollView)
+    }
+
+    func destinationTransitionWillBegin(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?) {
+        photoScrollView.isHidden = true
+    }
+
+    func destinationTransitionDidEnd(for transitionType: SpyglassTransitionType, viewController: UIViewController, userInfo: SpyglassUserInfo?, completed: Bool) {
+        photoScrollView.isHidden = false
     }
 }
